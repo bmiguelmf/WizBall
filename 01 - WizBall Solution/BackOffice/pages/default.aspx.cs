@@ -54,11 +54,22 @@ namespace BackOffice.pages
             // GetByCompetitionAndStatus(2000, "SCHEDULED");
 
 
-            ResourceAreas resourceAreas = new ResourceAreas(TOKEN);
-            List<Area> lstAreas = resourceAreas.GetAll();
+            ResourceCompetitions rc = new ResourceCompetitions(TOKEN);
+            List<Season> lstSeasons = new List<Season>();
 
-            DALAreas dalAreas = new DALAreas(ConnString);
-            dalAreas.Insert(lstAreas);
+            foreach (Competition comp in rc.GetAll())
+            {
+                lstSeasons.Add(comp.CurrentSeason);
+            }
+
+            DALSeasons dalSeason = new DALSeasons(ConnString);
+            dalSeason.Insert(lstSeasons);
+
+            //ResourceAreas resourceAreas = new ResourceAreas(TOKEN);
+            //List<Area> lstAreas = resourceAreas.GetAll();
+
+            //DALAreas dalAreas = new DALAreas(ConnString);
+            //dalAreas.Insert(lstAreas);
 
             //DALAreas fds = new DALAreas(ConnString);
 

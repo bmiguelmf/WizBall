@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Data Access Layer\DAL.cs" />
     <Compile Include="Data Access Layer\DALAreas.cs" />
+    <Compile Include="Data Access Layer\DALSeasons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -24,26 +24,6 @@ namespace ApiFootballDataOrg.Resources
         {
             string response = WebClient.DownloadString(EndPoint);
             response = response.Replace("null", "0");
-  
-            //while (response.Contains("null"))
-            //{             
-            //    int endIndex = response.IndexOf("null") + 5;
-            //    int startIndex = endIndex;
-            //    int count = 0;
-
-            //    while (count < 2)
-            //    {
-            //        startIndex--;
-            //        if (response[startIndex].ToString() == "," || response[startIndex].ToString() == "{")
-            //            count++;
-            //    };
-            //    startIndex++;
-
-            //    string sub = response.Substring(startIndex, (endIndex - startIndex));
-            //    response = response.Remove(startIndex, (endIndex - startIndex));
-            //};
-
-
 
             return response;                      // Replace nulls by 0.
         }
