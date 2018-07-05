@@ -35,15 +35,22 @@ namespace BusinessLogic
         {
             foreach (Season season in Seasons)
             {
+                if (season.StartDate == "0" || season.EndDate == "0") continue;
+
                 SqlCommand cmd = new SqlCommand
                 {
                     CommandText = "INSERT INTO seasons VALUES(@id, @start_date, @end_date)"
                 };
 
-                DateTime start = DateTime.TryParse(season.StartDate);
+                DateTime start;
+                DateTime.TryParse(season.StartDate, out start);
+
+                DateTime end;
+                DateTime.TryParse(season.EndDate, out end);
+
                 cmd.Parameters.AddWithValue("@id", season.Id);
-                cmd.Parameters.AddWithValue("@start_date", DateTime.TryParse(season.StartDate));
-                cmd.Parameters.AddWithValue("@end_date", season.EndDate);
+                cmd.Parameters.AddWithValue("@start_date", start);
+                cmd.Parameters.AddWithValue("@end_date", end);
 
                 ExecuteNonQuery(cmd);
             }
