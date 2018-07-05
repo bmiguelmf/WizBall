@@ -41,6 +41,7 @@ namespace ApiFootballDataOrg.Resources
             return match as Match;
         }
 
+        // List matchs by competition and status.
         public List<Match> GetByCompetitionAndStatus(string CompetitionId, string Status)
         {
             string endPoint = GetEndPoint(Globals.URL_COMPETITIONS,                                                      // Generate the end point.
