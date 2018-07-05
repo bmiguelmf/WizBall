@@ -4,7 +4,7 @@ GO
 
 -- ADMINS
 insert into admins values('bro', 'bmiguelmf@gmail.com', '06121984');
-insert into admins values('passeira', 'passeira@gmail.com', 'passeira');
+insert into admins values('passeira', 'lfmpasseira99@live.com.pt', 'passeira');
 insert into admins values('joao', 'joao@gmail.com', 'joao');
 
 

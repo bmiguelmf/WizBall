@@ -175,3 +175,7 @@ C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Soluti
 C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CopyComplete
 C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.dll
 C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.pdb
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\ApiFootballDataOrg.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BusinessLogic.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\ApiFootballDataOrg.pdb
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BusinessLogic.pdb

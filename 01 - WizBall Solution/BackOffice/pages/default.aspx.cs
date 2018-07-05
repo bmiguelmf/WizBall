@@ -20,7 +20,12 @@ namespace BackOffice.pages
     {
 
         private const string TOKEN = "7f91f916023b4430b44d97cc11e5c030";
-        private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
+
+        // Bruno Home.
+        //private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
+
+        // Bruno ATEC
+        private const string ConnString = "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = wizball; Integrated Security = SSPI;";
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -49,19 +54,18 @@ namespace BackOffice.pages
             // GetByCompetitionAndStatus(2000, "SCHEDULED");
 
 
-            //ResourceAreas resourceAreas = new ResourceAreas(TOKEN);
+            ResourceAreas resourceAreas = new ResourceAreas(TOKEN);
+            List<Area> lstAreas = resourceAreas.GetAll();
 
-            //List<Area> lstAreas = resourceAreas.GetAll();
+            DALAreas dalAreas = new DALAreas(ConnString);
+            dalAreas.Insert(lstAreas);
 
-            //DALAreas dalAreas = new DALAreas(ConnString);
-            //dalAreas.Insert(lstAreas);
+            //DALAreas fds = new DALAreas(ConnString);
 
-            DALAreas fds = new DALAreas(ConnString);
-
-            foreach(Area a in fds.GetAll())
-            {
-                Page.Response.Write(a.Id + " &emsp; " + a.Name + " <br/>");
-            }
+            //foreach(Area a in fds.GetAll())
+            //{
+            //    Page.Response.Write(a.Id + " &emsp; " + a.Name + " <br/>");
+            //}
         }
 
 
