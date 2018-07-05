@@ -1,0 +1,38 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="master.master.cs" Inherits="BackOffice.pages.master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>WizBall BO</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../styling/bootstrap4.css" />
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        
+        <div>
+
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+        </div>
+
+    </form>
+
+    <!-- JavaScript File -->
+    <script src="../js/js.js"></script>
+
+</body>
+</html>

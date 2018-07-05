@@ -1,0 +1,18 @@
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csproj.CoreCompileInputs.cache
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\ApiFootballDataOrg.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\ApiFootballDataOrg.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csprojResolveAssemblyReference.cache
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\ApiFootballDataOrg.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\ApiFootballDataOrg.pdb
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csprojAssemblyReference.cache
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csproj.CoreCompileInputs.cache
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\ApiFootballDataOrg.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\ApiFootballDataOrg.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csprojAssemblyReference.cache
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csproj.CoreCompileInputs.cache
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.pdb

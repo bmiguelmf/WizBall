@@ -1,0 +1,177 @@
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.dll.config
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.pdb
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.exe
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.exe.config
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.rsp
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.exe
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.exe.config
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.rsp
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.AppContext.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Console.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.Compression.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.Pipes.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Claims.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Threading.Thread.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.ValueTuple.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XPath.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.exe
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.exe.config
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.rsp
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\VBCSCompiler.exe
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csprojAssemblyReference.cache
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CoreCompileInputs.cache
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CopyComplete
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.dll
+C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.dll.config
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.exe
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.exe.config
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.rsp
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.exe
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.exe.config
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.rsp
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.AppContext.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Console.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.Compression.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.Pipes.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Claims.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Threading.Thread.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.ValueTuple.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XPath.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.exe
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.exe.config
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.rsp
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\VBCSCompiler.exe
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csprojResolveAssemblyReference.cache
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CoreCompileInputs.cache
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.dll
+C:\Users\one\Desktop\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.dll.config
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BackOffice.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.exe
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.exe.config
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csc.rsp
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.exe
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.exe.config
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\csi.rsp
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.AppContext.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Console.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.Compression.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.IO.Pipes.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Claims.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Threading.Thread.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.ValueTuple.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XPath.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.exe
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.exe.config
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\vbc.rsp
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\VBCSCompiler.exe
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\ApiFootballDataOrg.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BusinessLogic.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\ApiFootballDataOrg.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\BusinessLogic.pdb
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csprojAssemblyReference.cache
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CoreCompileInputs.cache
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CopyComplete
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.dll
+C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.pdb
