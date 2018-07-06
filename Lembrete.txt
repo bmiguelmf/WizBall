@@ -1,1 +1,11 @@
 Adicionar campo flag às competições
+
+Retirar nulls do json da função downloadstring da class Resource
+
+Atribuir as flags às teams
+
+Atribuir as flags às competitions
+
+Implementar Dal Generica
+
+Imprimir ATA
