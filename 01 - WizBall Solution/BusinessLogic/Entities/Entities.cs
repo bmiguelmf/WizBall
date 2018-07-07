@@ -4,38 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiFootballDataOrg.Entities
+namespace BusinessLogic.Entities
 {
-    public class Competition
-    {
-        public int Id { get; set; }
-        public Area Area { get; set; }
-        public string Name { get; set; }
-        public int Code { get; set; }
-        public string Plan { get; set; }
-        public Season CurrentSeason { get; set; }
-        public int NumberOfAvailableSeasons { get; set; }
-        public string LastUpdated { get; set; }
-    }
-
-    public class Area
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string CountryCode { get; set; }
-        public int ParentAreaId { get; set; }
-        public string ParentArea { get; set; }
-    }
-
-    public class Season
-    {
-        public int Id { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
-        public int CurrentMatchday { get; set; }
-        public List<string> AvailableStages { get; set; }
-    }
-
+    
     public class Team
     {
         public int Id { get; set; }

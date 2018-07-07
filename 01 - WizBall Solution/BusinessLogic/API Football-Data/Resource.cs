@@ -2,13 +2,13 @@
 using System.Text;
 using System.Collections.Generic;
 
-namespace ApiFootballDataOrg.Resources
+namespace BusinessLogic.Resources
 {
     public abstract class Resource
     {
         protected const string URL_AREAS = "http://api.football-data.org/v2/areas/";
-        protected const string URL_TEAMS = "http://api.football-data.org/v2/teams/";
         protected const string URL_MATCHES = "http://api.football-data.org/v2/matches/";
+        protected const string URL_TEAMS = "http://api.football-data.org/v2/teams/"; 
         protected const string URL_COMPETITIONS = "http://api.football-data.org/v2/competitions/";
 
 

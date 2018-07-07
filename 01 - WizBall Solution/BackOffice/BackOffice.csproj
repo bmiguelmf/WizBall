@@ -105,10 +105,6 @@
     <Folder Include="resources\imgs\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ApiFootballDataOrg\ApiFootballDataOrg.csproj">
-      <Project>{20bd3c49-46c0-4cc6-9550-b65a1ba96ddb}</Project>
-      <Name>ApiFootballDataOrg</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{e167f6af-ab58-46b0-a404-a2ad2d8cbd49}</Project>
       <Name>BusinessLogic</Name>

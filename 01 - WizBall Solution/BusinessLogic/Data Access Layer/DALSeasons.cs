@@ -1,62 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-using ApiFootballDataOrg.Entities;
+using BusinessLogic.Entities;
 
 
-namespace BusinessLogic
+namespace BusinessLogic.DAL
 {
     public class DALSeasons : DAL
     {
-        // Construtor.
         public DALSeasons(string ConnectionString) : base(ConnectionString)
+        { }
+
+
+        // Gets.
+        public List<Season> GetAll()
         {
+            return GetAll(new Season()).Cast<Season>().ToList();
         }
-
-
-
-        // Creates and assembles a new object of type Season.
-        private Season Assembler(Dictionary<string, object> Row)
+        public Season GetById(string Id)
         {
-            Season season = new Season
-            {
-                Id              = (int)Row["id"],
-                StartDate       = Row["start_date"].ToString(),
-                EndDate         = Row["end_date"].ToString(),
-            };
-
-            return season;
+            return GetById(new Season(), Id) as Season;
         }
+       
 
-
-        // Inserts a list of seasons.
+        // Insert.
         public bool Insert(List<Season> Seasons)
         {
             foreach (Season season in Seasons)
             {
-                if (season.StartDate == "0" || season.EndDate == "0") continue;
-
-                SqlCommand cmd = new SqlCommand
-                {
-                    CommandText = "INSERT INTO seasons VALUES(@id, @start_date, @end_date)"
-                };
-
-                DateTime start;
-                DateTime.TryParse(season.StartDate, out start);
-
-                DateTime end;
-                DateTime.TryParse(season.EndDate, out end);
-
-                cmd.Parameters.AddWithValue("@id", season.Id);
-                cmd.Parameters.AddWithValue("@start_date", start);
-                cmd.Parameters.AddWithValue("@end_date", end);
-
-                ExecuteNonQuery(cmd);
+                Insert(season);
             }
 
             return true;
         }
 
+        // Delete.
+        public bool Delete(List<Season> Seasons)
+        {
+            foreach (Season season in Seasons)
+            {
+                Delete(season);
+            }
+
+            return true;
+        }
+
+        // Update.
+        public bool Update(List<Season> Seasons)
+        {
+            foreach (Season season in Seasons)
+            {
+                Update(season);
+            }
+
+            return true;
+        }
     }
 }

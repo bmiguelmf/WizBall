@@ -16,3 +16,12 @@ C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Soluti
 C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csproj.CoreCompileInputs.cache
 C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.dll
 C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.pdb
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\ApiFootballDataOrg.dll
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\ApiFootballDataOrg.pdb
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\BusinessLogic.dll
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\bin\Debug\BusinessLogic.pdb
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csprojAssemblyReference.cache
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csproj.CoreCompileInputs.cache
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.csproj.CopyComplete
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.dll
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\ApiFootballDataOrg\obj\Debug\ApiFootballDataOrg.pdb

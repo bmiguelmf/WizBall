@@ -4,7 +4,7 @@ using System.Web.Script.Serialization;
 using BusinessLogic.Entities;
 
 
-namespace ApiFootballDataOrg.Resources
+namespace BusinessLogic.Resources
 {
     public class ResourceMatches : Resource
     {

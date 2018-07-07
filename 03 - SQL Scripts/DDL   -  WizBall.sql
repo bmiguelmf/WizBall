@@ -66,9 +66,10 @@ BEGIN TRY
 						(
 							id						int												not null,
 							area_id					int												not null,											
-							name					varchar(50)			unique						not null,
-							code					varchar(50)			unique						null	,
+							name					varchar(50)										not null,
+							code					varchar(50)										null	,
 							[plan]					varchar(50)										not null,
+							flag					varchar(50)										null	,
 							last_updated			datetime										not null,
 
 							constraint pk_competitions primary key(id),

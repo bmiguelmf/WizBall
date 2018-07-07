@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
-using ApiFootballDataOrg.Entities;
+using BusinessLogic.Entities;
 
 
-namespace BusinessLogic
+namespace BusinessLogic.DAL
 {
     public class DALAreas : DAL
     {
@@ -13,99 +14,56 @@ namespace BusinessLogic
         {
         }
 
+      
 
-
-        // Creates and assembles a new object of type Area.
-        private Area Assembler(Dictionary<string, object> Row)
-        {
-            Area area = new Area
-            {
-                Id              = (int)Row["id"],
-                Name            = Row["name"].ToString(),
-                CountryCode     = Row["country_code"].ToString(),
-                ParentAreaId    = (int)Row["parent_area_id"]
-            };
-
-            return area;
-        }
-
-
-
-
-        // TODO
-        // Get one specific area by id.
-        public Area GetById(string AreaId)
-        {
-            return null;
-        }
-
-
-        // TODO.
-        // Gets a list of areas by parent area id. 
-        public List<Area> GetByParentId(string ParentAreaId)
-        {
-            return null;
-        }
-
-
-        // Gets a list of all available areas. 
+        // Gets.
         public List<Area> GetAll()
         {
-            SqlCommand cmd = new SqlCommand
-            {
-                CommandText = "SELECT * FROM areas"
-            };
-
-            List<Area> lstAreas = new List<Area>();
-
-            foreach (Dictionary<string, object> row in ExecuteReader(cmd))
-            {
-                lstAreas.Add(Assembler(row));
-            }
-
-            return lstAreas;
+            return GetAll(new Area()).Cast<Area>().ToList();
+        }
+        public Area GetById(string Id)
+        {
+            return GetById(new Area(), Id) as Area;
+        }
+        public List<Area> GetByParentAreaId(string ParentAreaId)
+        {
+            return GetWhere(new Area(), 
+                            new Dictionary<string, string>()
+                            { { "parent_area_id", ParentAreaId } })
+                            
+                            .Cast<Area>().ToList();
         }
 
-
-
-
-        // Inserts a list of Areas.
+        // Insert.
         public bool Insert(List<Area> Areas)
         {
             foreach (Area area in Areas)
             {
-                SqlCommand cmd = new SqlCommand
-                {
-                    CommandText = "INSERT INTO areas VALUES(@id, @name, @country_code, @parent_area_id)"
-                };
-                cmd.Parameters.AddWithValue("@id", area.Id);
-                cmd.Parameters.AddWithValue("@name", area.Name);
-                cmd.Parameters.AddWithValue("@country_code", area.CountryCode);
-                cmd.Parameters.AddWithValue("@parent_area_id", area.ParentAreaId);
-
-                ExecuteNonQuery(cmd);
+                Insert(area);
             }
 
             return true;
         }
 
-
-
-
-        // TODO
-        // Update a list of Area.
-        public bool Update(List<Area> Areas)
+        // Delete.
+        public bool Delete(List<Area> Areas)
         {
+            foreach (Area area in Areas)
+            {
+                Delete(area);
+            }
+
             return true;
         }
 
-
-
-
-        // TODO
-        // Update a list of Area.
-        public bool Delete(List<Area> Areas)
+        // Update.
+        public bool Update(List<Area> Areas)
         {
+            foreach (Area area in Areas)
+            {
+                Update(area);
+            }
+
             return true;
         }
     }

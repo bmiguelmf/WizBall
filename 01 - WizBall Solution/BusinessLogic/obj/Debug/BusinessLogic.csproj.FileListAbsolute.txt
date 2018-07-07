@@ -22,3 +22,9 @@ C:\Users\one\Desktop\Projecto Final ATEC\Projecto Final ATEC\01 - WizBall Soluti
 C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BusinessLogic\bin\Debug\ApiFootballDataOrg.dll
 C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BusinessLogic\bin\Debug\ApiFootballDataOrg.pdb
 C:\Users\ATEC\Desktop\Projecto Final ATEC\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.pdb
