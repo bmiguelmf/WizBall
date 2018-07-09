@@ -11,7 +11,7 @@ namespace BusinessLogic.Entities
         public int Id { get; set; }
         public Area Area { get; set; }
         public string Name { get; set; }
-        public int Code { get; set; }
+        public string Code { get; set; }
         public string Plan { get; set; }
         public Season CurrentSeason { get; set; }
         public int NumberOfAvailableSeasons { get; set; }
@@ -20,15 +20,17 @@ namespace BusinessLogic.Entities
 
         public override Entity Assembler(List<object> Row)
         {
-            return new Competition
-            {
-                Id              = (int)Row[0],
-                Area            = new Area { Id = (int)Row[1] },
-                Name            = Row[2].ToString(),
-                Code            = (int)Row[3],
-                Plan            = Row[4].ToString(),
-                LastUpdated     = Row[5].ToString()
-            };
+            Competition comp = new Competition();
+
+            comp.Id = (int)Row[0];
+            comp.Area = new Area() { Id = (int)Row[1] };
+            comp.Name = Row[2].ToString();
+            comp.Code = Row[3].ToString();
+            comp.Plan = Row[4].ToString();
+            comp.Flag = Row[5].ToString();
+            comp.LastUpdated = Row[6].ToString();
+
+            return comp;
         }
 
 
@@ -49,6 +51,7 @@ namespace BusinessLogic.Entities
                                   "name",
                                   "code",
                                   "plan",
+                                  "flag",
                                   "last_updated"};
         }
         public override string[] GetAllValues()
@@ -58,6 +61,7 @@ namespace BusinessLogic.Entities
                                   Name,
                                   Code.ToString(),
                                   Plan,
+                                  Flag == null ? "null" : Flag,
                                   LastUpdated};
         }
 
@@ -69,6 +73,7 @@ namespace BusinessLogic.Entities
                                   "name",
                                   "code",
                                   "plan",
+                                  "flag",
                                   "last_updated"};
         }
         public override string[] GetUpdatableValues()
@@ -77,6 +82,7 @@ namespace BusinessLogic.Entities
                                   Name,
                                   Code.ToString(),
                                   Plan,
+                                  Flag,
                                   LastUpdated};
         }
     }

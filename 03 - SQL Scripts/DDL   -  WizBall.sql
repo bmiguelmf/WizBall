@@ -15,6 +15,7 @@ BEGIN TRY
 							username				varchar(50)			unique						not null,											
 							email					varchar(50)			unique						not null,
 							password				varchar(50)										not null,
+							pic						varchar(50)			default('admin.png')		not null,
 
 							constraint pk_admins primary key(id)
 						)
@@ -35,6 +36,7 @@ BEGIN TRY
 							password				varchar(50)										not null,
 							newsletter				bit					default(0)					not null,
 							user_state				int					default(1)					not null,
+							pic						varchar(50)			default('user.png')			not null,
 
 							constraint pk_users primary key(id),
 							constraint fk_users_user_state foreign key(user_state) references user_states(id)
@@ -81,18 +83,18 @@ BEGIN TRY
 						(
 							id						int												not null,
 							area_id					int												not null,											
-							name					varchar(50)			unique						null    ,
+							name					varchar(50)			unique						not null,
 							short_name				varchar(50)			unique						null	,
-							tla						varchar(50)										null    ,
-							address					varchar(150)									null	,
-							phone					varchar(50)										null	,
-							website					varchar(100)									null	,
-							email					varchar(100)									null	,
+							tla						varchar(50)			unique						null    ,
+							address					varchar(150)		unique						null	,
+							phone					varchar(50)			unique						null	,
+							website					varchar(100)		unique						null	,
+							email					varchar(100)		unique						null	,
 							founded					int												null	,
 							club_colors				varchar(50)										null	,
-							venue					varchar(100)									null	,
-							flag					varchar(50)										null	,
-							last_updated			varchar(50)										not null,
+							venue					varchar(100)		unique						null	,
+							flag					varchar(50)			unique						null	,
+							last_updated			datetime										not null,
 
 							constraint pk_teams primary key(id),
 							constraint fk_teams_area_id foreign key(area_id) references areas(id)

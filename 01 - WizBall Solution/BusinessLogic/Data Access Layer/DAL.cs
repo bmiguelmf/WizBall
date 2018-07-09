@@ -144,7 +144,7 @@ namespace BusinessLogic.DAL
             List<string> matches = new List<string>();
             foreach (KeyValuePair<string, string> match in Where)
             {
-                matches.Add(match.Key + " = @" + match.Key);
+                matches.Add("[" + match.Key + "] = @" + match.Key);
             }
             string where = string.Join(" AND ", matches);
 
@@ -187,6 +187,9 @@ namespace BusinessLogic.DAL
             string[] val = Entity.GetAllValues();
             for (int i = 0; i < Entity.GetAllFields().Count(); i++)
             {
+                if (val[i] is null)
+                    val[i] = DBNull.Value;
+
                 cmd.Parameters.AddWithValue("@" + flds[i], val[i]);
             }
 
@@ -209,7 +212,7 @@ namespace BusinessLogic.DAL
             List<string> matches = new List<string>();
             foreach(string field in Entity.GetUpdatableFields())
             {
-                matches.Add(field + " = @" + field);
+                matches.Add("[" + field + "] = @" + field);
             }
             string updatables = string.Join(", ", matches);
 

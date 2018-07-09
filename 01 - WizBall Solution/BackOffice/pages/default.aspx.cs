@@ -28,10 +28,28 @@ namespace BackOffice.pages
 
             bll.InitializeDatabase();
 
+
+
+
+            //foreach(Area area in bll.GetAllAreas())
+            //{
+            //    Page.Response.Write(area.Name + " &emsp; " + area.ParentAreaId.ToString() + " <br/>");
+            //}
+
+
+            //foreach (Season season in bll.GetAllSeasons())
+            //{
+            //    Page.Response.Write(season.Id + " &emsp; " + season.StartDate + " <br/>");
+            //}
+
+            //foreach(Competition comp in bll.GetAllCompetitions())
+            //{
+            //    Page.Response.Write(comp.Id + " &emsp; " + comp.Name + " <br/>");
+            //}
         }
 
 
 
-      
+
     }
 }

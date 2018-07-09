@@ -15,7 +15,7 @@ namespace BusinessLogic.DAL
         // Gets.
         public List<Competition> GetAll()
         {
-            return GetAll(new Competition()).Cast<Competition>().ToList();
+            return base.GetAll(new Competition()).Cast<Competition>().ToList();
         }
         public Competition GetById(string Id)
         {
@@ -26,6 +26,14 @@ namespace BusinessLogic.DAL
             return GetWhere(new Competition(),
                             new Dictionary<string, string>()
                             { { "area_id", AreaId } })
+
+                            .Cast<Competition>().ToList();
+        }
+        public List<Competition> GetByPlan(string Plan)
+        {
+            return GetWhere(new Competition(),
+                            new Dictionary<string, string>()
+                            { { "plan", Plan } })
 
                             .Cast<Competition>().ToList();
         }

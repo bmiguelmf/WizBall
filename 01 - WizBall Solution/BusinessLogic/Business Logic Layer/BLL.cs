@@ -34,10 +34,10 @@ namespace BusinessLogic.BLL
 
 
             // Seasons           
-            List<Season> lstSeasons = new List<Season>();         
-            foreach(Competition comp in resourceCompetitions.GetAll())
+            List<Season> lstSeasons = new List<Season>();
+            foreach (Competition comp in resourceCompetitions.GetAll())
             {
-                if(comp.CurrentSeason.StartDate != "0" && comp.CurrentSeason.EndDate != "0")
+                if (comp.CurrentSeason.StartDate != "0" && comp.CurrentSeason.EndDate != "0")
                     lstSeasons.Add(comp.CurrentSeason);
             }
             DALSeasons dalSeason = new DALSeasons(ConnString);
@@ -46,7 +46,46 @@ namespace BusinessLogic.BLL
 
 
 
+            // Teams
+            DALTeams dalTeams = new DALTeams(ConnString);
+            ResourceTeams resourceTeams = new ResourceTeams(TOKEN);
+            foreach (Competition comp in dalCompetitions.GetByPlan("TIER_ONE"))
+            {
+                List<Team> lstTeams = resourceTeams.GetByCompetition(comp.Id.ToString());
+
+                dalTeams.Insert(lstTeams);
+            }
+
+
             return true;
+        }
+
+
+        public List<Team> GetAllTeams()
+        {
+            ResourceTeams resourceTeams = new ResourceTeams(TOKEN);
+
+            return resourceTeams.GetByCompetition("2001");
+        }
+
+
+        // Working.
+        public List<Area> GetAllAreas()
+        {
+            DALAreas dal = new DALAreas(ConnString);
+            return dal.GetAll();
+        }
+
+        public List<Season> GetAllSeasons()
+        {
+            DALSeasons dal = new DALSeasons(ConnString);
+            return dal.GetAll();
+        }
+
+        public List<Competition> GetAllCompetitions()
+        {
+            DALCompetitions dal = new DALCompetitions(ConnString);
+            return dal.GetAll();
         }
     }
 }

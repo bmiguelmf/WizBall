@@ -46,11 +46,13 @@
     <Compile Include="Data Access Layer\DALAreas.cs" />
     <Compile Include="Data Access Layer\DALCompetitions.cs" />
     <Compile Include="Data Access Layer\DALSeasons.cs" />
+    <Compile Include="Data Access Layer\DALTeams.cs" />
     <Compile Include="Entities\Area.cs" />
     <Compile Include="Entities\Competition.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Season.cs" />
+    <Compile Include="Entities\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API Football-Data\Resource.cs" />
     <Compile Include="API Football-Data\ResourceAreas.cs" />

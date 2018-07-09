@@ -16,7 +16,12 @@ namespace BusinessLogic.Entities
 
         public override Entity Assembler(List<object> Row)
         {
-            throw new NotImplementedException();
+            return new Season
+            {
+                Id = (int)Row[0],
+                StartDate = Row[1].ToString(),
+                EndDate = Row[2].ToString()
+            };
         }
 
 
