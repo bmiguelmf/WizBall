@@ -18,13 +18,14 @@ namespace BusinessLogic.Entities
 
         public override Entity Assembler(List<object> Row)
         {
-            return new Area
-            {
-                Id              = (int)Row[0],
-                Name            = Row[1].ToString(),
-                CountryCode     = Row[2].ToString(),
-                ParentAreaId    = (int)Row[3]
-            };
+            Area area = new Area();
+
+            area.Id             = (int)Row[0];
+            area.Name           = Row[1].ToString();
+            area.CountryCode    = Row[2].ToString();
+            area.ParentAreaId   = (int)Row[3];
+
+            return area;
         }
 
         
@@ -46,7 +47,7 @@ namespace BusinessLogic.Entities
                                   "country_code",
                                   "parent_area_id" };
         }
-        public override string[] GetAllValues()
+        public override object[] GetAllValues()
         {
             return new string[] { Id.ToString(),
                                   Name,
@@ -61,7 +62,7 @@ namespace BusinessLogic.Entities
                                   "country_code",
                                   "parent_area_id" };
         }
-        public override string[] GetUpdatableValues()
+        public override object[] GetUpdatableValues()
         {
             return new string[] { Name,
                                   CountryCode,

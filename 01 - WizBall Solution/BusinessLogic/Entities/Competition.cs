@@ -54,7 +54,7 @@ namespace BusinessLogic.Entities
                                   "flag",
                                   "last_updated"};
         }
-        public override string[] GetAllValues()
+        public override object[] GetAllValues()
         {
             return new string[] { Id.ToString(),
                                   Area.Id.ToString(),
@@ -76,7 +76,7 @@ namespace BusinessLogic.Entities
                                   "flag",
                                   "last_updated"};
         }
-        public override string[] GetUpdatableValues()
+        public override object[] GetUpdatableValues()
         {
             return new string[] { Area.Id.ToString(),
                                   Name,

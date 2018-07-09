@@ -149,15 +149,20 @@ namespace BusinessLogic.DAL
             string where = string.Join(" AND ", matches);
 
 
+
             SqlCommand cmd = new SqlCommand
             {
                 CommandText = string.Format("SELECT * FROM {0} WHERE {1}", Entity.GetTableName(), where)
             };
 
+
+
             foreach (KeyValuePair<string, string> match in Where)
             {
                 cmd.Parameters.AddWithValue("@" + match.Key, match.Value);
             }
+
+
 
             return ExecuteReader(Entity, cmd);
         }
@@ -184,13 +189,14 @@ namespace BusinessLogic.DAL
             };
 
             string[] flds = Entity.GetAllFields();
-            string[] val = Entity.GetAllValues();
+            object[] val = Entity.GetAllValues();
+
             for (int i = 0; i < Entity.GetAllFields().Count(); i++)
             {
                 if (val[i] is null)
-                    val[i] = DBNull.Value;
-
-                cmd.Parameters.AddWithValue("@" + flds[i], val[i]);
+                    cmd.Parameters.AddWithValue("@" + flds[i], DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@" + flds[i], val[i]);
             }
 
 
@@ -217,19 +223,27 @@ namespace BusinessLogic.DAL
             string updatables = string.Join(", ", matches);
 
 
+
+
             SqlCommand cmd = new SqlCommand
             {
                 CommandText = string.Format("UPDATE {0} SET {1} WHERE id={2}", Entity.GetTableName(), updatables, Entity.GetId())
             };
 
 
+
+
             string[] flds = Entity.GetUpdatableFields();
-            string[] val = Entity.GetUpdatableValues();
+            object[] val = Entity.GetAllValues();
             for (int i = 0; i < Entity.GetUpdatableFields().Count(); i++)
             {
-                cmd.Parameters.AddWithValue("@" + flds[i], val[i]);
+                if (val[i] is null)
+                    cmd.Parameters.AddWithValue("@" + flds[i], DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@" + flds[i], val[i]);
             }
 
+    
 
             return ExecuteNonQuery(cmd) > 0 ? true : false;
         }

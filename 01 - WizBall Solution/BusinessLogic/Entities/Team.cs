@@ -31,20 +31,20 @@ namespace BusinessLogic.Entities
         {
             Team team = new Team();
 
-            Id              = (int)Row[0];
-            Area            = new Area { Id = (int)Row[1]};
-            Name            = Row[2].ToString();
-            ShortName       = Row[3].ToString();
-            TLA             = Row[4].ToString();
-            Address         = Row[5].ToString();
-            Phone           = Row[6].ToString();
-            WebSite         = Row[7].ToString();
-            Email           = Row[8].ToString();
-            Founded         = (int)Row[9];
-            ClubColors      = Row[10].ToString();
-            Venue           = Row[11].ToString();
-            Flag            = Row[12].ToString();
-            LastUpdated     = Row[13].ToString();
+            team.Id = (int)Row[0];
+            team.Area = new Area { Id = (int)Row[1]};
+            team.Name            = Row[2].ToString();
+            team.ShortName       = Row[3].ToString();
+            team.TLA             = Row[4].ToString();
+            team.Address         = Row[5].ToString();
+            team.Phone           = Row[6].ToString();
+            team.WebSite         = Row[7].ToString();
+            team.Email           = Row[8].ToString();
+            team.Founded         = (int)Row[9];
+            team.ClubColors      = Row[10].ToString();
+            team.Venue           = Row[11].ToString();
+            team.Flag            = Row[12].ToString();
+            team.LastUpdated     = Row[13].ToString();
 
             return team;
         }
@@ -77,7 +77,7 @@ namespace BusinessLogic.Entities
                                     "flag",
                                     "last_updated"};
         }
-        public override string[] GetAllValues()
+        public override object[] GetAllValues()
         {
             return new string[] {   Id.ToString(),
                                     Area.Id.ToString(),
@@ -112,7 +112,7 @@ namespace BusinessLogic.Entities
                                     "flag",
                                     "last_updated"};
         }
-        public override string[] GetUpdatableValues()
+        public override object[] GetUpdatableValues()
         {
             return new string[] {   Area.Id.ToString(),
                                     Name,

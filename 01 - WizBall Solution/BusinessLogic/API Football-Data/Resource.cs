@@ -28,10 +28,17 @@ namespace BusinessLogic.Resources
         // DownloadString methods.
         protected virtual string DownloadString(string EndPoint)
         {
-            string response = WebClient.DownloadString(EndPoint);
-            response = response.Replace("null", "0");
+            try
+            {
+                string response = WebClient.DownloadString(EndPoint);
+                response = response.Replace("null", "0");
 
-            return response;                      // Replace nulls by 0.
+                return response;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
         }
 
 

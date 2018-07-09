@@ -16,12 +16,13 @@ namespace BusinessLogic.Entities
 
         public override Entity Assembler(List<object> Row)
         {
-            return new Season
-            {
-                Id = (int)Row[0],
-                StartDate = Row[1].ToString(),
-                EndDate = Row[2].ToString()
-            };
+            Season season = new Season();
+
+            season.Id           = (int)Row[0];
+            season.StartDate    = Row[1].ToString();
+            season.EndDate      = Row[2].ToString();
+
+            return season;
         }
 
 
@@ -40,7 +41,7 @@ namespace BusinessLogic.Entities
                                   "start_date",
                                   "end_date" };
         }
-        public override string[] GetAllValues()
+        public override object[] GetAllValues()
         {
             return new string[] { Id.ToString(),
                                   StartDate,
@@ -52,7 +53,7 @@ namespace BusinessLogic.Entities
             return new string[] { "start_date",
                                   "end_date" };
         }
-        public override string[] GetUpdatableValues()
+        public override object[] GetUpdatableValues()
         {
             return new string[] { StartDate,
                                   EndDate };

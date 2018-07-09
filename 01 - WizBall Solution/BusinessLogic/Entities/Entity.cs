@@ -17,11 +17,11 @@ namespace BusinessLogic.Entities
         
 
         public abstract string[] GetAllFields();
-        public abstract string[] GetAllValues();
+        public abstract object[] GetAllValues();
 
 
         public abstract string[] GetUpdatableFields();
-        public abstract string[] GetUpdatableValues();
+        public abstract object[] GetUpdatableValues();
 
     }
 }
