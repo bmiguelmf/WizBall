@@ -188,9 +188,9 @@ namespace BusinessLogic.DAL
                 CommandText = string.Format("INSERT INTO {0}({1}) VALUES({2})", Entity.GetTableName(), fields, values)
             };
 
+
             string[] flds = Entity.GetAllFields();
             object[] val = Entity.GetAllValues();
-
             for (int i = 0; i < Entity.GetAllFields().Count(); i++)
             {
                 if (val[i] is null)

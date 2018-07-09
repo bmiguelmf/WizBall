@@ -51,6 +51,7 @@
     <Compile Include="Entities\Competition.cs" />
     <Compile Include="Entities\Entities.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Matches.cs" />
     <Compile Include="Entities\Season.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
