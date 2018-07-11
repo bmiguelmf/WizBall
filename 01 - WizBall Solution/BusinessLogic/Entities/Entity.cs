@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Entities
 {
-    public abstract class Entity
+    public interface Entity
     {
 
-        public abstract Entity Assembler(List<object> Row);
+        Entity Assembler(List<object> Row);
 
 
-        public abstract string GetId();
-        public abstract string GetTableName();
+        string GetId();
+        string GetTableName();
         
 
-        public abstract string[] GetAllFields();
-        public abstract object[] GetAllValues();
+        string[] GetAllFields();
+        object[] GetAllValues();
 
 
-        public abstract string[] GetUpdatableFields();
-        public abstract object[] GetUpdatableValues();
+        string[] GetUpdatableFields();
+        object[] GetUpdatableValues();
 
     }
 }

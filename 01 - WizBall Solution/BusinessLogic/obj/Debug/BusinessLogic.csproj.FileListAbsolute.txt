@@ -28,3 +28,9 @@ C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug
 C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.pdb
 C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.dll
 C:\Users\one\Desktop\Repos\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.pdb

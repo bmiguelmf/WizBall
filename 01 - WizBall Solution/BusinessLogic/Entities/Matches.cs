@@ -9,35 +9,35 @@ namespace BusinessLogic.Entities
     public class Matches : Entity
     {
 
-        public override Entity Assembler(List<object> Row)
+        public Entity Assembler(List<object> Row)
         {
             throw new NotImplementedException();
         }
 
 
-        public override string[] GetAllFields()
+        public string[] GetAllFields()
         {
             throw new NotImplementedException();
         }
-        public override object[] GetAllValues()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string GetId()
-        {
-            throw new NotImplementedException();
-        }
-        public override string GetTableName()
+        public object[] GetAllValues()
         {
             throw new NotImplementedException();
         }
 
-        public override string[] GetUpdatableFields()
+        public string GetId()
         {
             throw new NotImplementedException();
         }
-        public override object[] GetUpdatableValues()
+        public string GetTableName()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string[] GetUpdatableFields()
+        {
+            throw new NotImplementedException();
+        }
+        public object[] GetUpdatableValues()
         {
             throw new NotImplementedException();
         }

@@ -16,7 +16,7 @@ namespace BusinessLogic.Entities
 
 
 
-        public override Entity Assembler(List<object> Row)
+        public  Entity Assembler(List<object> Row)
         {
             Area area = new Area();
 
@@ -30,24 +30,24 @@ namespace BusinessLogic.Entities
 
         
 
-        public override string GetId()
+        public string GetId()
         {
             return Id.ToString();
         }
-        public override string GetTableName()
+        public string GetTableName()
         {
             return "areas";
         }
 
 
-        public override string[] GetAllFields()
+        public string[] GetAllFields()
         {
             return new string[] { "id",
                                   "name",
                                   "country_code",
                                   "parent_area_id" };
         }
-        public override object[] GetAllValues()
+        public object[] GetAllValues()
         {
             return new string[] { Id.ToString(),
                                   Name,
@@ -56,13 +56,13 @@ namespace BusinessLogic.Entities
         }
 
 
-        public override string[] GetUpdatableFields()
+        public string[] GetUpdatableFields()
         {
             return new string[] { "name",
                                   "country_code",
                                   "parent_area_id" };
         }
-        public override object[] GetUpdatableValues()
+        public object[] GetUpdatableValues()
         {
             return new string[] { Name,
                                   CountryCode,

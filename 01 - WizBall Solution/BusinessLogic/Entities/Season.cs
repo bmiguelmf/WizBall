@@ -14,7 +14,7 @@ namespace BusinessLogic.Entities
         public int CurrentMatchday { get; set; }
         public List<string> AvailableStages { get; set; }
 
-        public override Entity Assembler(List<object> Row)
+        public Entity Assembler(List<object> Row)
         {
             Season season = new Season();
 
@@ -26,34 +26,36 @@ namespace BusinessLogic.Entities
         }
 
 
-        public override string GetId()
+        public string GetId()
         {
             return Id.ToString();
         }
-        public override string GetTableName()
+
+
+        public string GetTableName()
         {
             return "seasons";
         }
 
-        public override string[] GetAllFields()
+        public string[] GetAllFields()
         {
             return new string[] { "id",
                                   "start_date",
                                   "end_date" };
         }
-        public override object[] GetAllValues()
+        public object[] GetAllValues()
         {
             return new string[] { Id.ToString(),
                                   StartDate,
                                   EndDate };
         }
        
-        public override string[] GetUpdatableFields()
+        public string[] GetUpdatableFields()
         {
             return new string[] { "start_date",
                                   "end_date" };
         }
-        public override object[] GetUpdatableValues()
+        public object[] GetUpdatableValues()
         {
             return new string[] { StartDate,
                                   EndDate };

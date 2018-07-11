@@ -18,7 +18,7 @@ namespace BusinessLogic.Entities
         public string Flag { get; set; }
         public string LastUpdated { get; set; }
 
-        public override Entity Assembler(List<object> Row)
+        public Entity Assembler(List<object> Row)
         {
             Competition comp = new Competition();
 
@@ -34,17 +34,17 @@ namespace BusinessLogic.Entities
         }
 
 
-        public override string GetId()
+        public string GetId()
         {
             return Id.ToString();
         }
-        public override string GetTableName()
+        public string GetTableName()
         {
             return "competitions";
         }
 
 
-        public override string[] GetAllFields()
+        public string[] GetAllFields()
         {
             return new string[] { "id",
                                   "area_id",
@@ -54,7 +54,7 @@ namespace BusinessLogic.Entities
                                   "flag",
                                   "last_updated"};
         }
-        public override object[] GetAllValues()
+        public object[] GetAllValues()
         {
             return new string[] { Id.ToString(),
                                   Area.Id.ToString(),
@@ -67,7 +67,7 @@ namespace BusinessLogic.Entities
 
        
 
-        public override string[] GetUpdatableFields()
+        public string[] GetUpdatableFields()
         {
             return new string[] { "area_id",
                                   "name",
@@ -76,7 +76,7 @@ namespace BusinessLogic.Entities
                                   "flag",
                                   "last_updated"};
         }
-        public override object[] GetUpdatableValues()
+        public object[] GetUpdatableValues()
         {
             return new string[] { Area.Id.ToString(),
                                   Name,
