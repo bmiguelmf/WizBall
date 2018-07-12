@@ -299,3 +299,6 @@ C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\Bac
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CopyComplete
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.dll
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.pdb
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BackOffice\bin\Newtonsoft.Json.dll
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BackOffice\bin\Newtonsoft.Json.pdb
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BackOffice\bin\Newtonsoft.Json.xml

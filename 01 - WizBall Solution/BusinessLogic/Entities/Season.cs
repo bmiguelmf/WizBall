@@ -11,8 +11,10 @@ namespace BusinessLogic.Entities
         public int Id { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
-        public int CurrentMatchday { get; set; }
+        public int? CurrentMatchday { get; set; }
         public List<string> AvailableStages { get; set; }
+
+
 
         public Entity Assembler(List<object> Row)
         {

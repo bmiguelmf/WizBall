@@ -94,7 +94,7 @@ BEGIN TRY
 							club_colors				varchar(50)										null	,
 							venue					varchar(100)									null	,
 							flag					varchar(50)										null	,
-							last_updated			datetime										not null,
+							last_updated			datetime										null	,
 
 							constraint pk_teams primary key(id),
 							constraint fk_teams_area_id foreign key(area_id) references areas(id)

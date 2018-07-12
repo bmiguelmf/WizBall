@@ -19,12 +19,13 @@ namespace BusinessLogic.Entities
         public string Phone { get; set; }
         public string WebSite { get; set; }
         public string Email { get; set; }
-        public int Founded { get; set; }
+        public int? Founded { get; set; }
         public string ClubColors { get; set; }
         public string Venue { get; set; }
         public string Flag { get; set; }
         public string LastUpdated { get; set; }
         public List<Player> Squad { get; set; }
+
 
 
         public Entity Assembler(List<object> Row)

@@ -11,9 +11,8 @@ namespace BusinessLogic.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string CountryCode { get; set; }
-        public int ParentAreaId { get; set; }
+        public int? ParentAreaId { get; set; }
         public string ParentArea { get; set; }
-
 
 
         public  Entity Assembler(List<object> Row)

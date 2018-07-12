@@ -5,7 +5,9 @@ using BusinessLogic.Entities;
 using BusinessLogic.DAL;
 using BusinessLogic.Resources;
 using System.Collections.Generic;
-using System.Threading;
+using Newtonsoft;
+using Newtonsoft.Json;
+
 
 namespace BusinessLogic.BLL
 {
@@ -69,38 +71,14 @@ namespace BusinessLogic.BLL
             SyncPrimeraDivision();
             SyncBundesliga();
             SyncSerieA_italia();
-            //SyncLigue1();
-            //SyncPrimeiraLiga();
+            SyncLigue1();
+            SyncPrimeiraLiga();
             SyncEredivisie();  
             SyncSerieA_brazil();
 
 
             return true;
         }
-
-
-        // DAL Requesting Working.
-        public List<Area> GetAllAreas()
-        {
-            DALAreas dal = new DALAreas(ConnString);
-            return dal.GetAll();
-        }
-        public List<Season> GetAllSeasons()
-        {
-            DALSeasons dal = new DALSeasons(ConnString);
-            return dal.GetAll();
-        }
-        public List<Competition> GetAllCompetitions()
-        {
-            DALCompetitions dal = new DALCompetitions(ConnString);
-            return dal.GetAll();
-        }
-        public List<Team> GetAllTeams()
-        {
-            DALTeams dal = new DALTeams(ConnString);
-            return dal.GetAll();
-        }
-
 
         // Sync
         public void SyncChampionsLeague()
@@ -330,6 +308,29 @@ namespace BusinessLogic.BLL
 
             dalTeams.Insert(lstTeamsToInsert);
 
+        }
+
+
+        // DAL Requests Working.
+        public List<Area> GetAllAreas()
+        {
+            DALAreas dal = new DALAreas(ConnString);
+            return dal.GetAll();
+        }
+        public List<Season> GetAllSeasons()
+        {
+            DALSeasons dal = new DALSeasons(ConnString);
+            return dal.GetAll();
+        }
+        public List<Competition> GetAllCompetitions()
+        {
+            DALCompetitions dal = new DALCompetitions(ConnString);
+            return dal.GetAll();
+        }
+        public List<Team> GetAllTeams()
+        {
+            DALTeams dal = new DALTeams(ConnString);
+            return dal.GetAll();
         }
 
     }

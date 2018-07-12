@@ -14,9 +14,11 @@ namespace BusinessLogic.Entities
         public string Code { get; set; }
         public string Plan { get; set; }
         public Season CurrentSeason { get; set; }
-        public int NumberOfAvailableSeasons { get; set; }
+        public int? NumberOfAvailableSeasons { get; set; }
         public string Flag { get; set; }
         public string LastUpdated { get; set; }
+
+
 
         public Entity Assembler(List<object> Row)
         {
@@ -59,9 +61,9 @@ namespace BusinessLogic.Entities
             return new string[] { Id.ToString(),
                                   Area.Id.ToString(),
                                   Name,
-                                  Code.ToString(),
+                                  Code is null ? null : Code.ToString(),
                                   Plan,
-                                  Flag == null ? "null" : Flag,
+                                  Flag,
                                   LastUpdated};
         }
 

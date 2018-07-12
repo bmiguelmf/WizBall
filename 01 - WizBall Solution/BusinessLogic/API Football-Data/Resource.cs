@@ -1,6 +1,8 @@
 ﻿using System.Net;
 using System.Text;
 using System.Collections.Generic;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace BusinessLogic.Resources
 {
@@ -22,6 +24,7 @@ namespace BusinessLogic.Resources
             WebClient = new WebClient();
             WebClient.Headers.Add("X-Auth-Token", Token);               // Setup WebClient token property.
             WebClient.Encoding = Encoding.UTF8;                         // setup WebClient encoding property.
+            WebClient.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
         }
 
 
@@ -31,9 +34,17 @@ namespace BusinessLogic.Resources
             try
             {
                 string response = WebClient.DownloadString(EndPoint);
-                response = response.Replace("null", "0");
 
-                return response;
+                string result = JsonConvert.SerializeObject(response,
+                                                                      new JsonSerializerSettings()
+                                                                      {
+                                                                          NullValueHandling = NullValueHandling.Ignore
+                                                                      });
+                result = (string)JsonConvert.DeserializeObject(result);
+
+               // response = response.Replace("null", "0");
+
+                return result;
             }
             catch (System.Exception ex)
             {
