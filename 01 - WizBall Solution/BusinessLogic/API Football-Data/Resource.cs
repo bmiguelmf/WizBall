@@ -42,8 +42,6 @@ namespace BusinessLogic.Resources
                                                                       });
                 result = (string)JsonConvert.DeserializeObject(result);
 
-               // response = response.Replace("null", "0");
-
                 return result;
             }
             catch (System.Exception ex)
