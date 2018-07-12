@@ -6,4 +6,4 @@ delete from competitions
 delete from seasons
 delete from areas
 
-select * from teams
+select * from seasons

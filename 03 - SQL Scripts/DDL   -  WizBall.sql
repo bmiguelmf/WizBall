@@ -57,8 +57,8 @@ BEGIN TRY
 						CREATE TABLE seasons
 						(
 							id						int												not null,
-							start_date				datetime										not null,											
-							end_date				datetime										not null,
+							start_date				datetime										null	,											
+							end_date				datetime										null	,
 
 							constraint pk_seasons primary key(id)
 						)
@@ -82,7 +82,7 @@ BEGIN TRY
 						CREATE TABLE teams
 						(
 							id						int												not null,
-							area_id					int												not null,											
+							area_id					int												null	,											
 							name					varchar(50)			unique						not null,
 							short_name				varchar(50)										null	,
 							tla						varchar(50)										null    ,

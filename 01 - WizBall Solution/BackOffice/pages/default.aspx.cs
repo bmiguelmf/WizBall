@@ -17,7 +17,7 @@ namespace BackOffice.pages
         {
 
             BLL bll = new BLL();
-            bll.InitializeDatabase();
+            bll.testMatches();
 
         }
     }

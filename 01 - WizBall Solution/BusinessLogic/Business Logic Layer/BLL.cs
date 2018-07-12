@@ -30,9 +30,9 @@ namespace BusinessLogic.BLL
 
 
         // Bruno Home.
-        private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
+        //private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
         // Bruno ATEC
-        //private const string ConnString = "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = wizball; Integrated Security = SSPI;";
+        private const string ConnString = "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = wizball; Integrated Security = SSPI;";
 
 
 
@@ -56,7 +56,7 @@ namespace BusinessLogic.BLL
             List<Season> lstSeasons = new List<Season>();
             foreach (Competition comp in resourceCompetitions.GetAll()) // Tem que ser nos resources porque só os resources trazem a current season.
             {
-                if (comp.CurrentSeason.StartDate != "0" && comp.CurrentSeason.EndDate != "0")
+                if(comp.CurrentSeason != null)
                     lstSeasons.Add(comp.CurrentSeason);
             }
             DALSeasons dalSeason = new DALSeasons(ConnString);
@@ -333,6 +333,20 @@ namespace BusinessLogic.BLL
             return dal.GetAll();
         }
 
+
+
+        public void testMatches()
+        {
+            ResourceMatches matches = new ResourceMatches(TOKEN);
+            List<Match> lstMatches = matches.GetByCompetition("2017");
+
+
+            DALMatches dalMatches = new DALMatches(ConnString);
+
+
+           dalMatches.Insert(lstMatches);
+
+        }
     }
 
     

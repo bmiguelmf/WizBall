@@ -81,7 +81,7 @@ namespace BusinessLogic.Entities
         public object[] GetAllValues()
         {
             return new string[] {   Id.ToString(),
-                                    Area.Id.ToString(),
+                                    Area.Id is null ? null : Area.Id.ToString(),
                                     Name,
                                     ShortName,
                                     TLA,
@@ -115,7 +115,7 @@ namespace BusinessLogic.Entities
         }
         public object[] GetUpdatableValues()
         {
-            return new string[] {   Area.Id.ToString(),
+            return new string[] {   Area.Id is null ? null : Area.Id.ToString(),
                                     Name,
                                     ShortName,
                                     TLA,

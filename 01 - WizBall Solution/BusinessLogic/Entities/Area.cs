@@ -8,7 +8,7 @@ namespace BusinessLogic.Entities
 {
     public class Area : Entity
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
         public string CountryCode { get; set; }
         public int? ParentAreaId { get; set; }
@@ -48,10 +48,10 @@ namespace BusinessLogic.Entities
         }
         public object[] GetAllValues()
         {
-            return new string[] { Id.ToString(),
+            return new string[] { Id is null ? null : Id.ToString(),
                                   Name,
                                   CountryCode,
-                                  ParentAreaId.ToString() };
+                                  ParentAreaId is null ? null : ParentAreaId.ToString() };
         }
 
 
@@ -63,9 +63,9 @@ namespace BusinessLogic.Entities
         }
         public object[] GetUpdatableValues()
         {
-            return new string[] { Name,
+            return new string[] { Id is null ? null : Id.ToString(),
                                   CountryCode,
-                                  ParentAreaId.ToString() };
+                                  ParentAreaId is null ? null : ParentAreaId.ToString() };
         }
     }
 }

@@ -22,9 +22,17 @@ namespace BusinessLogic.Resources
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();                                               // Serializer object to manipulate jsons.
             object objResponse = serializer.Deserialize(jsonResponse, typeof(Dictionary<string, object>));              // Deserializes the jsonResponse into an object of type Dictionary<string, object>.
+
+            string jsonCompetition = serializer.Serialize(((Dictionary<string, object>)objResponse)["competition"]);            // Serializes only the matches node into a json string.
             string jsonMatches = serializer.Serialize(((Dictionary<string, object>)objResponse)["matches"]);            // Serializes only the matches node into a json string.
+
+            object competition = serializer.Deserialize(jsonCompetition, typeof(Competition));
             object lstMatches = serializer.Deserialize(jsonMatches, typeof(List<Match>));                               // Deserializes the jsonMatches into a List<Match>.
 
+            foreach(Match match in (List<Match>)lstMatches)
+            {
+                match.Competition = (Competition)competition;
+            }
             return lstMatches as List<Match>;
         }
 
