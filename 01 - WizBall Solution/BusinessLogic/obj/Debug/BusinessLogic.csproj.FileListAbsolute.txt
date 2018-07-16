@@ -35,8 +35,6 @@ C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.pdb
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\Newtonsoft.Json.dll
-C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\Newtonsoft.Json.pdb
-C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\Newtonsoft.Json.xml
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
 C:\Users\ATEC\Desktop\Repos\Projecto Final\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.dll
 C:\Users\ATEC\Desktop\Repos\Projecto Final\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.pdb

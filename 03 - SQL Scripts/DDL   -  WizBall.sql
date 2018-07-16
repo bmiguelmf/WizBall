@@ -57,8 +57,8 @@ BEGIN TRY
 						CREATE TABLE seasons
 						(
 							id						int												not null,
-							start_date				datetime										null	,											
-							end_date				datetime										null	,
+							start_date				date											null	,											
+							end_date				date											null	,
 
 							constraint pk_seasons primary key(id)
 						)
@@ -107,7 +107,7 @@ BEGIN TRY
 							season_id				int												not null,	
 							competition_id			int												not null,										
 							utc_date				datetime										not null,
-							matchday				int												not null,
+							matchday				int												    null,
 							stage					varchar(50)										null	,
 							[group]					varchar(50)										null	,
 							attendance				int												null	,

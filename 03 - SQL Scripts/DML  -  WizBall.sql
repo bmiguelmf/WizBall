@@ -18,5 +18,3 @@ insert into user_states values('Granted');
 insert into markets values('Full Time +2,5 Goals', '+2,5');
 
 
--- AREAS
-insert into areas values(999, 'No area', '???', null);

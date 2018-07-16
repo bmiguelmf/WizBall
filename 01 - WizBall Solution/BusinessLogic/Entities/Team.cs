@@ -33,19 +33,61 @@ namespace BusinessLogic.Entities
             Team team = new Team();
 
             team.Id = (int)Row[0];
-            team.Area = new Area { Id = (int)Row[1]};
+
+            if(Row[1] != DBNull.Value)
+            {
+                team.Area = new Area { Id = (int)Row[1] };
+            }else
+            {
+                team = new Team();
+            }
+
             team.Name            = Row[2].ToString();
-            team.ShortName       = Row[3].ToString();
-            team.TLA             = Row[4].ToString();
-            team.Address         = Row[5].ToString();
-            team.Phone           = Row[6].ToString();
-            team.WebSite         = Row[7].ToString();
-            team.Email           = Row[8].ToString();
-            team.Founded         = (int)Row[9];
-            team.ClubColors      = Row[10].ToString();
-            team.Venue           = Row[11].ToString();
-            team.Flag            = Row[12].ToString();
-            team.LastUpdated     = Row[13].ToString();
+
+            if (Row[3] != null)
+            {
+                team.ShortName = Row[3].ToString();
+            }
+            if (Row[4] != null)
+            {
+                team.TLA = Row[4].ToString();
+            }
+            if (Row[5] != null)
+            {
+                team.Address = Row[5].ToString();
+            }
+            if (Row[6] != null)
+            {
+                team.Phone = Row[6].ToString();
+            }
+            if (Row[7] != null)
+            {
+                team.WebSite = Row[7].ToString();
+            }
+            if (Row[8] != null)
+            {
+                team.Email = Row[8].ToString();
+            }
+            if (Row[9] != null)
+            {
+                team.Founded = (int)Row[9];
+            }
+            if (Row[10] != null)
+            {
+                team.ClubColors = Row[10].ToString();
+            }
+            if (Row[11] != null)
+            {
+                team.Venue = Row[11].ToString();
+            }
+            if (Row[12] != null)
+            {
+                team.Flag = Row[12].ToString();
+            }
+            if (Row[13] != null)
+            {
+                team.LastUpdated = Row[13].ToString();
+            }
 
             return team;
         }

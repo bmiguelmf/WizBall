@@ -17,8 +17,12 @@ namespace BackOffice.pages
         {
 
             BLL bll = new BLL();
-            bll.testMatches();
+            //bll.FullDatabaseSync();
 
+            foreach(Match match in bll.GetMatchesByCompetition("2017"))
+            {
+                Page.Response.Write(match.Id + " " + match.UtcDate + "<br/>");
+            }
         }
     }
 }

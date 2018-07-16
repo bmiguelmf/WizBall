@@ -32,10 +32,16 @@ namespace BusinessLogic.Entities
             match.Season = new Season() { Id = (int)Row[1] };
             match.Competition = new Competition() { Id = (int)Row[2]};
             match.UtcDate = Row[3].ToString();
-            match.Matchday = (int)Row[4];
+            if(Row[4] != DBNull.Value)
+            {
+                match.Matchday = (int)Row[4];
+            }         
             match.Stage = Row[5].ToString();
             match.Group = Row[6].ToString();
-            match.Attendance = (int)Row[7];
+            if(Row[7] !=  DBNull.Value)
+            {
+                match.Attendance = (int)Row[7];
+            }
             match.HomeTeam = new Team() { Id = (int)Row[10] };
             match.AwayTeam = new Team() { Id = (int)Row[11] };
             match.Score = new Score()

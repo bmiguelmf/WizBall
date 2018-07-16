@@ -15,14 +15,29 @@ namespace BusinessLogic.Entities
         public List<string> AvailableStages { get; set; }
 
 
+        private string GetMyDate(DateTime Date)
+        {
+            string year = Date.Year.ToString();
+            string month = Date.Month < 10 ? "0" + Date.Month.ToString() : Date.Month.ToString();
+            string day = Date.Day < 10 ? "0" + Date.Day.ToString() : Date.Day.ToString();
+
+            return string.Format("{0}-{1}-{2}", year, month, day);
+        }
+
 
         public Entity Assembler(List<object> Row)
         {
             Season season = new Season();
 
             season.Id           = (int)Row[0];
-            season.StartDate    = Row[1].ToString();
-            season.EndDate      = Row[2].ToString();
+            if(Row[1] != DBNull.Value)
+            {
+                season.StartDate = GetMyDate((DateTime)Row[1]);
+            }
+            if (Row[2] != DBNull.Value)
+            {
+                season.EndDate = GetMyDate((DateTime)Row[2]);
+            }
 
             return season;
         }

@@ -22,7 +22,10 @@ namespace BusinessLogic.Entities
             area.Id             = (int)Row[0];
             area.Name           = Row[1].ToString();
             area.CountryCode    = Row[2].ToString();
-            area.ParentAreaId   = (int)Row[3];
+            if(Row[3] != DBNull.Value)
+            {
+                area.ParentAreaId = (int)Row[3];
+            }        
 
             return area;
         }

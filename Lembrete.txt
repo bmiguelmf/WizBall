@@ -1,3 +1,0 @@
-Adicionar campo flag às competições no uml
-
-Imprimir ATA

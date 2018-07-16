@@ -36,6 +36,22 @@ namespace BusinessLogic.Entities
         }
 
 
+
+        private string GetMyDateTime(DateTime Date)
+        {
+            string year = Date.Year.ToString();
+            string month = Date.Month < 10 ? "0" + Date.Month.ToString() : Date.Month.ToString();
+            string day = Date.Day < 10 ? "0" + Date.Day.ToString() : Date.Day.ToString();
+            string hour = Date.Hour < 10 ? "0" + Date.Hour.ToString() : Date.Hour.ToString();
+            string minute = Date.Minute < 10 ? "0" + Date.Minute.ToString() : Date.Minute.ToString();
+            string second = Date.Second < 10 ? "0" + Date.Second.ToString() : Date.Second.ToString();
+
+
+            return string.Format("{0}-{1}-{2} {3}:{4}:{5}", year, month, day, hour, minute, second);
+        }
+
+
+
         public string GetId()
         {
             return Id.ToString();
@@ -58,6 +74,9 @@ namespace BusinessLogic.Entities
         }
         public object[] GetAllValues()
         {
+            DateTime lastUpdate = new DateTime();
+            DateTime.TryParse(LastUpdated, out lastUpdate);
+
             return new string[] { Id.ToString(),
                                   Area.Id.ToString(),
                                   Name,
@@ -80,6 +99,7 @@ namespace BusinessLogic.Entities
         }
         public object[] GetUpdatableValues()
         {
+
             return new string[] { Area.Id.ToString(),
                                   Name,
                                   Code.ToString(),
