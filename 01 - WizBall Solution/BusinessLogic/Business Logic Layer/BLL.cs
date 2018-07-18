@@ -303,16 +303,23 @@ namespace BusinessLogic.BLL
             DALTeams dal = new DALTeams(ConnString);
             return dal.GetAll();
         }
-        public List<Match> GetAllMatches()
-        {
-            DALMatches dal = new DALMatches(ConnString);
-            return dal.GetAll();
-        }
         public List<Match> GetMatchesByCompetition(string CompetitionId)
         {
-            DALMatches dal = new DALMatches(ConnString);
-            return dal.GetByCompetitionId(CompetitionId);
+            DALTeams dalTeams = new DALTeams(ConnString);
+            DALMatches dalMatches = new DALMatches(ConnString);
+
+            List<Match> lstMatches = dalMatches.GetByCompetitionId(CompetitionId);
+
+            foreach(Match match in lstMatches)
+            {
+                match.HomeTeam = dalTeams.GetById(match.HomeTeam.Id.ToString());
+                match.AwayTeam = dalTeams.GetById(match.AwayTeam.Id.ToString());
+            }
+
+
+            return lstMatches;
         }
+
 
     } 
 }
