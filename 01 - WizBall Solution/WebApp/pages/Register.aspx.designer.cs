@@ -10,7 +10,7 @@
 namespace WebApp.pages {
     
     
-    public partial class Login {
+    public partial class Register {
         
         /// <summary>
         /// inputEmail control.

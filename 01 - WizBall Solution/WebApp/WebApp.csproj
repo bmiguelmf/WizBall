@@ -74,13 +74,22 @@
     <Content Include="pages\default.aspx" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\MainPage.aspx" />
+    <Content Include="pages\Register.aspx" />
     <Content Include="styling\bootstrap4.css" />
     <Content Include="styling\customcode.css" />
     <Content Include="styling\font-awesome.css" />
+    <Content Include="styling\signin.css" />
     <Content Include="styling\general.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pages\CredMaster.Master.cs">
+      <DependentUpon>CredMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\CredMaster.Master.designer.cs">
+      <DependentUpon>CredMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="pages\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -109,6 +118,13 @@
     <Compile Include="pages\master.Master.designer.cs">
       <DependentUpon>master.Master</DependentUpon>
     </Compile>
+    <Compile Include="pages\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="resources\Classes\GLOBALS.cs" />
   </ItemGroup>
@@ -116,6 +132,7 @@
     <None Include="packages.config" />
     <Content Include="pages\master.Master" />
     <Content Include="styling\fonts\fontawesome-webfont.woff" />
+    <Content Include="pages\CredMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -125,6 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="resources\imgs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{e167f6af-ab58-46b0-a404-a2ad2d8cbd49}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
