@@ -17,11 +17,14 @@ namespace BackOffice.pages
         {
 
             BLL bll = new BLL();
-            //bll.FullDatabaseSync();
+           
 
             foreach(Match match in bll.GetMatchesByCompetition("2017"))
             {
-                Page.Response.Write(match.Id + " " + match.UtcDate + "<br/>");
+                Page.Response.Write(match.HomeTeam.Name + " " +
+                                    "<img src='/resources/imgs/teams/portugal/" + match.HomeTeam.Flag + "' width='50px'/> " +
+                                    "<img src='/resources/imgs/teams/portugal/" + match.AwayTeam.Flag + "' width='50px'/> " +
+                                     match.AwayTeam.Name + "<br/>");
             }
         }
     }
