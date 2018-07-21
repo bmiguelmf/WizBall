@@ -51,3 +51,4 @@ C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache

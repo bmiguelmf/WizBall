@@ -13,5 +13,6 @@ select * from seasons where id= 20
 select * from competitions where id = 2018
 select * from teams
 select * from matches order by utc_date asc
+select * from users
 
 select * from teams where id = 1837

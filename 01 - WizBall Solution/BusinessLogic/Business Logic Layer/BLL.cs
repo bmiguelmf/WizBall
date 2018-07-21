@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-
+using System.Net.Mail;
 using BusinessLogic.Entities;
 using BusinessLogic.DAL;
 using BusinessLogic.Resources;
@@ -20,18 +20,20 @@ namespace BusinessLogic.BLL
        
         private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";   // Bruno Home.
 
-        // private const string ConnString = "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = wizball; Integrated Security = SSPI;";     // Bruno ATEC
+        // private const string ConnString = "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = wizball; Integrated Security = SSPI;";     // Bruno ATEC.
 
 
 
-        // API SYNC.
+        // API SYNC METHODS.
         public bool FullDatabaseSync()
         {
-            //SyncAreas();              // 1 API request.
-            //SyncSeasons();            // 1 API request.       
-            //SyncCompetitions();       // 1 API request.
-            //SyncTeams();                // 10 API requests. 
-            //SyncMatchesTireOne();
+            SyncAreas();              // 1 API request.
+            SyncSeasons();            // 1 API request.       
+            SyncCompetitions();       // 1 API request.
+            System.Threading.Thread.Sleep(60000);
+            SyncTeams();              // 10 API requests.
+            System.Threading.Thread.Sleep(60000);
+            SyncMatchesTireOne();     // 10 API requests.
 
             return true;
         }
@@ -282,7 +284,7 @@ namespace BusinessLogic.BLL
 
 
 
-        // PUBLIC METHODS.
+        // API METHODS.
         public List<Area> GetAllAreas()
         {
             DALAreas dal = new DALAreas(ConnString);
@@ -321,6 +323,128 @@ namespace BusinessLogic.BLL
         }
 
 
-    } 
+
+        // USER METHODS.
+        public List<User> GetAllUsers()
+        {
+            DALUsers dal = new DALUsers(ConnString);
+            return dal.GetAll();
+        }
+        public User GetUserById(string Id)
+        {
+            DALUsers dal = new DALUsers(ConnString);
+            return dal.GetById(Id);
+        }
+        public bool InsertUser(User User)
+        {
+            if (User is null)
+                return false;
+
+            List<User> lstUsers = new List<User>();
+            lstUsers.Add(User);
+
+            DALUsers dalUsers = new DALUsers(ConnString);
+            dalUsers.Insert(lstUsers);
+
+            return true;
+        }
+        public bool UpdatetUser(User User)
+        {
+            if (User is null)
+                return false;
+
+            List<User> lstUsers = new List<User>();
+            lstUsers.Add(User);
+
+            DALUsers dalUsers = new DALUsers(ConnString);
+            dalUsers.Update(lstUsers);
+
+            return true;
+        }
+        public User UserLogin(string Username, string Password)
+        {
+            DALUsers dalUsers = new DALUsers(ConnString);
+
+            return dalUsers.Login(Username, Password);
+        }
+        public bool RecoverUserPassword(string Email)
+        {
+            DALUsers dalUsers = new DALUsers(ConnString);
+
+            User user = dalUsers.GetByEmail(Email);
+
+            if(user is null)
+            {
+                return false;
+            }
+            else
+            {
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("bmiguelmf@gmail.com");
+                mail.To.Add(user.Email);
+                mail.Subject = "Wizball - Password Revover";
+                mail.Body = "Hi there " + user.Username + " \n";
+                mail.Body += "Your password: " + user.Password + " \n\n\n";
+                mail.Body += "Wizball support team";
+
+
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("bmiguelmf@gmail.com", "zsdoq06121984fx840Z");
+                SmtpServer.EnableSsl = true;
+
+               
+                SmtpServer.Send(mail);
+
+                return true;
+            }
+        }
+
+
+
+        // ADMIN METHODS.
+        public List<Admin> GetAllAdmins()
+        {
+            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            return dalAdmins.GetAll();
+        }
+        public Admin GetAdminById(string Id)
+        {
+            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            return dalAdmins.GetById(Id);
+        }
+        public bool InsertAdmin(Admin Admin)
+        {
+            if (Admin is null)
+                return false;
+
+            List<Admin> lstAdmins = new List<Admin>();
+            lstAdmins.Add(Admin);
+
+            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            dalAdmins.Insert(lstAdmins);
+
+            return true;
+        }
+        public bool UpdatetAdmin(Admin Admin)
+        {
+            if (Admin is null)
+                return false;
+
+            List<Admin> lstAdmins = new List<Admin>();
+            lstAdmins.Add(Admin);
+
+            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            dalAdmins.Update(lstAdmins);
+
+            return true;
+        }
+        public Admin AdminLogin(string Username, string Password)
+        {
+            DALAdmins dalAdmins = new DALAdmins(ConnString);
+
+            return dalAdmins.Login(Username, Password);
+        }
+    }
 }
 

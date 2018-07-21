@@ -182,4 +182,20 @@ namespace BusinessLogic.Entities
         }
 
     }
+
+    public class Score
+    {
+        public string Winner { get; set; }
+        public string Duration { get; set; }
+        public Result HalfTime { get; set; }
+        public Result FullTime { get; set; }
+        public Result ExtraTime { get; set; }
+        public Result Penalties { get; set; }
+    }
+
+    public class Result
+    {
+        public int? HomeTeam { get; set; }
+        public int? AwayTeam { get; set; }
+    }
 }

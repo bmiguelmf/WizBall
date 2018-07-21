@@ -224,7 +224,6 @@ namespace BusinessLogic.DAL
 
 
 
-
             SqlCommand cmd = new SqlCommand
             {
                 CommandText = string.Format("UPDATE {0} SET {1} WHERE id={2}", Entity.GetTableName(), updatables, Entity.GetId())
@@ -232,9 +231,8 @@ namespace BusinessLogic.DAL
 
 
 
-
             string[] flds = Entity.GetUpdatableFields();
-            object[] val = Entity.GetAllValues();
+            object[] val = Entity.GetUpdatableValues();
             for (int i = 0; i < Entity.GetUpdatableFields().Count(); i++)
             {
                 if (val[i] is null)
