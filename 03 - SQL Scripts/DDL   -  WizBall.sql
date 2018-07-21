@@ -37,6 +37,8 @@ BEGIN TRY
 							newsletter				bit					default(0)					not null,
 							user_state				int					default(1)					not null,
 							pic						varchar(50)			default('user.png')			not null,
+							created_at				datetime			default(getdate())			not null,
+							updated_at				datetime										not null,
 
 							constraint pk_users primary key(id),
 							constraint fk_users_user_state foreign key(user_state) references user_states(id)
