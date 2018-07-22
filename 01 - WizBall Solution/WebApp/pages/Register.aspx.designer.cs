@@ -13,6 +13,15 @@ namespace WebApp.pages {
     public partial class Register {
         
         /// <summary>
+        /// inputUName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox inputUName;
+        
+        /// <summary>
         /// inputEmail control.
         /// </summary>
         /// <remarks>
@@ -31,21 +40,30 @@ namespace WebApp.pages {
         protected global::System.Web.UI.WebControls.TextBox inputPassword;
         
         /// <summary>
-        /// RemSession control.
+        /// inputPasswordConf control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RemSession;
+        protected global::System.Web.UI.WebControls.TextBox inputPasswordConf;
         
         /// <summary>
-        /// LoginBtn control.
+        /// RegisterBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LoginBtn;
+        protected global::System.Web.UI.WebControls.Button RegisterBtn;
+        
+        /// <summary>
+        /// ErrorP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ErrorP;
     }
 }

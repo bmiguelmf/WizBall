@@ -11,6 +11,35 @@ namespace WebApp.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["bool"].ToString() != "true")
+            {
+                Sess.Visible = true;
+                NoSess.Visible = false;
+                ProfileImg.ImageUrl = Session["profPic"].ToString();
+            } else
+            {
+                Sess.Visible = false;
+                NoSess.Visible = true;
+            }
+        }
+
+        protected void ProfileImg_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void LoginBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void RegisterBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Register.aspx");
+        }
+
+        protected void ProfBtn_Click(object sender, EventArgs e)
+        {
 
         }
     }

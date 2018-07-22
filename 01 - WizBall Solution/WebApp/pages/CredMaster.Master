@@ -6,6 +6,9 @@
 <head runat="server">
     <title>FO WizBall - Login</title>
 
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../styling/bootstrap4.css" />
     <link rel="stylesheet" href="../styling/signin.css" />
@@ -29,6 +32,8 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../resources/favicon/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff">
+
+    
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

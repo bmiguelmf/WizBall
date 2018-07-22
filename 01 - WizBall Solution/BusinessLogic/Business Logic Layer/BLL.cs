@@ -17,8 +17,9 @@ namespace BusinessLogic.BLL
 
         private const string TOKEN = "7f91f916023b4430b44d97cc11e5c030";
 
-       
-        private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";   // Bruno Home.
+        private const string ConnString = "Data Source = localhost\\SQLPFinal; Initial Catalog = wizball; Integrated Security = SSPI;"; // João Home
+
+        // private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";   // Bruno Home.
 
         // private const string ConnString = "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = wizball; Integrated Security = SSPI;";     // Bruno ATEC.
 
