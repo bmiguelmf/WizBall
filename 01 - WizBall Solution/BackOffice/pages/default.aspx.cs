@@ -17,9 +17,29 @@ namespace BackOffice.pages
         {
             BLL bll = new BLL();
 
-            bool result = bll.RecoverUserPassword("bmiguelmf@gmail.com");
+            bll.FullDatabaseSync();
+            Page.Response.Write("Base de dados sincronizada <br/>");
 
-            Page.Response.Write(result.ToString());
+            User user = new User()
+            {
+                Username = "fx840",
+                Email = "fx840@gmail.com",
+                Password = "fdsfds"
+            };
+            bll.InsertUser(user);
+
+            Admin admin = new Admin()
+            {
+                Username = "superAdmin",
+                Email = "super@admin.com",
+                Password = "super"
+            };
+            bll.InsertAdmin(admin);
+
+
+            //bool result = bll.RecoverUserPassword("bmiguelmf@gmail.com");
+
+            //Page.Response.Write(result.ToString());
     
 
 
