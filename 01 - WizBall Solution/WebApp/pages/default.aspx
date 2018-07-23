@@ -10,9 +10,7 @@
                 <section id="m-a-n">
         <div class="container">
             <div class="col-6">
-
                 <div class="match">
-                    
                     <div class="m-result">
                         <div class="logo-club col-3"><img src="../resources/imgs/man.png"  alt="" /></div>
                         <span class="result col-6">0 <b>:</b> 3</span>

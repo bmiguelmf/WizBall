@@ -11,15 +11,16 @@ namespace WebApp.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["bool"].ToString() != "true")
-            {
-                Sess.Visible = true;
-                NoSess.Visible = false;
-                ProfileImg.ImageUrl = Session["profPic"].ToString();
-            } else
+            if (Session["bool"] != null)
             {
                 Sess.Visible = false;
                 NoSess.Visible = true;
+            } else
+            {
+                Sess.Visible = true;
+                NoSess.Visible = false;
+                ProfBtn.Text = Session["profPic"].ToString();
+                ProfileImg.ImageUrl = Session["profPic"].ToString();
             }
         }
 

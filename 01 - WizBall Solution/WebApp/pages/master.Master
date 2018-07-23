@@ -74,8 +74,10 @@
                     <asp:Panel ID="Sess" runat="server">
                         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
                             <li class="nav-item">
-                                <asp:Button ID="ProfBtn" runat="server" Text="" OnClick="ProfBtn_Click" />
-                                <asp:ImageButton ID="ProfileImg" runat="server" OnClick="ProfileImg_Click" />
+                                <div class="btn btn-light nav-link">
+                                    <asp:Button ID="ProfBtn" runat="server" Text="" OnClick="ProfBtn_Click" />
+                                    <asp:ImageButton ID="ProfileImg" runat="server" OnClick="ProfileImg_Click" />
+                                </div>
                             </li>
                         </ul>
                     </asp:Panel>

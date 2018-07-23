@@ -13,6 +13,15 @@ namespace WebApp.pages {
     public partial class Register {
         
         /// <summary>
+        /// ProfPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ProfPic;
+        
+        /// <summary>
         /// inputUName control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace WebApp.pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox inputUName;
+        
+        /// <summary>
+        /// RegularExpressionValidatorStreet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidatorStreet;
         
         /// <summary>
         /// inputEmail control.
@@ -65,5 +83,14 @@ namespace WebApp.pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel ErrorP;
+        
+        /// <summary>
+        /// ErrorL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorL;
     }
 }
