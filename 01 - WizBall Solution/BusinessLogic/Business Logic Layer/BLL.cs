@@ -17,9 +17,11 @@ namespace BusinessLogic.BLL
 
         private const string TOKEN = "7f91f916023b4430b44d97cc11e5c030";
 
-        private const string ConnString = "Data Source = localhost\\SQLPFinal; Initial Catalog = wizball; Integrated Security = SSPI;"; // João Home
+        // private const string ConnString = "Data Source = localhost\\SQLPFinal; Initial Catalog = wizball; Integrated Security = SSPI;"; // João Home
 
         // private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";   // Bruno Home.
+
+        private const string ConnString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = wizball; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         // private const string ConnString = "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = wizball; Integrated Security = SSPI;";     // Bruno ATEC.
 
@@ -34,7 +36,7 @@ namespace BusinessLogic.BLL
             System.Threading.Thread.Sleep(60000);
             SyncTeams();              // 10 API requests.
             System.Threading.Thread.Sleep(60000);
-            SyncMatchesTireOne();     // 10 API requests.
+            SyncMatchesTierOne();     // 10 API requests.
 
             return true;
         }
@@ -193,7 +195,7 @@ namespace BusinessLogic.BLL
 
 
 
-            foreach (Competition competition in TireOneCompetitions())                               // Foreach tier_one competition.
+            foreach (Competition competition in TierOneCompetitions())                               // Foreach tier_one competition.
             {
 
                 List<Team> lstTeams = resourceTeams.GetByCompetition(competition.Id.ToString());   // Get all the teams from the API.
@@ -239,12 +241,12 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private bool SyncMatchesTireOne()
+        private bool SyncMatchesTierOne()
         {
             DALMatches dalMatches = new DALMatches(ConnString);
             ResourceMatches resourceMatches = new ResourceMatches(TOKEN);
 
-            foreach (Competition competition in TireOneCompetitions())
+            foreach (Competition competition in TierOneCompetitions())
             {
                 List<Match> lstInsertMatches = new List<Match>();
                 List<Match> lstApiMatches = resourceMatches.GetByCompetition(competition.Id.ToString());
@@ -267,7 +269,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private List<Competition> TireOneCompetitions()
+        private List<Competition> TierOneCompetitions()
         {
             return new List<Competition>()                         
             {

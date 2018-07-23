@@ -17,8 +17,10 @@ namespace BackOffice.pages
         {
             BLL bll = new BLL();
 
-            bll.FullDatabaseSync();
-            Page.Response.Write("Base de dados sincronizada <br/>");
+            //bll.FullDatabaseSync();
+            //Page.Response.Write("Base de dados sincronizada <br/>");
+
+
 
             User user = new User()
             {
@@ -28,29 +30,19 @@ namespace BackOffice.pages
             };
             bll.InsertUser(user);
 
-            Admin admin = new Admin()
-            {
-                Username = "superAdmin",
-                Email = "super@admin.com",
-                Password = "super"
-            };
-            bll.InsertAdmin(admin);
+            user.Newsletter = true;
 
+            bll.UpdatetUser(user);
 
-            //bool result = bll.RecoverUserPassword("bmiguelmf@gmail.com");
-
-            //Page.Response.Write(result.ToString());
-    
-
-
-
-            //foreach(Match match in bll.GetMatchesByCompetition("2017"))
+            //Admin admin = new Admin()
             //{
-            //    Page.Response.Write(match.HomeTeam.Name + " " +
-            //                        "<img src='/resources/imgs/teams/portugal/" + match.HomeTeam.Flag + "' width='50px'/> " +
-            //                        "<img src='/resources/imgs/teams/portugal/" + match.AwayTeam.Flag + "' width='50px'/> " +
-            //                         match.AwayTeam.Name + "<br/>");
-            //}
+            //    Username = "superAdmin",
+            //    Email = "super@admin.com",
+            //    Password = "super"
+            //};
+            //bll.InsertAdmin(admin);
+
+
         }
     }
 }

@@ -20,15 +20,16 @@ namespace WebApp.pages
 
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
-            if (bll.UserLogin(inputEmail.Text, inputPassword.Text) != null)
+            User user = bll.UserLogin(inputEmail.Text, inputPassword.Text);
+
+            if (user != null)
             {
-                User user = bll.UserLogin(inputEmail.Text, inputPassword.Text);
                 Session["bool"] = "true";
                 Session["username"] = user.Username;
                 Session["profPic"] = user.Picture;
                 Session["email"] = user.Email;
             }
-            
+
         }
     }
 }
