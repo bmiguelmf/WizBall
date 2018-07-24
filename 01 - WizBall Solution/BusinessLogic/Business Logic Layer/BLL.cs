@@ -5,27 +5,23 @@ using BusinessLogic.Entities;
 using BusinessLogic.DAL;
 using BusinessLogic.Resources;
 using System.Collections.Generic;
-using Newtonsoft;
-using Newtonsoft.Json;
 
 
 namespace BusinessLogic.BLL
+
 {
     public class BLL
     {
-        // TEMPORARY ******************************************************************************************
+        // CONSTRUCTOR.
+        private string apiToken;
+        private string connectionString;        
+        public BLL(string ConnectionString, string APIToken)
+        {
+            apiToken            = APIToken;
+            connectionString    = ConnectionString;
+        }
 
-        private const string TOKEN = "7f91f916023b4430b44d97cc11e5c030";
-
-        // private const string ConnString = "Data Source = localhost\\SQLPFinal; Initial Catalog = wizball; Integrated Security = SSPI;"; // João Home
-
-        // private const string ConnString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";   // Bruno Home.
-
-        private const string ConnString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = wizball; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
-        // private const string ConnString = "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = wizball; Integrated Security = SSPI;";     // Bruno ATEC.
-
-
+       
 
         // API SYNC METHODS.
         public bool FullDatabaseSync()
@@ -42,8 +38,8 @@ namespace BusinessLogic.BLL
         }
         private bool SyncAreas()
         {
-            ResourceAreas resourceAreas = new ResourceAreas(TOKEN);         // Object to comunicate with API football-data.org.
-            DALAreas dalAreas = new DALAreas(ConnString);                   // Object to comunicate with Database.
+            ResourceAreas resourceAreas = new ResourceAreas(apiToken);      // Object to comunicate with API football-data.org.
+            DALAreas dalAreas = new DALAreas(connectionString);             // Object to comunicate with Database.
 
             List<Area> lstApiAreas = resourceAreas.GetAll();                // All areas available on API.
             List<Area> lstDbAreas = dalAreas.GetAll();                      // All areas available on Database.
@@ -86,8 +82,8 @@ namespace BusinessLogic.BLL
         }
         private bool SyncSeasons()
         {
-            ResourceCompetitions resourceCompetitions = new ResourceCompetitions(TOKEN);            // Object to comunicate with API football-data.org.
-            DALSeasons dalSeasons = new DALSeasons(ConnString);                                     // Object to comunicate with Database.
+            ResourceCompetitions resourceCompetitions = new ResourceCompetitions(apiToken);         // Object to comunicate with API football-data.org.
+            DALSeasons dalSeasons = new DALSeasons(connectionString);                               // Object to comunicate with Database.
 
             List<Competition> lstApiCompetitions = resourceCompetitions.GetAll();                   // All competitions available on API.
             List<Season> lstDbSeasons = dalSeasons.GetAll();                                        // All seasons available on Database.
@@ -139,8 +135,8 @@ namespace BusinessLogic.BLL
         }
         private bool SyncCompetitions()
         {
-            ResourceCompetitions resourceCompetitions = new ResourceCompetitions(TOKEN);            // Object to comunicate with API football-data.org.
-            DALCompetitions dalCompetitions = new DALCompetitions(ConnString);                      // Object to comunicate with Database.
+            ResourceCompetitions resourceCompetitions = new ResourceCompetitions(apiToken);         // Object to comunicate with API football-data.org.
+            DALCompetitions dalCompetitions = new DALCompetitions(connectionString);                // Object to comunicate with Database.
 
             List<Competition> lstApiCompetition = resourceCompetitions.GetAll();                    // All Competition available on API.
             List<Competition> lstDbCompetition = dalCompetitions.GetAll();                          // All Competition available on Database.
@@ -187,8 +183,8 @@ namespace BusinessLogic.BLL
         }
         private bool SyncTeams()
         {
-            ResourceTeams resourceTeams = new ResourceTeams(TOKEN);                                 // Object to comunicate with API football-data.org.           
-            DALTeams dalTeams = new DALTeams(ConnString);                                           // Object to comunicate with Database.
+            ResourceTeams resourceTeams = new ResourceTeams(apiToken);                              // Object to comunicate with API football-data.org.           
+            DALTeams dalTeams = new DALTeams(connectionString);                                     // Object to comunicate with Database.
 
             List<Team> lstInsertTeams = new List<Team>();                                           // Temporary List<Competition> to insert.
             List<Team> lstUpdateTeams = new List<Team>();                                           // Temporary List<Competition> to update.
@@ -243,8 +239,8 @@ namespace BusinessLogic.BLL
         }
         private bool SyncMatchesTierOne()
         {
-            DALMatches dalMatches = new DALMatches(ConnString);
-            ResourceMatches resourceMatches = new ResourceMatches(TOKEN);
+            DALMatches dalMatches = new DALMatches(connectionString);
+            ResourceMatches resourceMatches = new ResourceMatches(apiToken);
 
             foreach (Competition competition in TierOneCompetitions())
             {
@@ -290,28 +286,28 @@ namespace BusinessLogic.BLL
         // API METHODS.
         public List<Area> GetAllAreas()
         {
-            DALAreas dal = new DALAreas(ConnString);
+            DALAreas dal = new DALAreas(connectionString);
             return dal.GetAll();
         }
         public List<Season> GetAllSeasons()
         {
-            DALSeasons dal = new DALSeasons(ConnString);
+            DALSeasons dal = new DALSeasons(connectionString);
             return dal.GetAll();
         }
         public List<Competition> GetAllCompetitions()
         {
-            DALCompetitions dal = new DALCompetitions(ConnString);
+            DALCompetitions dal = new DALCompetitions(connectionString);
             return dal.GetAll();
         }
         public List<Team> GetAllTeams()
         {
-            DALTeams dal = new DALTeams(ConnString);
+            DALTeams dal = new DALTeams(connectionString);
             return dal.GetAll();
         }
         public List<Match> GetMatchesByCompetition(string CompetitionId)
         {
-            DALTeams dalTeams = new DALTeams(ConnString);
-            DALMatches dalMatches = new DALMatches(ConnString);
+            DALTeams dalTeams = new DALTeams(connectionString);
+            DALMatches dalMatches = new DALMatches(connectionString);
 
             List<Match> lstMatches = dalMatches.GetByCompetitionId(CompetitionId);
 
@@ -330,12 +326,12 @@ namespace BusinessLogic.BLL
         // USER METHODS.
         public List<User> GetAllUsers()
         {
-            DALUsers dal = new DALUsers(ConnString);
+            DALUsers dal = new DALUsers(connectionString);
             return dal.GetAll();
         }
         public User GetUserById(string Id)
         {
-            DALUsers dal = new DALUsers(ConnString);
+            DALUsers dal = new DALUsers(connectionString);
             return dal.GetById(Id);
         }
         public bool InsertUser(User User)
@@ -346,7 +342,7 @@ namespace BusinessLogic.BLL
             List<User> lstUsers = new List<User>();
             lstUsers.Add(User);
 
-            DALUsers dalUsers = new DALUsers(ConnString);
+            DALUsers dalUsers = new DALUsers(connectionString);
             dalUsers.Insert(lstUsers);
 
             return true;
@@ -359,21 +355,20 @@ namespace BusinessLogic.BLL
             List<User> lstUsers = new List<User>();
             lstUsers.Add(User);
 
-            DALUsers dalUsers = new DALUsers(ConnString);
+            DALUsers dalUsers = new DALUsers(connectionString);
             dalUsers.Update(lstUsers);
 
             return true;
         }
         public User UserLogin(string Username, string Password)
         {
-            DALUsers dalUsers = new DALUsers(ConnString);
+            DALUsers dalUsers = new DALUsers(connectionString);
 
             return dalUsers.Login(Username, Password);
         }
         public bool RecoverUserPassword(string Email)
         {
-            DALUsers dalUsers = new DALUsers(ConnString);
-
+            DALUsers dalUsers = new DALUsers(connectionString);
             User user = dalUsers.GetByEmail(Email);
 
             if(user is null)
@@ -402,18 +397,60 @@ namespace BusinessLogic.BLL
                 return true;
             }
         }
+        public bool UserMailExists(string Email)
+        {
+            DALUsers dalUsers = new DALUsers(connectionString);
+
+            User user = dalUsers.GetByEmail(Email);
+
+            if (user is null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool UsernameExists(string Username)
+        {
+            DALUsers dalUsers = new DALUsers(connectionString);
+
+            User user = dalUsers.GetByUsername(Username);
+
+            if (user is null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public List<UserState> GetUserStates()
+        {
+            DALUserStates dalUserStatess = new DALUserStates(connectionString);
+
+            return dalUserStatess.GetAll();
+        }
+        public List<User> GetUsersByState(string UserStateId)
+        {
+            DALUsers dalUsers = new DALUsers(connectionString);
+
+            return dalUsers.GetByState(UserStateId);
+        }
 
 
 
         // ADMIN METHODS.
         public List<Admin> GetAllAdmins()
         {
-            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            DALAdmins dalAdmins = new DALAdmins(connectionString);
             return dalAdmins.GetAll();
         }
         public Admin GetAdminById(string Id)
         {
-            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            DALAdmins dalAdmins = new DALAdmins(connectionString);
             return dalAdmins.GetById(Id);
         }
         public bool InsertAdmin(Admin Admin)
@@ -424,7 +461,7 @@ namespace BusinessLogic.BLL
             List<Admin> lstAdmins = new List<Admin>();
             lstAdmins.Add(Admin);
 
-            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            DALAdmins dalAdmins = new DALAdmins(connectionString);
             dalAdmins.Insert(lstAdmins);
 
             return true;
@@ -437,14 +474,14 @@ namespace BusinessLogic.BLL
             List<Admin> lstAdmins = new List<Admin>();
             lstAdmins.Add(Admin);
 
-            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            DALAdmins dalAdmins = new DALAdmins(connectionString);
             dalAdmins.Update(lstAdmins);
 
             return true;
         }
         public Admin AdminLogin(string Username, string Password)
         {
-            DALAdmins dalAdmins = new DALAdmins(ConnString);
+            DALAdmins dalAdmins = new DALAdmins(connectionString);
 
             return dalAdmins.Login(Username, Password);
         }

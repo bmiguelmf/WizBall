@@ -30,7 +30,26 @@ namespace BusinessLogic.DAL
             List<User> lstUsers = GetWhere(new User(), where).Cast<User>().ToList();
             return lstUsers.Count == 0 ? null : lstUsers[0];
         }
+        public User GetByUsername(string Username)
+        {
+            Dictionary<string, string> where = new Dictionary<string, string>()
+            {
+                {"username", Username }
+            };
 
+            List<User> lstUsers = GetWhere(new User(), where).Cast<User>().ToList();
+            return lstUsers.Count == 0 ? null : lstUsers[0];
+        }
+        public List<User> GetByState(string UserStateId)
+        {
+            Dictionary<string, string> where = new Dictionary<string, string>()
+            {
+                {"user_state", UserStateId }
+            };
+
+            List<User> lstUsers = GetWhere(new User(), where).Cast<User>().ToList();
+            return lstUsers.Count == 0 ? null : lstUsers;
+        }
 
         // INSERTS.
         public bool Insert(List<User> Users)

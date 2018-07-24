@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Configuration;
 using System.Web.UI;
 using BusinessLogic.BLL;
 using BusinessLogic.Entities;
@@ -7,11 +8,17 @@ namespace WebApp.pages
 {
     public partial class _default : System.Web.UI.Page
     {
-        BLL bll = new BLL();
+        private string connString;
+        private string apiToken;
+        private BLL bll;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            connString = WebConfigurationManager.ConnectionStrings["ConnStringBroHome"].ConnectionString;
+            apiToken = WebConfigurationManager.AppSettings["ApiToken"];
+            bll = new BLL(connString, apiToken);
+
             foreach (Match match in bll.GetMatchesByCompetition("2017"))
             {
                 Page.Response.Write(match.HomeTeam.Name + " " +
