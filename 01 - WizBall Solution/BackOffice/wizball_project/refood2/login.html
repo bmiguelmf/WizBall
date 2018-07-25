@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REFOOD - Aproveitar para Alimentar</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href = "font-awesome/css/font-awesome.css" rel = "stylesheet" >
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/estilos.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="animated fadeInDown loginpanel">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="col-md-6 formpanel">
+                        <div class="middle-box text-center loginscreen animated fadeInDown">
+                            <div>
+                                <h2>SEJA A MUDANÇA</h2>
+                                <p>
+                                    Preciosos (mas pequenos) períodos de tempo, talento e algum cuidado podem fazer a diferença: está convidado!<br>
+                                </p>
+                                <form name="login" method="post" class="m-t" role="form" action="">
+                                    <label id="erro"></label>
+                                    <div class="form-group">
+                                     <label for="email" hidden class="col-sm-2 control-label">Email</label>
+                                     <input id="email" name="email" type="email" class="form-control" placeholder="Email" required="">
+                                 </div>
+                                 <div class="form-group">
+                                     <input name="password" type="password" id="pwd" class="form-control" placeholder="Password" required="">
+                                     <i id="eye" class="fa fa-eye showpassword"></i>
+                                 </div>
+                                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+                                 <input class="getusername" type="button" onClick="getUsername()" value="Esqueceu a password?"/>
+                             </form>
+                             <p class="m-t"></p>
+                             <div class="logo text-center">
+                                <div class="col-md-6 center">
+                                    <img src="img/pingpost.png" />
+                                    <br>
+                                    <span>powered by</span>
+                                </div>
+                                <div class="col-md-6 center">
+                                    <img id="flow" src="img/flowtee.png" />
+                                    <br>
+                                    <span>supported by</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 refoodpanel">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    function show() {
+        var p = document.getElementById('pwd');
+        p.setAttribute('type', 'text');
+    }
+    function hide() {
+        var p = document.getElementById('pwd');
+        p.setAttribute('type', 'password');
+    }
+    var pwShown = 0;
+    document.getElementById("eye").addEventListener("click", function () {
+        if (pwShown == 0) {
+            pwShown = 1;
+            show();
+            document.getElementById("eye").className = "fa fa-eye-slash";
+        } else {
+            pwShown = 0;
+            hide();
+            document.getElementById("eye").className = "fa fa-eye";
+        }
+    }, false);
+
+    function getUsername(){
+        window.location="file:///C:/wamp64/www/siteRefood/refood_project/refood2/recuperar-password.html";
+
+    };
+</script>
+</html>';
