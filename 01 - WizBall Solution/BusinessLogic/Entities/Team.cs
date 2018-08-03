@@ -103,7 +103,7 @@ namespace BusinessLogic.Entities
         }
 
 
-        public string[] GetAllFields()
+        public string[] GetInsertableFields()
         {
             return new string[] {   "id",
                                     "area_id",
@@ -120,7 +120,7 @@ namespace BusinessLogic.Entities
                                     "flag",
                                     "last_updated"};
         }
-        public object[] GetAllValues()
+        public object[] GetInsertableValues()
         {
             return new string[] {   Id.ToString(),
                                     Area.Id is null ? null : Area.Id.ToString(),

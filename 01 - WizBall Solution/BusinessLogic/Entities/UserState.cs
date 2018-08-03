@@ -34,11 +34,11 @@ namespace BusinessLogic.Entities
         }
 
 
-        string[] Entity.GetAllFields()
+        string[] Entity.GetInsertableFields()
         {
             return new string[] { "descripion" };
         }
-        object[] Entity.GetAllValues()
+        object[] Entity.GetInsertableValues()
         {
             return new string[] { Description };
         }

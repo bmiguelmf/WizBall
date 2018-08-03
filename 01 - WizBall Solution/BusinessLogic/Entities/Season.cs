@@ -54,13 +54,13 @@ namespace BusinessLogic.Entities
             return "seasons";
         }
 
-        public string[] GetAllFields()
+        public string[] GetInsertableFields()
         {
             return new string[] { "id",
                                   "start_date",
                                   "end_date" };
         }
-        public object[] GetAllValues()
+        public object[] GetInsertableValues()
         {
             return new string[] { Id.ToString(),
                                   StartDate,

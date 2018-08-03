@@ -61,7 +61,7 @@ namespace BusinessLogic.Entities
         }
 
 
-        string[] Entity.GetAllFields()
+        string[] Entity.GetInsertableFields()
         {
             return new string[] { "username",
                                   "email",
@@ -72,7 +72,7 @@ namespace BusinessLogic.Entities
                                   "created_at",
                                   "updated_at" };
         }
-        object[] Entity.GetAllValues()
+        object[] Entity.GetInsertableValues()
         {
             return new string[] { Username,
                                   Email,

@@ -180,8 +180,8 @@ namespace BusinessLogic.DAL
         /// <returns>True if successfully.</returns>
         protected bool Insert(Entity Entity)
         {
-            string fields = string.Join(", ", Entity.GetAllFields().Select(x=> x = "[" + x + "]"));
-            string values = string.Join(", ", Entity.GetAllFields().Select(x => x = "@" + x));
+            string fields = string.Join(", ", Entity.GetInsertableFields().Select(x=> x = "[" + x + "]"));
+            string values = string.Join(", ", Entity.GetInsertableFields().Select(x => x = "@" + x));
 
             SqlCommand cmd = new SqlCommand
             {
@@ -189,9 +189,9 @@ namespace BusinessLogic.DAL
             };
 
 
-            string[] flds = Entity.GetAllFields();
-            object[] val = Entity.GetAllValues();
-            for (int i = 0; i < Entity.GetAllFields().Count(); i++)
+            string[] flds = Entity.GetInsertableFields();
+            object[] val = Entity.GetInsertableValues();
+            for (int i = 0; i < Entity.GetInsertableFields().Count(); i++)
             {
                 if (val[i] is null)
                     cmd.Parameters.AddWithValue("@" + flds[i], DBNull.Value);

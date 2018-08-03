@@ -36,7 +36,18 @@ namespace BusinessLogic.BLL
 
             return dateTime;
         }
-
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                MailAddress addr = new System.Net.Mail.MailAddress(email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
 
         // API SYNC METHODS.
@@ -169,21 +180,20 @@ namespace BusinessLogic.BLL
 
             foreach (Competition competitionApi in lstApiCompetition)                               // If database has alreday some records then...
             {
-                Competition tempCompetition = dalCompetitions.GetById(competitionApi.Id.ToString());
+                Competition competitionDb = dalCompetitions.GetById(competitionApi.Id.ToString());
 
-                // Needed to normalize date to compare.
-                DateTime compereDate = new DateTime();
-                DateTime.TryParse(competitionApi.LastUpdated, null, System.Globalization.DateTimeStyles.AdjustToUniversal, out compereDate);
-                string stringDate = compereDate.ToString();
-
-
-                if (tempCompetition == null)
+                if (competitionDb == null)
                 {
                     lstInsertCompetition.Add(competitionApi);
                 }
-                else if (stringDate != tempCompetition.LastUpdated)
+                else 
                 {
-                    lstUpdateCompetition.Add(competitionApi);
+                    DateTime? competitionApiLastUpdated = NormalizeApiDateTime(competitionApi.LastUpdated);
+
+                    if (competitionApiLastUpdated.ToString() != competitionDb.ToString())
+                    {
+                        lstUpdateCompetition.Add(competitionApi);
+                    }
                 }
 
             }
@@ -232,7 +242,7 @@ namespace BusinessLogic.BLL
 
                     DateTime? apiTeamLastUpdated = NormalizeApiDateTime(apiTeam.LastUpdated);
 
-                    if (apiTeamLastUpdated.ToString() != apiTeamLastUpdated.ToString())
+                    if (apiTeamLastUpdated.ToString() != dbTeam.LastUpdated)
                     {
                         lstUpdateTeams.Add(apiTeam);
                     }
@@ -365,6 +375,9 @@ namespace BusinessLogic.BLL
             if (User is null)
                 return false;
 
+            if(!IsValidEmail(User.Email))
+                return false;
+
             List<User> lstUsers = new List<User>();
             lstUsers.Add(User);
 
@@ -377,6 +390,10 @@ namespace BusinessLogic.BLL
         {
             if (User is null)
                 return false;
+
+            if (!IsValidEmail(User.Email))
+                return false;
+
 
             List<User> lstUsers = new List<User>();
             lstUsers.Add(User);

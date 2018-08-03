@@ -75,7 +75,7 @@ namespace BusinessLogic.Entities
         }
 
 
-        public string[] GetAllFields()
+        public string[] GetInsertableFields()
         {
             return new string[] { "id",
                                   "season_id",
@@ -99,7 +99,7 @@ namespace BusinessLogic.Entities
                                   "pt_away_team",
                                   "last_updated"};
         }
-        public object[] GetAllValues()
+        public object[] GetInsertableValues()
         {
             return new string[] { Id.ToString(),
                                   Season is null ? null : Season.Id.ToString(),

@@ -16,8 +16,8 @@ namespace BusinessLogic.Entities
         string GetTableName();
         
 
-        string[] GetAllFields();
-        object[] GetAllValues();
+        string[] GetInsertableFields();
+        object[] GetInsertableValues();
 
 
         string[] GetUpdatableFields();

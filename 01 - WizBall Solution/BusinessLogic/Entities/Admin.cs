@@ -40,14 +40,14 @@ namespace BusinessLogic.Entities
         }
 
 
-        string[] Entity.GetAllFields()
+        string[] Entity.GetInsertableFields()
         {
             return new string[] { "username",
                                   "email",
                                   "password",
                                   "pic" };
         }
-        object[] Entity.GetAllValues()
+        object[] Entity.GetInsertableValues()
         {
             return new string[] { Username,
                                   Email,

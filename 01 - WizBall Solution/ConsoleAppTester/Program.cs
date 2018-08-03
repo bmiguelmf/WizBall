@@ -19,12 +19,18 @@ namespace ConsoleAppTester
             string apiToken = "7f91f916023b4430b44d97cc11e5c030";
 
             BLL bll = new BLL(connString, apiToken);
-            
 
 
 
-            // Teste Full DB Sync.
-            bll.FullDatabaseSync();
+
+            User bro = new User() { Email = "1bmiguelmf&gmail.com", Password = "06121984", Username = "bro" };
+            bro.Picture = "bro.pic";
+            bro.Newsletter = true;
+            bro.Username = "brox";
+            bll.InsertUser(bro);
+            Console.WriteLine("BRo inserido");
+
+            Console.ReadLine();
         }
     }
 }

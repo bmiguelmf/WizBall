@@ -42,14 +42,14 @@ namespace BusinessLogic.Entities
         }
 
 
-        public string[] GetAllFields()
+        public string[] GetInsertableFields()
         {
             return new string[] { "id",
                                   "name",
                                   "country_code",
                                   "parent_area_id" };
         }
-        public object[] GetAllValues()
+        public object[] GetInsertableValues()
         {
             return new string[] { Id is null ? null : Id.ToString(),
                                   Name,

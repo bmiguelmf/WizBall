@@ -62,7 +62,7 @@ namespace BusinessLogic.Entities
         }
 
 
-        public string[] GetAllFields()
+        public string[] GetInsertableFields()
         {
             return new string[] { "id",
                                   "area_id",
@@ -72,7 +72,7 @@ namespace BusinessLogic.Entities
                                   "flag",
                                   "last_updated"};
         }
-        public object[] GetAllValues()
+        public object[] GetInsertableValues()
         {
             DateTime lastUpdate = new DateTime();
             DateTime.TryParse(LastUpdated, out lastUpdate);
