@@ -69,7 +69,7 @@ namespace BusinessLogic.Entities
                     AwayTeam = (int)Row[19]
                 }
             };
-            LastUpdated = Row[20].ToString();
+            match.LastUpdated = Row[20].ToString();
 
             return match;
         }

@@ -23,15 +23,31 @@ namespace BusinessLogic.BLL
 
        
 
+        // UTILITIES
+        private DateTime? NormalizeApiDateTime(string Datetime)
+        {
+            if (string.IsNullOrEmpty(Datetime)) return null;
+
+            DateTime dateTime = new DateTime();                                              
+            DateTime.TryParse(Datetime,
+                              null,
+                              System.Globalization.DateTimeStyles.AdjustToUniversal,
+                              out dateTime);
+
+            return dateTime;
+        }
+
+
+
         // API SYNC METHODS.
         public bool FullDatabaseSync()
         {
-            SyncAreas();              // 1 API request.
-            SyncSeasons();            // 1 API request.       
-            SyncCompetitions();       // 1 API request.
-            System.Threading.Thread.Sleep(60000);
-            SyncTeams();              // 10 API requests.
-            System.Threading.Thread.Sleep(60000);
+            //SyncAreas();              // 1 API request.
+            //SyncSeasons();            // 1 API request.       
+            //SyncCompetitions();       // 1 API request.
+            //System.Threading.Thread.Sleep(60000);
+            //SyncTeams();              // 10 API requests.
+            //System.Threading.Thread.Sleep(60000);
             SyncMatchesTierOne();     // 10 API requests.
 
             return true;
@@ -63,7 +79,6 @@ namespace BusinessLogic.BLL
                 {
                     lstInsertAreas.Add(areaApi);
                 }
-
                 else if (areaApi.Name != tempArea.Name ||
                         areaApi.ParentAreaId != tempArea.ParentAreaId)       // Check for differences.
                 {
@@ -209,19 +224,15 @@ namespace BusinessLogic.BLL
 
                         continue;
                     }
+
                     if (apiTeam.LastUpdated == null)                                                // If apiTeam.LastUpdated == null no need to update.
                     {
                         continue;
                     }
 
+                    DateTime? apiTeamLastUpdated = NormalizeApiDateTime(apiTeam.LastUpdated);
 
-                    DateTime dateTime = new DateTime();                                              // Normalize date to comparison.
-                    DateTime.TryParse(apiTeam.LastUpdated,
-                                      null,
-                                      System.Globalization.DateTimeStyles.AdjustToUniversal,
-                                      out dateTime);
-
-                    if (dbTeam.LastUpdated == null || dateTime.ToString() != dbTeam.LastUpdated)
+                    if (apiTeamLastUpdated.ToString() != apiTeamLastUpdated.ToString())
                     {
                         lstUpdateTeams.Add(apiTeam);
                     }
@@ -239,28 +250,44 @@ namespace BusinessLogic.BLL
         }
         private bool SyncMatchesTierOne()
         {
-            DALMatches dalMatches = new DALMatches(connectionString);
-            ResourceMatches resourceMatches = new ResourceMatches(apiToken);
+            DALMatches dalMatches = new DALMatches(connectionString);                                               // Object to comunicate with Database.
+            ResourceMatches resourceMatches = new ResourceMatches(apiToken);                                        // Object to comunicate with API football-data.org. 
 
-            foreach (Competition competition in TierOneCompetitions())
+            foreach (Competition competition in TierOneCompetitions())                                              // Foreach tier_one competition.
             {
-                List<Match> lstInsertMatches = new List<Match>();
-                List<Match> lstApiMatches = resourceMatches.GetByCompetition(competition.Id.ToString());
+                List<Match> lstInsertMatches = new List<Match>();                                                   // Temporary list to hold insertable matches.
+                List<Match> lstUpdateMatches = new List<Match>();                                                   // Temporary list to hold updatable  matches.
 
-                foreach (Match match in lstApiMatches)
+                List<Match> lstApiMatches = resourceMatches.GetByCompetition(competition.Id.ToString());            // Get a list of matches by competition from the Api.
+
+                foreach (Match apiMatch in lstApiMatches)                                                           // Foreach match in lstApiMatches.
                 {
-                    if (match.HomeTeam.Id == 0 || match.AwayTeam.Id == 0)
+                    if (apiMatch.HomeTeam.Id == 0 || apiMatch.AwayTeam.Id == 0)                                     // 0 == null. Do not insert or update.
                     {
                         continue;
                     }
 
-                    if (dalMatches.GetById(match.Id.ToString()) is null)
+                    Match dbMatch = dalMatches.GetById(apiMatch.Id.ToString());                                     // Tries to get the same match from db.
+
+                    if (dbMatch is null)                                                                            // If no match then add match to insertable matches list.
                     {
-                        lstInsertMatches.Add(match);
+                        lstInsertMatches.Add(apiMatch);                                                                
+                    }
+                    else                                                                                            // Otherwise
+                    {
+                        DateTime? apiLastUpdated = NormalizeApiDateTime(apiMatch.LastUpdated);                      // First normalize the datetime that came from the api to our standard.
+
+                        if (dbMatch.LastUpdated != apiLastUpdated.ToString())                                       // if Api Last Update is diferent from the corresponding db value.
+                        {
+                            lstUpdateMatches.Add(apiMatch);                                                         // Add match to updatable matches list.
+                        }
                     }
                 }
 
-                dalMatches.Insert(lstInsertMatches);
+                if (lstInsertMatches.Count != 0)
+                    dalMatches.Insert(lstInsertMatches);
+                if (lstUpdateMatches.Count != 0)
+                    dalMatches.Update(lstUpdateMatches);
             }
 
             return true;
@@ -275,7 +302,6 @@ namespace BusinessLogic.BLL
                 new Competition() {Id = 2015 },                 // Ligue1.
                 new Competition() {Id = 2016 },                 // Championship.
                 new Competition() {Id = 2017 },                 // PrimeiraLiga.
-                new Competition() {Id = 2018 },                 // EuropeanChampionship.
                 new Competition() {Id = 2019 },                 // SerieA_italia.
                 new Competition() {Id = 2021 }                  // PremierLeague.
             };
