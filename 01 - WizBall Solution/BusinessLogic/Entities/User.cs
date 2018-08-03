@@ -13,7 +13,6 @@ namespace BusinessLogic.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public bool Newsletter { get; set; }
-        public int UserStateId { get; set; }
         public string Picture { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
@@ -41,10 +40,9 @@ namespace BusinessLogic.Entities
             user.Email          = Row[2].ToString();
             user.Password       = Row[3].ToString();
             user.Newsletter     = (bool)Row[4];
-            user.UserStateId    = (int)Row[5];
-            user.Picture        = Row[6].ToString();
-            user.CreatedAt      = (DateTime)Row[7];
-            user.UpdatedAt      = (DateTime)Row[8];
+            user.Picture        = Row[5].ToString();
+            user.CreatedAt      = (DateTime)Row[6];
+            user.UpdatedAt      = (DateTime)Row[7];
 
             return user;
         }
@@ -67,7 +65,6 @@ namespace BusinessLogic.Entities
                                   "email",
                                   "password",
                                   "newsletter",
-                                  "user_state",
                                   "pic",
                                   "created_at",
                                   "updated_at" };
@@ -78,7 +75,6 @@ namespace BusinessLogic.Entities
                                   Email,
                                   Password,
                                   "0",
-                                  "1",
                                   "user.png",
                                   GetDateTime(),
                                   GetDateTime() };
@@ -91,7 +87,6 @@ namespace BusinessLogic.Entities
                                   "email",
                                   "password",
                                   "newsletter",
-                                  "user_state",
                                   "pic",
                                   "updated_at" };
         }
@@ -101,7 +96,6 @@ namespace BusinessLogic.Entities
                                   Email,
                                   Password,
                                   Newsletter == true ? "1" : "0",
-                                  UserStateId.ToString(),
                                   Picture,
                                   GetDateTime() };
         }

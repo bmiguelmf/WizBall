@@ -53,12 +53,12 @@ namespace BusinessLogic.BLL
         // API SYNC METHODS.
         public bool FullDatabaseSync()
         {
-            //SyncAreas();              // 1 API request.
-            //SyncSeasons();            // 1 API request.       
-            //SyncCompetitions();       // 1 API request.
-            //System.Threading.Thread.Sleep(60000);
-            //SyncTeams();              // 10 API requests.
-            //System.Threading.Thread.Sleep(60000);
+            SyncAreas();              // 1 API request.
+            SyncSeasons();            // 1 API request.       
+            SyncCompetitions();       // 1 API request.
+            System.Threading.Thread.Sleep(60000);
+            SyncTeams();              // 10 API requests.
+            System.Threading.Thread.Sleep(60000);
             SyncMatchesTierOne();     // 10 API requests.
 
             return true;
@@ -478,9 +478,23 @@ namespace BusinessLogic.BLL
         }
         public List<User> GetUsersByState(string UserStateId)
         {
+            if (string.IsNullOrEmpty(UserStateId))
+                return null;
+
+
             DALUsers dalUsers = new DALUsers(connectionString);
 
             return dalUsers.GetByState(UserStateId);
+        }
+        public UserHistory GetUserHistoryById(string Id)
+        {
+            if (string.IsNullOrEmpty(Id))
+                return null;
+
+
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
+
+            return dalUserHistory.GetById(Id);
         }
 
 

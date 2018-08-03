@@ -17,10 +17,7 @@ namespace BusinessLogic.DAL
         // Constructor.
         public DAL(string ConnectionString)
         {
-            //Home "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = blockbuster; Integrated Security = SSPI;";
-            //ATEC "Data Source = DESKTOP-O32Q2UQ\\SQLEXPRESS; Initial Catalog = blockbuster; Integrated Security = SSPI;";
-
-            connectionString = ConnectionString; // ConfigurationManager.ConnectionStrings["ConStringBlockBuster"].ConnectionString;
+            connectionString = ConnectionString;
         }
 
 

@@ -21,13 +21,7 @@ namespace ConsoleAppTester
             BLL bll = new BLL(connString, apiToken);
 
 
-
-
-            User bro = new User() { Email = "1bmiguelmf&gmail.com", Password = "06121984", Username = "bro" };
-            bro.Picture = "bro.pic";
-            bro.Newsletter = true;
-            bro.Username = "brox";
-            bll.InsertUser(bro);
+            bll.FullDatabaseSync();
             Console.WriteLine("BRo inserido");
 
             Console.ReadLine();

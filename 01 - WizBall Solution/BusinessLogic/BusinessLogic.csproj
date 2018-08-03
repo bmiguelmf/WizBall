@@ -53,6 +53,7 @@
     <Compile Include="Data Access Layer\DALMatches.cs" />
     <Compile Include="Data Access Layer\DALSeasons.cs" />
     <Compile Include="Data Access Layer\DALTeams.cs" />
+    <Compile Include="Data Access Layer\DALUserHistory.cs" />
     <Compile Include="Data Access Layer\DALUsers.cs" />
     <Compile Include="Data Access Layer\DALUserStates.cs" />
     <Compile Include="Entities\Admin.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Entities\Season.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserHistory.cs" />
     <Compile Include="Entities\UserState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API Football-Data\Resource.cs" />

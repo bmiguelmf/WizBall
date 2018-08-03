@@ -35,15 +35,29 @@ BEGIN TRY
 							email					varchar(50)			unique						not null,
 							password				varchar(50)										not null,
 							newsletter				bit					default(0)					not null,
-							user_state				int					default(1)					not null,
 							pic						varchar(50)			default('user.png')			not null,
 							created_at				datetime			default(getdate())			not null,
 							updated_at				datetime										not null,
 
 							constraint pk_users primary key(id),
-							constraint fk_users_user_state foreign key(user_state) references user_states(id)
 						)
 
+						CREATE TABLE user_history
+						(
+							id						int					identity(1, 1)				not null,
+							admin_id				int												not null,
+							user_id					int					    						not null,											
+							before_state_id			int												not null,
+							after_state_id			int												not null,
+							[description]			varchar(150)									not null,
+							created_at				datetime			default(getdate())			not null,
+
+							constraint pk_user_history primary key(id),
+							constraint fk_admin foreign key(admin_id) references admins(id),
+							constraint fk_user foreign key(user_id) references users(id),
+							constraint fk_before_state foreign key(before_state_id) references user_states(id),
+							constraint fk_after_state foreign key(after_state_id) references user_states(id)
+						)
 
 						CREATE TABLE areas
 						(
