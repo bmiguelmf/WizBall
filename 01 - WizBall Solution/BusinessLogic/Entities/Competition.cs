@@ -87,7 +87,6 @@ namespace BusinessLogic.Entities
         }
 
        
-
         public string[] GetUpdatableFields()
         {
             return new string[] { "area_id",

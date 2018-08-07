@@ -23,7 +23,27 @@ namespace ConsoleAppTester
 
 
             // Code Here.
-            bll.FullDatabaseSync();
+
+           DateTime date = new DateTime(2018, 8, 11);
+
+
+            foreach (Match match in bll.GetTodayMatchesByCompetition("2016"))
+            {
+                Console.WriteLine("Match -> " + match.Id);
+                Console.Write(match.Competition.Name + " - " + match.Competition.Area.Name);
+                Console.WriteLine("   " + match.UtcDate + "  Matchday: " + match.Matchday);
+                Console.WriteLine(match.HomeTeam.Name + "  VS  " + "   " + match.AwayTeam.Name);
+                Console.WriteLine(match.Score.HalfTime.HomeTeam.Value + "  half-time " + match.Score.HalfTime.AwayTeam.Value);
+                Console.WriteLine(match.Score.FullTime.HomeTeam.Value + "  fult-time " + match.Score.FullTime.AwayTeam.Value);
+                Console.WriteLine();
+                Console.WriteLine();
+
+            }
+
+
+
+
+            //bll.FullDatabaseSync();
 
 
             //List<UserHistory> history = bll.GetUserHistoryByUserId("1");

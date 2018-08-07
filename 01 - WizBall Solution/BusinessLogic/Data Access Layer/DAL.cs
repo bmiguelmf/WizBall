@@ -165,6 +165,40 @@ namespace BusinessLogic.DAL
         }
 
 
+        /// <summary>
+        /// Get a subset of elements from the database for the corresponding Entity object.
+        /// </summary>
+        /// <param name="Entity">An object that implements Abstract Class Entity.</param>
+        /// <param name="Where">ex: { {field1, value1 }, {field2, value2} } </param>
+        /// <returns>Returns a subset of objects of type Entity object.</returns>
+        protected List<Entity> GetWhere(Entity Entity, List<DbWhere> Where)
+        {
+            List<string> placeHolders = new List<string>();
+            foreach (DbWhere where in Where)
+            {
+                string sqlOperator = ConvertSqlOperator(where.Operator);
+                placeHolders.Add("[" + where.Field + "] " + sqlOperator + " @" + where.Alias);
+            }
+            string sqlWhere = string.Join(" AND ", placeHolders);
+
+
+
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = string.Format("SELECT * FROM {0} WHERE {1}", Entity.GetTableName(), sqlWhere)
+            };
+
+
+
+            foreach (DbWhere where in Where)
+            {
+                cmd.Parameters.AddWithValue("@" + where.Alias, where.Value);
+            }
+
+
+
+            return ExecuteReader(Entity, cmd);
+        }
         #endregion
 
 
@@ -265,5 +299,48 @@ namespace BusinessLogic.DAL
 
         #endregion
 
+
+
+
+        public struct DbWhere
+        {
+            public string Field { get; set; }
+            public string Value { get; set; }
+            public string Alias { get; set; }
+            public DbOperator Operator { get; set; }
+        }
+        public enum DbOperator { GreaterThan, LesserThan, EqualsTo, GreaterThanOrEqualsTo, LesserThanOrEqualsTo };
+        public string ConvertSqlOperator(DbOperator Operator)
+        {
+            switch (Operator)
+            {
+                case DbOperator.EqualsTo:
+                    {
+                        return "=";
+                    }
+                case DbOperator.GreaterThan:
+                    {
+                        return ">";
+                    }
+                case DbOperator.LesserThan:
+                    {
+                        return "<";
+                    }
+                case DbOperator.GreaterThanOrEqualsTo:
+                    {
+                        return ">=";
+                    }
+                case DbOperator.LesserThanOrEqualsTo:
+                    {
+                        return "<=";
+                    }
+                default:
+                    {
+                        return string.Empty;
+                    }
+            }
+        }
+
     }
+   
 }

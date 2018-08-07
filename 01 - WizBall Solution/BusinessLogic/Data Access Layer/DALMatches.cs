@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System;
 
 using BusinessLogic.Entities;
 
@@ -22,9 +23,9 @@ namespace BusinessLogic.DAL
         }
         public List<Match> GetByCompetitionId(string CompetitionId)
         {
-            return GetWhere(new Match(), 
-                            new Dictionary<string, string>() { { "competition_id", CompetitionId } } )
-                             
+            return GetWhere(new Match(),
+                            new Dictionary<string, string>() { { "competition_id", CompetitionId } })
+
                             .Cast<Match>().ToList();
         }
 
@@ -60,6 +61,42 @@ namespace BusinessLogic.DAL
 
             return true;
         }
+
+
+
+
+        public List<Match> GetByCompetitionIdAndByRangeDates(string CompetitionId, DateTime DateInit, DateTime DateEnd)
+        {
+            List<DbWhere> lstDbWheres = new List<DbWhere>()
+            {
+                new DbWhere
+                {
+                    Field = "utc_date",
+                    Value = DateInit.Year + "-" + DateInit.Month + "-" + DateInit.Day + " " + DateInit.Hour + ":" + DateInit.Minute + ":" + DateInit.Second,
+                    Alias = "utc_date_init",
+                    Operator = DbOperator.GreaterThanOrEqualsTo
+                },
+
+                new DbWhere
+                {
+                    Field = "utc_date",
+                    Value = DateEnd.Year + "-" + DateEnd.Month + "-" + DateEnd.Day + " " + DateEnd.Hour + ":" + DateEnd.Minute + ":" + DateEnd.Second,
+                    Alias = "utc_date_end",
+                    Operator = DbOperator.LesserThanOrEqualsTo
+                },
+
+                new DbWhere
+                {
+                    Field = "competition_id",
+                    Value = CompetitionId,
+                    Alias = "competition",
+                    Operator = DbOperator.EqualsTo
+                }
+            };
+
+            return GetWhere(new Match(), lstDbWheres).Cast<Match>().ToList();
+        }
+
 
     }
 }

@@ -49,6 +49,15 @@ namespace BusinessLogic.BLL
                 return false;
             }
         }
+        private void MatchBuilder(Match Match)
+        {
+            Match.Season = GetSeasonById(Match.Season.Id.ToString());
+            Match.Competition = GetCompetitionById(Match.Competition.Id.ToString());
+            Match.Competition.Area = GetAreaById(Match.Competition.Area.Id.ToString());
+
+            Match.HomeTeam = GetTeamById(Match.HomeTeam.Id.ToString());
+            Match.AwayTeam = GetTeamById(Match.AwayTeam.Id.ToString());
+        }
 
 
 
@@ -580,7 +589,26 @@ namespace BusinessLogic.BLL
 
             return lstMatches;
         }
+        public List<Match> GetTodayMatchesByCompetition(string CompetitionId)
+        {
+            return GetMatchesByDateAndCompetition(CompetitionId, DateTime.Today);
+        }
+        public List<Match> GetMatchesByDateAndCompetition(string CompetitionId, DateTime Date)
+        {
+            DateTime dayInit = new DateTime(Date.Year, Date.Month, Date.Day, 0, 0, 0);
+            DateTime dayEnd = new DateTime(Date.Year, Date.Month, Date.Day, 23, 59, 59);
 
+            DALMatches dalMatches = new DALMatches(connectionString);
+
+            List<Match> lstMatches = dalMatches.GetByCompetitionIdAndByRangeDates(CompetitionId, dayInit, dayEnd);
+
+            foreach (Match match in lstMatches)
+            {
+                MatchBuilder(match);
+            }
+
+            return lstMatches;
+        }
 
 
         // AREAS METHODS.
@@ -589,7 +617,11 @@ namespace BusinessLogic.BLL
             DALAreas dal = new DALAreas(connectionString);
             return dal.GetAll();
         }
-
+        public Area GetAreaById(string Id)
+        {
+            DALAreas dalAreas = new DALAreas(connectionString);
+            return dalAreas.GetById(Id);
+        }
 
 
         // SEASONS METHODS.
@@ -597,6 +629,11 @@ namespace BusinessLogic.BLL
         {
             DALSeasons dal = new DALSeasons(connectionString);
             return dal.GetAll();
+        }
+        public Season GetSeasonById(string Id)
+        {
+            DALSeasons dalSeasons = new DALSeasons(connectionString);
+            return dalSeasons.GetById(Id);
         }
 
 
@@ -607,7 +644,11 @@ namespace BusinessLogic.BLL
             DALCompetitions dal = new DALCompetitions(connectionString);
             return dal.GetAll();
         }
-
+        public Competition GetCompetitionById(string Id)
+        {
+            DALCompetitions dalCompetitions = new DALCompetitions(connectionString);
+            return dalCompetitions.GetById(Id);
+        }
 
 
         // TEAMS METHODS.
@@ -615,6 +656,11 @@ namespace BusinessLogic.BLL
         {
             DALTeams dal = new DALTeams(connectionString);
             return dal.GetAll();
+        }
+        public Team GetTeamById(string Id)
+        {
+            DALTeams dalTeams = new DALTeams(connectionString);
+            return dalTeams.GetById(Id);
         }
     }
 }
