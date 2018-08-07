@@ -21,9 +21,26 @@ namespace ConsoleAppTester
             BLL bll = new BLL(connString, apiToken);
 
 
-            bll.FullDatabaseSync();
-            Console.WriteLine("BRo inserido");
 
+            // Code Here.
+            List<UserHistory> history = bll.GetUserHistoryByUserId("1");
+
+
+            foreach(UserHistory uh in history)
+            {
+                Console.WriteLine(uh.User.Username + " " + uh.User.Email + " " + uh.User.Password + " " + uh.Admin.Username + " " + uh.AfterState.Description );
+            }
+
+            
+
+            //User user = new User() { Username = "bro", Email = "bmiguelmf@gmail.com", Password = "06121984" };
+            //bll.InsertUser(user);
+
+
+
+
+
+            Console.WriteLine("Ok!");
             Console.ReadLine();
         }
     }

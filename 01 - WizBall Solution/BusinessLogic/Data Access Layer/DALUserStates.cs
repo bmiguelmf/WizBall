@@ -18,6 +18,11 @@ namespace BusinessLogic.DAL
         {
             return GetAll(new UserState()).Cast<UserState>().ToList();
         }
+        // GET By Id
+        public UserState GetById(string Id)
+        {
+            return GetById(new UserState(), Id) as UserState;
+        }
 
     }
 }

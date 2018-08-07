@@ -20,7 +20,6 @@ namespace BusinessLogic.Entities
         public Team HomeTeam { get; set; }
         public Team AwayTeam { get; set; }
         public Score Score { get; set; }
-
         public string LastUpdated { get; set; }
         
 

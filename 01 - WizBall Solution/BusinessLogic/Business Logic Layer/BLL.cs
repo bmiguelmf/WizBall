@@ -12,9 +12,10 @@ namespace BusinessLogic.BLL
 {
     public class BLL
     {
-        // CONSTRUCTOR.
+        // PRIVATE.
         private string apiToken;
-        private string connectionString;        
+        private string connectionString;
+        // CONSTRUCTOR.
         public BLL(string ConnectionString, string APIToken)
         {
             apiToken            = APIToken;
@@ -48,6 +49,7 @@ namespace BusinessLogic.BLL
                 return false;
             }
         }
+
 
 
         // API SYNC METHODS.
@@ -470,12 +472,6 @@ namespace BusinessLogic.BLL
                 return true;
             }
         }
-        public List<UserState> GetUserStates()
-        {
-            DALUserStates dalUserStatess = new DALUserStates(connectionString);
-
-            return dalUserStatess.GetAll();
-        }
         public List<User> GetUsersByState(string UserStateId)
         {
             if (string.IsNullOrEmpty(UserStateId))
@@ -486,16 +482,82 @@ namespace BusinessLogic.BLL
 
             return dalUsers.GetByState(UserStateId);
         }
+
+        // USER_STATES METHODS.
+        public UserState GetUserStateById(string Id)
+        {
+            DALUserStates dal = new DALUserStates(connectionString);
+            return dal.GetById(Id);
+        }
+        public List<UserState> GetAllUserStates()
+        {
+            DALUserStates dalUserStatess = new DALUserStates(connectionString);
+
+            return dalUserStatess.GetAll();
+        }
+       
+
         public UserHistory GetUserHistoryById(string Id)
         {
             if (string.IsNullOrEmpty(Id))
                 return null;
 
 
-            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);           // Gets an user history by its id.
+            UserHistory userHistory = dalUserHistory.GetById(Id);
 
-            return dalUserHistory.GetById(Id);
+            DALAdmins dalAdmin = new DALAdmins(connectionString);
+            userHistory.Admin = dalAdmin.GetById(userHistory.Admin.Id.ToString());
+
+            DALUsers dalUsers = new DALUsers(connectionString);
+            userHistory.User = dalUsers.GetById(userHistory.User.Id.ToString());
+
+            DALUserStates dalUserStates = new DALUserStates(connectionString);
+            userHistory.BeforeState = dalUserStates.GetById(userHistory.BeforeState.Id.ToString());
+            userHistory.AfterState = dalUserStates.GetById(userHistory.AfterState.Id.ToString());
+
+
+            return userHistory;
         }
+        public List<UserHistory> GetUserHistoryByUserId(string UserId)
+        {
+            if (string.IsNullOrEmpty(UserId))
+                return null;
+
+
+            DALUsers dalUsers = new DALUsers(connectionString);
+            DALAdmins dalAdmin = new DALAdmins(connectionString);
+            DALUserStates dalUserStates = new DALUserStates(connectionString);
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);           
+
+
+            List<UserHistory>  lstUserHistory = dalUserHistory.GetByUserId(UserId);
+     
+            foreach(UserHistory userHistory in lstUserHistory)
+            {              
+                userHistory.Admin           = dalAdmin.GetById(userHistory.Admin.Id.ToString());                
+                userHistory.User            = dalUsers.GetById(userHistory.User.Id.ToString());              
+                userHistory.BeforeState     = dalUserStates.GetById(userHistory.BeforeState.Id.ToString());
+                userHistory.AfterState      = dalUserStates.GetById(userHistory.AfterState.Id.ToString());
+            }
+
+            return lstUserHistory;
+        }
+        public bool InsertUserHistory(UserHistory UserHistory)
+        {
+            if (UserHistory is null)
+                return false;
+
+            List<UserHistory> lstUserHistory = new List<UserHistory>();
+            lstUserHistory.Add(UserHistory);
+
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
+            dalUserHistory.Insert(lstUserHistory);
+
+            return true;
+        } // Web Methods
+
+
 
 
 
@@ -541,6 +603,15 @@ namespace BusinessLogic.BLL
             DALAdmins dalAdmins = new DALAdmins(connectionString);
 
             return dalAdmins.Login(Username, Password);
+        }
+
+
+
+        // MATCHES METHODS
+        public Match GetMatchById(string Id)
+        {
+            DALMatches dalMatches = new DALMatches(connectionString);
+            return dalMatches.GetById(Id);
         }
     }
 }

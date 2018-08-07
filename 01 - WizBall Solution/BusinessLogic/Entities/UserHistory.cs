@@ -22,10 +22,10 @@ namespace BusinessLogic.Entities
             UserHistory userHistory = new UserHistory();
 
             userHistory.Id              = (int)Row[0];
-            userHistory.Admin.Id        = (int)Row[1];
-            userHistory.User.Id         = (int)Row[2];
-            userHistory.BeforeState.Id  = (int)Row[3];
-            userHistory.AfterState.Id   = (int)Row[4];
+            userHistory.Admin           = new Admin()       { Id = (int)Row[1] };
+            userHistory.User            = new User()        { Id = (int)Row[2] };
+            userHistory.BeforeState     = new UserState()   { Id = (int)Row[3] };
+            userHistory.AfterState      = new UserState()   { Id = (int)Row[4] };
             userHistory.Description     = Row[5].ToString();
             userHistory.CreatedAt       = (DateTime)Row[6];
 

@@ -68,7 +68,7 @@ namespace WebServices
         {
             BLL bll = new BLL(connString, apiToken);
 
-            return bll.GetUserStates();
+            return bll.GetAllUserStates();
         }
         [WebMethod]
         public List<User> GetUsersByState(string UserStateId)
