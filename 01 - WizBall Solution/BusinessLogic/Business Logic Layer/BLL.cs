@@ -37,7 +37,7 @@ namespace BusinessLogic.BLL
 
             return dateTime;
         }
-        bool IsValidEmail(string email)
+        private bool IsValidEmail(string email)
         {
             try
             {
@@ -133,21 +133,20 @@ namespace BusinessLogic.BLL
             }
 
 
-            foreach (Competition competition in lstApiCompetitions)                                 // If database has alreday some records then...
+            foreach (Competition apiCompetition in lstApiCompetitions)                                 // If database has alreday some records then...
             {
-                if (competition.CurrentSeason != null)
+                if (apiCompetition.CurrentSeason != null)                                               
                 {
-                    Season tempSeason = dalSeasons.GetById(competition.CurrentSeason.Id.ToString());
+                    Season dbCompetitionCurrentSeason = dalSeasons.GetById(apiCompetition.CurrentSeason.Id.ToString());
 
-                    if (tempSeason == null)
+                    if (dbCompetitionCurrentSeason == null)
                     {
-                        lstDbSeasons.Add(competition.CurrentSeason);
+                        lstDbSeasons.Add(apiCompetition.CurrentSeason);
                     }
-
-                    else if (competition.CurrentSeason.StartDate != tempSeason.StartDate ||
-                             competition.CurrentSeason.EndDate != tempSeason.EndDate)               // Checks for any difference.
+                    else if (apiCompetition.CurrentSeason.StartDate != dbCompetitionCurrentSeason.StartDate ||
+                             apiCompetition.CurrentSeason.EndDate != dbCompetitionCurrentSeason.EndDate)               // Checks for any difference.
                     {
-                        lstUpdateSeasosn.Add(tempSeason);
+                        lstUpdateSeasosn.Add(dbCompetitionCurrentSeason);
                     }
                 }
             }
@@ -192,7 +191,7 @@ namespace BusinessLogic.BLL
                 {
                     DateTime? competitionApiLastUpdated = NormalizeApiDateTime(competitionApi.LastUpdated);
 
-                    if (competitionApiLastUpdated.ToString() != competitionDb.ToString())
+                    if (competitionApiLastUpdated.ToString() != competitionDb.LastUpdated)
                     {
                         lstUpdateCompetition.Add(competitionApi);
                     }
@@ -321,46 +320,6 @@ namespace BusinessLogic.BLL
 
 
 
-        // API METHODS.
-        public List<Area> GetAllAreas()
-        {
-            DALAreas dal = new DALAreas(connectionString);
-            return dal.GetAll();
-        }
-        public List<Season> GetAllSeasons()
-        {
-            DALSeasons dal = new DALSeasons(connectionString);
-            return dal.GetAll();
-        }
-        public List<Competition> GetAllCompetitions()
-        {
-            DALCompetitions dal = new DALCompetitions(connectionString);
-            return dal.GetAll();
-        }
-        public List<Team> GetAllTeams()
-        {
-            DALTeams dal = new DALTeams(connectionString);
-            return dal.GetAll();
-        }
-        public List<Match> GetMatchesByCompetition(string CompetitionId)
-        {
-            DALTeams dalTeams = new DALTeams(connectionString);
-            DALMatches dalMatches = new DALMatches(connectionString);
-
-            List<Match> lstMatches = dalMatches.GetByCompetitionId(CompetitionId);
-
-            foreach(Match match in lstMatches)
-            {
-                match.HomeTeam = dalTeams.GetById(match.HomeTeam.Id.ToString());
-                match.AwayTeam = dalTeams.GetById(match.AwayTeam.Id.ToString());
-            }
-
-
-            return lstMatches;
-        }
-
-
-
         // USER METHODS.
         public List<User> GetAllUsers()
         {
@@ -482,7 +441,6 @@ namespace BusinessLogic.BLL
 
             return dalUsers.GetByState(UserStateId);
         }
-
         // USER_STATES METHODS.
         public UserState GetUserStateById(string Id)
         {
@@ -495,13 +453,11 @@ namespace BusinessLogic.BLL
 
             return dalUserStatess.GetAll();
         }
-       
-
+        // USER_HISTORY METHODS.
         public UserHistory GetUserHistoryById(string Id)
         {
             if (string.IsNullOrEmpty(Id))
                 return null;
-
 
             DALUserHistory dalUserHistory = new DALUserHistory(connectionString);           // Gets an user history by its id.
             UserHistory userHistory = dalUserHistory.GetById(Id);
@@ -516,7 +472,6 @@ namespace BusinessLogic.BLL
             userHistory.BeforeState = dalUserStates.GetById(userHistory.BeforeState.Id.ToString());
             userHistory.AfterState = dalUserStates.GetById(userHistory.AfterState.Id.ToString());
 
-
             return userHistory;
         }
         public List<UserHistory> GetUserHistoryByUserId(string UserId)
@@ -524,12 +479,10 @@ namespace BusinessLogic.BLL
             if (string.IsNullOrEmpty(UserId))
                 return null;
 
-
             DALUsers dalUsers = new DALUsers(connectionString);
             DALAdmins dalAdmin = new DALAdmins(connectionString);
             DALUserStates dalUserStates = new DALUserStates(connectionString);
             DALUserHistory dalUserHistory = new DALUserHistory(connectionString);           
-
 
             List<UserHistory>  lstUserHistory = dalUserHistory.GetByUserId(UserId);
      
@@ -555,9 +508,7 @@ namespace BusinessLogic.BLL
             dalUserHistory.Insert(lstUserHistory);
 
             return true;
-        } // Web Methods
-
-
+        } 
 
 
 
@@ -607,11 +558,63 @@ namespace BusinessLogic.BLL
 
 
 
-        // MATCHES METHODS
+        // MATCHES METHODS.
         public Match GetMatchById(string Id)
         {
             DALMatches dalMatches = new DALMatches(connectionString);
             return dalMatches.GetById(Id);
+        }
+        public List<Match> GetMatchesByCompetition(string CompetitionId)
+        {
+            DALTeams dalTeams = new DALTeams(connectionString);
+            DALMatches dalMatches = new DALMatches(connectionString);
+
+            List<Match> lstMatches = dalMatches.GetByCompetitionId(CompetitionId);
+
+            foreach (Match match in lstMatches)
+            {
+                match.HomeTeam = dalTeams.GetById(match.HomeTeam.Id.ToString());
+                match.AwayTeam = dalTeams.GetById(match.AwayTeam.Id.ToString());
+            }
+
+
+            return lstMatches;
+        }
+
+
+
+        // AREAS METHODS.
+        public List<Area> GetAllAreas()
+        {
+            DALAreas dal = new DALAreas(connectionString);
+            return dal.GetAll();
+        }
+
+
+
+        // SEASONS METHODS.
+        public List<Season> GetAllSeasons()
+        {
+            DALSeasons dal = new DALSeasons(connectionString);
+            return dal.GetAll();
+        }
+
+
+
+        // COMPETITIONS METHODS.
+        public List<Competition> GetAllCompetitions()
+        {
+            DALCompetitions dal = new DALCompetitions(connectionString);
+            return dal.GetAll();
+        }
+
+
+
+        // TEAMS METHODS.
+        public List<Team> GetAllTeams()
+        {
+            DALTeams dal = new DALTeams(connectionString);
+            return dal.GetAll();
         }
     }
 }

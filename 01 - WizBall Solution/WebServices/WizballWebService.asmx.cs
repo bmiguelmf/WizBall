@@ -17,6 +17,7 @@ namespace WebServices
         private string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
 
 
+
         // USER METHODS.
         [WebMethod]
         public List<User> GetAllUsers()
@@ -64,25 +65,11 @@ namespace WebServices
             return bll.RecoverUserPassword(Email);
         }
         [WebMethod]
-        public List<UserState> GetUserStates()
-        {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.GetAllUserStates();
-        }
-        [WebMethod]
-        public List<User> GetUsersByState(string UserStateId)
-        {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.GetUsersByState(UserStateId);
-        }
-        [WebMethod]
         public bool UserMailExists(string Email)
         {
             BLL bll = new BLL(connString, apiToken);
 
-            return bll.UserMailExists(Email);          
+            return bll.UserMailExists(Email);
         }
         [WebMethod]
         public bool UsernameExists(string Username)
@@ -90,6 +77,55 @@ namespace WebServices
             BLL bll = new BLL(connString, apiToken);
 
             return bll.UsernameExists(Username);
+        }
+        [WebMethod]
+        public List<User> GetUsersByState(string UserStateId)
+        {
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.GetUsersByState(UserStateId);
+        }   
+        
+        // USER_STATE METHODS.
+        [WebMethod]
+        public List<UserState> GetAllUserStates()
+        {
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.GetAllUserStates();
+        }
+        [WebMethod]
+        public UserState GetUserStateById(string Id)
+        {
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.GetUserStateById(Id);
+        }
+
+        // USER_HISTORY MOTHODS.
+        [WebMethod]
+        public UserHistory GetUserHistoryById(string Id)
+        {
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.GetUserHistoryById(Id);
+        }
+        [WebMethod]
+        public List<UserHistory> GetUserHistoryByUserId(string UserId)
+        {
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.GetUserHistoryByUserId(UserId);
+        }
+        [WebMethod]
+        public bool InsertUserHistory(UserHistory UserHistory)
+        {
+            if (UserHistory is null)
+                return false;
+
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.InsertUserHistory(UserHistory);
         }
 
 

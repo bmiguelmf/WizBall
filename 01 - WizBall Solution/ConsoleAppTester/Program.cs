@@ -23,13 +23,16 @@ namespace ConsoleAppTester
 
 
             // Code Here.
-            List<UserHistory> history = bll.GetUserHistoryByUserId("1");
+            bll.FullDatabaseSync();
 
 
-            foreach(UserHistory uh in history)
-            {
-                Console.WriteLine(uh.User.Username + " " + uh.User.Email + " " + uh.User.Password + " " + uh.Admin.Username + " " + uh.AfterState.Description );
-            }
+            //List<UserHistory> history = bll.GetUserHistoryByUserId("1");
+
+
+            //foreach(UserHistory uh in history)
+            //{
+            //    Console.WriteLine(uh.User.Username + " " + uh.User.Email + " " + uh.User.Password + " " + uh.Admin.Username + " " + uh.AfterState.Description );
+            //}
 
             
 
