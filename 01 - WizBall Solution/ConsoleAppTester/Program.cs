@@ -23,10 +23,6 @@ namespace ConsoleAppTester
 
 
             // Code Here.
-
-           DateTime date = new DateTime(2018, 8, 11);
-
-
             foreach (Match match in bll.GetTodayMatchesByCompetition("2016"))
             {
                 Console.WriteLine("Match -> " + match.Id);
