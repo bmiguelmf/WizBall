@@ -152,7 +152,6 @@ namespace BusinessLogic.Entities
                                     "founded",
                                     "club_colors",
                                     "venue",
-                                    "flag",
                                     "last_updated"};
         }
         public object[] GetUpdatableValues()
@@ -168,7 +167,6 @@ namespace BusinessLogic.Entities
                                     Founded.ToString(),
                                     ClubColors,
                                     Venue,
-                                    Flag,
                                     LastUpdated};
         }
     }

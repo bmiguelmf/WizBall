@@ -27,15 +27,20 @@ namespace BusinessLogic.BLL
         // UTILITIES
         private DateTime? NormalizeApiDateTime(string Datetime)
         {
-            if (string.IsNullOrEmpty(Datetime)) return null;
+            if (string.IsNullOrEmpty(Datetime))
+                return null;
 
-            DateTime dateTime = new DateTime();                                              
+
+
+            DateTime dtNormalized;     
+            
             DateTime.TryParse(Datetime,
                               null,
                               System.Globalization.DateTimeStyles.AdjustToUniversal,
-                              out dateTime);
+                              out dtNormalized);
 
-            return dateTime;
+
+            return dtNormalized;
         }
         private bool IsValidEmail(string email)
         {
@@ -49,7 +54,7 @@ namespace BusinessLogic.BLL
                 return false;
             }
         }
-        private void MatchBuilder(Match Match)
+        public void MatchBuilder(Match Match)
         {
             Match.Season = GetSeasonById(Match.Season.Id.ToString());
             Match.Competition = GetCompetitionById(Match.Competition.Id.ToString());
@@ -234,7 +239,7 @@ namespace BusinessLogic.BLL
 
                 foreach (Team apiTeam in lstTeams)                                                  // Foreach apiTeam.
                 {
-                    Team dbTeam = dalTeams.GetById(apiTeam.Id.ToString());                          // Get Team by Id.
+                    Team dbTeam = dalTeams.GetById(apiTeam.Id.ToString());                          // Get Team by Id from db.
 
 
                     if (dbTeam == null)                                                             // If dbTeam null then add to lstInsertTeams.
@@ -662,6 +667,52 @@ namespace BusinessLogic.BLL
             DALTeams dalTeams = new DALTeams(connectionString);
             return dalTeams.GetById(Id);
         }
+
+
+        // TIPS METHODS
+        public Tip GetTipById(string Id)
+        {
+            DALTips dalTips = new DALTips(connectionString);
+            return dalTips.GetById(Id);
+        }
+        public bool InsertTip(Tip Tip)
+        {
+            if (Tip is null)
+                return false;
+
+
+            List<Tip> lstTips = new List<Tip>()
+            {
+                Tip
+            };
+
+
+            DALTips dalTips = new DALTips(connectionString);
+            dalTips.Insert(lstTips);
+
+
+            return true;
+        }
+        public bool UpdateTip(Tip Tip)
+        {
+            if (Tip is null)
+                return false;
+
+
+
+            List<Tip> lstTips = new List<Tip>()
+            {
+                Tip
+            };
+
+
+            DALTips dalTips = new DALTips(connectionString);
+            dalTips.Update(lstTips);
+
+
+            return true;
+        }
+
     }
 }
 

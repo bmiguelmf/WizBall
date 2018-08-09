@@ -164,7 +164,8 @@ BEGIN TRY
 							id						int					identity(1, 1)				not null,
 							match_id				int												not null,
 							market_id				int												not null,
-							tip						bit												not null,
+							bet_no_bet				bit												not null,
+							forecast				bit												not null,
 							result					bit												null	,											
 
 							constraint pk_tips primary key(id),

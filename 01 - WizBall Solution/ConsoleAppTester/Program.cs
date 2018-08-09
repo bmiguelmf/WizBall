@@ -21,20 +21,34 @@ namespace ConsoleAppTester
             BLL bll = new BLL(connString, apiToken);
 
 
-
-            // Code Here.
-            foreach (Match match in bll.GetTodayMatchesByCompetition("2016"))
+            Tip tip = new Tip()
             {
-                Console.WriteLine("Match -> " + match.Id);
-                Console.Write(match.Competition.Name + " - " + match.Competition.Area.Name);
-                Console.WriteLine("   " + match.UtcDate + "  Matchday: " + match.Matchday);
-                Console.WriteLine(match.HomeTeam.Name + "  VS  " + "   " + match.AwayTeam.Name);
-                Console.WriteLine(match.Score.HalfTime.HomeTeam.Value + "  half-time " + match.Score.HalfTime.AwayTeam.Value);
-                Console.WriteLine(match.Score.FullTime.HomeTeam.Value + "  fult-time " + match.Score.FullTime.AwayTeam.Value);
-                Console.WriteLine();
-                Console.WriteLine();
+                Market = new Market() { Id = 1 },
+                Match = bll.GetMatchById("233023"),
+                BetNoBet = true,
+                Forecast = true
+            };
 
-            }
+            tip = bll.GetTipById("1");
+
+            tip.Result = true;
+
+            bll.UpdateTip(tip);
+
+
+            //// Code Here.
+            //foreach (Match match in bll.GetMatchesByCompetition("2016"))
+            //{
+            //    bll.MatchBuilder(match);
+            //    Console.WriteLine("Match -> " + match.Id);
+            //    Console.WriteLine(match.Competition.Name + " - " + match.Competition.Area.Name);
+            //    Console.WriteLine(match.UtcDate + "  Matchday: " + match.Matchday + " Winner: " + match.Score.Winner);
+            //    Console.WriteLine(match.HomeTeam.Name + "   " + match.Score.HalfTime.HomeTeam + " half-time " + match.Score.HalfTime.AwayTeam + "   " + match.AwayTeam.Name);
+            //    Console.WriteLine(match.HomeTeam.Name + "   " + match.Score.FullTime.HomeTeam + " full-time " + match.Score.FullTime.AwayTeam + "   " + match.AwayTeam.Name);
+            //    Console.WriteLine();
+            //    Console.WriteLine();
+
+            //}
 
 
 
@@ -50,7 +64,7 @@ namespace ConsoleAppTester
             //    Console.WriteLine(uh.User.Username + " " + uh.User.Email + " " + uh.User.Password + " " + uh.Admin.Username + " " + uh.AfterState.Description );
             //}
 
-            
+
 
             //User user = new User() { Username = "bro", Email = "bmiguelmf@gmail.com", Password = "06121984" };
             //bll.InsertUser(user);
