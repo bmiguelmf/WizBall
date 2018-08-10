@@ -21,30 +21,30 @@ namespace ConsoleAppTester
             BLL bll = new BLL(connString, apiToken);
 
 
-            Tip tip = new Tip()
-            {
-                Market = new Market() { Id = 1 },
-                Match = bll.GetMatchById("233023"),
-                BetNoBet = true,
-                Forecast = true
-            };
+            //Tip tip = new Tip()
+            //{
+            //    Market = new Market() { Id = 1 },
+            //    Match = bll.GetMatchById("233023"),
+            //    BetNoBet = true,
+            //    Forecast = true
+            //};
 
-            tip = bll.GetTipById("1");
+            //tip = bll.GetTipById("1");
 
-            tip.Result = true;
+            //tip.Result = true;
 
-            bll.UpdateTip(tip);
+            //bll.UpdateTip(tip);
 
 
-            //// Code Here.
-            //foreach (Match match in bll.GetMatchesByCompetition("2016"))
+            // Code Here.
+            //foreach (Match match in bll.GetTodayMatchesByTierOneCompetitions())
             //{
             //    bll.MatchBuilder(match);
             //    Console.WriteLine("Match -> " + match.Id);
-            //    Console.WriteLine(match.Competition.Name + " - " + match.Competition.Area.Name);
+            //    Console.WriteLine(match.Competition.Name );
             //    Console.WriteLine(match.UtcDate + "  Matchday: " + match.Matchday + " Winner: " + match.Score.Winner);
-            //    Console.WriteLine(match.HomeTeam.Name + "   " + match.Score.HalfTime.HomeTeam + " half-time " + match.Score.HalfTime.AwayTeam + "   " + match.AwayTeam.Name);
-            //    Console.WriteLine(match.HomeTeam.Name + "   " + match.Score.FullTime.HomeTeam + " full-time " + match.Score.FullTime.AwayTeam + "   " + match.AwayTeam.Name);
+            //    Console.WriteLine(match.HomeTeam.ShortName + "   " + match.Score.HalfTime.HomeTeam + " half-time " + match.Score.HalfTime.AwayTeam + "   " + match.AwayTeam.ShortName);
+            //    Console.WriteLine(match.HomeTeam.ShortName + "   " + match.Score.FullTime.HomeTeam + " full-time " + match.Score.FullTime.AwayTeam + "   " + match.AwayTeam.ShortName);
             //    Console.WriteLine();
             //    Console.WriteLine();
 
@@ -53,7 +53,7 @@ namespace ConsoleAppTester
 
 
 
-            //bll.FullDatabaseSync();
+            bll.FullDatabaseSync();
 
 
             //List<UserHistory> history = bll.GetUserHistoryByUserId("1");

@@ -32,14 +32,14 @@ namespace BusinessLogic.Entities
         {
             Team team = new Team();
 
-            team.Id = (int)Row[0];
+            team.Id = (int)Row[0];                                      // ID
 
-            if(Row[1] != DBNull.Value)
+            if(Row[1] != DBNull.Value)                                  // Area
             {
                 team.Area = new Area { Id = (int)Row[1] };
             }else
             {
-                team = new Team();
+                team.Area = new Area();
             }
 
             team.Name            = Row[2].ToString();

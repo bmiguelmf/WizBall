@@ -54,7 +54,7 @@ namespace BusinessLogic.BLL
                 return false;
             }
         }
-        public void MatchBuilder(Match Match)
+        public Match MatchBuilder(Match Match)
         {
             Match.Season = GetSeasonById(Match.Season.Id.ToString());
             Match.Competition = GetCompetitionById(Match.Competition.Id.ToString());
@@ -62,6 +62,8 @@ namespace BusinessLogic.BLL
 
             Match.HomeTeam = GetTeamById(Match.HomeTeam.Id.ToString());
             Match.AwayTeam = GetTeamById(Match.AwayTeam.Id.ToString());
+
+            return Match;
         }
 
 
@@ -160,7 +162,7 @@ namespace BusinessLogic.BLL
                     else if (apiCompetition.CurrentSeason.StartDate != dbCompetitionCurrentSeason.StartDate ||
                              apiCompetition.CurrentSeason.EndDate != dbCompetitionCurrentSeason.EndDate)               // Checks for any difference.
                     {
-                        lstUpdateSeasosn.Add(dbCompetitionCurrentSeason);
+                        lstUpdateSeasosn.Add(apiCompetition.CurrentSeason);
                     }
                 }
             }
@@ -597,6 +599,17 @@ namespace BusinessLogic.BLL
         public List<Match> GetTodayMatchesByCompetition(string CompetitionId)
         {
             return GetMatchesByDateAndCompetition(CompetitionId, DateTime.Today);
+        }
+        public List<Match> GetTodayMatchesByTierOneCompetitions()
+        {
+            List<Match> lstTodayMatches = new List<Match>();
+
+            foreach(Competition competition in TierOneCompetitions())
+            {
+                lstTodayMatches.AddRange(GetMatchesByDateAndCompetition(competition.Id.ToString(), DateTime.Today));
+            }
+
+            return lstTodayMatches;
         }
         public List<Match> GetMatchesByDateAndCompetition(string CompetitionId, DateTime Date)
         {

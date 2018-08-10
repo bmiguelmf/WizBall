@@ -7,12 +7,14 @@ delete from competitions
 delete from seasons
 delete from areas
 
-
+select * from tips
 select * from areas
-select * from seasons where id= 20
+select * from seasons where id= 160
 select * from competitions where name like '%Premier League%'
-select * from teams where id = 526
+select * from competitions where id = 2003
+select * from teams where id = 516 or id = 511
 select * from matches order by utc_date asc
+select * from matches where id = 238996
 select * from users
 select * from user_history
 
