@@ -20,7 +20,9 @@ namespace ConsoleAppTester
 
             BLL bll = new BLL(connString, apiToken);
 
-            bll.SetTodayTips();
+            //bll.SyncMatchesByCompetition("2017");
+
+            
 
             //Tip tip = new Tip()
             //{
@@ -74,7 +76,7 @@ namespace ConsoleAppTester
 
 
 
-            Console.WriteLine("Ok!");
+            Console.WriteLine("Done.....");
             Console.ReadLine();
         }
     }

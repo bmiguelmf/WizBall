@@ -81,7 +81,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private bool SyncAreas()
+        public bool SyncAreas()
         {
             ResourceAreas resourceAreas = new ResourceAreas(apiToken);      // Object to comunicate with API football-data.org.
             DALAreas dalAreas = new DALAreas(connectionString);             // Object to comunicate with Database.
@@ -124,7 +124,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private bool SyncSeasons()
+        public bool SyncSeasons()
         {
             ResourceCompetitions resourceCompetitions = new ResourceCompetitions(apiToken);         // Object to comunicate with API football-data.org.
             DALSeasons dalSeasons = new DALSeasons(connectionString);                               // Object to comunicate with Database.
@@ -176,7 +176,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private bool SyncCompetitions()
+        public bool SyncCompetitions()
         {
             ResourceCompetitions resourceCompetitions = new ResourceCompetitions(apiToken);         // Object to comunicate with API football-data.org.
             DALCompetitions dalCompetitions = new DALCompetitions(connectionString);                // Object to comunicate with Database.
@@ -223,7 +223,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private bool SyncTeams()
+        public bool SyncTeams()
         {
             ResourceTeams resourceTeams = new ResourceTeams(apiToken);                              // Object to comunicate with API football-data.org.           
             DALTeams dalTeams = new DALTeams(connectionString);                                     // Object to comunicate with Database.
@@ -275,7 +275,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private bool SyncMatchesTierOne()
+        public bool SyncMatchesTierOne()
         {
             DALMatches dalMatches = new DALMatches(connectionString);                                               // Object to comunicate with Database.
             ResourceMatches resourceMatches = new ResourceMatches(apiToken);                                        // Object to comunicate with API football-data.org. 
@@ -316,6 +316,46 @@ namespace BusinessLogic.BLL
                 if (lstUpdateMatches.Count != 0)
                     dalMatches.Update(lstUpdateMatches);
             }
+
+            return true;
+        }
+        public bool SyncMatchesByCompetition(string CompetitionId)
+        {
+            ResourceMatches resourceMatches = new ResourceMatches(apiToken);                                    // Object to comunicate with API football-data.org.
+
+            List<Match> lstInsertMatches = new List<Match>();                                                   // Temporary list to hold insertable matches.
+            List<Match> lstUpdateMatches = new List<Match>();                                                   // Temporary list to hold updatable  matches.
+
+            List<Match> lstApiMatches = resourceMatches.GetByCompetition(CompetitionId);
+
+            foreach (Match apiMatch in resourceMatches.GetByCompetition(CompetitionId))                         // Get a list of matches by competition from the Api.
+            {
+                if (apiMatch.HomeTeam.Id == 0 || apiMatch.AwayTeam.Id == 0)                                     // 0 == null. Do not insert or update.
+                {
+                    continue;
+                }
+
+                Match dbMatch = GetMatchById(apiMatch.Id.ToString());                                     // Tries to get the same match from db.
+
+                if (dbMatch is null)                                                                            // If no match then add match to insertable matches list.
+                {
+                    lstInsertMatches.Add(apiMatch);
+                }
+                else                                                                                            // Otherwise
+                {
+                    DateTime? apiLastUpdated = NormalizeApiDateTime(apiMatch.LastUpdated);                      // First normalize the datetime that came from the api to our standard.
+
+                    if (dbMatch.LastUpdated != apiLastUpdated.ToString())                                       // if Api Last Update is diferent from the corresponding db value.
+                    {
+                        lstUpdateMatches.Add(apiMatch);                                                         // Add match to updatable matches list.
+                    }
+                }
+            }
+
+            if (lstInsertMatches.Count != 0)
+                InsertMatches(lstInsertMatches);
+            if (lstUpdateMatches.Count != 0)
+                UpdateMatches(lstUpdateMatches);
 
             return true;
         }
@@ -579,7 +619,7 @@ namespace BusinessLogic.BLL
         {
             DALMatches dalMatches = new DALMatches(connectionString);
             return dalMatches.GetById(Id);
-        }
+        }      
         public List<Match> GetMatchesByCompetition(string CompetitionId)
         {
             DALTeams dalTeams = new DALTeams(connectionString);
@@ -626,6 +666,28 @@ namespace BusinessLogic.BLL
             }
 
             return lstMatches;
+        }
+        public bool InsertMatches(List<Match> Matches)
+        {
+            if (Matches is null)
+                return false;
+
+            DALMatches dalMatches = new DALMatches(connectionString);
+            dalMatches.Insert(Matches);
+
+
+            return true;
+        }
+        public bool UpdateMatches(List<Match> Matches)
+        {
+            if (Matches is null)
+                return false;
+
+            DALMatches dalMatches = new DALMatches(connectionString);
+            dalMatches.Update(Matches);
+
+
+            return true;
         }
 
 
@@ -745,7 +807,7 @@ namespace BusinessLogic.BLL
                 DateTime? matchDate = NormalizeApiDateTime(match.UtcDate);                                  // Normalize the UtcDate to be comparable.
 
 
-                if(matchDate > DateTime.Now)                                                                // Check if the match has not been played yet.
+                if(matchDate > DateTime.UtcNow)                                                                // Check if the match has not been played yet.
                 {
                     Team homeTeam = match.HomeTeam;                                                                                 // An easy to handle pointer to home team object.
                     Team awayTeam = match.AwayTeam;                                                                                 // An easy to handle pointer to away team object.
@@ -755,17 +817,20 @@ namespace BusinessLogic.BLL
                     List<Match> lstHomeTeamMatches = lstMatchesByCompetition                                                        // Get a filtered list with only the competition matches in which the home team plays.
                                                      .Where(x=> (x.HomeTeam.Id == homeTeam.Id   ||
                                                                  x.AwayTeam.Id == homeTeam.Id ) &&
-                                                                 NormalizeApiDateTime(x.UtcDate) < DateTime.Now).ToList();
+                                                                 NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow).ToList();
                     List<Match> lstAwayTeamMatches = lstMatchesByCompetition                                                        // Get a filtered list with only the competition matches in which the away team plays.
                                                      .Where(x => (x.HomeTeam.Id == awayTeam.Id ||
                                                                   x.AwayTeam.Id == awayTeam.Id) &&
-                                                                  NormalizeApiDateTime(x.UtcDate) < DateTime.Now).ToList();
+                                                                  NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow).ToList();
 
 
 
-                    // SET TIPS.
-                    
+                    // SET TIPS.                    
                     Tip ftOverTwoAndHalfGoals = FulltimeOverTwoAndHalfGoals(match, lstMatchesByCompetition, lstHomeTeamMatches, lstAwayTeamMatches, homeTeam, awayTeam);
+
+
+                    // Confirmar se o match em questão já tem alguma tip. só se não tiver então faz.
+
                     lstTipsToInsert.Add(ftOverTwoAndHalfGoals);
                 }
             }
