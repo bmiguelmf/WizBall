@@ -606,7 +606,7 @@ namespace BusinessLogic.BLL
 
             foreach(Competition competition in TierOneCompetitions())
             {
-                lstTodayMatches.AddRange(GetMatchesByDateAndCompetition(competition.Id.ToString(), DateTime.Today));
+                lstTodayMatches.AddRange(GetMatchesByDateAndCompetition(competition.Id.ToString(), DateTime.Now));
             }
 
             return lstTodayMatches;
@@ -706,6 +706,17 @@ namespace BusinessLogic.BLL
 
             return true;
         }
+        public bool InsertTips(List<Tip> Tips)
+        {
+            if (Tips is null)
+                return false;
+
+            DALTips dalTips = new DALTips(connectionString);
+            dalTips.Insert(Tips);
+
+
+            return true;
+        }
         public bool UpdateTip(Tip Tip)
         {
             if (Tip is null)
@@ -724,6 +735,87 @@ namespace BusinessLogic.BLL
 
 
             return true;
+        }
+        public bool SetTodayTips()
+        {
+            List<Tip> lstTipsToInsert = new List<Tip>();                                                    // List to hold the tips.
+
+            foreach(Match match in GetTodayMatchesByTierOneCompetitions())                                  // Foreach today match in all tier one competitions
+            {
+                DateTime? matchDate = NormalizeApiDateTime(match.UtcDate);                                  // Normalize the UtcDate to be comparable.
+
+
+                if(matchDate > DateTime.Now)                                                                // Check if the match has not been played yet.
+                {
+                    Team homeTeam = match.HomeTeam;                                                                                 // An easy to handle pointer to home team object.
+                    Team awayTeam = match.AwayTeam;                                                                                 // An easy to handle pointer to away team object.
+
+                    List<Match> lstMatchesByCompetition = GetMatchesByCompetition(match.Competition.Id.ToString());                 // Gets a list with all matches for a given competition.
+
+                    List<Match> lstHomeTeamMatches = lstMatchesByCompetition                                                        // Get a filtered list with only the competition matches in which the home team plays.
+                                                     .Where(x=> (x.HomeTeam.Id == homeTeam.Id   ||
+                                                                 x.AwayTeam.Id == homeTeam.Id ) &&
+                                                                 NormalizeApiDateTime(x.UtcDate) < DateTime.Now).ToList();
+                    List<Match> lstAwayTeamMatches = lstMatchesByCompetition                                                        // Get a filtered list with only the competition matches in which the away team plays.
+                                                     .Where(x => (x.HomeTeam.Id == awayTeam.Id ||
+                                                                  x.AwayTeam.Id == awayTeam.Id) &&
+                                                                  NormalizeApiDateTime(x.UtcDate) < DateTime.Now).ToList();
+
+
+
+                    // SET TIPS.
+                    
+                    Tip ftOverTwoAndHalfGoals = FulltimeOverTwoAndHalfGoals(match, lstMatchesByCompetition, lstHomeTeamMatches, lstAwayTeamMatches, homeTeam, awayTeam);
+                    lstTipsToInsert.Add(ftOverTwoAndHalfGoals);
+                }
+            }
+
+            InsertTips(lstTipsToInsert);
+
+            return true;
+        }
+        private Tip FulltimeOverTwoAndHalfGoals(Match Match, List<Match> CompetitionMatches, List<Match> HomeTeamMatches, List<Match> AwayTeamMatches, Team HomeTeam, Team AwayTeam)
+        {
+            double? homeTeamHomeScoreAvg = HomeTeamMatches.Where(x => x.HomeTeam.Id == HomeTeam.Id)
+                                                          .Average(x => x.Score.FullTime.HomeTeam);
+
+            double? awayTeamAwayScoreAvg = AwayTeamMatches.Where(x => x.AwayTeam.Id == AwayTeam.Id)
+                                                          .Average(x => x.Score.FullTime.AwayTeam);
+
+
+            double? bothTeamsAvgGoals = (homeTeamHomeScoreAvg + awayTeamAwayScoreAvg) / 2;
+
+
+            bool betNoBet;
+            bool forecast;
+
+            if (bothTeamsAvgGoals > 2.65)
+            {
+                betNoBet = true;
+                forecast = true;
+            }
+            else if (bothTeamsAvgGoals < 2.35)
+            {
+                betNoBet = true;
+                forecast = false;
+            }
+            else
+            {
+                betNoBet = false;
+                forecast = false;
+            }
+            
+
+            Tip tip = new Tip()
+            {
+                Match = Match,
+                Market = new Market() { Id = 1 },              
+                BetNoBet = betNoBet,
+                Forecast = forecast
+            };
+
+
+            return tip;
         }
 
     }

@@ -15,6 +15,6 @@ insert into user_states values('Granted');
 
 
 -- MARKETS
-insert into markets values('Full Time +2,5 Goals', '+2,5');
+insert into markets values('Full Time +2,5 Goals', 'ft_over_two_and_half_goals.png');
 
 

@@ -28,6 +28,39 @@ namespace BusinessLogic.DAL
 
                             .Cast<Match>().ToList();
         }
+        public List<Match> GetByCompetitionIdAndByRangeDates(string CompetitionId, DateTime DateInit, DateTime DateEnd)
+        {
+            List<DbWhere> lstDbWheres = new List<DbWhere>()
+            {
+                new DbWhere
+                {
+                    Field = "utc_date",
+                    Value = DateInit.Year + "-" + DateInit.Month + "-" + DateInit.Day + " " + DateInit.Hour + ":" + DateInit.Minute + ":" + DateInit.Second,
+                    Alias = "utc_date_init",
+                    Operator = DbOperator.GreaterThanOrEqualsTo
+                },
+
+                new DbWhere
+                {
+                    Field = "utc_date",
+                    Value = DateEnd.Year + "-" + DateEnd.Month + "-" + DateEnd.Day + " " + DateEnd.Hour + ":" + DateEnd.Minute + ":" + DateEnd.Second,
+                    Alias = "utc_date_end",
+                    Operator = DbOperator.LesserThanOrEqualsTo
+                },
+
+                new DbWhere
+                {
+                    Field = "competition_id",
+                    Value = CompetitionId,
+                    Alias = "competition",
+                    Operator = DbOperator.EqualsTo
+                }
+            };
+
+            return GetWhere(new Match(), lstDbWheres).Cast<Match>().ToList();
+        }
+
+
 
         // Insert.
         public bool Insert(List<Match> Matches)
@@ -61,42 +94,6 @@ namespace BusinessLogic.DAL
 
             return true;
         }
-
-
-
-
-        public List<Match> GetByCompetitionIdAndByRangeDates(string CompetitionId, DateTime DateInit, DateTime DateEnd)
-        {
-            List<DbWhere> lstDbWheres = new List<DbWhere>()
-            {
-                new DbWhere
-                {
-                    Field = "utc_date",
-                    Value = DateInit.Year + "-" + DateInit.Month + "-" + DateInit.Day + " " + DateInit.Hour + ":" + DateInit.Minute + ":" + DateInit.Second,
-                    Alias = "utc_date_init",
-                    Operator = DbOperator.GreaterThanOrEqualsTo
-                },
-
-                new DbWhere
-                {
-                    Field = "utc_date",
-                    Value = DateEnd.Year + "-" + DateEnd.Month + "-" + DateEnd.Day + " " + DateEnd.Hour + ":" + DateEnd.Minute + ":" + DateEnd.Second,
-                    Alias = "utc_date_end",
-                    Operator = DbOperator.LesserThanOrEqualsTo
-                },
-
-                new DbWhere
-                {
-                    Field = "competition_id",
-                    Value = CompetitionId,
-                    Alias = "competition",
-                    Operator = DbOperator.EqualsTo
-                }
-            };
-
-            return GetWhere(new Match(), lstDbWheres).Cast<Match>().ToList();
-        }
-
 
     }
 }

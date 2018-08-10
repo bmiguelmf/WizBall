@@ -153,7 +153,7 @@ BEGIN TRY
 						(
 							id						int					identity(1, 10)				not null,
 							description				varchar(50)			unique						not null,
-							short_description		varchar(50)			unique						not null,											
+							pic						varchar(50)			unique						not null,											
 
 							constraint pk_markets primary key(id)
 						)

@@ -20,6 +20,7 @@ namespace ConsoleAppTester
 
             BLL bll = new BLL(connString, apiToken);
 
+            bll.SetTodayTips();
 
             //Tip tip = new Tip()
             //{
@@ -53,7 +54,7 @@ namespace ConsoleAppTester
 
 
 
-            bll.FullDatabaseSync();
+            //bll.FullDatabaseSync();
 
 
             //List<UserHistory> history = bll.GetUserHistoryByUserId("1");
