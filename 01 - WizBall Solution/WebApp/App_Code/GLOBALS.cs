@@ -12,17 +12,17 @@ namespace WebApp.App_Code
     {
         public static string GetUserPPPath(string ProfilePicture)
         {
-           return string.Format(@"~/App_LocalResources/ProfilePicture/{0}", ProfilePicture);
+           return string.Format(@"~/LocalResourcesAcc/ProfilePicture/{0}", ProfilePicture);
         }
 
         public static string GetPPPath(string SMapPath)
         {
-            return string.Format(@"{0}/App_LocalResources/ProfilePicture/", SMapPath);
+            return string.Format(@"{0}/LocalResourcesAcc/ProfilePicture/", SMapPath);
         }
 
         public static string GetHTMLImagePath(string ProfilePicture)
         {
-            return string.Format(@"../App_LocalResources/ProfilePicture/{0}", ProfilePicture);
+            return string.Format(@"../LocalResourcesAcc/ProfilePicture/{0}", ProfilePicture);
         }
 
         public static readonly string connString = WebConfigurationManager.ConnectionStrings["ConnStringJoaoHome"].ConnectionString;

@@ -29,11 +29,8 @@ namespace WebApp.pages
 
                // throw;
             }
-            
-            if (!Page.IsPostBack)
-            {
                 userUpdate = GLOBALS.BllSI.GetUserById(userSession.Id.ToString()); //GET CURRENT USER FIELDS
-            }
+            
         }
 
         protected void PicBtn_Click(object sender, EventArgs e)
@@ -58,14 +55,14 @@ namespace WebApp.pages
                 ErrorP.Visible = true;
                 
             }
-
-            userFinal = CreateUserUpdate(userSession, userUpdate);
+            GLOBALS.BllSI.UpdatetUser(CreateUserUpdate(userSession, userUpdate));
+            Session["user"] = userSession;
+            Response.Redirect("default.aspx");
         }
 
         protected User CreateUserUpdate(User currUser, User updateUser)
         {
-            if (updateUser.Id != 0)
-            {
+            
                 if (!string.IsNullOrEmpty(inputUName.Text) && inputUName.Text != currUser.Username)
                 {
                     updateUser.Username = inputUName.Text;
@@ -83,8 +80,8 @@ namespace WebApp.pages
                     ErrorL.Text += "Password fields are either invalid or mismatched. </br>";
                 }
                 return updateUser;
-            }
-            return new User();
+            
         }
+
     }
 }

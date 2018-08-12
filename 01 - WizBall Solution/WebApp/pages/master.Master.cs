@@ -21,7 +21,14 @@ namespace WebApp.pages
                 NoSess.Visible = true;
             } else
             {
-                user = Session["user"] as User;
+                try
+                {
+                    user = Session["user"] as User;
+                }
+                catch (Exception)
+                {
+                    Response.Redirect("Login.aspx");
+                }
                 ProfLbl.Text = user.Username;
                 ProfImg.ImageUrl = GLOBALS.GetHTMLImagePath(user.Picture);
                 Sess.Visible = true;
