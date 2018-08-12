@@ -10,7 +10,25 @@
 namespace WebApp.pages {
     
     
-    public partial class Register {
+    public partial class ProfileEdit {
+        
+        /// <summary>
+        /// ProfPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ProfPic;
+        
+        /// <summary>
+        /// PicBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PicBtn;
         
         /// <summary>
         /// inputUName control.
@@ -22,13 +40,13 @@ namespace WebApp.pages {
         protected global::System.Web.UI.WebControls.TextBox inputUName;
         
         /// <summary>
-        /// RegularExpressionValidatorStreet control.
+        /// EmailField control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidatorStreet;
+        protected global::System.Web.UI.WebControls.Label EmailField;
         
         /// <summary>
         /// inputEmail control.
@@ -40,31 +58,22 @@ namespace WebApp.pages {
         protected global::System.Web.UI.WebControls.TextBox inputEmail;
         
         /// <summary>
-        /// inputPassword control.
+        /// inputPWD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputPassword;
+        protected global::System.Web.UI.WebControls.TextBox inputPWD;
         
         /// <summary>
-        /// inputPasswordConf control.
+        /// inputCPWD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputPasswordConf;
-        
-        /// <summary>
-        /// RegisterBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RegisterBtn;
+        protected global::System.Web.UI.WebControls.TextBox inputCPWD;
         
         /// <summary>
         /// ErrorP control.
@@ -83,5 +92,14 @@ namespace WebApp.pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ErrorL;
+        
+        /// <summary>
+        /// ConfButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ConfButton;
     }
 }

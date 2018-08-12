@@ -60,3 +60,11 @@ C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BusinessLogic\bin\D
 C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.pdb
 C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\Newtonsoft.Json.dll
 C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+C:\Users\JotaPedro\git\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\JotaPedro\git\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\JotaPedro\git\WizBall\01 - WizBall Solution\BusinessLogic\bin\Debug\Newtonsoft.Json.dll
+C:\Users\JotaPedro\git\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\JotaPedro\git\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\JotaPedro\git\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+C:\Users\JotaPedro\git\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\JotaPedro\git\WizBall\01 - WizBall Solution\BusinessLogic\obj\Debug\BusinessLogic.pdb

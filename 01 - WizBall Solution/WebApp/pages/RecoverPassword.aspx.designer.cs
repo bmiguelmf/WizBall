@@ -10,42 +10,60 @@
 namespace WebApp.pages {
     
     
-    public partial class Login {
+    public partial class RecoverPassword {
         
         /// <summary>
-        /// inputUsername control.
+        /// inputUName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputUsername;
+        protected global::System.Web.UI.WebControls.TextBox inputUName;
         
         /// <summary>
-        /// inputPassword control.
+        /// RegularExpressionValidatorStreet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputPassword;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidatorStreet;
         
         /// <summary>
-        /// RemSession control.
+        /// inputEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RemSession;
+        protected global::System.Web.UI.WebControls.TextBox inputEmail;
         
         /// <summary>
-        /// LoginBtn control.
+        /// RecoverBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LoginBtn;
+        protected global::System.Web.UI.WebControls.Button RecoverBtn;
+        
+        /// <summary>
+        /// ErrorP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ErrorP;
+        
+        /// <summary>
+        /// ErrorL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorL;
     }
 }
