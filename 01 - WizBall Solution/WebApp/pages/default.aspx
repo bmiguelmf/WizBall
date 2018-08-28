@@ -24,30 +24,23 @@
                 </div>
                 
             </div>
-            <div class="col-4">
-                <div class="tab">news</div>
-                <div class="tab-small"><a href="#">see all news</a></div>
-                <div class="r-box-n">
-                    <article>
-                        <h3><a href="blog-single.html">Rangers review presents stark picture</a></h3>
-                        <p>Praesent risus nisi, iaculis nec condimentum vel, rhoncus vel dolor. Aenean nisi lectus, varius nec tempus</p>
-                        <span class="date-n">21 Mar</span>
-                    </article>
-                    <article>
-                        <h3><a href="blog-single.html">Rangers review presents stark picture</a></h3>
-                        <p>Praesent risus nisi, iaculis nec condimentum vel, rhoncus vel dolor. Aenean nisi lectus, varius nec tempus</p>
-                        <span class="date-n">21 Mar</span>
-                    </article>
-                    <article>
-                        <h3><a href="blog-single.html">Rangers review presents stark picture</a></h3>
-                        <p>Praesent risus nisi, iaculis nec condimentum vel, rhoncus vel dolor. Aenean nisi lectus, varius nec tempus</p>
-                        <span class="date-n">21 Mar</span>
-                    </article>
-                </div>
-            </div>
+            
         </div>
     </section>
             </section>
+
+    <asp:Panel ID="compPanel" ClientIDMode="Static" runat="server">
+        <asp:CheckBoxList ID="compCBList" CssClass="compCBList" ClientIDMode="Static" runat="server">
+           
+        </asp:CheckBoxList>
+
+    </asp:Panel>
+
+    <asp:Repeater id="compRep" runat="server">
+<ItemTemplate>
+   <asp:HiddenField ID="hiddenEmail" Value=''>
+</ItemTemplate>
+</asp:Repeater>
    
 
 </asp:Content>

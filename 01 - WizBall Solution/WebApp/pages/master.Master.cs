@@ -15,6 +15,7 @@ namespace WebApp.pages
         User user;
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Session["bool"] == null)
             {
                 Sess.Visible = false;

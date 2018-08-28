@@ -13,6 +13,7 @@
                     <asp:CheckBox ID="RemSession" runat="server" />
                     Remember me
                 </label>
+            <!--<asp:PasswordRecovery runat="server"></asp:PasswordRecovery>-->
             </div>
             <asp:Button CssClass="btn btn-lg btn-primary btn-block btn-dark" ID="LoginBtn" runat="server" Text="Login" OnClick="LoginBtn_Click" />
             <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
