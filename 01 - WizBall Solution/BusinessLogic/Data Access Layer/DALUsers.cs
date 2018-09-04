@@ -50,6 +50,10 @@ namespace BusinessLogic.DAL
             List<User> lstUsers = GetWhere(new User(), where).Cast<User>().ToList();
             return lstUsers.Count == 0 ? null : lstUsers;
         }
+        public int GetLastInsertedId()
+        {
+            return GetAll().OrderByDescending(x => x.Id).ToList()[0].Id;
+        }
 
         // INSERTS.
         public bool Insert(List<User> Users)
