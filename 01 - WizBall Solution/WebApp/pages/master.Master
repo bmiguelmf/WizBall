@@ -64,6 +64,7 @@
                         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
                             <li class="nav-item">
                                 <asp:Button ID="LoginBtn" CssClass="btn btn-light nav-link" runat="server" Text="Login" OnClick="LoginBtn_Click" />
+                                <!--<asp:HyperLink NavigateUrl="~/Home"></asp:HyperLink>-->
                             </li>
                             <li class="nav-item">
                                 <asp:Button ID="RegisterBtn" CssClass="btn btn-light nav-link" runat="server" Text="Register" OnClick="RegisterBtn_Click" />

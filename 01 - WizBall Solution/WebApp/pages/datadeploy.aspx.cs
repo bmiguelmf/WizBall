@@ -24,7 +24,7 @@ namespace WebApp
 
         protected void InSeasons_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Home");
         }
 
         protected void InComps_Click(object sender, EventArgs e)

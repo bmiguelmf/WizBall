@@ -403,6 +403,12 @@ namespace BusinessLogic.BLL
 
             return true;
         }
+        public int GetLastInsertedUserId()
+        {
+            DALUsers dalUsers = new DALUsers(connectionString);
+
+            return dalUsers.GetLastInsertedId();
+        }
         public bool UpdatetUser(User User)
         {
             if (User is null)
@@ -826,31 +832,28 @@ namespace BusinessLogic.BLL
             {
                 DateTime? matchDate = NormalizeApiDateTime(match.UtcDate);                                  // Normalize the UtcDate to be comparable.
 
-
-                if(matchDate > DateTime.UtcNow)                                                                // Check if the match has not been played yet.
+                if(matchDate > DateTime.UtcNow)                                                             // Check if the match has not been played yet.
                 {
-                    Team homeTeam = match.HomeTeam;                                                                                 // An easy to handle pointer to home team object.
-                    Team awayTeam = match.AwayTeam;                                                                                 // An easy to handle pointer to away team object.
+                    Team homeTeam = match.HomeTeam;                                                                                     // An easy to handle pointer to home team object.
+                    Team awayTeam = match.AwayTeam;                                                                                     // An easy to handle pointer to away team object.
 
-                    List<Match> lstMatchesByCompetition = GetMatchesByCompetition(match.Competition.Id.ToString());                 // Gets a list with all matches for a given competition.
+                    List<Match> lstMatchesByCompetition = GetMatchesByCompetition(match.Competition.Id.ToString());                     // Gets a list with all matches for a given competition.
 
-                    List<Match> lstHomeTeamMatches = lstMatchesByCompetition                                                        // Get a filtered list with only the competition matches in which the home team plays.
-                                                     .Where(x=> (x.HomeTeam.Id == homeTeam.Id   ||
-                                                                 x.AwayTeam.Id == homeTeam.Id ) &&
-                                                                 NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow).ToList();
-                    List<Match> lstAwayTeamMatches = lstMatchesByCompetition                                                        // Get a filtered list with only the competition matches in which the away team plays.
-                                                     .Where(x => (x.HomeTeam.Id == awayTeam.Id ||
-                                                                  x.AwayTeam.Id == awayTeam.Id) &&
-                                                                  NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow).ToList();
+                    List<Match> lstHomeTeamMatches = lstMatchesByCompetition                                                            // Get a filtered list with only the competition matches in which the home team plays and the matches have not been played yet.
+                                                     .Where( x => ( x.HomeTeam.Id == homeTeam.Id || x.AwayTeam.Id == homeTeam.Id ) &&
+                                                                   NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow ).ToList();
+
+                    List<Match> lstAwayTeamMatches = lstMatchesByCompetition                                                            // Get a filtered list with only the competition matches in which the away team plays and the matches have not been played yet.
+                                                     .Where( x => ( x.HomeTeam.Id == awayTeam.Id || x.AwayTeam.Id == awayTeam.Id ) &&
+                                                                   NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow ).ToList();
 
 
 
                     // SET TIPS.                    
-                    Tip ftOverTwoAndHalfGoals = FulltimeOverTwoAndHalfGoals(match, lstMatchesByCompetition, lstHomeTeamMatches, lstAwayTeamMatches, homeTeam, awayTeam);
+                    Tip ftOverTwoAndHalfGoals = FulltimeOverTwoAndHalfGoals(match, lstHomeTeamMatches, lstAwayTeamMatches, homeTeam, awayTeam);
 
 
                     // Confirmar se o match em questão já tem alguma tip. só se não tiver então faz.
-
                     lstTipsToInsert.Add(ftOverTwoAndHalfGoals);
                 }
             }
@@ -859,7 +862,17 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private Tip FulltimeOverTwoAndHalfGoals(Match Match, List<Match> CompetitionMatches, List<Match> HomeTeamMatches, List<Match> AwayTeamMatches, Team HomeTeam, Team AwayTeam)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Match"></param>
+        /// <param name="CompetitionMatches"></param>
+        /// <param name="HomeTeamMatches"></param>
+        /// <param name="AwayTeamMatches"></param>
+        /// <param name="HomeTeam"></param>
+        /// <param name="AwayTeam"></param>
+        /// <returns></returns>
+        private Tip FulltimeOverTwoAndHalfGoals(Match Match, List<Match> HomeTeamMatches, List<Match> AwayTeamMatches, Team HomeTeam, Team AwayTeam)
         {
             double? homeTeamHomeScoreAvg = HomeTeamMatches.Where(x => x.HomeTeam.Id == HomeTeam.Id)
                                                           .Average(x => x.Score.FullTime.HomeTeam);
@@ -902,7 +915,6 @@ namespace BusinessLogic.BLL
 
             return tip;
         }
-
     }
 }
 

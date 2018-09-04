@@ -91,8 +91,6 @@ namespace BusinessLogic.DAL
             }          
         }
 
-
-
         #region GETS
 
 

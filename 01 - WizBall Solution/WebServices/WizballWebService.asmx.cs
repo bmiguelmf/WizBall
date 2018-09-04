@@ -42,6 +42,13 @@ namespace WebServices
             return bll.InsertUser(User);
         }
         [WebMethod]
+        public int GetLastInsertedUserId()
+        {
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.GetLastInsertedUserId();
+        }
+        [WebMethod]
         public bool UpdatetUser(User User)
         {
             if (User is null)
@@ -106,6 +113,11 @@ namespace WebServices
         [WebMethod]
         public UserHistory GetUserHistoryById(string Id)
         {
+            if (string.IsNullOrEmpty(Id))
+            {
+                return null;
+            }
+
             BLL bll = new BLL(connString, apiToken);
 
             return bll.GetUserHistoryById(Id);
@@ -113,9 +125,27 @@ namespace WebServices
         [WebMethod]
         public List<UserHistory> GetUserHistoryByUserId(string UserId)
         {
+            if (string.IsNullOrEmpty(UserId))
+            {
+                return null;
+            }
+
             BLL bll = new BLL(connString, apiToken);
 
             return bll.GetUserHistoryByUserId(UserId);
+        }
+        [WebMethod]
+        public UserHistory GetCurrentUserHistoryByUserId(string UserId)
+        {
+            if(string.IsNullOrEmpty(UserId))
+            {
+                return null;
+            }
+
+
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.GetCurrentUserHistoryByUserId(UserId);
         }
         [WebMethod]
         public bool InsertUserHistory(UserHistory UserHistory)

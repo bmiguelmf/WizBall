@@ -12,6 +12,7 @@ C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Deb
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.csproj.CopyComplete
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.exe
 C:\Users\one\Desktop\Repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.pdb
+<<<<<<< HEAD
 C:\Users\t0112400\Desktop\git\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\ConsoleAppTester.exe.config
 C:\Users\t0112400\Desktop\git\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\ConsoleAppTester.exe
 C:\Users\t0112400\Desktop\git\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\ConsoleAppTester.pdb
@@ -26,3 +27,19 @@ C:\Users\t0112400\Desktop\git\WizBall\01 - WizBall Solution\ConsoleAppTester\obj
 C:\Users\t0112400\Desktop\git\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.csproj.CopyComplete
 C:\Users\t0112400\Desktop\git\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.exe
 C:\Users\t0112400\Desktop\git\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.pdb
+=======
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\ConsoleAppTester.exe.config
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\ConsoleAppTester.exe
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\ConsoleAppTester.pdb
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\BusinessLogic.dll
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\WebServices.dll
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\Newtonsoft.Json.dll
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\BusinessLogic.pdb
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\WebServices.pdb
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\bin\Debug\WebServices.dll.config
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.csprojAssemblyReference.cache
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.csproj.CoreCompileInputs.cache
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.csproj.CopyComplete
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.exe
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\ConsoleAppTester\obj\Debug\ConsoleAppTester.pdb
+>>>>>>> 3c8a6611f9e72d02e05ae024d9c358db8e8b6249
