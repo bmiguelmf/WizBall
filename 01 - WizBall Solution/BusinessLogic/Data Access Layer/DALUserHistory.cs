@@ -12,13 +12,11 @@ namespace BusinessLogic.DAL
         { }
 
 
-        // GET By Id
+        // GETs
         public UserHistory GetById(string Id)
         {
             return GetById(new UserHistory(), Id) as UserHistory;
         }
-
-        // GET By User
         public List<UserHistory> GetByUserId(string UserId)
         {
             return GetWhere(new UserHistory(),
@@ -26,7 +24,22 @@ namespace BusinessLogic.DAL
 
                             .Cast<UserHistory>().ToList();
         }
+        public UserHistory GetCurrentByUserId(string UserId)
+        {
+            return GetWhere(new UserHistory(), new List<DbWhere>()
+                                               {
+                                                    new DbWhere()
+                                                    {
+                                                        Field = "user_id",
+                                                        Alias = "user_id",
+                                                        Value = UserId,
+                                                        Operator = DbOperator.EqualsTo                                                    
+                                                    }
+                                               })
 
+                            .Cast<UserHistory>().ToList()
+                            .OrderByDescending(x => x.CreatedAt).ToList()[0] ;
+        }
 
         // INSERTS.
         public bool Insert(List<UserHistory> UserHistory)
@@ -40,7 +53,7 @@ namespace BusinessLogic.DAL
         }
 
 
-        // UPDATE.
+        // UPDATE. (Not implemented in bll because its not suposed this table to allow updates)
         public bool Update(List<UserHistory> UserHistories)
         {
             foreach (UserHistory userHistory in UserHistories)
@@ -52,7 +65,7 @@ namespace BusinessLogic.DAL
         }
 
 
-        // DELETE.
+        // DELETE. (Not implemented in bll because its not suposed this table to allow deletes)
         public bool Delete(List<UserHistory> UserHistories)
         {
             foreach (UserHistory userHistory in UserHistories)

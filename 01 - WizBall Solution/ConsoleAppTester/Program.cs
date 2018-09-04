@@ -20,9 +20,33 @@ namespace ConsoleAppTester
 
             BLL bll = new BLL(connString, apiToken);
 
-            //bll.SyncMatchesByCompetition("2017");
+            //bll.FullDatabaseSync();
 
-            
+
+
+            UserHistory userHistory = bll.GetCurrentUserHistoryByUserId("1");
+
+            Console.WriteLine("Admin        : " + userHistory.Admin.Username);
+            Console.WriteLine("User         : " + userHistory.User.Username);
+            Console.WriteLine("Date         : " + userHistory.CreatedAt);
+            Console.WriteLine("Description  : " + userHistory.Description);
+            Console.WriteLine("Before State : " + userHistory.BeforeState.Description);
+            Console.WriteLine("After State  : " + userHistory.AfterState.Description);
+
+            //User bro = new User();
+            //bro.Email = "fds@fds.pt";
+            //bro.Password = "06121984";
+            //bro.Username = "bro";
+            //bll.InsertUser(bro);
+
+            //UserHistory uh = new UserHistory();
+            //uh.User = bll.GetUserById("1");
+            //uh.BeforeState = bll.GetUserStateById("21");
+            //uh.AfterState = bll.GetUserStateById("11");
+            //uh.Admin = bll.GetAdminById("1");
+            //uh.Description = "Ban by fdgp";
+            //bll.InsertUserHistory(uh);
+
 
             //Tip tip = new Tip()
             //{

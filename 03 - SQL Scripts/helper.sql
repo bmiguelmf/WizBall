@@ -28,11 +28,13 @@ select * from competitions
 inner join areas on competitions.area_id = areas.id
 order by competitions.id asc
 
-select * from matches
+select * from matches where competition_id = 2017
 order by utc_date asc
 
 select * from areas
 
+select * from user_history
+where user_id = 1 order by created_at desc
 
 
 update matches set utc_date = '2018-08-1 20:59:00', ft_home_team=4, ft_away_team=2 where id = 234701

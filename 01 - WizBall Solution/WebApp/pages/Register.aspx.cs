@@ -7,13 +7,12 @@ using System.Web.UI.WebControls;
 using BusinessLogic.BLL;
 using BusinessLogic.Entities;
 using System.IO;
-using System.Collections.Generic;
 
 namespace WebApp.pages
 {
     public partial class Register : System.Web.UI.Page
     {
-        BLL bll = new BLL();
+        // BLL bll = new BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             ErrorP.Visible = false;
@@ -51,7 +50,7 @@ namespace WebApp.pages
                         }
                     }
 
-                    bll.InsertUser(user);
+                    //bll.InsertUser(user);
                     Response.Redirect("default.aspx");
                 } else
                 {

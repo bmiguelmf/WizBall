@@ -8,7 +8,6 @@ namespace BusinessLogic.Entities
 {
     public interface Entity
     {
-
         Entity Assembler(List<object> Row);
 
 
@@ -22,6 +21,5 @@ namespace BusinessLogic.Entities
 
         string[] GetUpdatableFields();
         object[] GetUpdatableValues();
-
     }
 }

@@ -12,7 +12,7 @@ namespace WebApp.pages
 {
     public partial class Login : System.Web.UI.Page
     {
-        BLL bll = new BLL();
+        //BLL bll = new BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -20,15 +20,15 @@ namespace WebApp.pages
 
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
-            User user = bll.UserLogin(inputEmail.Text, inputPassword.Text);
+           // User user = bll.UserLogin(inputEmail.Text, inputPassword.Text);
 
-            if (user != null)
-            {
-                Session["bool"] = "true";
-                Session["username"] = user.Username;
-                Session["profPic"] = user.Picture;
-                Session["email"] = user.Email;
-            }
+            //if (user != null)
+            //{
+            //    Session["bool"] = "true";
+            //    Session["username"] = user.Username;
+            //    Session["profPic"] = user.Picture;
+            //    Session["email"] = user.Email;
+            //}
 
         }
     }

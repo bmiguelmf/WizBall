@@ -99,9 +99,9 @@ namespace BusinessLogic.Entities
         public object[] GetUpdatableValues()
         {
 
-            return new string[] { Area.Id.ToString(),
+            return new string[] { Area.Id is null ? null : Area.Id.ToString(),
                                   Name,
-                                  Code.ToString(),
+                                  Code is null ? null : Code.ToString(),                                
                                   Plan,
                                   Flag,
                                   LastUpdated};

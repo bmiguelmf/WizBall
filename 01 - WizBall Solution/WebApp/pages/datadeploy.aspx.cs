@@ -10,7 +10,7 @@ namespace WebApp
 {
     public partial class datadeploy : System.Web.UI.Page
     {
-        BLL bll = new BLL();
+        //BLL bll = new BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -18,7 +18,7 @@ namespace WebApp
 
         protected void InAreas_Click(object sender, EventArgs e)
         {
-            bll.FullDatabaseSync();
+            //bll.FullDatabaseSync();
         }
 
         protected void InSeasons_Click(object sender, EventArgs e)

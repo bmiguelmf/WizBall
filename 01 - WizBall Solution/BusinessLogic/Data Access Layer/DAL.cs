@@ -111,6 +111,7 @@ namespace BusinessLogic.DAL
             return ExecuteReader(Entity, cmd);
         }
 
+
         /// <summary>
         /// Get one particular element from the database for the corresponding Entity object.
         /// </summary>
@@ -129,6 +130,7 @@ namespace BusinessLogic.DAL
 
             return lstEntities.Count > 0 ? lstEntities[0] : null;
         }
+
 
         /// <summary>
         /// Get a subset of elements from the database for the corresponding Entity object.
@@ -163,8 +165,6 @@ namespace BusinessLogic.DAL
 
             return ExecuteReader(Entity, cmd);
         }
-
-
         /// <summary>
         /// Get a subset of elements from the database for the corresponding Entity object.
         /// </summary>
@@ -199,6 +199,8 @@ namespace BusinessLogic.DAL
 
             return ExecuteReader(Entity, cmd);
         }
+
+
         #endregion
 
 
@@ -301,7 +303,7 @@ namespace BusinessLogic.DAL
 
 
 
-
+        public enum DbOperator { GreaterThan, LesserThan, EqualsTo, GreaterThanOrEqualsTo, LesserThanOrEqualsTo };
         public struct DbWhere
         {
             public string Field { get; set; }
@@ -309,7 +311,7 @@ namespace BusinessLogic.DAL
             public string Alias { get; set; }
             public DbOperator Operator { get; set; }
         }
-        public enum DbOperator { GreaterThan, LesserThan, EqualsTo, GreaterThanOrEqualsTo, LesserThanOrEqualsTo };
+       
         public string ConvertSqlOperator(DbOperator Operator)
         {
             switch (Operator)

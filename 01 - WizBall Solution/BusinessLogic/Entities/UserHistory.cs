@@ -17,6 +17,19 @@ namespace BusinessLogic.Entities
         public DateTime CreatedAt { get; set; }
 
 
+        private string GetDateTime()
+        {
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+            string day = DateTime.Now.Day.ToString();
+            string hour = DateTime.Now.Hour.ToString();
+            string min = DateTime.Now.Minute.ToString();
+            string sec = DateTime.Now.Second.ToString();
+
+            return year + "-" + month + "-" + day + " " + hour + ":" + min + ":" + sec;
+        }
+
+
         Entity Entity.Assembler(List<object> Row)
         {
             UserHistory userHistory = new UserHistory();
@@ -46,7 +59,7 @@ namespace BusinessLogic.Entities
         string[] Entity.GetInsertableFields()
         {
             return new string[] { "admin_id",
-                                  "user_id," +
+                                  "user_id",
                                   "before_state_id",
                                   "after_state_id",
                                   "description",
@@ -59,7 +72,7 @@ namespace BusinessLogic.Entities
                                   BeforeState.Id.ToString(),
                                   AfterState.Id.ToString(),
                                   Description,
-                                  CreatedAt.ToString() };
+                                  GetDateTime() };
         }
     
 
@@ -67,7 +80,7 @@ namespace BusinessLogic.Entities
         {
             return new string[] { "id",
                                   "admin_id",
-                                  "user_id," +
+                                  "user_id",
                                   "before_state_id",
                                   "after_state_id",
                                   "description" };

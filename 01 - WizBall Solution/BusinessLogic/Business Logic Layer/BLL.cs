@@ -552,6 +552,26 @@ namespace BusinessLogic.BLL
 
             return lstUserHistory;
         }
+        public UserHistory GetCurrentUserHistoryByUserId(string UserId)
+        {
+            if (string.IsNullOrEmpty(UserId))
+                return null;
+
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
+            UserHistory userHistory = dalUserHistory.GetCurrentByUserId(UserId);
+
+
+            DALUsers dalUsers = new DALUsers(connectionString);
+            DALAdmins dalAdmin = new DALAdmins(connectionString);
+            DALUserStates dalUserStates = new DALUserStates(connectionString);
+           
+            userHistory.Admin = dalAdmin.GetById(userHistory.Admin.Id.ToString());
+            userHistory.User = dalUsers.GetById(userHistory.User.Id.ToString());
+            userHistory.BeforeState = dalUserStates.GetById(userHistory.BeforeState.Id.ToString());
+            userHistory.AfterState = dalUserStates.GetById(userHistory.AfterState.Id.ToString());
+     
+            return userHistory;
+        }
         public bool InsertUserHistory(UserHistory UserHistory)
         {
             if (UserHistory is null)
