@@ -862,16 +862,6 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Match"></param>
-        /// <param name="CompetitionMatches"></param>
-        /// <param name="HomeTeamMatches"></param>
-        /// <param name="AwayTeamMatches"></param>
-        /// <param name="HomeTeam"></param>
-        /// <param name="AwayTeam"></param>
-        /// <returns></returns>
         private Tip FulltimeOverTwoAndHalfGoals(Match Match, List<Match> HomeTeamMatches, List<Match> AwayTeamMatches, Team HomeTeam, Team AwayTeam)
         {
             double? homeTeamHomeScoreAvg = HomeTeamMatches.Where(x => x.HomeTeam.Id == HomeTeam.Id)
