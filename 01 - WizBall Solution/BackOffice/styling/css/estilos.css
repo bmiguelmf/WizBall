@@ -1,0 +1,495 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+h2 {
+    color: #000;
+    font-weight: 700;
+}
+
+p {
+    font-size: 0.9375em;
+    line-height: 18px;
+}
+
+.m-t {
+    margin-top: 25px
+}
+
+.wrapper {
+    margin-top: 75px;
+}
+
+.label {
+    font-size: 11px;
+}
+
+.logo img {
+    height: 50px;
+    /*margin-left: 10px;
+    margin-top: 6px;
+    margin-right: 15px;
+    margin-left: 15px;*/
+}
+.logo span {
+    display: block;
+    margin-top:10px;
+    font-size: 11px;
+    font-weight:600;
+}
+
+.logo #flow {
+    height: 55px
+}
+
+.excell {
+    display: block;
+    background: #f8f8f8;
+    float: right;
+    box-shadow: none;
+    padding: 5px 17px;
+    border: 1px solid #e7eaec;
+    margin-right: 6px;
+}
+
+address {
+    word-break: break-all;
+}
+
+.timeline-item .content {
+    min-height: 70px;
+}
+
+.active {
+    font-weight: 600
+}
+
+.subli {
+    margin-left: 15px
+}
+
+.searchcustom {
+    width: 300px;
+}
+
+#small-chat, .small-chat-box {
+    top: 71px;
+}
+
+.small-chat-box {
+    height: 33px;
+    margin-top: 3px;
+}
+
+.feed-activity-list .feed-element:last-child {
+    border: none;
+}
+
+.padzero {padding: 0}
+
+/*nav*/
+.top-navigation .navbar-brand {
+    background: #f1b424;
+    color: #000;
+    font-weight: 900;
+    padding: 0 8px;
+}
+
+.top-navigation .navbar-brand img {
+    height: 37px;
+    margin-top: 5px;
+}
+
+.top-navigation .nav > li.active > a {
+    color: #000;
+}
+
+#wrapper, .nav-header {
+    background: #333
+}
+
+.navbar-default .nav > li > a:hover {
+    background: #333
+}
+
+.nav > li > a {
+    color: #fff;
+    font-weight: 500;
+}
+
+.nav > li.active {
+    border-left: 4px solid #FDC23E;
+    background: #424242;
+}
+
+.navbar-default .nav > li > a:hover,
+.navbar-default .nav > li > a:focus,
+.nav > li.active {
+    background: #424242;
+}
+
+.navbar-default .nav > li > a:hover i,
+.navbar-default .nav > li > a:focus i,
+.nav > li.active i {
+    color: #FDC23E
+}
+
+.nav-header {
+    padding: 0;
+}
+
+.nav-header img {
+    width: 100%
+}
+
+.dropdownperfil {min-width: 120px;box-shadow: none;border: 1px solid #e0dddd;}
+
+table {font-size: 13px;}
+
+/*botoes*/
+.btn {
+    padding: 7px 12px;
+}
+
+.btn-primary {
+    background-color: #003864;
+    border-color: #003864;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #555;
+    border-color: #333
+}
+
+.btn-sub {
+    color: #f1b424;
+    border-color: #f1b424;
+}
+
+
+.btn, .control-label {
+    font-size: 13px;
+    font-weight: 300
+}
+
+.btn-group-vertical > .btn, .btn-group > .btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*form*/
+.input-group[class*=col-] {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+input {
+    height: 29.5px;
+}
+
+.input-sm {
+    padding: 0 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: -5px
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    margin-right: -5px;
+}
+
+
+/*bt scroll top*/
+.scrollToTop {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: none;
+}
+
+/**/
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    margin: auto
+}
+
+/*login , recuperar*/
+.loginpanel, .registopanel {
+    max-width: 100%;
+    position: relative;
+    top: 50%;
+    margin-top: -271.5px;
+}
+
+.registopanel {
+    margin-top: -268px
+}
+
+.formpanel {
+    background: #fff;
+    padding: 46.5px 20px;
+    min-height: 527px;
+}
+
+.formpanel .loginscreen {
+    padding-top: 0
+}
+
+.loginscreen .fa-eye, .loginscreen .fa-eye-slash {
+    position: relative;
+    top: -26px;
+    float: right;
+    right: 15px;
+}
+
+.loginscreen .fa-eye:hover, .loginscreen .fa-eye-slash:hover {
+    cursor: pointer;
+}
+
+.getusername {
+    background: none;
+    border: none;
+    font-size: 12px;
+    padding: 0;
+}
+
+.getusername:hover {
+    color: #000;
+}
+
+.registopanel .formpanel {
+    padding: 44px 20px
+}
+
+.wizballpanel {
+    background-color: #fff;
+    text-align: center;
+    padding: 54px 20px;
+    height: 527px;
+    background-image: url(../../resources/imgs/login-panel.jpg);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#passwordweb {padding-right: 39px;}
+#olho {
+    float: right;
+    margin-top: -23px;
+    margin-right: 20px;
+}
+
+/*.refoodpanel img {
+    width: 389px;
+    height: auto;
+}*/
+
+#erro {font-weight: 400; color:red; margin-bottom:8px}
+
+.registopanel .refoodpanel {
+    padding: 39px 20px;
+}
+
+/*listarefood*/
+.filtros {
+    margin-top: 25px;
+    margin-bottom: 35px
+}
+
+/*voluntario listarefood*/
+.contact-box .contact-box-footer {
+    padding: 0;
+    border: none;
+}
+
+.contact-box .col-sm-4, .contact-box .col-sm-8 {
+    padding: 0
+}
+
+.contact-box .col-sm-4 a, .contact-box .col-sm-4 .m-t-xs {
+    font-size: 12px;
+    padding-bottom: 5px
+}
+
+.contact-box .col-sm-8 {
+    padding: 5px 20px 5px 20px
+}
+
+.grid .ibox {
+    margin-bottom: 0;
+}
+
+.grid-item {
+    margin-bottom: 25px;
+    width: 400px;
+}
+
+/*voluntarios*/
+.voluntarios_filt {
+    margin-top: 20px;
+}
+
+.voluntarios {
+    clear: both;
+}
+
+.vo h5 {
+    margin-bottom: 50px
+}
+
+.voluntarios_filt .active {
+    background: #FDC23E;
+}
+
+.voluntarios_filt .label, .filtros .label {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.more {
+    width: 250px;
+    margin: auto;
+    background-color: #ccc;
+    border: 0
+}
+
+.vo .ibox .ibox-title {
+    height: 58px;
+}
+
+.vo .ibox h5 {
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+/*rotas*/
+.table > tbody > tr > .client-avatar {
+    padding-left: 15px
+}
+
+@media (max-width: 1214px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+
+    .navbar-header .collapse, .navbar-toggle {
+        display: block !important;
+    }
+
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-fixed-top {
+        background: none !important;
+    }
+
+    .border-bottom, .navbar-fixed-top {
+        border: 0 !important;
+    }
+
+    .navbar-nav, .navbar-right, .navbar-header {
+        background: #fff; clear: right;
+    }
+    .navbar-nav,
+    .top-navigation .navbar-right {
+        width: 250px;
+        float: right;
+        margin: 0;
+    }
+    nav > li,
+    .nav > li, .navbar-top-links li {
+        position: relative;
+        display: block;
+        border-bottom: 1px solid #F3F3F4 !important;
+        float: none;
+    }
+
+    .nav > li, .navbar-top-links li:last-child {
+        border: 0;
+    }
+
+    .navbar-collapse {
+        padding-right: 0
+    }
+    .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {max-height: 400px}
+
+}
+
+/*rotas*/
+
+.rota-hoje {padding: 15px 20px 20px 20px;border-color: #e7eaec;border-image: none;border-style: solid solid none;border-width: 1px 0;}
+.text-navy {margin-top:8px}
+.timeline-item strong {font-weight:600}
+.view-month .title {margin-bottom:18px}
+.view-month .title a {color:#676a6c}
+.calecircle {color:rgb(255, 177, 177);}
+li:last-child .calecircle {color:#f1b424;}
+.title {text-align: center;padding-top:5px;margin-bottom: 8px}
+.view-month {margin-bottom:30px}
+.cell {
+    display: inline-block;
+    width: 13.5%;
+    text-align: center;
+    position: relative;
+    padding-top:3px; padding-bottom: 3px;
+    min-height:30px;
+}
+.past {opacity: 0.3;}
+.view-month .fc-icon {    font-size: 1.5em;}
+.month-name {font-size: 14px}
+.substituicao, .substituicao2 {
+    background: rgb(255, 177, 177);
+    border-radius: 100px;
+    padding: 3px 8px;
+}
+.substituicao2 {
+    padding: 5px 7px;
+}
+.calendario_widget a {color:#333}
+.calendario_widget a {color:#333}
+.calendario_widget a:hover {background-color:#ddd; border-radius: 100px; }
+.calendario_widget a.selected,
+.calendario_widget strong.selected{
+    background-color: #f1b424;
+    border-radius: 100px;
+    padding: 3px 8px;
+}
+.m-b-xs {text-transform: uppercase;font-weight:600}
+
+.wizard > .content > .body { position: relative; }
+
+.route-hoje {
+    padding:18px 25px;
+}
+
+.selectpicker, .selectpicker:hover, .selectpicker:focus {background: #fff;color:#676a6c}
+.volunteers-hd {background-color:#f5f5f5}
+.volunteers {background-color: #f8f8f8;border:none;margin-bottom: 15px}
+.volunteers p {border-bottom:1px solid #ddd;padding:5px 15px}
+.volunteers p:last-child {border-bottom: none}
+.volunteers p .fa-circle {font-size: 5px;margin-right: 3px}
+.volunteers p .fa-eye {font-size:13px}
+
+.input-group-addon:hover, .datepicker {
+    cursor: pointer;
+}
+.js-estatisticas .ibox-content {
+    border-width: 3px 0;
+    padding: 25px 50px 50px 50px;
+}
+
+.js-estatisticas .ibox-content .list-group-item {
+    width: 80%;
+}
+
+.js-estatisticas .ibox-content .list-group-item .label-success {font-size: 10px;padding: 4px 7px; margin-right:8px}
+
+.js-assiduidade .label-primary, .js-assiduidade .label-danger {display:block;width:53px;padding:8px}
+
+.btn-white {height: 35px;} .btn-white .fa {padding-top: 3px;}
