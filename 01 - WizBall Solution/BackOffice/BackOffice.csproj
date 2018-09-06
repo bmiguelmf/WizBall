@@ -69,8 +69,144 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\jquery.js" />
+    <Content Include="js\jquery\jquery.js" />
+    <Content Include="js\jquery\jquery.min.js" />
+    <Content Include="js\jquery\jquery.slim.js" />
+    <Content Include="js\jquery\jquery.slim.min.js" />
+    <Content Include="js\login.js" />
     <Content Include="js\js.js" />
     <Content Include="pages\default.aspx" />
+    <Content Include="pages\Login.aspx" />
+    <Content Include="pages\wizball_project\refood2\assiduidade.html" />
+    <Content Include="pages\wizball_project\refood2\beneficiarios.html" />
+    <Content Include="resources\imgs\icon.ico" />
+    <Content Include="resources\imgs\login-panel.jpg" />
+    <Content Include="resources\imgs\logo-atec.png" />
+    <Content Include="styling\css\animate.css" />
+    <Content Include="styling\css\bootstrap-select.css" />
+    <Content Include="styling\css\bootstrap-select.min.css" />
+    <Content Include="styling\Bootstrap\bootstrap.min.css" />
+    <Content Include="styling\css\estilos.css" />
+    <Content Include="styling\css\font-awesome.css" />
+    <Content Include="styling\css\patterns\1.png" />
+    <Content Include="styling\css\patterns\2.png" />
+    <Content Include="styling\css\patterns\3.png" />
+    <Content Include="styling\css\patterns\4.png" />
+    <Content Include="styling\css\patterns\5.png" />
+    <Content Include="styling\css\patterns\6.png" />
+    <Content Include="styling\css\patterns\7.png" />
+    <Content Include="styling\css\patterns\congruent_pentagon.png" />
+    <Content Include="styling\css\patterns\header-profile-skin-1.png" />
+    <Content Include="styling\css\patterns\header-profile-skin-2.png" />
+    <Content Include="styling\css\patterns\header-profile-skin-3.png" />
+    <Content Include="styling\css\patterns\header-profile.png" />
+    <Content Include="styling\css\patterns\otis_redding.png" />
+    <Content Include="styling\css\patterns\shattered.png" />
+    <Content Include="styling\css\patterns\triangular.png" />
+    <Content Include="styling\css\plugins\awesome-bootstrap-checkbox\awesome-bootstrap-checkbox.css" />
+    <Content Include="styling\css\plugins\chosen\chosen-sprite%402x.png" />
+    <Content Include="styling\css\plugins\chosen\chosen-sprite.png" />
+    <Content Include="styling\css\plugins\chosen\chosen.css" />
+    <Content Include="styling\css\plugins\clockpicker\clockpicker.css" />
+    <Content Include="styling\css\plugins\datapicker\datepicker3.css" />
+    <Content Include="styling\css\plugins\dataTables\dataTables.bootstrap.css" />
+    <Content Include="styling\css\plugins\dataTables\dataTables.responsive.css" />
+    <Content Include="styling\css\plugins\dataTables\dataTables.tableTools.min.css" />
+    <Content Include="styling\css\plugins\dropzone\basic.css" />
+    <Content Include="styling\css\plugins\dropzone\dropzone.css" />
+    <Content Include="styling\css\plugins\fullcalendar\fullcalendar.css" />
+    <Content Include="styling\css\plugins\fullcalendar\fullcalendar.print.css" />
+    <Content Include="styling\css\plugins\images\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="styling\css\plugins\images\bootstrap-colorpicker\alpha.png" />
+    <Content Include="styling\css\plugins\images\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="styling\css\plugins\images\bootstrap-colorpicker\hue.png" />
+    <Content Include="styling\css\plugins\images\bootstrap-colorpicker\saturation.png" />
+    <Content Include="styling\css\plugins\images\sort.png" />
+    <Content Include="styling\css\plugins\images\sort_asc.png" />
+    <Content Include="styling\css\plugins\images\sort_desc.png" />
+    <Content Include="styling\css\plugins\images\sprite-skin-flat.png" />
+    <Content Include="styling\css\plugins\images\sprite-skin-flat2.png" />
+    <Content Include="styling\css\plugins\images\sprite-skin-nice.png" />
+    <Content Include="styling\css\plugins\images\sprite-skin-simple.png" />
+    <Content Include="styling\css\plugins\images\spritemap%402x.png" />
+    <Content Include="styling\css\plugins\images\spritemap.png" />
+    <Content Include="styling\css\plugins\morris\morris-0.4.3.min.css" />
+    <Content Include="styling\css\plugins\steps\jquery.steps.css" />
+    <Content Include="styling\css\plugins\sweetalert\sweetalert.css" />
+    <Content Include="styling\css\plugins\toastr\toastr.min.css" />
+    <Content Include="styling\css\style.css" />
+    <Content Include="styling\font-awesome\css\font-awesome.css" />
+    <Content Include="styling\font-awesome\css\font-awesome.min.css" />
+    <Content Include="styling\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="pages\wizball_project\refood2\fontes.html" />
+    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="pages\wizball_project\refood2\img\user.png" />
+    <Content Include="pages\wizball_project\refood2\index.html" />
+    <Content Include="pages\wizball_project\refood2\js\beneficiario.js" />
+    <Content Include="pages\wizball_project\refood2\js\bootstrap-select.js" />
+    <Content Include="pages\wizball_project\refood2\js\bootstrap-select.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\bootstrap.js" />
+    <Content Include="pages\wizball_project\refood2\js\bootstrap.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\fonte.js" />
+    <Content Include="pages\wizball_project\refood2\js\functions.js" />
+    <Content Include="pages\wizball_project\refood2\js\inspinia.js" />
+    <Content Include="pages\wizball_project\refood2\js\jquery-2.1.1.js" />
+    <Content Include="pages\wizball_project\refood2\js\jquery-ui-1.10.4.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\jquery-ui.custom.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\mustache.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\dataTables\dataTables.bootstrap.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\dataTables\dataTables.responsive.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\dataTables\dataTables.tableTools.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\dataTables\jquery.dataTables.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\curvedLines.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\excanvas.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.spline.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.symbol.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.time.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\masonry.pkgd.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\metisMenu\jquery.metisMenu.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\rotas\taskCalendar.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\slimscroll\jquery.slimscroll.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\staps\jquery.steps.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\sweetalert\sweetalert.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\toastr\toastr.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\plugins\validate\jquery.validate.min.js" />
+    <Content Include="pages\wizball_project\refood2\js\refood.js" />
+    <Content Include="pages\wizball_project\refood2\js\voluntario.js" />
+    <Content Include="pages\wizball_project\refood2\lista-refood.html" />
+    <Content Include="pages\wizball_project\refood2\login.html" />
+    <Content Include="pages\wizball_project\refood2\nova-fonte.html" />
+    <Content Include="pages\wizball_project\refood2\nova-refood.html" />
+    <Content Include="pages\wizball_project\refood2\novo-beneficiario.html" />
+    <Content Include="pages\wizball_project\refood2\novo-voluntario.html" />
+    <Content Include="pages\wizball_project\refood2\perfil-voluntario.html" />
+    <Content Include="pages\wizball_project\refood2\produtos.html" />
+    <Content Include="pages\wizball_project\refood2\recuperar-password.html" />
+    <Content Include="pages\wizball_project\refood2\voluntarios.html" />
+    <Content Include="pages\wizball_project\template02\beneficiarios.html" />
+    <Content Include="pages\wizball_project\template02\css\bootstrap-select.min.css" />
+    <Content Include="pages\wizball_project\template02\css\bootstrap.min.css" />
+    <Content Include="pages\wizball_project\template02\css\style.css" />
+    <Content Include="pages\wizball_project\template02\fontes.html" />
+    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="resources\imgs\user.png" />
+    <Content Include="pages\wizball_project\template02\img\refood-logo.png" />
+    <Content Include="pages\wizball_project\template02\img\refood.png" />
+    <Content Include="pages\wizball_project\template02\img\refood2.png" />
+    <Content Include="pages\wizball_project\template02\img\refoodlogo.png" />
+    <Content Include="pages\wizball_project\template02\js\bootstrap-select.min.js" />
+    <Content Include="pages\wizball_project\template02\js\bootstrap.min.js" />
+    <Content Include="pages\wizball_project\template02\js\classie.js" />
+    <Content Include="pages\wizball_project\template02\js\sidebarEffects.js" />
+    <Content Include="pages\wizball_project\template02\nucleos.html" />
+    <Content Include="pages\wizball_project\template02\produtos.html" />
+    <Content Include="pages\wizball_project\template02\users.html" />
+    <Content Include="pages\wizball_project\template02\voluntarios.html" />
     <Content Include="styling\bootstrap4.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -82,6 +218,13 @@
     <Compile Include="pages\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\master.Master.cs">
       <DependentUpon>master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -92,8 +235,49 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\jquery\jquery.min.map" />
+    <Content Include="js\jquery\jquery.slim.min.map" />
     <None Include="packages.config" />
     <Content Include="pages\master.Master" />
+    <Content Include="styling\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="styling\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="styling\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="styling\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="styling\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="styling\font-awesome\less\animated.less" />
+    <Content Include="styling\font-awesome\less\bordered-pulled.less" />
+    <Content Include="styling\font-awesome\less\core.less" />
+    <Content Include="styling\font-awesome\less\fixed-width.less" />
+    <Content Include="styling\font-awesome\less\font-awesome.less" />
+    <Content Include="styling\font-awesome\less\icons.less" />
+    <Content Include="styling\font-awesome\less\larger.less" />
+    <Content Include="styling\font-awesome\less\list.less" />
+    <Content Include="styling\font-awesome\less\mixins.less" />
+    <Content Include="styling\font-awesome\less\path.less" />
+    <Content Include="styling\font-awesome\less\rotated-flipped.less" />
+    <Content Include="styling\font-awesome\less\stacked.less" />
+    <Content Include="styling\font-awesome\less\variables.less" />
+    <Content Include="styling\font-awesome\scss\font-awesome.scss" />
+    <Content Include="styling\font-awesome\scss\_animated.scss" />
+    <Content Include="styling\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="styling\font-awesome\scss\_core.scss" />
+    <Content Include="styling\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="styling\font-awesome\scss\_icons.scss" />
+    <Content Include="styling\font-awesome\scss\_larger.scss" />
+    <Content Include="styling\font-awesome\scss\_list.scss" />
+    <Content Include="styling\font-awesome\scss\_mixins.scss" />
+    <Content Include="styling\font-awesome\scss\_path.scss" />
+    <Content Include="styling\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="styling\font-awesome\scss\_stacked.scss" />
+    <Content Include="styling\font-awesome\scss\_variables.scss" />
+    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -102,7 +286,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="resources\imgs\" />
+    <Folder Include="pages\wizball_project\template02\img\profile\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
