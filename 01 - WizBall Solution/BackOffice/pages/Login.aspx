@@ -21,9 +21,9 @@
                     <div class="col-md-6 formpanel">
                         <div class="middle-box text-center loginscreen animated fadeInDown">
                             <div>
-                                <h2>Título bonito</h2>
+                                <h2>WizBall Dashboard</h2>
                                 <p>
-                                    Frase bonita bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla<br />
+                                    Aqui é feita toda a gestão do <a href="https://google.pt">nosso site</a> para que tenhas os melhores resultados nas tuas apostas!<br />
                                 </p>
                                 <form name="login" method="post" class="m-t" role="form">
                                     <label id="erro"></label>
@@ -35,18 +35,11 @@
                                         <input name="password" type="password" id="pwd" class="form-control" placeholder="Password" required="" />
                                         <i id="eye" class="fa fa-eye showpassword"></i>
                                     </div>
-                                    <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-
-                                    <input class="getusername" type="button" onclick="getUsername()" value="Esqueceu a password?" />
+                                    <span id="login" class="btn btn-primary block full-width m-b">Login</span>
                                 </form>
                                 <p class="m-t"></p>
                                 <div class="logo text-center">
-                                    <%--<div class="col-md-6 center">
-                                    <img src="~/resources/imgs/logo-atec.png"/>
-                                    <br/>
-                                    <span>powered by</span>
-                                </div>--%>
-                                    <div class="col-md-12 center">
+                                    <div class="row center">
                                         <img id="" src="/resources/imgs/logo-atec.png" />
                                         <br/>
                                         <span>supported by</span>

@@ -80,7 +80,7 @@
     <Content Include="pages\wizball_project\refood2\assiduidade.html" />
     <Content Include="pages\wizball_project\refood2\beneficiarios.html" />
     <Content Include="resources\imgs\icon.ico" />
-    <Content Include="resources\imgs\login-panel.jpg" />
+    <Content Include="resources\imgs\panel-login.png" />
     <Content Include="resources\imgs\logo-atec.png" />
     <Content Include="styling\css\animate.css" />
     <Content Include="styling\css\bootstrap-select.css" />

@@ -2,7 +2,8 @@
 
     //html elements
     var pass = $('#pwd');
-    var eye_icon = $('#eye');
+    var icon_eye = $('#eye');
+    var btn_login = $('#login');
 
     //vars
     var passShown = 0;
@@ -17,7 +18,24 @@
     }
 
     function authenticate() {
+        var admin = {};
+        admin['Username'] = $('#username').val();
+        admin['Password'] = $('#password').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "http://localhost:61053/WizballWebService.asmx/AdminLogin",
+            data: "{Username: " + JSON.stringify(admin['Username']) + ", Password:" + JSON.stringify(admin['Password']) + "}",
+            // JSON.stringify({Movie: movie, atores: atores, diretores: diretores, produtores: produtores, estudios: estudios }),
 
+            dataType: "json",
+            success: function (data) {
+                swal("Sucesso!", "You are in", "success");
+            },
+            error: function (data, status, error) {
+                swal("Erro!", " " + error.message + " ", "warning");
+            }
+        });
     }
 
     //function getUsername() {
@@ -27,7 +45,7 @@
     //end functions
 
     //events
-    eye_icon.click(function () {
+    icon_eye.click(function () {
         if (passShown === 0) {
             passShown = 1;
             showPassword();
@@ -39,6 +57,9 @@
         }
     });
 
+    btn_login.click(function () {
+        authenticate();
+    });
 
 
 

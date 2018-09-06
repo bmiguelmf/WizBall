@@ -215,15 +215,11 @@ input {
 }
 
 /*login , recuperar*/
-.loginpanel, .registopanel {
+.loginpanel {
     max-width: 100%;
     position: relative;
     top: 50%;
     margin-top: -271.5px;
-}
-
-.registopanel {
-    margin-top: -268px
 }
 
 .formpanel {
@@ -247,38 +243,19 @@ input {
     cursor: pointer;
 }
 
-.getusername {
-    background: none;
-    border: none;
-    font-size: 12px;
-    padding: 0;
-}
-
-.getusername:hover {
-    color: #000;
-}
-
-.registopanel .formpanel {
-    padding: 44px 20px
-}
 
 .wizballpanel {
     background-color: #fff;
     text-align: center;
-    padding: 54px 20px;
+    padding: 54px 30px;
     height: 527px;
-    background-image: url(../../resources/imgs/login-panel.jpg);
+    background-image: url(../../resources/imgs/panel-login.png);
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 #passwordweb {padding-right: 39px;}
-#olho {
-    float: right;
-    margin-top: -23px;
-    margin-right: 20px;
-}
 
 /*.refoodpanel img {
     width: 389px;
@@ -287,17 +264,13 @@ input {
 
 #erro {font-weight: 400; color:red; margin-bottom:8px}
 
-.registopanel .refoodpanel {
-    padding: 39px 20px;
-}
 
-/*listarefood*/
 .filtros {
     margin-top: 25px;
     margin-bottom: 35px
 }
 
-/*voluntario listarefood*/
+
 .contact-box .contact-box-footer {
     padding: 0;
     border: none;
@@ -325,7 +298,6 @@ input {
     width: 400px;
 }
 
-/*voluntarios*/
 .voluntarios_filt {
     margin-top: 20px;
 }
@@ -493,3 +465,15 @@ li:last-child .calecircle {color:#f1b424;}
 .js-assiduidade .label-primary, .js-assiduidade .label-danger {display:block;width:53px;padding:8px}
 
 .btn-white {height: 35px;} .btn-white .fa {padding-top: 3px;}
+
+a:link {
+    color: #0082e6;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #003864;
+    background-color: transparent;
+    text-decoration: underline;
+}
