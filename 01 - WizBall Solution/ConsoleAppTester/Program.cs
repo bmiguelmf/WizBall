@@ -15,7 +15,6 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            //Data Source = DESKTOP-OBFHSOT\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;
             //Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=wizball;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
             string connString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
             string apiToken   = "7f91f916023b4430b44d97cc11e5c030";
