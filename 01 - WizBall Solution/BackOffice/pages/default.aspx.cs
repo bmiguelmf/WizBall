@@ -1,5 +1,4 @@
 ﻿using System;
-using WebServices;
 using System.Web.Configuration;
 using BusinessLogic.BLL;
 using BusinessLogic.Entities;
@@ -21,7 +20,7 @@ namespace BackOffice.pages
             apiToken = WebConfigurationManager.AppSettings["ApiToken"];
             
             bll = new BLL(connString, apiToken);
-            WizballWebService ws = new WizballWebService();
+            WebService ws = new WebService();
 
             //bll.FullDatabaseSync();
             //Page.Response.Write("Base de dados sincronizada <br/>");

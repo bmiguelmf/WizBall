@@ -6,9 +6,7 @@ using System.Web.Services;
 
 namespace BackOffice
 {
-    /// <summary>
-    /// Summary description for WebService
-    /// </summary>
+
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
@@ -16,10 +14,8 @@ namespace BackOffice
     [System.Web.Script.Services.ScriptService]
     public class WebService : System.Web.Services.WebService
     {
-
-        private string connString = WebConfigurationManager.ConnectionStrings["ConnStringBroHome"].ConnectionString;
+        private string connString = WebConfigurationManager.ConnectionStrings["ConnStringPasseiraAtec"].ConnectionString;
         private string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
-
 
 
         // USER METHODS.

@@ -18,22 +18,19 @@
     }
 
     function authenticate() {
-        var admin = {};
-        admin['Username'] = $('#username').val();
-        admin['Password'] = $('#password').val();
+        var username = $('#username').val();
+        var password = $('#password').val();
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "http://localhost:61053/WizballWebService.asmx/AdminLogin",
-            data: "{Username: " + JSON.stringify(admin['Username']) + ", Password:" + JSON.stringify(admin['Password']) + "}",
-            // JSON.stringify({Movie: movie, atores: atores, diretores: diretores, produtores: produtores, estudios: estudios }),
-
+            url: "../WebService.asmx/AdminLogin",
             dataType: "json",
+            data: "{Username: " + JSON.stringify(username) + ", Password:" + JSON.stringify(password) + "}",
             success: function (data) {
-                swal("Sucesso!", "You are in", "success");
+                $(location).attr('href', "Users.aspx");
             },
             error: function (data, status, error) {
-                swal("Erro!", " " + error.message + " ", "warning");
+                swal("Erro!", "Lamentamos, não foi possível iniciar sessão... ", "warning");
             }
         });
     }

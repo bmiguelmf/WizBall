@@ -541,17 +541,11 @@ C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\roslyn\VB
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\BusinessLogic.dll
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.dll
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\Newtonsoft.Json.dll
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\BusinessLogic.pdb
-C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.pdb
-C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.dll.config
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csprojAssemblyReference.cache
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CoreCompileInputs.cache
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CopyComplete
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.dll
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.pdb
-C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.dll
-C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.pdb
-C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.dll.config
