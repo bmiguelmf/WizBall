@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     //html elements
-    var pass = $('#pwd');
+    var pass = $('#password');
     var icon_eye = $('#eye');
     var btn_login = $('#login');
 
@@ -24,10 +24,16 @@
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "../WebService.asmx/AdminLogin",
-            dataType: "json",
+            dataType: "json", 
             data: "{Username: " + JSON.stringify(username) + ", Password:" + JSON.stringify(password) + "}",
             success: function (data) {
-                $(location).attr('href', "Users.aspx");
+                $.session.set("Username", data.d['Username'].toUpperCase());
+
+                swal("Success!", "You are logged in.", "success")
+                    .then((value) => {
+                        window.location.href = 'Users.aspx';
+                    });
+
             },
             error: function (data, status, error) {
                 swal("Erro!", "Lamentamos, não foi possível iniciar sessão... ", "warning");
@@ -46,11 +52,11 @@
         if (passShown === 0) {
             passShown = 1;
             showPassword();
-            eye_icon.removeClass("fa-eye").addClass("fa-eye-slash");
+            icon_eye.removeClass("fa-eye").addClass("fa-eye-slash");
         } else {
             passShown = 0;
             hidePassword();
-            eye_icon.removeClass("fa-eye-slash").addClass("fa-eye");
+            icon_eye.removeClass("fa-eye-slash").addClass("fa-eye");
         }
     });
 

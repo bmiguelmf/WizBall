@@ -71,6 +71,7 @@
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery\jquery.js" />
     <Content Include="js\jquery\jquery.min.js" />
+    <Content Include="js\jquery\jquery.session.js" />
     <Content Include="js\jquery\jquery.slim.js" />
     <Content Include="js\jquery\jquery.slim.min.js" />
     <Content Include="js\users.js" />
@@ -82,6 +83,7 @@
     <Content Include="pages\wizball_project\refood2\assiduidade.html" />
     <Content Include="pages\wizball_project\refood2\beneficiarios.html" />
     <Content Include="resources\imgs\icon.ico" />
+    <Content Include="resources\imgs\logo_with_name.png" />
     <Content Include="resources\imgs\panel-login.png" />
     <Content Include="resources\imgs\logo-atec.png" />
     <Content Include="styling\css\animate.css" />
@@ -134,9 +136,9 @@
     <Content Include="styling\css\plugins\images\spritemap.png" />
     <Content Include="styling\css\plugins\morris\morris-0.4.3.min.css" />
     <Content Include="styling\css\plugins\steps\jquery.steps.css" />
-    <Content Include="styling\css\plugins\sweetalert\sweetalert.css" />
     <Content Include="styling\css\plugins\toastr\toastr.min.css" />
     <Content Include="styling\css\style.css" />
+    <Content Include="styling\css\style_all.css" />
     <Content Include="styling\font-awesome\css\font-awesome.css" />
     <Content Include="styling\font-awesome\css\font-awesome.min.css" />
     <Content Include="styling\font-awesome\fonts\fontawesome-webfont.svg" />

@@ -12,7 +12,7 @@
     <link href="~/styling/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/styling/css/style.css" rel="stylesheet" />
     <link href="~/styling/css/estilos.css" rel="stylesheet" />
-</head>
+   </head>
 <body class="gray-bg">
     <div class="animated fadeInDown loginpanel">
         <div class="container">
@@ -54,6 +54,7 @@
         </div>
     </div>
     <script src="/js/jquery/jquery.min.js"></script>
+    <script src="/js/jquery/jquery.session.js"></script>
     <script src="/js/login.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
