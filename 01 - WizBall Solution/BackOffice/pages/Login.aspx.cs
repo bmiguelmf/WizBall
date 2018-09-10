@@ -4,10 +4,9 @@ using BusinessLogic.BLL;
 using BusinessLogic.Entities;
 
 
-
 namespace BackOffice.pages
 {
-    public partial class _default : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         private string connString;
         private string apiToken;
@@ -16,9 +15,9 @@ namespace BackOffice.pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            connString = WebConfigurationManager.ConnectionStrings["ConnStringBroHome"].ConnectionString;
+            connString = WebConfigurationManager.ConnectionStrings["ConnStringPasseiraAtec"].ConnectionString;
             apiToken = WebConfigurationManager.AppSettings["ApiToken"];
-            
+
             bll = new BLL(connString, apiToken);
             WebService ws = new WebService();
 
