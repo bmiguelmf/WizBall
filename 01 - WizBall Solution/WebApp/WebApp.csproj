@@ -69,7 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <Content Include="GlobalResourcesAcc\favicon\android-icon-144x144.png" />
     <Content Include="GlobalResourcesAcc\favicon\android-icon-192x192.png" />
     <Content Include="GlobalResourcesAcc\favicon\android-icon-36x36.png" />
@@ -129,10 +128,10 @@
     <Content Include="GlobalResourcesAcc\imgs\teams\portugal\VitoriaGuimaraes.ico" />
     <Content Include="GlobalResourcesAcc\imgs\teams\portugal\VitoriaSetubal.ico" />
     <Content Include="LocalResourcesAcc\ProfilePicture\94b509da-d784-4ee3-b03d-88bb1e005a09.png" />
-    <Content Include="pages\authMain\Login.aspx" />
-    <Content Include="pages\authMain\ProfileEdit.aspx" />
-    <Content Include="pages\authMain\RecoverPassword.aspx" />
-    <Content Include="pages\authMain\Register.aspx" />
+    <Content Include="pages\Login.aspx" />
+    <Content Include="pages\ProfileEdit.aspx" />
+    <Content Include="pages\RecoverPassword.aspx" />
+    <Content Include="pages\Register.aspx" />
     <Content Include="pages\datadeploy.aspx" />
     <Content Include="js\jquery.js" />
     <Content Include="js\js.js" />
@@ -177,6 +176,7 @@
     <Content Include="pages\MainPage - Copy.html" />
     <Content Include="pages\MainPage.aspx" />
     <Content Include="pages\MainPage.html" />
+    <Content Include="pages\Misc\Error.aspx" />
     <Content Include="pages\template.html" />
     <Content Include="styling\bootstrap4.css" />
     <Content Include="styling\customcode.css" />
@@ -188,43 +188,41 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\CompetitionTruncated.cs" />
     <Compile Include="App_Code\GLOBALS.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="pages\authMain\CredMaster.Master.cs">
+    <Compile Include="pages\CredMaster.Master.cs">
       <DependentUpon>CredMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\authMain\CredMaster.Master.designer.cs">
+    <Compile Include="pages\CredMaster.Master.designer.cs">
       <DependentUpon>CredMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="pages\authMain\Login.aspx.cs">
+    <Compile Include="pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\authMain\Login.aspx.designer.cs">
+    <Compile Include="pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\authMain\ProfileEdit.aspx.cs">
+    <Compile Include="pages\ProfileEdit.aspx.cs">
       <DependentUpon>ProfileEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\authMain\ProfileEdit.aspx.designer.cs">
+    <Compile Include="pages\ProfileEdit.aspx.designer.cs">
       <DependentUpon>ProfileEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\authMain\RecoverPassword.aspx.cs">
+    <Compile Include="pages\RecoverPassword.aspx.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\authMain\RecoverPassword.aspx.designer.cs">
+    <Compile Include="pages\RecoverPassword.aspx.designer.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\authMain\Register.aspx.cs">
+    <Compile Include="pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\authMain\Register.aspx.designer.cs">
+    <Compile Include="pages\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\datadeploy.aspx.cs">
@@ -255,6 +253,13 @@
     <Compile Include="pages\master.Master.designer.cs">
       <DependentUpon>master.Master</DependentUpon>
     </Compile>
+    <Compile Include="pages\Misc\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Misc\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,7 +268,7 @@
     <Content Include="styling\fonts\fontawesome-webfont.woff" />
     <Content Include="pages\css\fonts\fontawesome-webfont.woff" />
     <Content Include="pages\master.Master" />
-    <Content Include="pages\authMain\CredMaster.Master" />
+    <Content Include="pages\CredMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -273,7 +278,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="pages\Misc\" />
+    <Folder Include="pages\authMain\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">

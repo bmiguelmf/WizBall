@@ -34,6 +34,7 @@
 
     <!-- jQuery -->
     <script src="../js/jquery.js"></script>
+    <script src="../js/js.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
