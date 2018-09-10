@@ -552,3 +552,6 @@ C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\Bac
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.csproj.CopyComplete
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.dll
 C:\Users\t0110414\Desktop\WizBall\01 - WizBall Solution\BackOffice\obj\Debug\BackOffice.pdb
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.dll
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.pdb
+C:\Users\T0110407\Desktop\repo\WizBall\01 - WizBall Solution\BackOffice\bin\WebServices.dll.config
