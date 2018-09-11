@@ -26,7 +26,7 @@
                                     <br>
                                             <%# DataBinder.Eval(Container.DataItem, "MatchStage") %>
                                     <br>
-                                            <b>Date</b>
+                                            <b><%# DataBinder.Eval(Container.DataItem, "MatchDate") %></b>
                                         </div>
                                         <span class="col-3"><%# DataBinder.Eval(Container.DataItem, "AwayTeamName") %></span>
                                     </div>

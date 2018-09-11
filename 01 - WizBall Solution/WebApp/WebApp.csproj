@@ -176,7 +176,7 @@
     <Content Include="pages\MainPage - Copy.html" />
     <Content Include="pages\MainPage.aspx" />
     <Content Include="pages\MainPage.html" />
-    <Content Include="pages\Misc\Error.aspx" />
+    <Content Include="pages\Error.aspx" />
     <Content Include="pages\template.html" />
     <Content Include="styling\bootstrap4.css" />
     <Content Include="styling\customcode.css" />
@@ -254,11 +254,11 @@
     <Compile Include="pages\master.Master.designer.cs">
       <DependentUpon>master.Master</DependentUpon>
     </Compile>
-    <Compile Include="pages\Misc\Error.aspx.cs">
+    <Compile Include="pages\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\Misc\Error.aspx.designer.cs">
+    <Compile Include="pages\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,6 +280,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="pages\authMain\" />
+    <Folder Include="pages\Misc\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">

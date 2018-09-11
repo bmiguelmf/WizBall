@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BusinessLogic;
-using BusinessLogic.Entities;
+﻿using BusinessLogic.Entities;
 
 namespace WebApp.App_Code
 { //id, hometeam, away team, score, matchday, 
@@ -28,9 +23,10 @@ namespace WebApp.App_Code
         private Score   score;
         private int     matchday;
         private string  matchstage;
+        private string  matchdate;
         #endregion
         #region Constructor
-        public MatchTruncated(string ID, Team HomeTeam, Team AwayTeam, Score score, int? MatchDay, Competition competition, string MatchStage)
+        public MatchTruncated(string ID, Team HomeTeam, Team AwayTeam, Score score, int? MatchDay, Competition competition, string MatchStage, string MatchDate)
         {
             this.id                 = ID;
 
@@ -50,6 +46,7 @@ namespace WebApp.App_Code
             this.score              = score;
             this.matchday           = (int)MatchDay;
             this.matchstage         = MatchStage;
+            this.matchdate          = MatchDate;
         }
         #endregion
         #region HomeTeam Selectors
@@ -130,6 +127,11 @@ namespace WebApp.App_Code
         public string MatchStage
         {
             get { return matchstage; }
+        }
+
+        public string MatchDate
+        {
+            get { return matchdate; }
         }
         #endregion
     }

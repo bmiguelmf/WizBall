@@ -144,7 +144,7 @@ namespace WebApp.pages
                 MatchTArray = new ArrayList();
                 foreach (Match match in matches)
                 {
-                    MatchTArray.Add(new MatchTruncated(match.Id.ToString(), match.HomeTeam, match.AwayTeam, match.Score, match.Matchday, match.Competition, match.Stage));
+                    MatchTArray.Add(new MatchTruncated(match.Id.ToString(), match.HomeTeam, match.AwayTeam, match.Score, match.Matchday, match.Competition, match.Stage, match.UtcDate));
                 }
 
                 MatchRepeater.DataSource = MatchTArray;
