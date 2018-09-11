@@ -96,6 +96,14 @@
     <Content Include="GlobalResourcesAcc\favicon\ms-icon-310x310.png" />
     <Content Include="GlobalResourcesAcc\favicon\ms-icon-70x70.png" />
     <Content Include="GlobalResourcesAcc\imgs\79098031-3d-render-of-a-funny-cartoon-wizard-magician-character-waving-his-wand-at-a-soccer-ball-.jpg" />
+    <Content Include="GlobalResourcesAcc\imgs\competitions\bundesliga.png" />
+    <Content Include="GlobalResourcesAcc\imgs\competitions\championship.png" />
+    <Content Include="GlobalResourcesAcc\imgs\competitions\eredivisie.png" />
+    <Content Include="GlobalResourcesAcc\imgs\competitions\la_liga.png" />
+    <Content Include="GlobalResourcesAcc\imgs\competitions\ligue1.png" />
+    <Content Include="GlobalResourcesAcc\imgs\competitions\premier_league.png" />
+    <Content Include="GlobalResourcesAcc\imgs\competitions\primeira_liga.png" />
+    <Content Include="GlobalResourcesAcc\imgs\competitions\serie_a.png" />
     <Content Include="GlobalResourcesAcc\imgs\favicon.jpg" />
     <Content Include="GlobalResourcesAcc\imgs\fcp.png" />
     <Content Include="GlobalResourcesAcc\imgs\federations\Portugal.ico" />
@@ -128,6 +136,7 @@
     <Content Include="GlobalResourcesAcc\imgs\teams\portugal\VitoriaGuimaraes.ico" />
     <Content Include="GlobalResourcesAcc\imgs\teams\portugal\VitoriaSetubal.ico" />
     <Content Include="LocalResourcesAcc\ProfilePicture\94b509da-d784-4ee3-b03d-88bb1e005a09.png" />
+    <Content Include="pages\bruno_testes.aspx" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\ProfileEdit.aspx" />
     <Content Include="pages\RecoverPassword.aspx" />
@@ -191,6 +200,13 @@
     <Compile Include="App_Code\CompetitionTruncated.cs" />
     <Compile Include="App_Code\GLOBALS.cs" />
     <Compile Include="App_Code\MatchTruncated.cs" />
+    <Compile Include="pages\bruno_testes.aspx.cs">
+      <DependentUpon>bruno_testes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\bruno_testes.aspx.designer.cs">
+      <DependentUpon>bruno_testes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\CredMaster.Master.cs">
       <DependentUpon>CredMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

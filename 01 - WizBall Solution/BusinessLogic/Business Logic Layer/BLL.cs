@@ -365,7 +365,7 @@ namespace BusinessLogic.BLL
             {
                 new Competition() {Id = 2002 },                 // Bundesliga.
                 new Competition() {Id = 2003 },                 // Eredivisie.
-                new Competition() {Id = 2014 },                 // PrimeraDivision.
+                new Competition() {Id = 2014 },                 // LaLiga.
                 new Competition() {Id = 2015 },                 // Ligue1.
                 new Competition() {Id = 2016 },                 // Championship.
                 new Competition() {Id = 2017 },                 // PrimeiraLiga.
