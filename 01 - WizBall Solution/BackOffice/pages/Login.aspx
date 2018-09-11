@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WizBall - Dashborad</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/resources/imgs/icon.ico" />
-    <link href="~/styling/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/styling/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="~/styling/css/style.css" rel="stylesheet" />
-    <link href="~/styling/css/estilos.css" rel="stylesheet" />
-   </head>
+    <link href="~/resources/css/plugins/bootstrap.css" rel="stylesheet" />
+    <link href="~/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/resources/css/style.css" rel="stylesheet" />
+    <link href="~/resources/css/estilos.css" rel="stylesheet" />
+   </head> 
 <body class="gray-bg">
     <div class="animated fadeInDown loginpanel">
         <div class="container">
@@ -53,10 +53,11 @@
             </div>
         </div>
     </div>
-    <script src="/js/jquery/jquery.min.js"></script>
-    <script src="/js/jquery/jquery.session.js"></script>
-    <script src="/js/login.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/resources/js/plugins/jquery.min.js"></script>
+    <script src="/resources/js/plugins/jquery.session.js"></script>
+    <script src="/resources/js/plugins/sweetalert.min.js"></script>
+
+    <script src="/resources/js/login.js"></script>
 </body>
 
 </html>

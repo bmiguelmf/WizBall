@@ -8,11 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Wizball - Utilizadores</title>
+    <title>Wizball - Users</title>
 
-    <link href="~/styling/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/styling/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="~/styling/css/style_all.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/resources/imgs/icon.ico" />
+    <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
+    <link href="/resources/css/style_all.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -21,7 +22,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="Users.aspx">
-               
+
                     <img src="/resources/imgs/logo_with_name.png" />
                 </a>
             </div>
@@ -46,7 +47,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">
                             <span class="avatar avatar-online">
-                                <img src="img/avatar.png" />
+                                <img src="" />
                             </span>
                             <label id="username"></label>
                             <span class="caret"></span>
@@ -221,8 +222,10 @@
                         <div class="col-lg-12">
 
                             <div class="content table-full-width" style="position: relative;">
+
                                 <!-- list/table-->
-                                <table class="table table-hover">
+
+                                <table id="users_table" class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>
@@ -248,14 +251,10 @@
                                                     <img src="img/avatar.png" />
                                                 </span>
                                             </td>
-                                            <td>Tou Bruh
-                                    </td>
-                                            <td>bruh.tou@gmail.com
-                                    </td>
-                                            <td>BLOQUEADO A VERMELHO
-                                    </td>
-                                            <td>NOOP
-                                    </td>
+                                            <td>Tou Bruh</td>
+                                            <td>bruh.tou@gmail.com</td>
+                                            <td>BLOQUEADO A VERMELHO</td>
+                                            <td>NOOP</td>
                                             <td class="st-trigger-effects">
                                                 <a class="" data-effect="st-effect-1" href="">
                                                     <i class="glyphicon glyphicon-eye-open"></i>
@@ -276,13 +275,13 @@
                                                 </span>
                                             </td>
                                             <td>Fds bro
-                                    </td>
+                                            </td>
                                             <td>fds.bro@gmail.com
-                                    </td>
+                                            </td>
                                             <td>APROVADO A VERDE
-                                    </td>
+                                            </td>
                                             <td>ÓBIU
-                                    </td>
+                                            </td>
                                             <td class="st-trigger-effects">
                                                 <a class="" data-effect="st-effect-1" href="">
                                                     <i class="glyphicon glyphicon-eye-open"></i>
@@ -302,7 +301,7 @@
                                     <p class="table-footer">
                                         <a href=""><i class="glyphicon glyphicon-refresh"></i></a>
                                         <span class="pagination">(2-10 de 100)
-										</span>
+                                        </span>
                                         <span class="show-items">Utilizadores por página
 										
                                             <select class="selectpicker">
@@ -337,12 +336,15 @@
         <!-- / conteudo central -->
 
     </div>
-    <script src="/js/jquery/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="/js/jquery/jquery.session.js"></script>
-    <script src="/js/users.js"></script>
-    <script src="js/sidebarEffects.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/resources/js/plugins/jquery.min.js"></script>
+    <script src="/resources/js/plugins/jquery-ui.min.js"></script>
+    <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
+    <script src="/resources/js/plugins/bootstrap.min.js"></script>
+    <script src="/resources/js/plugins/jquery.session.js"></script>
+    <script src="/resources/js/plugins/sidebarEffects.js"></script>
+    <script src="/resources/js/plugins/sweetalert.min.js"></script>
 
+
+    <script src="/resources/js/users.js"></script>
 </body>
 </html>
