@@ -10,7 +10,9 @@
                 <section id="m-a-n">
                     <div class="container">
                         <div class="col-6">
-                            <div class="match">
+                            <div class="match"  style="
+                                            background-color: red; /* for browsers that do not support gradients */
+                                        background-image: linear-gradient(to right, red , yellow); /* standard syntax (must be last) */">
                                 <div class="m-result">
                                     <div class="logo-club col-3">
                                         <img src="../resources/imgs/<%# DataBinder.Eval(Container.DataItem, "HomeTeamFlag") %>.png" alt="" />
@@ -23,9 +25,9 @@
                                         <span class="col-3"><%# DataBinder.Eval(Container.DataItem, "HomeTeamName") %></span>
                                         <div class="match-name col-6">
                                             <%# DataBinder.Eval(Container.DataItem, "CompetitionName") %>
-                                    <br>
+                                            <br>
                                             <%# DataBinder.Eval(Container.DataItem, "MatchStage") %>
-                                    <br>
+                                            <br>
                                             <b><%# DataBinder.Eval(Container.DataItem, "MatchDate") %></b>
                                         </div>
                                         <span class="col-3"><%# DataBinder.Eval(Container.DataItem, "AwayTeamName") %></span>

@@ -4,6 +4,21 @@ namespace WebApp.App_Code
 { //id, hometeam, away team, score, matchday, 
     public class MatchTruncated
     {
+
+        private string ColorPicker(string TeamColorsString)
+        {
+            string Exclusion = " / ";
+            string[] TeamColorsStringArray = TeamColorsString.Split(Exclusion.ToCharArray());
+
+            foreach (string str in TeamColorsStringArray)
+            {
+                if (str == "Black" || str == "White")
+                {
+                }
+            }
+            return TeamColorsStringArray[0];
+        }
+
         #region Variable Definition
         private string  id;
 
@@ -14,11 +29,13 @@ namespace WebApp.App_Code
         private string  hometeamName;
         private string  hometeamShortName;
         private string  hometeamFlag;
+        private string  hometeamColors;
 
         private string  awayteamID;
         private string  awayteamName;
         private string  awayteamShortName;
         private string  awayteamFlag;
+        private string  awayteamColors;
 
         private Score   score;
         private int     matchday;
@@ -37,11 +54,13 @@ namespace WebApp.App_Code
             this.hometeamName       = HomeTeam.Name;
             this.hometeamShortName  = HomeTeam.ShortName;
             this.hometeamFlag       = HomeTeam.Flag;
+            this.hometeamColors     = HomeTeam.ClubColors;
 
             this.awayteamID         = AwayTeam.Id.ToString();
             this.awayteamName       = AwayTeam.Name;
             this.awayteamShortName  = AwayTeam.ShortName;
             this.awayteamFlag       = AwayTeam.Flag;
+            this.awayteamColors     = AwayTeam.ClubColors;
 
             this.score              = score;
             this.matchday           = (int)MatchDay;
@@ -69,6 +88,11 @@ namespace WebApp.App_Code
         {
             get { return hometeamFlag; }
         }
+
+        public string HomeTeamColors
+        {
+            get { return hometeamColors; }
+        }
         #endregion
         #region AwayTeam Selectors
         public string AwayTeamID
@@ -89,6 +113,10 @@ namespace WebApp.App_Code
         public string AwayTeamFlag
         {
             get { return awayteamFlag; }
+        }
+        public string AwayTeamColors
+        {
+            get { return awayteamColors; }
         }
         #endregion
         #region Competition Selectors
