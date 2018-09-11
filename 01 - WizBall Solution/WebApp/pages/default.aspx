@@ -4,37 +4,41 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <section id="Matches">
-        <section id="m-a-n">
-            <div class="container">
-                <div class="col-6">
-                    <div class="match">
-                        <div class="m-result">
-                            <div class="logo-club col-3">
-                                <img src="../resources/imgs/man.png" alt="" />
-                            </div>
-                            <span class="result col-6">0 <b>:</b> 3</span>
-                            <div class="logo-club col-3">
-                                <img src="../resources/imgs/fcp.png" alt="" />
-                            </div>
-                            <div class="club-name col-12">
-                                <span class="col-3">Bayern</span>
-                                <div class="match-name col-6">
-                                    Champions League
+    <asp:Repeater ID="MatchRepeater" runat="server">
+        <ItemTemplate>
+            <section id="Matches">
+                <section id="m-a-n">
+                    <div class="container">
+                        <div class="col-6">
+                            <div class="match">
+                                <div class="m-result">
+                                    <div class="logo-club col-3">
+                                        <img src="../resources/imgs/<%# DataBinder.Eval(Container.DataItem, "HomeTeamFlag") %>.png" alt="" />
+                                    </div>
+                                    <span class="result col-6"><%# DataBinder.Eval(Container.DataItem, "ScoreHomeTeam") %> <b>:</b> <%# DataBinder.Eval(Container.DataItem, "ScoreAwayTeam") %></span>
+                                    <div class="logo-club col-3">
+                                        <img src="../resources/imgs/<%# DataBinder.Eval(Container.DataItem, "AwayTeamFlag") %>.png" alt="" />
+                                    </div>
+                                    <div class="club-name col-12">
+                                        <span class="col-3"><%# DataBinder.Eval(Container.DataItem, "HomeTeamName") %></span>
+                                        <div class="match-name col-6">
+                                            <%# DataBinder.Eval(Container.DataItem, "CompetitionName") %>
                                     <br>
-                                    Semi-final
+                                            <%# DataBinder.Eval(Container.DataItem, "MatchStage") %>
                                     <br>
-                                    <b>25 May 23:00</b>
+                                            <b>Date</b>
+                                        </div>
+                                        <span class="col-3"><%# DataBinder.Eval(Container.DataItem, "AwayTeamName") %></span>
+                                    </div>
                                 </div>
-                                <span class="col-3">Arsenal</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-    </section>
+                </section>
+            </section>
+        </ItemTemplate>
+    </asp:Repeater>
+
 
     <div class="row">
         <div class="form-group">
@@ -45,7 +49,7 @@
                             <div data-toggle="buttons" class="btn-group bizmoduleselect">
                                 <label class="btn btn-default">
                                     <div class="bizcontent">
-                                        <asp:CheckBox Text="All" AutoPostBack="true" ID="AllCompsCB" ClientIDMode="Static" runat="server" />
+                                        <asp:CheckBox Text="All" Checked="true" AutoPostBack="true" ID="AllCompsCB" ClientIDMode="Static" runat="server" />
                                     </div>
                                 </label>
                             </div>

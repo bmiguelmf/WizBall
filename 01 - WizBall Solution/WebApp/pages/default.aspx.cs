@@ -13,21 +13,35 @@ namespace WebApp.pages
 {
     public partial class _default : System.Web.UI.Page
     {
+        
         //private string connString;
         //private string apiToken;
         //private BLL bll;
         ArrayList CompTArray;
+        ArrayList MatchTArray;
         List<Match> matches;
         List<Competition> competitions;
+
+        public List<Competition> GetCompetitionsTierOne()
+        {
+            List<Competition> c = new List<Competition>();
+            foreach (Competition competition in GLOBALS.BllSI.TierOneCompetitions())
+            {
+                c.Add(GLOBALS.BllSI.GetCompetitionById(competition.Id.ToString()));
+            }
+            return c;
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             matches = new List<Match>();
-            competitions = GLOBALS.BllSI.GetAllCompetitions();
+            competitions = GetCompetitionsTierOne();
+            
+            //competitions = GLOBALS.BllSI.GetAllCompetitions();
             List<string> checkedComps = new List<string>();
             Dictionary<string, string> compsKVP = new Dictionary<string, string>();
 
-           
+
 
             //matches.Where(x => x.Competition.Id == 2412 && x.Competition.Id == 1231).ToList();
 
@@ -51,6 +65,10 @@ namespace WebApp.pages
                 compRep.DataBind();
             }
 
+
+            
+
+
             if (Page.IsPostBack)
             {
                 /*foreach (ListItem listItem in compCBList.Items)
@@ -70,6 +88,7 @@ namespace WebApp.pages
                     
                 }*/
             }
+
         }
 
         protected void LoginBtn_Click(object sender, EventArgs e)
@@ -97,11 +116,11 @@ namespace WebApp.pages
             }*/
             if (AllCompsCB.Checked)
             {
-                competitions = GLOBALS.BllSI.GetAllCompetitions();
+                competitions = GetCompetitionsTierOne();
                 foreach (Competition comp in competitions)
                 {
                     matches.AddRange(GLOBALS.BllSI.GetMatchesByCompetition(comp.Id.ToString()));
-                    
+
                 }
             }
             else
@@ -119,6 +138,17 @@ namespace WebApp.pages
                         matches.AddRange(GLOBALS.BllSI.GetMatchesByCompetition(hiddenComp.Value));
                     }
                 }
+            }
+            if (/*matches != null && !matches.Any()*/ true)
+            {
+                MatchTArray = new ArrayList();
+                foreach (Match match in matches)
+                {
+                    MatchTArray.Add(new MatchTruncated(match.Id.ToString(), match.HomeTeam, match.AwayTeam, match.Score, match.Matchday, match.Competition, match.Stage));
+                }
+
+                MatchRepeater.DataSource = MatchTArray;
+                MatchRepeater.DataBind();
             }
 
         }

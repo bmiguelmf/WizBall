@@ -190,6 +190,7 @@
   <ItemGroup>
     <Compile Include="App_Code\CompetitionTruncated.cs" />
     <Compile Include="App_Code\GLOBALS.cs" />
+    <Compile Include="App_Code\MatchTruncated.cs" />
     <Compile Include="pages\CredMaster.Master.cs">
       <DependentUpon>CredMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
