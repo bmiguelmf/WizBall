@@ -13,15 +13,6 @@ namespace WebApp.pages {
     public partial class Register {
         
         /// <summary>
-        /// ProfPic control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload ProfPic;
-        
-        /// <summary>
         /// inputUName control.
         /// </summary>
         /// <remarks>
@@ -65,6 +56,15 @@ namespace WebApp.pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox inputPasswordConf;
+        
+        /// <summary>
+        /// NewsletterChkBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox NewsletterChkBox;
         
         /// <summary>
         /// RegisterBtn control.

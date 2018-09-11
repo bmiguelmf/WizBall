@@ -71,15 +71,19 @@
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery\jquery.js" />
     <Content Include="js\jquery\jquery.min.js" />
+    <Content Include="js\jquery\jquery.session.js" />
     <Content Include="js\jquery\jquery.slim.js" />
     <Content Include="js\jquery\jquery.slim.min.js" />
+    <Content Include="js\users.js" />
     <Content Include="js\login.js" />
     <Content Include="js\js.js" />
     <Content Include="pages\default.aspx" />
     <Content Include="pages\Login.aspx" />
+    <Content Include="pages\Users.aspx" />
     <Content Include="pages\wizball_project\refood2\assiduidade.html" />
     <Content Include="pages\wizball_project\refood2\beneficiarios.html" />
     <Content Include="resources\imgs\icon.ico" />
+    <Content Include="resources\imgs\logo_with_name.png" />
     <Content Include="resources\imgs\panel-login.png" />
     <Content Include="resources\imgs\logo-atec.png" />
     <Content Include="styling\css\animate.css" />
@@ -132,9 +136,9 @@
     <Content Include="styling\css\plugins\images\spritemap.png" />
     <Content Include="styling\css\plugins\morris\morris-0.4.3.min.css" />
     <Content Include="styling\css\plugins\steps\jquery.steps.css" />
-    <Content Include="styling\css\plugins\sweetalert\sweetalert.css" />
     <Content Include="styling\css\plugins\toastr\toastr.min.css" />
     <Content Include="styling\css\style.css" />
+    <Content Include="styling\css\style_all.css" />
     <Content Include="styling\font-awesome\css\font-awesome.css" />
     <Content Include="styling\font-awesome\css\font-awesome.min.css" />
     <Content Include="styling\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -209,6 +213,7 @@
     <Content Include="pages\wizball_project\template02\voluntarios.html" />
     <Content Include="styling\bootstrap4.css" />
     <Content Include="Web.config" />
+    <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="pages\default.aspx.cs">
@@ -232,7 +237,18 @@
     <Compile Include="pages\master.Master.designer.cs">
       <DependentUpon>master.Master</DependentUpon>
     </Compile>
+    <Compile Include="pages\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebService.asmx.cs">
+      <DependentUpon>WebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\jquery\jquery.min.map" />
@@ -292,10 +308,6 @@
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{e167f6af-ab58-46b0-a404-a2ad2d8cbd49}</Project>
       <Name>BusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebServices\WebServices.csproj">
-      <Project>{7e49aadf-dc79-4f0b-98e6-7960f1f2cec7}</Project>
-      <Name>WebServices</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

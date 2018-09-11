@@ -69,6 +69,69 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GlobalResourcesAcc\favicon\android-icon-144x144.png" />
+    <Content Include="GlobalResourcesAcc\favicon\android-icon-192x192.png" />
+    <Content Include="GlobalResourcesAcc\favicon\android-icon-36x36.png" />
+    <Content Include="GlobalResourcesAcc\favicon\android-icon-48x48.png" />
+    <Content Include="GlobalResourcesAcc\favicon\android-icon-72x72.png" />
+    <Content Include="GlobalResourcesAcc\favicon\android-icon-96x96.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-114x114.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-120x120.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-144x144.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-152x152.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-180x180.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-57x57.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-60x60.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-72x72.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-76x76.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon-precomposed.png" />
+    <Content Include="GlobalResourcesAcc\favicon\apple-icon.png" />
+    <Content Include="GlobalResourcesAcc\favicon\browserconfig.xml" />
+    <Content Include="GlobalResourcesAcc\favicon\favicon-16x16.png" />
+    <Content Include="GlobalResourcesAcc\favicon\favicon-32x32.png" />
+    <Content Include="GlobalResourcesAcc\favicon\favicon-96x96.png" />
+    <Content Include="GlobalResourcesAcc\favicon\favicon.ico" />
+    <Content Include="GlobalResourcesAcc\favicon\ms-icon-144x144.png" />
+    <Content Include="GlobalResourcesAcc\favicon\ms-icon-150x150.png" />
+    <Content Include="GlobalResourcesAcc\favicon\ms-icon-310x310.png" />
+    <Content Include="GlobalResourcesAcc\favicon\ms-icon-70x70.png" />
+    <Content Include="GlobalResourcesAcc\imgs\79098031-3d-render-of-a-funny-cartoon-wizard-magician-character-waving-his-wand-at-a-soccer-ball-.jpg" />
+    <Content Include="GlobalResourcesAcc\imgs\favicon.jpg" />
+    <Content Include="GlobalResourcesAcc\imgs\fcp.png" />
+    <Content Include="GlobalResourcesAcc\imgs\federations\Portugal.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\football.jpg" />
+    <Content Include="GlobalResourcesAcc\imgs\headerBG.jpg" />
+    <Content Include="GlobalResourcesAcc\imgs\man.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\AcademicaCoimbra.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\BeiraMar.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Belenenses.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Benfica.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Boavista.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Chaves.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\DesportivoAves.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\EstrelaAmadora.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Feirense.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Leixoes.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Maritimo.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Moreirense.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Nacional.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\NavalMaio.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\PacosFerreira.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Portimonense.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Porto.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\RioAve.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\SantaClara.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\SportingBraga.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\SportingLisbon.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\Tondela.png" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\UniaoLeiria.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\VitoriaGuimaraes.ico" />
+    <Content Include="GlobalResourcesAcc\imgs\teams\portugal\VitoriaSetubal.ico" />
+    <Content Include="LocalResourcesAcc\ProfilePicture\94b509da-d784-4ee3-b03d-88bb1e005a09.png" />
+    <Content Include="pages\Login.aspx" />
+    <Content Include="pages\ProfileEdit.aspx" />
+    <Content Include="pages\RecoverPassword.aspx" />
+    <Content Include="pages\Register.aspx" />
     <Content Include="pages\datadeploy.aspx" />
     <Content Include="js\jquery.js" />
     <Content Include="js\js.js" />
@@ -110,85 +173,24 @@
     <Content Include="pages\js\libs\jquery.flexslider-min.js" />
     <Content Include="pages\js\libs\modernizr-2.5.3.min.js" />
     <Content Include="pages\js\scripts.js" />
-    <Content Include="pages\Login.aspx" />
     <Content Include="pages\MainPage - Copy.html" />
     <Content Include="pages\MainPage.aspx" />
     <Content Include="pages\MainPage.html" />
-    <Content Include="pages\Register.aspx" />
+    <Content Include="pages\Misc\Error.aspx" />
     <Content Include="pages\template.html" />
-    <Content Include="resources\favicon\android-icon-144x144.png" />
-    <Content Include="resources\favicon\android-icon-192x192.png" />
-    <Content Include="resources\favicon\android-icon-36x36.png" />
-    <Content Include="resources\favicon\android-icon-48x48.png" />
-    <Content Include="resources\favicon\android-icon-72x72.png" />
-    <Content Include="resources\favicon\android-icon-96x96.png" />
-    <Content Include="resources\favicon\apple-icon-114x114.png" />
-    <Content Include="resources\favicon\apple-icon-120x120.png" />
-    <Content Include="resources\favicon\apple-icon-144x144.png" />
-    <Content Include="resources\favicon\apple-icon-152x152.png" />
-    <Content Include="resources\favicon\apple-icon-180x180.png" />
-    <Content Include="resources\favicon\apple-icon-57x57.png" />
-    <Content Include="resources\favicon\apple-icon-60x60.png" />
-    <Content Include="resources\favicon\apple-icon-72x72.png" />
-    <Content Include="resources\favicon\apple-icon-76x76.png" />
-    <Content Include="resources\favicon\apple-icon-precomposed.png" />
-    <Content Include="resources\favicon\apple-icon.png" />
-    <Content Include="resources\favicon\browserconfig.xml" />
-    <Content Include="resources\favicon\favicon-16x16.png" />
-    <Content Include="resources\favicon\favicon-32x32.png" />
-    <Content Include="resources\favicon\favicon-96x96.png" />
-    <Content Include="resources\favicon\favicon.ico" />
-    <Content Include="resources\favicon\ms-icon-144x144.png" />
-    <Content Include="resources\favicon\ms-icon-150x150.png" />
-    <Content Include="resources\favicon\ms-icon-310x310.png" />
-    <Content Include="resources\favicon\ms-icon-70x70.png" />
-    <Content Include="resources\imgs\79098031-3d-render-of-a-funny-cartoon-wizard-magician-character-waving-his-wand-at-a-soccer-ball-.jpg" />
-    <Content Include="resources\imgs\favicon.jpg" />
-    <Content Include="resources\imgs\fcp.png" />
-    <Content Include="resources\imgs\federations\Portugal.ico" />
-    <Content Include="resources\imgs\football.jpg" />
-    <Content Include="resources\imgs\headerBG.jpg" />
-    <Content Include="resources\imgs\man.png" />
-    <Content Include="resources\imgs\teams\portugal\AcademicaCoimbra.ico" />
-    <Content Include="resources\imgs\teams\portugal\BeiraMar.ico" />
-    <Content Include="resources\imgs\teams\portugal\Belenenses.ico" />
-    <Content Include="resources\imgs\teams\portugal\Benfica.ico" />
-    <Content Include="resources\imgs\teams\portugal\Boavista.ico" />
-    <Content Include="resources\imgs\teams\portugal\Chaves.png" />
-    <Content Include="resources\imgs\teams\portugal\DesportivoAves.png" />
-    <Content Include="resources\imgs\teams\portugal\EstrelaAmadora.ico" />
-    <Content Include="resources\imgs\teams\portugal\Feirense.png" />
-    <Content Include="resources\imgs\teams\portugal\Leixoes.ico" />
-    <Content Include="resources\imgs\teams\portugal\Maritimo.ico" />
-    <Content Include="resources\imgs\teams\portugal\Moreirense.png" />
-    <Content Include="resources\imgs\teams\portugal\Nacional.ico" />
-    <Content Include="resources\imgs\teams\portugal\NavalMaio.ico" />
-    <Content Include="resources\imgs\teams\portugal\PacosFerreira.ico" />
-    <Content Include="resources\imgs\teams\portugal\Portimonense.png" />
-    <Content Include="resources\imgs\teams\portugal\Porto.ico" />
-    <Content Include="resources\imgs\teams\portugal\RioAve.png" />
-    <Content Include="resources\imgs\teams\portugal\SantaClara.png" />
-    <Content Include="resources\imgs\teams\portugal\SportingBraga.ico" />
-    <Content Include="resources\imgs\teams\portugal\SportingLisbon.ico" />
-    <Content Include="resources\imgs\teams\portugal\Tondela.png" />
-    <Content Include="resources\imgs\teams\portugal\UniaoLeiria.ico" />
-    <Content Include="resources\imgs\teams\portugal\VitoriaGuimaraes.ico" />
-    <Content Include="resources\imgs\teams\portugal\VitoriaSetubal.ico" />
     <Content Include="styling\bootstrap4.css" />
     <Content Include="styling\customcode.css" />
     <Content Include="styling\font-awesome.css" />
     <Content Include="styling\signin.css" />
     <Content Include="styling\general.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\datadeploy.aspx.cs">
-      <DependentUpon>datadeploy.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\datadeploy.aspx.designer.cs">
-      <DependentUpon>datadeploy.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="App_Code\CompetitionTruncated.cs" />
+    <Compile Include="App_Code\GLOBALS.cs" />
+    <Compile Include="App_Code\MatchTruncated.cs" />
     <Compile Include="pages\CredMaster.Master.cs">
       <DependentUpon>CredMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,19 +198,47 @@
     <Compile Include="pages\CredMaster.Master.designer.cs">
       <DependentUpon>CredMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="pages\default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ProfileEdit.aspx.cs">
+      <DependentUpon>ProfileEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ProfileEdit.aspx.designer.cs">
+      <DependentUpon>ProfileEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\RecoverPassword.aspx.cs">
+      <DependentUpon>RecoverPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\RecoverPassword.aspx.designer.cs">
+      <DependentUpon>RecoverPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\datadeploy.aspx.cs">
+      <DependentUpon>datadeploy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\datadeploy.aspx.designer.cs">
+      <DependentUpon>datadeploy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
@@ -224,22 +254,22 @@
     <Compile Include="pages\master.Master.designer.cs">
       <DependentUpon>master.Master</DependentUpon>
     </Compile>
-    <Compile Include="pages\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
+    <Compile Include="pages\Misc\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
+    <Compile Include="pages\Misc\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GlobalResourcesAcc\favicon\manifest.json" />
     <None Include="packages.config" />
     <Content Include="styling\fonts\fontawesome-webfont.woff" />
-    <Content Include="pages\CredMaster.Master" />
     <Content Include="pages\css\fonts\fontawesome-webfont.woff" />
     <Content Include="pages\master.Master" />
-    <Content Include="resources\favicon\manifest.json" />
+    <Content Include="pages\CredMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -247,7 +277,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="pages\authMain\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{e167f6af-ab58-46b0-a404-a2ad2d8cbd49}</Project>

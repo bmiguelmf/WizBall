@@ -4,14 +4,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <img class="mb-4" src="../resources/imgs/favicon.jpg" alt="" width="72" height="72" />
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <asp:fileupload id="ProfPic" runat="server"></asp:fileupload>
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>1
 
     <!-- USERNAME -->
     <label for="inputUName" class="sr-only">Username</label>
     <asp:textbox textmode="SingleLine" cssclass="form-control" clientidmode="Static" id="inputUName" runat="server" placeholder="Username" required="" autofocus=""></asp:textbox>
-    <asp:regularexpressionvalidator id="RegularExpressionValidatorStreet" runat="server" errormessage="This is wrong!" validationexpression="^[a-zA-Z\s][0-9]$" controltovalidate="streettxt"></asp:regularexpressionvalidator>
+    <!--<asp:regularexpressionvalidator id="RegularExpressionValidatorStreet" runat="server" errormessage="This is wrong!" validationexpression="^[a-z0-9_-]{3,15}$" controltovalidate="inputUName"></asp:regularexpressionvalidator>-->
     
+    <!-- ^[a-zA-Z\s][0-9]$ -->
+
     <!-- E-MAIL -->
     <label for="inputEmail" class="sr-only">Email address</label>
     <asp:textbox textmode="SingleLine" cssclass="form-control" clientidmode="Static" id="inputEmail" runat="server" placeholder="Email address" required="" autofocus="" autocompletetype="Email"></asp:textbox>
@@ -24,8 +25,11 @@
     <label for="inputPasswordConf" class="sr-only">Password</label>
     <asp:textbox textmode="Password" cssclass="form-control" clientidmode="Static" id="inputPasswordConf" runat="server" placeholder="Confirm Password" required=""></asp:textbox>
 
+    <!-- NEWSLETTER CHECKBUTTON --> 
+    <asp:CheckBox Text="Subscribe Newsletter" ID="NewsletterChkBox" ClientIDMode="Static" Checked="true" runat="server" />
+    
     <!-- CONFIRM SIGN-UP -->
-    <asp:button cssclass="btn btn-lg btn-primary btn-block btn-dark" id="RegisterBtn" runat="server" text="Resgister" onclick="RegisterBtn_Click" />
+    <asp:button cssclass="btn btn-lg btn-primary btn-block btn-dark" id="RegisterBtn" runat="server" text="Register" onclick="RegisterBtn_Click" />
 
 
     <p class="mt-5 mb-3 text-muted">© 2017-2018</p>

@@ -1,24 +1,23 @@
 ﻿body {
 }
 
- .navbar-nav {
-      flex-direction: row;
-    }
-    
-    .nav-link {
-      padding-right: .5rem !important;
-      padding-left: .5rem !important;
-    }
-    
-    /* Fixes dropdown menus placed on the right side */
-    .ml-auto .dropdown-menu {
-      left: auto !important;
-      right: 0px;
-    }
+.navbar-nav {
+    flex-direction: row;
+}
 
-    @media (min-width: 768px) {
-.navbar-brand.abs
-    {
+.nav-link {
+    padding-right: .5rem !important;
+    padding-left: .5rem !important;
+}
+
+/* Fixes dropdown menus placed on the right side */
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+}
+
+@media (min-width: 768px) {
+    .navbar-brand.abs {
         position: absolute;
         width: 100%;
         left: 0;
@@ -26,11 +25,67 @@
     }
 }
 
-.headerBG, .headerBG img{
+.headerBG, .headerBG img {
     width: 100%;
     max-height: 150px;
-
 }
 
-.navbar {
+/**/.navbar {
+}*
+
+.compCBList input[type=checkbox] {
+    display: none;
+    text-decoration: none;
 }
+
+    .compCBList input[type=checkbox] + label {
+        background: #999;
+        height: 16px;
+        width: 16px;
+        display: inline-block;
+        padding: 0 0 0 0px;
+    }
+
+    .compCBList input[type=checkbox]:checked + label {
+        background: #0080FF;
+        height: 16px;
+        width: 16px;
+        display: inline-block;
+        padding: 0 0 0 0px;
+    }
+
+    .input-inline {
+        display: inline;
+    }
+
+.searchable-container {
+    margin: 20px 0 0 0
+}
+
+    .searchable-container label.btn-default.active {
+        background-color: #007ba7;
+        color: #FFF
+    }
+
+    .searchable-container label.btn-default {
+        width: 90%;
+        border: 1px solid #efefef;
+        margin: 5px;
+        box-shadow: 5px 8px 8px 0 #ccc;
+    }
+
+    .searchable-container label .bizcontent {
+        width: 100%;
+    }
+
+    .searchable-container .btn-group {
+        width: 90%
+    }
+
+    .searchable-container .btn span.glyphicon {
+        opacity: 0;
+    }
+
+    .searchable-container .btn.active span.glyphicon {
+        opacity: 1;
+    }

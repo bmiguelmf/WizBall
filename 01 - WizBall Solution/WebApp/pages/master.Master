@@ -1,4 +1,4 @@
-﻿<%@ master language="C#" autoeventwireup="true" codebehind="master.master.cs" inherits="WebApp.pages.master" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="master.master.cs" Inherits="WebApp.pages.master" %>
 
 <!DOCTYPE html>
 
@@ -34,6 +34,7 @@
 
     <!-- jQuery -->
     <script src="../js/jquery.js"></script>
+    <script src="../js/js.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -64,6 +65,7 @@
                         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
                             <li class="nav-item">
                                 <asp:Button ID="LoginBtn" CssClass="btn btn-light nav-link" runat="server" Text="Login" OnClick="LoginBtn_Click" />
+                                <!--<asp:HyperLink NavigateUrl="~/Home"></asp:HyperLink>-->
                             </li>
                             <li class="nav-item">
                                 <asp:Button ID="RegisterBtn" CssClass="btn btn-light nav-link" runat="server" Text="Register" OnClick="RegisterBtn_Click" />
@@ -72,14 +74,15 @@
                     </asp:Panel>
 
                     <asp:Panel ID="Sess" runat="server">
-                        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-                            <li class="nav-item">
-                                <div class="btn btn-light nav-link">
-                                    <asp:Button ID="ProfBtn" runat="server" Text="" OnClick="ProfBtn_Click" />
-                                    <asp:ImageButton ID="ProfileImg" runat="server" OnClick="ProfileImg_Click" />
-                                </div>
-                            </li>
-                        </ul>
+                        <li class="nav-item dropdown justify-content-end">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <asp:Label ID="ProfLbl" ClientIDMode="Static" Text="" runat="server" /><asp:Image ImageUrl="" ID="ProfImg" ClientIDMode="Static" runat="server" /></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <asp:Button Text="Editar Perfil" ID="ProfEdit" ClientIDMode="Static" runat="server" OnClick="ProfBtn_Click" />
+                                <div class="dropdown-divider"></div>
+                                <asp:Button Text="Logout" ID="Logout" ClientIDMode="Static" OnClick="Logout_Click" runat="server" />
+                            </div>
+                        </li>
                     </asp:Panel>
 
                 </nav>

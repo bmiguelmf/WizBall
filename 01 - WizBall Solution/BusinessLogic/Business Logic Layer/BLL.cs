@@ -359,7 +359,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        private List<Competition> TierOneCompetitions()
+        public List<Competition> TierOneCompetitions()
         {
             return new List<Competition>()                         
             {

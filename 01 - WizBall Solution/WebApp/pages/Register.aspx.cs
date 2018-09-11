@@ -7,54 +7,73 @@ using System.Web.UI.WebControls;
 using BusinessLogic.BLL;
 using BusinessLogic.Entities;
 using System.IO;
+using System.Collections.Generic;
+using System.Web.Configuration;
+using WebApp.App_Code;
+using System.Text.RegularExpressions;
+using BusinessLogic.Entities;
 
 namespace WebApp.pages
 {
     public partial class Register : System.Web.UI.Page
     {
-        // BLL bll = new BLL();
+        Regex rEX;
+        
+        //private string connString;
+        //private string apiToken;
+        //private BLL bll;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //connString = WebConfigurationManager.ConnectionStrings["ConnStringJoaoHome"].ConnectionString;
+            //apiToken = WebConfigurationManager.AppSettings["ApiToken"];
+            //bll = new BLL(connString, apiToken);
             ErrorP.Visible = false;
+            rEX = new Regex(@"^(?=.{3,15}$)(?:(?:\p{L}|\p{N})[._()\[\]-]?)*$");
         }
 
         protected void RegisterBtn_Click(object sender, EventArgs e)
         {
-            Dictionary<string, bool> success = new Dictionary<string, bool>();
             if (
-                (inputUName.Text != string.Empty && inputUName.Text != null) &&
-                (inputPassword.Text != string.Empty && inputPassword.Text != null) &&
-                (inputPasswordConf.Text != string.Empty && inputPasswordConf.Text != null) &&
-                (inputEmail.Text != string.Empty && inputEmail.Text != null)
+                string.IsNullOrEmpty(inputUName.Text) &&
+                !rEX.IsMatch(inputUName.Text) &&
+                string.IsNullOrEmpty(inputPassword.Text) &&
+                string.IsNullOrEmpty(inputPasswordConf.Text) &&
+                string.IsNullOrEmpty(inputEmail.Text)
             )
+            {
+                ErrorL.Text += "Invalid Username! <br />";
+                ErrorP.Visible = true;
+            }
+            else
             {
                 if (inputPassword.Text == inputPasswordConf.Text)
                 {
-                    
-                    User user = new User();
 
+                    User user = new User();
+                    UserHistory userHistory = new UserHistory();
                     user.Email = inputEmail.Text;
                     user.Username = inputUName.Text;
                     user.Password = inputPassword.Text;
-                    if (ProfPic.HasFile)
+                    if (NewsletterChkBox.Checked)
                     {
-                        try
-                        {
-                            string filename = user.Username;
-                            ProfPic.SaveAs(Server.MapPath("~/") + filename);
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorL.Text = "Upload status: The file could not be uploaded. The following error occured: " + ex.Message;
-                            ErrorP.Visible = true;
-                        }
+                        user.Newsletter = true;
                     }
+                    
+                    userHistory.CreatedAt = DateTime.Now.ToUniversalTime();
+                    userHistory.User = user;
 
-                    //bll.InsertUser(user);
+                    GLOBALS.BllSI.InsertUser(user);
+
+                    GLOBALS.BllSI.InsertUserHistory(userHistory);
+
+                    Session["bool"] = "true";
+                    Session["User"] = user;
                     Response.Redirect("default.aspx");
-                } else
+                }
+                else
                 {
-                    ErrorL.Text = "The Passwords<strong>do not </ strong > match!"; 
+
+                    ErrorL.Text = "The Passwords<strong> do not </ strong > match! <br />";
                     ErrorP.Visible = true;
                 }
 
