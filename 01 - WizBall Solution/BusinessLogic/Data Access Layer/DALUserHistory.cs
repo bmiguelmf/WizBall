@@ -26,7 +26,7 @@ namespace BusinessLogic.DAL
         }
         public UserHistory GetCurrentByUserId(string UserId)
         {
-            return GetWhere(new UserHistory(), new List<DbWhere>()
+            List<UserHistory> history = GetWhere(new UserHistory(), new List<DbWhere>()
                                                {
                                                     new DbWhere()
                                                     {
@@ -38,7 +38,9 @@ namespace BusinessLogic.DAL
                                                })
 
                             .Cast<UserHistory>().ToList()
-                            .OrderByDescending(x => x.CreatedAt).ToList()[0] ;
+                            .OrderByDescending(x => x.CreatedAt).ToList();
+
+            return history.Count > 0 ? history[0] : null;
         }
 
         // INSERTS.

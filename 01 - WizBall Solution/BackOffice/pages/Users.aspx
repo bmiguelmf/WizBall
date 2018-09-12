@@ -230,114 +230,17 @@
                                 <table id="users_table" class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <input type="checkbox" /></th>
-                                            <th>Photo</th>
-                                            <th><a class="order-by-desc" href="">Username <i
-                                                class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th><a class="order-by-desc" href="">E-mail <i
-                                                class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th><a class="order-by-desc" href="">Status <i
-                                                class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th><a class="order-by-desc" href="">Newsletter <i
-                                                class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th>Action</th>
+                                            <th style="width:8%;" class="text-center"><input type="checkbox"/></th>
+                                            <th style="width:10%;">Photo</th>
+                                            <th style="width:17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width:29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width:13%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width:13%;"><a class="order-by-desc">Newsletter<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width:10%;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="users_table_body">
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
-                                            <td>
-                                                <span class="avatar avatar-online">
-                                                    <img src="img/avatar.png" />
-                                                </span>
-                                            </td>
-                                            <td>Tou Bruh1</td>
-                                            <td>bruh.tou@gmail.com</td>
-                                            <td>BLOQUEADO A VERMELHO</td>
-                                            <td>NOOP</td>
-                                            <td class="st-trigger-effects">
-                                                <a class="btn_edit" data-effect="st-effect-1">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
-                                            <td>
-                                                <span class="avatar avatar-online">
-                                                    <img src="img/avatar.png" />
-                                                </span>
-                                            </td>
-                                            <td>Tou Bruh2</td>
-                                            <td>bruh.tou@gmail.com</td>
-                                            <td>BLOQUEADO A VERMELHO</td>
-                                            <td>NOOP</td>
-                                            <td class="st-trigger-effects">
-                                                <a class="btn_edit" data-effect="st-effect-1">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
-                                            <td>
-                                                <span class="avatar avatar-online">
-                                                    <img src="img/avatar.png" />
-                                                </span>
-                                            </td>
-                                            <td>Tou Bruh3</td>
-                                            <td>bruh.tou@gmail.com</td>
-                                            <td>BLOQUEADO A VERMELHO</td>
-                                            <td>NOOP</td>
-                                            <td class="st-trigger-effects">
-                                                <a class="btn_edit" data-effect="st-effect-1">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
-                                            <td>
-                                                <span class="avatar avatar-online">
-                                                    <img src="img/avatar.png" />
-                                                </span>
-                                            </td>
-                                            <td>Tou Bruh4</td>
-                                            <td>bruh.tou@gmail.com</td>
-                                            <td>BLOQUEADO A VERMELHO</td>
-                                            <td>NOOP</td>
-                                           <td class="st-trigger-effects">
-                                                <a class="btn_edit" data-effect="st-effect-1">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
-                                            <td>
-                                                <span class="avatar avatar-online">
-                                                    <img src="img/avatar.png" />
-                                                </span>
-                                            </td>
-                                            <td>Tou Bruh5</td>
-                                            <td>bruh.tou@gmail.com</td>
-                                            <td>BLOQUEADO A VERMELHO</td>
-                                            <td>NOOP</td>
-                                            <td class="st-trigger-effects">
-                                                <a class="btn_edit" data-effect="st-effect-1">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
                                     </tbody>
-                                    <div class="col-lg-2 col-xs-12">
-                                    </div>
                                 </table>
                             </div>
                         </div>

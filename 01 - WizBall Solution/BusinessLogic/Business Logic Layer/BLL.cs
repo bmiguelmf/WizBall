@@ -566,6 +566,7 @@ namespace BusinessLogic.BLL
             DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
             UserHistory userHistory = dalUserHistory.GetCurrentByUserId(UserId);
 
+            if (userHistory is null) return null;
 
             DALUsers dalUsers = new DALUsers(connectionString);
             DALAdmins dalAdmin = new DALAdmins(connectionString);
