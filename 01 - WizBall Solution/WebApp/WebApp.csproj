@@ -192,6 +192,7 @@
     <Content Include="styling\font-awesome.css" />
     <Content Include="styling\signin.css" />
     <Content Include="styling\general.css" />
+    <Content Include="styling\style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

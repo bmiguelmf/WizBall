@@ -25,7 +25,7 @@ namespace BusinessLogic.BLL
        
 
         // UTILITIES
-        private DateTime? NormalizeApiDateTime(string Datetime)
+        public DateTime? NormalizeApiDateTime(string Datetime)
         {
             if (string.IsNullOrEmpty(Datetime))
                 return null;
