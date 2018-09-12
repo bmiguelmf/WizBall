@@ -7,11 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WizBall - Dashborad</title>
-    <link rel="shortcut icon" type="image/x-icon" href="~/resources/imgs/icon.ico" />
-    <link href="~/resources/css/plugins/bootstrap.css" rel="stylesheet" />
-    <link href="~/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/resources/css/style.css" rel="stylesheet" />
-    <link href="~/resources/css/estilos.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="/resources/imgs/icon.ico" />
+    <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
+    <link href="/resources/css/style.css" rel="stylesheet" />
+    <link href="/resources/css/estilos.css" rel="stylesheet" />
    </head> 
 <body class="gray-bg">
     <div class="animated fadeInDown loginpanel">
@@ -22,9 +22,8 @@
                         <div class="middle-box text-center loginscreen animated fadeInDown">
                             <div>
                                 <h2>WizBall Dashboard</h2>
-                                <p>
-                                    Aqui é feita toda a gestão do <a href="https://google.pt">nosso site</a> para que tenhas os melhores resultados nas tuas apostas!<br />
-                                </p>
+                                <%--<p>Aqui é feita toda a gestão do <a href="https://google.pt">nosso site</a> para que tenhas os melhores resultados nas tuas apostas!<br /></p>--%>
+                                <p>Here we work on <a href="https://google.pt">Wizball website</a> maintenance so you can obtain the best results in your bets!</p>
                                 <form name="login" method="post" class="m-t" role="form">
                                     <div class="form-group">
                                         <label for="username" hidden="hidden" class="col-sm-2 control-label">Username</label>

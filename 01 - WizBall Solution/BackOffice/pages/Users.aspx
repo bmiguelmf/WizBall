@@ -10,7 +10,7 @@
 
     <title>Wizball - Users</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="~/resources/imgs/icon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/resources/imgs/icon.ico" />
     <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
     <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
     <link href="/resources/css/style_all.css" rel="stylesheet" />
@@ -35,14 +35,22 @@
             </button>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">JOGOS</a></li>
-                    <li><a href="#">EXEMPLO</a></li>
-                    <li class="active"><a>UTILIZADORES</a></li>
-                    <li><a href="#">EXEMPLO</a></li>
-                    <li><a href="#">EXEMPLO</a></li>
+                    <!-- Aqui vai ter as tabelas para alteração de dados e o sync -->
+                    <li><a href="#">DATA MANAGEMENT</a></li>
+
+                    <!-- Aqui vai ter uma tabela dos users e o admin vai poder fazer a gestão dos mesmos -->
+                    <li class="active"><a>USERS</a></li>
+
+                    <!-- Aqui vai ter uma tabela dos users que se registaram recentemente e ainda não foram aceites -->
+                    <!-- e o admin vai poder garantir ou negar o acesso ao Website -->
+                    <li><a href="#">USER REQUESTS</a></li>
+
+                    <!-- Aqui vai ser feita toda a gestão de newletter -->
+                    <li><a href="#">NEWSLETTER</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <!--<li><a href=""><i class="glyphicon glyphicon-bell"></i></a></li>-->
+                    <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
+                    <li><a href=""><i class="glyphicon glyphicon-bell"></i></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">
@@ -235,14 +243,14 @@
                                                 class="glyphicon glyphicon-chevron-down"></i></a></th>
                                             <th><a class="order-by-desc" href="">E-mail <i
                                                 class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th><a class="order-by-desc" href="">Estado <i
+                                            <th><a class="order-by-desc" href="">Status <i
                                                 class="glyphicon glyphicon-chevron-down"></i></a></th>
                                             <th><a class="order-by-desc" href="">Newsletter <i
                                                 class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th colspan="2">Ações</th>
+                                            <th colspan="2">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="users_table_body">
                                         <tr>
                                             <td>
                                                 <input type="checkbox" /></td>
@@ -266,33 +274,7 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
-                                            <td>
-                                                <span class="avatar avatar-online">
-                                                    <img src="img/avatar.png" />
-                                                </span>
-                                            </td>
-                                            <td>Fds bro
-                                            </td>
-                                            <td>fds.bro@gmail.com
-                                            </td>
-                                            <td>APROVADO A VERDE
-                                            </td>
-                                            <td>ÓBIU
-                                            </td>
-                                            <td class="st-trigger-effects">
-                                                <a class="" data-effect="st-effect-1" href="">
-                                                    <i class="glyphicon glyphicon-eye-open"></i>
-                                                </a>
-                                            </td>
-                                            <td class="st-trigger-effects">
-                                                <a class="" data-effect="st-effect-1" href="">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                                 <!-- / list/table-->
