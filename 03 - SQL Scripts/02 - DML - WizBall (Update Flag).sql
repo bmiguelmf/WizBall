@@ -123,13 +123,81 @@ update teams set flag = 'stuttgart.ico' where id= 10;
 update teams set flag = 'wolfsburg.ico' where id= 11;
 
 
+-- Teams Italy
+update teams set flag = 'chievo_verona.ico' where id= 106;
+update teams set flag = 'ac_milan.ico' where id= 98;
+update teams set flag = 'fiorentina.ico' where id= 99;
+update teams set flag = 'as_roma.ico' where id= 100;
+update teams set flag = 'atalanta.ico' where id= 102;
+update teams set flag = 'bologna.ico' where id= 103;
+update teams set flag = 'cagliari.ico' where id= 104;
+update teams set flag = 'empoli.ico' where id= 445;
+update teams set flag = 'internazionale.ico' where id= 108;
+update teams set flag = 'frosinone_calcio.png' where id= 470;
+update teams set flag = 'genoa.ico' where id= 107;
+update teams set flag = 'juventus.ico' where id= 109;
+update teams set flag = 'ac_parma.ico' where id= 112;
+update teams set flag = 'spal.png' where id= 1107;
+update teams set flag = 'lazio.ico' where id= 113;
+update teams set flag = 'napoli.ico' where id= 103;
+update teams set flag = 'torino.ico' where id= 586;
+update teams set flag = 'sampdoria.ico' where id= 584;
+update teams set flag = 'udinese.ico' where id= 115;
+update teams set flag = 'sassuolo.png' where id= 471;
+
+-- Teams France
+update teams set flag = 'nantes_atlantique.ico' where id= 543;
+update teams set flag = 'ogc_nice.ico' where id= 522;
+update teams set flag = 'paris_saint_germain.ico' where id= 524;
+update teams set flag = 'toulouse.ico' where id= 511;
+update teams set flag = 'montpellier.ico' where id= 518;
+update teams set flag = 'olumpique_marseille.ico' where id= 516;
+update teams set flag = 'lille.ico' where id= 521;
+update teams set flag = 'olympique_lyonnais.ico' where id= 523;
+update teams set flag = 'girordins_bordeaux.ico' where id= 526;
+update teams set flag = 'saint_etienne.ico' where id= 527;
+update teams set flag = 'dfco.png' where id= 528;
+update teams set flag = 'stade_rennais_1901.ico' where id= 529;
+update teams set flag = 'angers.ico' where id= 532;
+update teams set flag = 'en_avant_guingamp.ico' where id= 538;
+update teams set flag = 'stade_reims.ico' where id= 547;
+update teams set flag = 'caen.ico' where id= 514;
+update teams set flag = 'monaco.ico' where id= 548;
+update teams set flag = 'olympique_nimes.ico' where id= 556;
+update teams set flag = 'monaco.ico' where id= 548;
+update teams set flag = 'amiens.png' where id= 530;
+update teams set flag = 'alsace.ico' where id= 576;
+
+
+-- Teams Netherlands
+update teams set flag = 'ado_den_haag.ico' where id= 680;
+update teams set flag = 'ajax.ico' where id= 678;
+update teams set flag = 'az_alkmaar.ico' where id= 682;
+update teams set flag = 'emmen.png' where id= 1914;
+update teams set flag = 'montpellier.ico' where id= 518;
+update teams set flag = 'groningen.ico' where id= 677;
+update teams set flag = 'utrecht.ico' where id= 676;
+update teams set flag = 'feyenoord.ico' where id= 675;
+update teams set flag = 'fortuna.png' where id= 1920;
+update teams set flag = 'heracles_almelo.ico' where id= 671;
+update teams set flag = 'nac_breda.ico' where id= 681;
+update teams set flag = 'pec_zwolle.png' where id= 684;
+update teams set flag = 'psv_eindhoven.ico' where id= 674;
+update teams set flag = 'excelsior.ico' where id= 670;
+update teams set flag = 'vitesse.ico' where id= 679;
+update teams set flag = 'heerenveen.ico' where id= 673;
+update teams set flag = 'graafschap.ico' where id= 1913;
+update teams set flag = 'venlo.ico' where id= 668;
+update teams set flag = 'willem_tilburg.ico' where id= 672;
+
+
 
 select * from teams
 inner join areas on teams.area_id = areas.id
 inner join competitions on competitions.area_id = areas.id
-where areas.id = 2088 and competitions.id = 2002
+where areas.id = 2163 and competitions.id = 2003 
 order by teams.name
 
 select * from areas
 
-select * from competitions where id = 2002 
+select * from competitions where id = 2003 
