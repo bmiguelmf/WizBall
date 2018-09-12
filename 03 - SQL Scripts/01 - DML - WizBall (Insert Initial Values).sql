@@ -27,7 +27,11 @@ insert into users values('one', 'fds@po.caralho.pt', '123', default, default, ge
 
 
 -- USERS HISTORY
-);
+insert into user_history values(1, 1, 1, 1, 'Registration', getdate());
+insert into user_history values(1, 11, 1, 1, 'Registration', getdate());
+insert into user_history values(1, 21, 1, 1, 'Registration', getdate());
+insert into user_history values(1, 31, 1, 1, 'Registration', getdate());
+insert into user_history values(1, 41, 1, 1, 'Registration', getdate());
 
 
 
