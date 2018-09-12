@@ -5,14 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+
+    <link rel="stylesheet" href="../styling/bootstrap4.css" />
+    <link href="../styling/style.css" rel="stylesheet" />
 </head>
-<body>
-    <form id="frmMain" runat="server">
+<body class="bg-light">
+     <div class="container ">
+        <form id="frmMain" runat="server">
         
 
 
-        <asp:PlaceHolder ID="ph" runat="server"></asp:PlaceHolder>
-
-    </form>
+        </form>
+    </div>
 </body>
 </html>

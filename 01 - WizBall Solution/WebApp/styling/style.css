@@ -1,0 +1,7 @@
+﻿.grid-colors:nth-child(odd){
+    background-color: #ddddda;
+}
+
+.grid-colors:nth-child(even) {
+    background-color: #f2f2f2;
+}
