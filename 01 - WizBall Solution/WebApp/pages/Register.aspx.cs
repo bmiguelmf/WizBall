@@ -50,7 +50,6 @@ namespace WebApp.pages
                 {
 
                     User user = new User();
-                    UserHistory userHistory = new UserHistory();
                     user.Email = inputEmail.Text;
                     user.Username = inputUName.Text;
                     user.Password = inputPassword.Text;
@@ -59,12 +58,7 @@ namespace WebApp.pages
                         user.Newsletter = true;
                     }
                     
-                    userHistory.CreatedAt = DateTime.Now.ToUniversalTime();
-                    userHistory.User = user;
-
                     GLOBALS.BllSI.InsertUser(user);
-
-                    GLOBALS.BllSI.InsertUserHistory(userHistory);
 
                     Session["bool"] = "true";
                     Session["User"] = user;

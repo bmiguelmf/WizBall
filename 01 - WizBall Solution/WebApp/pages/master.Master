@@ -8,28 +8,28 @@
     <title>WizBall FO</title>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="../resources/favicon/apple-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="../resources/favicon/apple-icon-60x60.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="../resources/favicon/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../resources/favicon/apple-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="../resources/favicon/apple-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="../resources/favicon/apple-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="../resources/favicon/apple-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="../resources/favicon/apple-icon-152x152.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../resources/favicon/apple-icon-180x180.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../resources/favicon/android-icon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../resources/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="../resources/favicon/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../resources/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="../GlobalResourcesAcc/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="../GlobalResourcesAcc/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="../GlobalResourcesAcc/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../GlobalResourcesAcc/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="../GlobalResourcesAcc/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="../GlobalResourcesAcc/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="../GlobalResourcesAcc/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="../GlobalResourcesAcc/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../GlobalResourcesAcc/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../GlobalResourcesAcc/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../GlobalResourcesAcc/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="../GlobalResourcesAcc/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../GlobalResourcesAcc/favicon/favicon-16x16.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="../resources/favicon/ms-icon-144x144.png" />
+    <meta name="msapplication-TileImage" content="../GlobalResourcesAcc/favicon/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../styling/bootstrap4.css" />
-    <link rel="stylesheet" href="../styling/customcode.css" />
-    <link rel="stylesheet" href="../styling/general.css" />
+    <!--<link rel="stylesheet" href="../styling/customcode.css" />
+    <link rel="stylesheet" href="../styling/general.css" />-->
     <link rel="stylesheet" href="../styling/font-awesome.css" />
 
     <!-- jQuery -->
@@ -40,15 +40,16 @@
     </asp:ContentPlaceHolder>
 
 </head>
-<body>
+<body class="bg-light">
+    
 
     <form id="form1" runat="server">
         <div>
-            <header>
+            <header class="shadow-sm">
                 <nav class="navbar navbar-expand-sm bg-light navbar-light">
                     <!-- Brand/logo -->
                     <a class="navbar-brand" href="#">
-                        <img src="../resources/imgs/favicon.jpg" alt="logo" style="width: 40px;">
+                        <img src="../GlobalResourcesAcc/imgs/favicon.jpg" alt="logo" style="width: 40px;">
                     </a>
 
                     <!-- Links -->
@@ -86,16 +87,12 @@
                     </asp:Panel>
 
                 </nav>
-                <section class="headerBG">
-                    <img src="..\resources\imgs\headerBG.jpg" />
-                </section>
             </header>
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    </form>
-
+    </form> 
     <!-- JavaScript File -->
     <script src="../js/js.js"></script>
 
