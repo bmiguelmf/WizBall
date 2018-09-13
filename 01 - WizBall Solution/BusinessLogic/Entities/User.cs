@@ -16,6 +16,7 @@ namespace BusinessLogic.Entities
         public string Picture { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public UserHistory CurrentUserHistory { get; set; }
 
 
         private string GetDateTime()

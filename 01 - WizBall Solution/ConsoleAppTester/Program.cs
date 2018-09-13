@@ -15,13 +15,13 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            string connString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = wizball; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
-            //string connString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
+            //string connString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = wizball; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
+            string connString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
             string apiToken   = "7f91f916023b4430b44d97cc11e5c030";
 
             BLL bll = new BLL(connString, apiToken);
 
-            bll.FullDatabaseSync();
+            // bll.FullDatabaseSync();
 
             //bll.SetTodayTips();
 
@@ -39,13 +39,25 @@ namespace ConsoleAppTester
             //Console.WriteLine("Before State : " + userHistory.BeforeState.Description);
             //Console.WriteLine("After State  : " + userHistory.AfterState.Description);
 
-            //User bro = new User();
-            //bro.Email = "fddfsdfrertggdfs@fddertfgs.pt";
-            //bro.Password = "06121984";
-            //bro.Username = "brertdsdrgoo";
-            //bool id = bll.InsertUser(bro);
+            User bro = new User();
+            bro.Email = "1z91@fdadertfgs.pt";
+            bro.Password = "19z1";
+            bro.Username = "19z1";
+            bool id = bll.InsertUser(bro);
 
-            Console.WriteLine(bll.GetLastInsertedUserId());
+            //Console.WriteLine(bll.GetLastInsertedUserId());
+
+            foreach (User user in bll.GetAllUsers())
+            {
+                if (user.CurrentUserHistory is null) continue;
+
+                Console.WriteLine(  user.CurrentUserHistory.Id + " " +
+                                    user.CurrentUserHistory.Description + " " +
+                                    user.CurrentUserHistory.Admin.Username + " " +
+                                    user.CurrentUserHistory.BeforeState.Description + " " +
+                                    user.CurrentUserHistory.AfterState.Description + " " +
+                                    user.CurrentUserHistory.CreatedAt);
+            }
 
             //UserHistory uh = new UserHistory();
             //uh.User = bll.GetUserById("1");

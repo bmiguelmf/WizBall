@@ -30,9 +30,9 @@ namespace BusinessLogic.DAL
                                                {
                                                     new DbWhere()
                                                     {
-                                                        Field = "user_id",
-                                                        Alias = "user_id",
-                                                        Value = UserId,
+                                                        Field    = "user_id",
+                                                        Alias    = "user_id",
+                                                        Value    = UserId,
                                                         Operator = DbOperator.EqualsTo                                                    
                                                     }
                                                })
@@ -52,6 +52,10 @@ namespace BusinessLogic.DAL
             }
 
             return true;
+        }
+        public bool Insert(UserHistory UserHistory)
+        {
+            return base.Insert(UserHistory);
         }
 
 

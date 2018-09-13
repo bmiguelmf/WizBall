@@ -55,7 +55,12 @@ namespace BusinessLogic.DAL
             return GetAll().OrderByDescending(x => x.Id).ToList()[0].Id;
         }
 
+
         // INSERTS.
+        public int Insert(User User)
+        {
+            return InsertWithScopeIdentity(User);
+        }
         public bool Insert(List<User> Users)
         {
             foreach (User user in Users)

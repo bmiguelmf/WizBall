@@ -42,13 +42,6 @@ namespace WebServices
             return bll.InsertUser(User);
         }
         [WebMethod]
-        public int GetLastInsertedUserId()
-        {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.GetLastInsertedUserId();
-        }
-        [WebMethod]
         public bool UpdatetUser(User User)
         {
             if (User is null)

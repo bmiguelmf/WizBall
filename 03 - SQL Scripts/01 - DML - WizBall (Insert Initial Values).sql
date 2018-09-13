@@ -4,6 +4,7 @@ GO
 
 
 -- ADMINS
+insert into admins values('wizball', 'wizball@gmail.com', 'superAdminBJP', default);
 insert into admins values('bro', 'bmiguelmf@gmail.com', '06121984', default);
 insert into admins values('passeira', 'lfmpasseira99@live.com.pt', 'passeira', default);
 insert into admins values('joao', 'joao@gmail.com', 'joao', default);
@@ -27,11 +28,11 @@ insert into users values('one', 'fds@po.caralho.pt', '123', default, default, ge
 
 
 -- USERS HISTORY
-insert into user_history values(1, 1, 1, 1, 'Registration', getdate());
-insert into user_history values(1, 11, 1, 1, 'Registration', getdate());
-insert into user_history values(1, 21, 1, 1, 'Registration', getdate());
-insert into user_history values(1, 31, 1, 1, 'Registration', getdate());
-insert into user_history values(1, 41, 1, 1, 'Registration', getdate());
+insert into user_history values(1, 1, 1, 1, 'User registration', getdate());
+insert into user_history values(1, 11, 1, 1, 'User registration', getdate());
+insert into user_history values(1, 21, 1, 1, 'User registration', getdate());
+insert into user_history values(1, 31, 1, 1, 'User registration', getdate());
+insert into user_history values(1, 41, 1, 1, 'User registration', getdate());
 
 
 
