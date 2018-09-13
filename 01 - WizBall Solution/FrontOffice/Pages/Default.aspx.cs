@@ -17,7 +17,7 @@ namespace FrontOffice.Pages
     public partial class Default : System.Web.UI.Page
     {
        
-
+            
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,9 +26,9 @@ namespace FrontOffice.Pages
            
 
 
-            phCompetitions.Controls.Add(Factory.DivCompetitions());
+            phCompetitions.Controls.Add(Factory.TierOneCompetitions());
 
-            phMatchesList.Controls.Add(Factory.DivMatchesList());
+            //phMatchesList.Controls.Add(Factory.DivMatchesList());
         }
 
     }

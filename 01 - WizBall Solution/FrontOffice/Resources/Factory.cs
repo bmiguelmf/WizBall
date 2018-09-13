@@ -12,6 +12,9 @@ namespace FrontOffice.Resources
 {
     public static class Factory
     {
+        private const string TEAM_FLAGS = "/Public/Imgs/Teams/";
+        private const string COMP_FLAGS = "/Public/Imgs/Competitions/";
+
         private static BLL bll;
         private static string apiToken;
         private static string connString;
@@ -26,11 +29,35 @@ namespace FrontOffice.Resources
 
 
 
-        public static HtmlGenericControl DivCompetitions()
+        public static HtmlGenericControl TierOneCompetitions()
         {
-            HtmlGenericControl wrapper = new HtmlGenericControl("div");
+            List<Competition> lstCompetitions = bll.TierOneCompetitions();
+           
+            for(int i = 0; i < lstCompetitions.Count; i ++)
+            {
+                lstCompetitions[i] = bll.GetCompetitionById(lstCompetitions[i].Id.ToString());
 
-            wrapper.InnerText = "Bruno Ferreria";
+            }
+
+
+            HtmlGenericControl wrapper = new HtmlGenericControl("div");
+            wrapper.Attributes["class"] = "d-flex";
+            
+            foreach(Competition comp in lstCompetitions)
+            {
+                HtmlGenericControl divComp  = new HtmlGenericControl("div");
+
+                divComp.Attributes["class"] = "p-4";
+
+                Image compImg               = new Image();
+                compImg.ImageUrl            = COMP_FLAGS + comp.Flag;
+                compImg.AlternateText       = comp.Name;
+                compImg.Attributes["style"] = "width: 100%";
+
+                divComp.Controls.Add(compImg);
+
+                wrapper.Controls.Add(divComp);
+            }
 
             return wrapper;
         }
