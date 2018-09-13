@@ -78,6 +78,7 @@
     <Content Include="Public\Imgs\Competitions\premier_league.png" />
     <Content Include="Public\Imgs\Competitions\primeira_liga.png" />
     <Content Include="Public\Imgs\Competitions\serie_a.png" />
+    <Content Include="Public\Imgs\Markets\ft_over_two_and_half_goals.png" />
     <Content Include="Public\Imgs\Teams\england\arsenal.ico" />
     <Content Include="Public\Imgs\Teams\england\aston_villa.ico" />
     <Content Include="Public\Imgs\Teams\england\birmingham_city.ico" />

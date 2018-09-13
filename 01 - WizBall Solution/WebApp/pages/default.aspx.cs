@@ -169,7 +169,7 @@ namespace WebApp.pages
 
                     Label lblRec = new Label();
                     lblRec.Text = "2.5x";
-                    Tip tip = bll.tip;
+                    //Tip tip = bll.tip;
                     try
                     {
                         if (bll.NormalizeApiDateTime(match.UtcDate) < DateTime.Today)

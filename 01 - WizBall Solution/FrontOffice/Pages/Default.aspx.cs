@@ -28,7 +28,7 @@ namespace FrontOffice.Pages
 
             phCompetitions.Controls.Add(Factory.TierOneCompetitions());
 
-            //phMatchesList.Controls.Add(Factory.DivMatchesList());
+            phMatchesList.Controls.Add(Factory.TableMatchesX());
         }
 
     }

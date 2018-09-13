@@ -54,7 +54,7 @@ namespace BusinessLogic.BLL
                 return false;
             }
         }
-        public Match MatchBuilder(Match Match)
+        public void MatchBuilder(Match Match)
         {
             Match.Season = GetSeasonById(Match.Season.Id.ToString());
             Match.Competition = GetCompetitionById(Match.Competition.Id.ToString());
@@ -62,8 +62,6 @@ namespace BusinessLogic.BLL
 
             Match.HomeTeam = GetTeamById(Match.HomeTeam.Id.ToString());
             Match.AwayTeam = GetTeamById(Match.AwayTeam.Id.ToString());
-
-            return Match;
         }
         private void UserHistoryBuilder(User user)
         {
@@ -670,8 +668,7 @@ namespace BusinessLogic.BLL
 
             foreach (Match match in lstMatches)
             {
-                match.HomeTeam = dalTeams.GetById(match.HomeTeam.Id.ToString());
-                match.AwayTeam = dalTeams.GetById(match.AwayTeam.Id.ToString());
+                MatchBuilder(match);
             }
 
 
