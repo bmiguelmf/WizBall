@@ -65,7 +65,10 @@ namespace BusinessLogic.BLL
 
             return Match;
         }
-
+        private void UserHistoryBuilder(User user)
+        {
+            user.CurrentUserHistory = GetCurrentUserHistoryByUserId(user.Id.ToString());
+        }
 
 
         // API SYNC METHODS.
@@ -375,12 +378,18 @@ namespace BusinessLogic.BLL
         }
 
 
+        
+
 
         // USER METHODS.
         public List<User> GetAllUsers()
         {
             DALUsers dal = new DALUsers(connectionString);
-            return dal.GetAll();
+
+            List<User> lstUsers = dal.GetAll();
+            lstUsers.ForEach(UserHistoryBuilder);
+
+            return lstUsers;
         }
         public User GetUserById(string Id)
         {
@@ -389,25 +398,31 @@ namespace BusinessLogic.BLL
         }
         public bool InsertUser(User User)
         {
+            // User Validations.
             if (User is null)
                 return false;
-
             if(!IsValidEmail(User.Email))
                 return false;
 
-            List<User> lstUsers = new List<User>();
-            lstUsers.Add(User);
 
+            // Insert User and get his Id.
             DALUsers dalUsers = new DALUsers(connectionString);
-            dalUsers.Insert(lstUsers);
+            int userId = dalUsers.Insert(User);                     
+
+            
+            // Creates and inserts default user_history for the current user.            
+            UserHistory userHistory = new UserHistory()
+            {
+                Admin       = new Admin()           { Id= 1},
+                User        = new User()            { Id= userId },
+                Description = "User registration.",
+                BeforeState = new UserState()       { Id = 1 },
+                AfterState  = new UserState()       { Id = 1 }
+            };
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
+            dalUserHistory.Insert(userHistory);
 
             return true;
-        }
-        public int GetLastInsertedUserId()
-        {
-            DALUsers dalUsers = new DALUsers(connectionString);
-
-            return dalUsers.GetLastInsertedId();
         }
         public bool UpdatetUser(User User)
         {
@@ -566,6 +581,7 @@ namespace BusinessLogic.BLL
             DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
             UserHistory userHistory = dalUserHistory.GetCurrentByUserId(UserId);
 
+            if (userHistory is null) return null;
 
             DALUsers dalUsers = new DALUsers(connectionString);
             DALAdmins dalAdmin = new DALAdmins(connectionString);
@@ -590,8 +606,7 @@ namespace BusinessLogic.BLL
             dalUserHistory.Insert(lstUserHistory);
 
             return true;
-        } 
-
+        }
 
 
         // ADMIN METHODS.

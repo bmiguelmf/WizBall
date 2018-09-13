@@ -26,19 +26,21 @@ namespace BusinessLogic.DAL
         }
         public UserHistory GetCurrentByUserId(string UserId)
         {
-            return GetWhere(new UserHistory(), new List<DbWhere>()
+            List<UserHistory> history = GetWhere(new UserHistory(), new List<DbWhere>()
                                                {
                                                     new DbWhere()
                                                     {
-                                                        Field = "user_id",
-                                                        Alias = "user_id",
-                                                        Value = UserId,
+                                                        Field    = "user_id",
+                                                        Alias    = "user_id",
+                                                        Value    = UserId,
                                                         Operator = DbOperator.EqualsTo                                                    
                                                     }
                                                })
 
                             .Cast<UserHistory>().ToList()
-                            .OrderByDescending(x => x.CreatedAt).ToList()[0] ;
+                            .OrderByDescending(x => x.CreatedAt).ToList();
+
+            return history.Count > 0 ? history[0] : null;
         }
 
         // INSERTS.
@@ -50,6 +52,10 @@ namespace BusinessLogic.DAL
             }
 
             return true;
+        }
+        public bool Insert(UserHistory UserHistory)
+        {
+            return base.Insert(UserHistory);
         }
 
 

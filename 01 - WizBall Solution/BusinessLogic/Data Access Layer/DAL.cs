@@ -93,7 +93,8 @@ namespace BusinessLogic.DAL
 
         #region GETS
 
-
+ 
+      
         /// <summary>
         /// Get all elements from the database for the corresponding Entity object.
         /// </summary>
@@ -232,6 +233,30 @@ namespace BusinessLogic.DAL
 
 
             return ExecuteNonQuery(cmd) > 0 ? true : false;
+        }
+
+        protected int InsertWithScopeIdentity(Entity Entity)
+        {
+            string fields = string.Join(", ", Entity.GetInsertableFields().Select(x => x = "[" + x + "]"));
+            string values = string.Join(", ", Entity.GetInsertableFields().Select(x => x = "@" + x));
+
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = string.Format("INSERT INTO {0}({1}) VALUES({2}) SELECT SCOPE_IDENTITY()", Entity.GetTableName(), fields, values)
+            };
+
+
+            string[] flds = Entity.GetInsertableFields();
+            object[] val = Entity.GetInsertableValues();
+            for (int i = 0; i < Entity.GetInsertableFields().Count(); i++)
+            {
+                if (val[i] is null)
+                    cmd.Parameters.AddWithValue("@" + flds[i], DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@" + flds[i], val[i]);
+            }
+
+            return Convert.ToInt32(ExecuteScalar(cmd));
         }
 
         #endregion

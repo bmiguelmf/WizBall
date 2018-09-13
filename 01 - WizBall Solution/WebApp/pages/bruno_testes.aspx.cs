@@ -15,7 +15,9 @@ namespace WebApp.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string connString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
+            string connString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = wizball; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
+
+            //string connString = "Data Source = DESKTOP-OBFHSOT\\MSSQLSERVERATEC; Initial Catalog = wizball; Integrated Security = SSPI;";
             string apiToken = "7f91f916023b4430b44d97cc11e5c030";
 
             BLL bll = new BLL(connString, apiToken);
@@ -53,7 +55,7 @@ namespace WebApp.pages
                 foreach (Match match in bll.GetMatchesByCompetition(comp.Id.ToString()))
                 {                 
                     HtmlGenericControl matchWraper = new HtmlGenericControl("div");
-                    matchWraper.Attributes["class"] = "grid-colors my-2 rounded";
+                    matchWraper.Attributes["class"] = "grid-colors my-2";
 
 
 

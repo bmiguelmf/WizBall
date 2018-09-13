@@ -69,13 +69,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="resources\css\pagination.css" />
+    <Content Include="resources\js\plugins\bootstrap-select.min.js" />
+    <Content Include="resources\js\plugins\classie.js" />
     <Content Include="resources\js\plugins\sweetalert.min.js" />
     <Content Include="resources\js\plugins\jquery.session.js" />
     <Content Include="resources\js\plugins\jquery.table.hpaging.min.js" />
     <Content Include="resources\js\plugins\jquery-ui.min.js" />
     <Content Include="resources\js\plugins\jquery.min.js" />
     <Content Include="resources\js\plugins\bootstrap.min.js" />
-    <Content Include="resources\js\plugins\sidebarEffects.js" />
+    <Content Include="resources\js\plugins\sidebar-effects.js" />
     <Content Include="resources\js\users.js" />
     <Content Include="resources\js\login.js" />
     <Content Include="pages\default.aspx" />

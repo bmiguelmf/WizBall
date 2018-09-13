@@ -13,6 +13,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/resources/imgs/icon.ico" />
     <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
     <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
+    <link href="/resources/css/pagination.css" rel="stylesheet" />
     <link href="/resources/css/style_all.css" rel="stylesheet" />
 </head>
 <body>
@@ -72,11 +73,11 @@
     </nav>
     <!-- / top navigation bar -->
 
-    <div id="st-container" class="st-container">
+    <div id="st-container" class="st-container st-effect-1">
 
-        <!-- lateral form add/edit -->
+        <!-- lateral form edit -->
         <div class="st-menu st-effect-1" id="menu-1">
-            <form class="row" id="form_" name="form_" method="post" class="form-horizontal">
+            <form class="row" id="form" name="form" method="post" class="form-horizontal">
 
                 <div class="col-lg-12">
                     <h4>Editar utilizador</h4>
@@ -162,20 +163,16 @@
 
                     <div class="col-lg-12 clearfix"></div>
                     <div class="col-lg-6 st-menu-buttons">
-                        <button name="cancelar" class="btn btn-default" type="button">Cancelar</button>
+                        <button id="cancel" class="btn btn-default" type="button">Cancel</button>
                     </div>
                     <div class="col-lg-6 st-menu-buttons">
-                        <button name="guardar" class="btn btn-primary" type="button"
-                            onclick="validateForm(\'form_registarRefood\', \'site\', \'Núcleo inserido com sucesso\')">
-                            Guardar
-                   
-                        </button>
+                        <button id="guardar" class="btn btn-primary" type="button">Save</button>
                     </div>
                 </div>
 
             </form>
         </div>
-        <!-- / lateral form - add/edit -->
+        <!-- / lateral form edit -->
 
 
         <!-- conteudo central -->
@@ -185,13 +182,13 @@
                 <div class="head-container">
 
                     <!-- title -->
-                    <h3>Utilizadores</h3>
+                    <h3>Users</h3>
 
                     <div class="row">
                         <div class="col-lg-6 col-xs-12">
                             <p class="select-actions">
                                 <select class="selectpicker">
-                                    <option disabled selected>Ordenar</option>
+                                    <option disabled selected>Order</option>
                                     <option>Mais recentes</option>
                                     <option>Mais Antigos</option>
                                 </select>
@@ -214,7 +211,7 @@
                             <!-- / search by -->
 
                             <!-- add new instance -->
-                            <span class="st-trigger-effects">
+                            <span id="st-trigger-effects">
                                 <button data-effect="st-effect-1" class="btn btn-primary btn-sm">
                                     Pesquisar<i
                                         class="glyphicon glyphicon-search"></i></button>
@@ -228,87 +225,24 @@
                 <div class="body-container">
                     <div class="row">
                         <div class="col-lg-12">
-
+                            <!-- list/table-->
                             <div class="content table-full-width" style="position: relative;">
-
-                                <!-- list/table-->
-
                                 <table id="users_table" class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <input type="checkbox" /></th>
-                                            <th>Foto</th>
-                                            <th><a class="order-by-desc" href="">Username <i
-                                                class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th><a class="order-by-desc" href="">E-mail <i
-                                                class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th><a class="order-by-desc" href="">Status <i
-                                                class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th><a class="order-by-desc" href="">Newsletter <i
-                                                class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th colspan="2">Actions</th>
+                                            <th style="width:8%;" class="text-center"><input type="checkbox"/></th>
+                                            <th style="width:10%;">Photo</th>
+                                            <th style="width:17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width:29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width:13%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width:13%;"><a class="order-by-desc">Newsletter<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width:10%;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="users_table_body">
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" /></td>
-                                            <td>
-                                                <span class="avatar avatar-online">
-                                                    <img src="img/avatar.png" />
-                                                </span>
-                                            </td>
-                                            <td>Tou Bruh</td>
-                                            <td>bruh.tou@gmail.com</td>
-                                            <td>BLOQUEADO A VERMELHO</td>
-                                            <td>NOOP</td>
-                                            <td class="st-trigger-effects">
-                                                <a class="" data-effect="st-effect-1" href="">
-                                                    <i class="glyphicon glyphicon-eye-open"></i>
-                                                </a>
-                                            </td>
-                                            <td class="st-trigger-effects">
-                                                <a data-effect="st-effect-1" href="">
-                                                    <i class="glyphicon glyphicon-pencil"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        
                                     </tbody>
                                 </table>
-                                <!-- / list/table-->
-                                <!-- pagination buttons -->
-                                <div class="col-lg-6 col-xs-12">
-                                    <p class="table-footer">
-                                        <a href=""><i class="glyphicon glyphicon-refresh"></i></a>
-                                        <span class="pagination">(2-10 de 100)
-                                        </span>
-                                        <span class="show-items">Utilizadores por página
-										
-                                            <select class="selectpicker">
-                                                <option>10</option>
-                                                <option>30</option>
-                                                <option>50</option>
-                                                <option>100</option>
-                                            </select>
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="col-lg-6 col-xs-12 text-right">
-                                    <p class="table-footer">
-                                        <span class="pagination-buttons">
-                                            <a href=""><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                            <input type="text" value="1" />
-                                            &nbsp; / &nbsp; 10
-										
-                                            <a href=""><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                        </span>
-                                    </p>
-                                </div>
-                                <!-- / pagination buttons -->
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -320,12 +254,16 @@
     </div>
     <script src="/resources/js/plugins/jquery.min.js"></script>
     <script src="/resources/js/plugins/jquery-ui.min.js"></script>
-    <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
-    <script src="/resources/js/plugins/bootstrap.min.js"></script>
-    <script src="/resources/js/plugins/jquery.session.js"></script>
-    <script src="/resources/js/plugins/sidebarEffects.js"></script>
-    <script src="/resources/js/plugins/sweetalert.min.js"></script>
 
+    <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
+
+    <script src="/resources/js/plugins/bootstrap.min.js"></script>
+
+    <script src="/resources/js/plugins/classie.js"></script>
+    <script src="/resources/js/plugins/sidebar-effects.js"></script>
+
+    <script src="/resources/js/plugins/sweetalert.min.js"></script>
+    <script src="/resources/js/plugins/jquery.session.js"></script>
 
     <script src="/resources/js/users.js"></script>
 </body>
