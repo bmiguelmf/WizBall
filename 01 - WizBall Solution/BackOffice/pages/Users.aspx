@@ -55,9 +55,6 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">
-                            <span class="avatar avatar-online">
-                                <img src="" />
-                            </span>
                             <label id="username"></label>
                             <span class="caret"></span>
                         </a>
@@ -81,16 +78,6 @@
 
                 <div class="col-lg-12">
                     <h4>Editar utilizador</h4>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="image-upload">
-                        <label for="photo">
-                            <img src="img/avatar.png" />
-                        </label>
-
-                        <input id="photo" name="photo" type="file" />
-                    </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="col-lg-12">
@@ -121,9 +108,7 @@
                         <label for="email">Contacto</label><br>
                         <input id="contactinput" name="" type="text" style="width: 50%" />
                         <select id="contactype" class="selectpicker" name="" style="width: 40%">
-                            <!--{% for contact in typecontacts %}
-                            <option value="{{ contact.getId() }}">{{ contact.getName() }}</option>
-                        {% endfor %}-->
+                           
                             <option>Telefone</option>
                             <option>Telemóvel</option>
                             <option>Email</option>
@@ -230,13 +215,14 @@
                                 <table id="users_table" class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th style="width:8%;" class="text-center"><input type="checkbox"/></th>
-                                            <th style="width:10%;">Photo</th>
-                                            <th style="width:17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width:29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width:13%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width:13%;"><a class="order-by-desc">Newsletter<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width:10%;">Action</th>
+                                            <th style="width: 8%;" class="text-center">
+                                                <input type="checkbox" /></th>
+                                            <th style="width: 10%;">Photo</th>
+                                            <th style="width: 17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 13%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 13%;"><a class="order-by-desc">Newsletter<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 10%;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="users_table_body">

@@ -8,19 +8,27 @@
 
 
     //functions
-    function alterUsername() {
+    function alterNavbarUsername() {
         username.text($.session.get('Username'));
     };
-
-    function paginateusersTable(limit) {
-        tbl_users.hpaging({
+    
+    function paginateTable(table, limit) {
+        table.hpaging({
             "limit": limit
         })
     };
 
+    function loadSideBarEffectsScripts() {
+        $.getScript('/resources/js/plugins/classie.js');
+        $.getScript('/resources/js/plugins/sidebar-effects.js');
+    };
+
+    function paginateTableAndLoadSideBarScripts(table){
+        paginateTable(table, 2);
+        loadSideBarEffectsScripts();
+    };
 
     function GetUsers() {
-        var user_status = "";
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -31,28 +39,10 @@
                 tbl_users_body.empty();
                 if (data.d.length > 0) {
                     $.each(data.d, function (index, value) {
-                        $.ajax({
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            url: "../WebService.asmx/GetCurrentUserHistoryByUserId",
-                            data: "{UserId: " + JSON.stringify(value.Id) + "}",
-                            dataType: "json",
-                            success: function (status) {
-                                var innerStatus = "";
-                                console.log(status);
-                                if (status != null) {
-                                    innerStatus = status.Description;
-                                }
-                                else {
-                                    innerStatus = "Status unavailable";
-                                }
-                                tbl_users_body.append("<tr value=\" + value.Id + \"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + innerStatus + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
-                            }
-                        });
-
+                        console.log(data.d);
+                        tbl_users_body.append("<tr value=\" + value.Id + \"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
                     });
-                    //url: "../WebService.asmx/GetCurrentUserHistoryByUserId",
-                    paginateusersTable(2);
+                    paginateTableAndLoadSideBarScripts(tbl_users);
                 }
                 else {
                     tbl_users.append("No users to display!");
@@ -64,9 +54,8 @@
         });
     }
 
-
     //events
-    alterUsername();
+    alterNavbarUsername();
     GetUsers();
 
 
