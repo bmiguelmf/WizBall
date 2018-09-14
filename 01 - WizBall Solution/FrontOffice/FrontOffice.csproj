@@ -300,6 +300,7 @@
     <Content Include="Public\Imgs\Teams\spain\villareal.ico" />
     <Content Include="Public\Javascript\main.js" />
     <Content Include="Public\jQuery\jquery.min.js" />
+    <Content Include="Public\Styling\NextMatches.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -330,9 +331,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Public\Styling\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{e167f6af-ab58-46b0-a404-a2ad2d8cbd49}</Project>

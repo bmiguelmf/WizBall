@@ -11,6 +11,7 @@
         <script src="../Public/jQuery/jquery.min.js"></script>
         <script src="../Public/Javascript/main.js"></script>    
         <link href="../Public/Bootstrap/bootstrap4.css" rel="stylesheet" />
+        <link href="../Public/Styling/NextMatches.css" rel="stylesheet" />
 
         <asp:ContentPlaceHolder ID="head" runat="server">
         </asp:ContentPlaceHolder>

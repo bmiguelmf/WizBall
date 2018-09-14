@@ -61,7 +61,10 @@ namespace BusinessLogic.BLL
             Match.Competition.Area = GetAreaById(Match.Competition.Area.Id.ToString());
 
             Match.HomeTeam = GetTeamById(Match.HomeTeam.Id.ToString());
+            Match.HomeTeam.Area = GetAreaById(Match.HomeTeam.Area.Id.ToString());
+
             Match.AwayTeam = GetTeamById(Match.AwayTeam.Id.ToString());
+            Match.AwayTeam.Area = GetAreaById(Match.AwayTeam.Area.Id.ToString());
         }
         private void UserHistoryBuilder(User user)
         {

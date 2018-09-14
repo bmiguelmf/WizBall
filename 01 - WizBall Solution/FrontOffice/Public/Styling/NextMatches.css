@@ -1,0 +1,116 @@
+﻿.my-table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+}
+
+.my-thead {
+    margin: 0;
+    padding: 0;
+
+    color: #fff;
+    background-color: #333;
+}
+
+
+.my-tbody {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.my-tfoot {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.my-tr {
+    margin: 0;
+    padding: 0;
+}
+/* Row Even Odd */
+.my-tr:nth-child(even) {
+    background-color: #ededed;
+}
+
+
+
+.my-th {
+    margin: 0;
+    padding: 0;
+
+    font-size: 11px;
+
+    padding: 6px 0;
+}
+/* Header row border radius */
+.my-th:first-child {
+    border-radius: 0px 0 0 0px;
+}
+.my-th:last-child {
+    border-radius: 0 0px 0px 0;
+}
+/****************************/
+/* Header columns */
+.my-th:nth-child(1) {
+    width: 10%;
+    text-align:center;
+}
+.my-th:nth-child(2) {
+    width: 10%;
+    text-align: center;
+}
+.my-th:nth-child(3) {
+    width: 20%;
+    text-align: right;
+}
+.my-th:nth-child(4) {
+    width: 20%;
+    text-align: center;
+}
+.my-th:nth-child(5) {
+    width: 20%;
+    text-align: left;
+}
+.my-th:nth-child(6) {
+    width: 20%;
+    text-align: center;
+    background-color:yellowgreen;
+    color:#222;
+}
+/****************************/
+
+
+
+.my-td {
+    margin: 0;
+    padding: 13px 0;
+
+    text-align:center;
+
+    font-size: 11px;
+    font-weight:700;
+}
+/* Cells */
+.my-td:nth-child(1) {
+    text-align: center;
+}
+.my-td:nth-child(2) {
+    text-align: center;
+}
+.my-td:nth-child(3) {
+    text-align: right;
+}
+.my-td:nth-child(4) {
+    text-align: center;
+}
+.my-td:nth-child(5) {
+    text-align: left;
+}
+.my-td:nth-child(6) {
+    text-align: center;  
+}
+/****************************/
