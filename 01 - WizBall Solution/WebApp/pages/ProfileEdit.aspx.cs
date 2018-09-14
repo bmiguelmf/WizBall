@@ -16,20 +16,20 @@ namespace WebApp.pages
     {
         User userUpdate;
         User userSession;
-        User userFinal;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 userSession = Session["user"] as User;
+
+                userUpdate = GLOBALS.BllSI.GetUserById(userSession.Id.ToString()); //GET CURRENT USER FIELDS
             }
             catch (Exception)
             {
-
+                Response.Redirect("Login.aspx");
                // throw;
             }
-                userUpdate = GLOBALS.BllSI.GetUserById(userSession.Id.ToString()); //GET CURRENT USER FIELDS
             
         }
 

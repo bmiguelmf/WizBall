@@ -40,12 +40,21 @@ namespace WebApp.pages {
         protected global::System.Web.UI.WebControls.CheckBox RemSession;
         
         /// <summary>
-        /// LoginBtn control.
+        /// RegHL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LoginBtn;
+        protected global::System.Web.UI.WebControls.HyperLink RegHL;
+        
+        /// <summary>
+        /// RecPWHL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RecPWHL;
     }
 }

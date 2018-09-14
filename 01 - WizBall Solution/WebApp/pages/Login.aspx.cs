@@ -26,6 +26,8 @@ namespace WebApp.pages
             //connString = WebConfigurationManager.ConnectionStrings["ConnStringJoaoHome"].ConnectionString;
             //apiToken = WebConfigurationManager.AppSettings["ApiToken"];
             //bll = new BLL(connString, apiToken);
+            RegHL.NavigateUrl = "~\\pages\\register.aspx";
+            RecPWHL.NavigateUrl = "~\\pages\\RecoverPassword.aspx";
         }
 
         protected void LoginBtn_Click(object sender, EventArgs e)

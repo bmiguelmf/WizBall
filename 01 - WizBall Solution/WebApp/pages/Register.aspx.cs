@@ -29,6 +29,8 @@ namespace WebApp.pages
             //bll = new BLL(connString, apiToken);
             ErrorP.Visible = false;
             rEX = new Regex(@"^(?=.{3,15}$)(?:(?:\p{L}|\p{N})[._()\[\]-]?)*$");
+            LogInHL.NavigateUrl = "~\\pages\\login.aspx";
+            RecPWHL.NavigateUrl = "~\\pages\\RecoverPassword.aspx";
         }
 
         protected void RegisterBtn_Click(object sender, EventArgs e)

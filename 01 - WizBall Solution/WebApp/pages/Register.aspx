@@ -15,22 +15,32 @@
 
     <!-- E-MAIL -->
     <label for="inputEmail" class="sr-only">Email address</label>
-    <asp:textbox textmode="SingleLine" cssclass="form-control" clientidmode="Static" id="inputEmail" runat="server" placeholder="Email address" required="" autofocus="" autocompletetype="Email"></asp:textbox>
+    <asp:textbox textmode="SingleLine" CssClass="form-control" clientidmode="Static" id="inputEmail" runat="server" placeholder="Email address" required="" autofocus="" autocompletetype="Email"></asp:textbox>
 
     <!-- PASSWORD -->
     <label for="inputPassword" class="sr-only">Password</label>
-    <asp:textbox textmode="Password" cssclass="form-control" style="margin: 0;" clientidmode="Static" id="inputPassword" runat="server" placeholder="Password" required=""></asp:textbox>
+    <asp:textbox textmode="Password" CssClass="form-control" style="margin: 0;" clientidmode="Static" id="inputPassword" runat="server" placeholder="Password" required=""></asp:textbox>
 
     <!-- CONFIRM PASSWORD -->
     <label for="inputPasswordConf" class="sr-only">Password</label>
-    <asp:textbox textmode="Password" cssclass="form-control" clientidmode="Static" id="inputPasswordConf" runat="server" placeholder="Confirm Password" required=""></asp:textbox>
+    <asp:textbox textmode="Password" CssClass="form-control" clientidmode="Static" id="inputPasswordConf" runat="server" placeholder="Confirm Password" required=""></asp:textbox>
 
     <!-- NEWSLETTER CHECKBUTTON --> 
     <asp:CheckBox Text="Subscribe Newsletter" ID="NewsletterChkBox" ClientIDMode="Static" Checked="true" runat="server" />
     
     <!-- CONFIRM SIGN-UP -->
     <asp:button cssclass="btn btn-lg btn-primary btn-block btn-dark" id="RegisterBtn" runat="server" text="Register" onclick="RegisterBtn_Click" />
+    <br />
 
+    <asp:Label Text="Already Have An Account? " runat="server" />
+    <asp:HyperLink ID="LogInHL" Text="Log In!" runat="server" />
+
+    <br />
+
+    <asp:Label Text="Forgot your credentials? " runat="server" />
+    <asp:HyperLink ID="RecPWHL" Text="Recover them here!" runat="server" />
+
+    <br />
 
     <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
 

@@ -176,7 +176,7 @@ namespace WebApp.pages
                         {
 
                         }
-                        if (tip.BetNoBet) //verificar 2.5x
+                        if (true) //verificar 2.5x
                         {
                             recCol.Attributes["class"] += " bg-success";
                         }

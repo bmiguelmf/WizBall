@@ -76,6 +76,24 @@ namespace WebApp.pages {
         protected global::System.Web.UI.WebControls.Button RegisterBtn;
         
         /// <summary>
+        /// LogInHL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink LogInHL;
+        
+        /// <summary>
+        /// RecPWHL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RecPWHL;
+        
+        /// <summary>
         /// ErrorP control.
         /// </summary>
         /// <remarks>
