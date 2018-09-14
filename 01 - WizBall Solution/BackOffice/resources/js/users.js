@@ -3,6 +3,8 @@
     var username = $('#username');
     var tbl_users = $('#users_table');
     var tbl_users_body = $('#users_table_body');
+    var btn_cancel = $('#btn_can');
+    var select_user_status = $('#select_edit_status');
 
     //vars
 
@@ -56,8 +58,20 @@
 
     //events
     alterNavbarUsername();
+
     GetUsers();
 
+    btn_cancel.on("click", function () {
+        $('.st-pusher').trigger("click");
+    });
+
+    $(document).keydown(function (e) {
+        if (e.keyCode === 27) {
+            $('.st-pusher').trigger("click");
+        }
+    });
+
+    select_user_status.select2();
 
     console.log('READY users.js');
 });

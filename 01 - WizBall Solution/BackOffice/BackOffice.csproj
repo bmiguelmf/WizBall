@@ -70,8 +70,13 @@
   <ItemGroup>
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\css\pagination.css" />
+    <Content Include="resources\css\plugins\bootstrap2-toggle.min.css" />
+    <Content Include="resources\css\plugins\select2.min.css" />
+    <Content Include="resources\css\slide.css" />
     <Content Include="resources\js\plugins\bootstrap-select.min.js" />
     <Content Include="resources\js\plugins\classie.js" />
+    <Content Include="resources\js\plugins\bootstrap2-toggle.min.js" />
+    <Content Include="resources\js\plugins\select2.full.min.js" />
     <Content Include="resources\js\plugins\sweetalert.min.js" />
     <Content Include="resources\js\plugins\jquery.session.js" />
     <Content Include="resources\js\plugins\jquery.table.hpaging.min.js" />
