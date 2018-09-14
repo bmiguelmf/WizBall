@@ -10,11 +10,31 @@
 
     <title>Wizball - Users</title>
 
+    <!-- Stylesheets section -->
+
+    <!-- Favicon img -->
     <link rel="shortcut icon" type="image/x-icon" href="/resources/imgs/icon.ico" />
+
+    <!-- Bootstrap and font-awesome stylesheets -->
     <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
     <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom table paging stylesheet -->
     <link href="/resources/css/pagination.css" rel="stylesheet" />
+
+    <!-- Custom toggle stylesheet -->
+    <link href="/resources/css/plugins/bootstrap2-toggle.min.css" rel="stylesheet" />
+
+    <!-- Custom select stylesheet -->
+    <link href="/resources/css/plugins/select2.min.css" rel="stylesheet" />
+
+    <!-- Custom radio stylesheet -->
+    <link href="/resources/css/slide.css" rel="stylesheet" />
+
+    <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style_all.css" rel="stylesheet" />
+    
+
 </head>
 <body>
 
@@ -71,87 +91,76 @@
     <!-- / top navigation bar -->
 
     <div id="st-container" class="st-container st-effect-1">
-
         <!-- lateral form edit -->
         <div class="st-menu st-effect-1" id="menu-1">
             <form class="row" id="form" name="form" method="post" class="form-horizontal">
 
                 <div class="col-lg-12">
-                    <h4>Editar utilizador</h4>
+                    <h4 style="padding-left: 4%;">Edit user </h4>
+                </div>
+                <div class="col-lg-3">
+                    <div class="image-upload">
+                        <label for="photo">
+                            <img src="/resources/imgs/user.png" />
+                        </label>
+
+                        <input id="photo" name="photo" type="file" />
+                    </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="col-lg-12">
-                        <label for="nomeRefood">Nome</label><br>
-                        <input id="nomeRefood" name="nomeRefood" value="" required="" type="text">
+                    <div class="col-lg-9 w-100">
+                        <label class="label" for="username">Username</label><br />
+                        <input id="input_edit_username" name="username" required="" type="text" />
                     </div>
-                    <div class="col-lg-3">
-                        <label for="codPostal">Código Postal</label><br>
-                        <select id="codPostal" name="codPostal" title="Digite o código-postal" class="selectpicker "
-                            data-live-search="true">
-                        </select>
+
+                    <div class="col-lg-9 w-100">
+                        <label class="label" for="input_edit_email">E-Mail</label><br />
+                        <input id="input_edit_email" name="input_edit_email" required="" type="text" />
                     </div>
+                    <div class="col-lg-3 w-100">
+                        <label class="label" for="input_edit_newsletter">Newsletter</label><br />
+                        <input id="input_edit_newsletter" name="input_edit_newsletter" data-on="Yes" data-off="No" type="checkbox" data-toggle="toggle" data-width="87" />
+                    </div>
+
                     <div class="col-lg-9">
-                        <label for="rua">Morada</label><br>
-                        <select id="ruas" name="rua" title="Escolhe a rua" class="selectpicker " data-live-search="true">
+                        <label class="label" for="select_edit_status">Status</label><br />
+                        <select id="select_edit_status" name="input_edit_status" title="Change status" class="selectpicker " data-live-search="true">
                         </select>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="localidade">Localidade</label><br>
-                        <input id="localidade" name="localidade" class="" required="" type="text" disabled>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="porta">Nº da Porta</label>
-                        <input id="porta" name="porta" class="" required="" type="text">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn active">
+                                <input type="radio" value="1">
+                                Option 1
+                            </label>
+                            <label class="btn">
+                                <input type="radio" value="2">
+                                Option 2
+                            </label>
+                            <label class="btn">
+                                <input type="radio" value="3">
+                                Option 3
+                            </label>
+                        </div>
+                        <div class="switch">
+                            <input type="radio" class="switch-input" name="view" value="week" id="week" checked>
+                            <label for="week" class="switch-label switch-label-off">Block</label>
+                            <input type="radio" class="switch-input" name="view" value="month" id="month">
+                            <label for="month" class="switch-label switch-label-on">Unblock</label>
+                            <span class="switch-selection"></span>
+                        </div>
+                        <%--http://cssdeck.com/labs/ufct35ys5t--%>
                     </div>
 
-                    <div class="col-lg-12">
-                        <label for="email">Contacto</label><br>
-                        <input id="contactinput" name="" type="text" style="width: 50%" />
-                        <select id="contactype" class="selectpicker" name="" style="width: 40%">
-                           
-                            <option>Telefone</option>
-                            <option>Telemóvel</option>
-                            <option>Email</option>
-                        </select>
-                        <button id="newcontact" class="btn-primary no-border">
-                            <i class="glyphicon glyphicon-plus"></i>
-                        </button>
-                    </div>
-                    <div class="col-lg-12" style="margin-top: 10px">
-                        <input id="" name="" type="text" value="938879854" style="width: 50%" />
-                        <select id="" class="selectpicker" name="" style="width: 40%">
-                            <option>Telefone</option>
-                            <option selected>Telemóvel</option>
-                            <option>Email</option>
-                        </select>
-                        <button class="no-border"><i class="glyphicon glyphicon-minus" style="color: white"></i></button>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <label for="horario">Abre às</label><br>
-                        <div class="clockpicker">
-                            <input id="horarioinicio" name="horarioinicio" required="" type="text" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="horario">Fecha às</label><br>
-                        <div class="clockpicker">
-                            <input id="horariofim" name="horariofim" required="" type="text" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label for="nomeResponsavel">Responsável</label><br>
-                        <select id="nomeResponsavel" name="nomeResponsavel" class="selectpicker"
-                            data-live-search="true">
-                        </select>
+                    <div class="col-lg-12 w-100">
+                        <label class="label" for="input_edit_description">Description:</label><br />
+                        <textarea class="col-lg-6" id="input_edit_description" name="input_edit_description" placeholder="Write something.."></textarea>
                     </div>
 
                     <div class="col-lg-12 clearfix"></div>
                     <div class="col-lg-6 st-menu-buttons">
-                        <button id="cancel" class="btn btn-default" type="button">Cancel</button>
+                        <button id="btn_can" class="btn btn-default" type="button">Cancel</button>
                     </div>
                     <div class="col-lg-6 st-menu-buttons">
-                        <button id="guardar" class="btn btn-primary" type="button">Save</button>
+                        <button id="btn_submit" class="btn btn-primary" type="button">Submit</button>
                     </div>
                 </div>
 
@@ -160,7 +169,7 @@
         <!-- / lateral form edit -->
 
 
-        <!-- conteudo central -->
+        <!-- Central content -->
         <div class="st-pusher">
             <div class="st-content">
 
@@ -177,7 +186,6 @@
                                     <option>Mais recentes</option>
                                     <option>Mais Antigos</option>
                                 </select>
-                                <button class="btn btn-primary btn-sm">Ok</button>
                             </p>
                         </div>
                         <div class="col-lg-6 col-xs-12 text-right">
@@ -235,22 +243,38 @@
 
             </div>
         </div>
-        <!-- / conteudo central -->
+        <!-- / Central content -->
 
     </div>
+    <!-- Scripts Section-->
+
+    <!-- JQuery scripts -->
     <script src="/resources/js/plugins/jquery.min.js"></script>
     <script src="/resources/js/plugins/jquery-ui.min.js"></script>
 
+    <!-- Custom table paging script -->
     <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
 
+    <!-- Bootstrap script -->
     <script src="/resources/js/plugins/bootstrap.min.js"></script>
 
+    <!-- Custom toggle script -->
+    <script src="/resources/js/plugins/bootstrap2-toggle.min.js"></script>
+
+    <!-- Custom select script -->
+    <script src="/resources/js/plugins/select2.full.min.js"></script>
+
+    <!-- Side bar effects scripts -->
     <script src="/resources/js/plugins/classie.js"></script>
     <script src="/resources/js/plugins/sidebar-effects.js"></script>
 
+    <!-- Custom alert script -->
     <script src="/resources/js/plugins/sweetalert.min.js"></script>
+
+    <!-- JQuery session script -->
     <script src="/resources/js/plugins/jquery.session.js"></script>
 
+    <!-- Users management script -->
     <script src="/resources/js/users.js"></script>
 </body>
 </html>
