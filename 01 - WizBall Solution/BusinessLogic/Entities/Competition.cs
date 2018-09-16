@@ -93,7 +93,6 @@ namespace BusinessLogic.Entities
                                   "name",
                                   "code",
                                   "plan",
-                                  "flag",
                                   "last_updated"};
         }
         public object[] GetUpdatableValues()
@@ -103,7 +102,6 @@ namespace BusinessLogic.Entities
                                   Name,
                                   Code is null ? null : Code.ToString(),                                
                                   Plan,
-                                  Flag,
                                   LastUpdated};
         }
     }

@@ -3,7 +3,7 @@
     Language="C#"
     MasterPageFile="~/Pages/Main.Master" 
     AutoEventWireup="true" 
-    CodeBehind="Default.aspx.cs" 
+    CodeBehind="ViewMatches.aspx.cs" 
     Inherits="FrontOffice.Pages.Default" 
 %>
 
@@ -11,6 +11,9 @@
 
 <%--Header--%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script src ="../Public/Javascript/viewMatches.js"></script> 
+    <link   href="../Public/Styling/viewMatches.css" rel="stylesheet" />
 
 </asp:Content>
 

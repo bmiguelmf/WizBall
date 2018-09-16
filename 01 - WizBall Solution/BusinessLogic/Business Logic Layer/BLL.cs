@@ -692,6 +692,21 @@ namespace BusinessLogic.BLL
 
             return lstTodayMatches;
         }
+        public List<Match> GetNextMatchesByTierOneCompetitions()
+        {
+            List<Match> lstTodayMatches = new List<Match>();
+
+            DALMatches dalMatches = new DALMatches(connectionString);
+
+            foreach (Competition competition in TierOneCompetitions())
+            {
+                lstTodayMatches.AddRange(dalMatches.GetSpNextMatchesByCompetitionId(competition.Id.ToString()));
+            }
+
+            lstTodayMatches.ForEach(MatchBuilder);
+
+            return lstTodayMatches;
+        }
         public List<Match> GetMatchesByDateAndCompetition(string CompetitionId, DateTime Date)
         {
             DateTime dayInit = new DateTime(Date.Year, Date.Month, Date.Day, 0, 0, 0);

@@ -91,10 +91,25 @@ namespace BusinessLogic.DAL
             }          
         }
 
+
+        #region STORED PROCEDURES
+
+        protected List<Entity> ExecuteStoredProcedure(Entity Entity, string StoredProcedure,  SqlParameter[] Parameters)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = string.Format(StoredProcedure);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddRange(Parameters);
+
+            return ExecuteReader(Entity, cmd);
+        }
+
+        #endregion
+
+
         #region GETS
 
- 
-      
+
         /// <summary>
         /// Get all elements from the database for the corresponding Entity object.
         /// </summary>

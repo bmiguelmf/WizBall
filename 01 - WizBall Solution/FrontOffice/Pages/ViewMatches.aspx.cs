@@ -22,9 +22,10 @@ namespace FrontOffice.Pages
             if (IsPostBack) return;
 
 
-            phCompetitions.Controls.Add(Factory.TierOneCompetitions());
 
-            phMatchesList.Controls.Add(Factory.TableMatchesX());
+            phCompetitions.Controls.Add(Factory.ViewTierOneCompetitions());
+            
+            phMatchesList.Controls.Add(Factory.ViewNextMatches());
         }
 
     }

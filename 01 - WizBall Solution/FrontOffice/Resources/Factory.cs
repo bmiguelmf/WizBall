@@ -31,7 +31,7 @@ namespace FrontOffice.Resources
 
 
 
-        public static HtmlGenericControl TierOneCompetitions()
+        public static HtmlGenericControl ViewTierOneCompetitions()
         {
             List<Competition> lstCompetitions = bll.TierOneCompetitions();
            
@@ -43,17 +43,16 @@ namespace FrontOffice.Resources
 
 
             HtmlGenericControl wrapper = new HtmlGenericControl("div");
-            wrapper.Attributes["class"] = "d-flex justify-content-between py-5";
+            wrapper.Attributes["class"] = "tire-one-comps";
             
             foreach(Competition comp in lstCompetitions)
             {
                 HtmlGenericControl divComp  = new HtmlGenericControl("div");
-                divComp.Attributes["style"] = "padding: 20px 3%;";
+                divComp.Attributes["class"] = "text-center competitions-wrapper";
 
                 Image compImg               = new Image();
                 compImg.ImageUrl            = COMP_FLAGS + comp.Flag;
                 compImg.AlternateText       = comp.Name;
-                compImg.Attributes["style"] = "width: 100%";
                 compImg.Attributes["title"] = comp.Name;
 
                 divComp.Controls.Add(compImg);
@@ -65,113 +64,124 @@ namespace FrontOffice.Resources
         }
 
 
+        public static HtmlGenericControl ViewNextMatches()
+        {
+            // Header.
+            HtmlGenericControl header               = new HtmlGenericControl("div");
+            header.Attributes["class"]              = "my-grid-header";
 
 
-        public static HtmlGenericControl TableMatchesX()
-        {          
-            // Table Columns.
-            HtmlGenericControl thComp       = new HtmlGenericControl("th");
-            thComp.InnerText                = "Competiton";
-            thComp.Attributes["class"]      = "my-th";
-
-            HtmlGenericControl thMatchDay   = new HtmlGenericControl("th");
-            thMatchDay.InnerText            = "Match Day";
-            thMatchDay.Attributes["class"]  = "my-th";
-
-            HtmlGenericControl thHomeTeam   = new HtmlGenericControl("th");
-            thHomeTeam.InnerText            = "Home Team";
-            thHomeTeam.Attributes["class"]  = "my-th";
-
-            HtmlGenericControl thDate       = new HtmlGenericControl("th");
-            thDate.InnerText                = "Date";
-            thDate.Attributes["class"]      = "my-th";
-
-            HtmlGenericControl thAwayTeam   = new HtmlGenericControl("th");
-            thAwayTeam.InnerText            = "Away Team";
-            thAwayTeam.Attributes["class"]  = "my-th";
-
-            HtmlGenericControl thFtOverTwoAndHalfGoals  = new HtmlGenericControl("th");
-            thFtOverTwoAndHalfGoals.InnerText           = "Tips";
-            thFtOverTwoAndHalfGoals.Attributes["class"] = "my-th";
 
 
-            HtmlGenericControl trHeader     = new HtmlGenericControl("tr");
-            trHeader.Attributes["class"]    = "my-tr";
-            trHeader.Controls.Add(thComp);          
-            trHeader.Controls.Add(thMatchDay);
-            trHeader.Controls.Add(thHomeTeam);
-            trHeader.Controls.Add(thDate);
-            trHeader.Controls.Add(thAwayTeam);
-            trHeader.Controls.Add(thFtOverTwoAndHalfGoals);
+            // Header cells.
+            HtmlGenericControl cellCompetition      = new HtmlGenericControl("div");
+            cellCompetition.Attributes["class"]     = "my-grid-cell";
+            cellCompetition.Attributes["title"]     = "Competition";
+            cellCompetition.InnerText               = "C";
+            header.Controls.Add(cellCompetition);
+
+            HtmlGenericControl cellMatchDay         = new HtmlGenericControl("div");
+            cellMatchDay.Attributes["class"]        = "my-grid-cell";
+            cellMatchDay.Attributes["title"]        = "Match Day";
+            cellMatchDay.InnerHtml                  = "MD";            
+            header.Controls.Add(cellMatchDay);
+
+            HtmlGenericControl cellHomeTeam         = new HtmlGenericControl("div");
+            cellHomeTeam.Attributes["class"]        = "my-grid-cell text-right";
+            cellHomeTeam.Attributes["title"]        = "Home Team";
+            cellHomeTeam.InnerText                  = "Home Team";
+            header.Controls.Add(cellHomeTeam);
+
+            HtmlGenericControl cellDate             = new HtmlGenericControl("div");
+            cellDate.Attributes["class"]            = "my-grid-cell";
+            cellDate.Attributes["title"]            = "Match Date";
+            cellDate.InnerText                      = "Date";
+            header.Controls.Add(cellDate);
+
+            HtmlGenericControl cellAwayTeam         = new HtmlGenericControl("div");
+            cellAwayTeam.Attributes["class"]        = "my-grid-cell text-left";
+            cellAwayTeam.Attributes["title"]        = "Away Team";
+            cellAwayTeam.InnerText                  = "Away Team";
+            header.Controls.Add(cellAwayTeam);
+
+            HtmlGenericControl cellTips             = new HtmlGenericControl("div");
+            cellTips.Attributes["class"]            = "my-grid-cell";
+            cellTips.Attributes["title"]            = "Markets Tips";
+            cellTips.InnerText                      = "Tips";
+            header.Controls.Add(cellTips);
 
 
-            HtmlGenericControl thead        = new HtmlGenericControl("thead");
-            thead.Attributes["class"]       = "my-thead";
-            thead.Controls.Add(trHeader);
-            
-
-            HtmlGenericControl table        = new HtmlGenericControl("table");
-            table.Attributes["class"]       = "my-table";
-            table.Controls.Add(thead);
+            HtmlGenericControl scroll               = new HtmlGenericControl("div");
+            scroll.Attributes["id"]                 = "scroll";
+            scroll.Attributes["class"]              = "scroll";
 
 
-            HtmlGenericControl tbody        = new HtmlGenericControl("tbody");
-            tbody.Attributes["class"]       = "my-tbody";
+            // Body
+            HtmlGenericControl body                 = new HtmlGenericControl("div");
+            body.Attributes["class"]                = "my-grid-body";
 
+            scroll.Controls.Add(body);
 
-            table.Controls.Add(tbody);
-
-
-            foreach (Match match in bll.GetMatchesByCompetition("2017"))
+            foreach (Match match in bll.GetNextMatchesByTierOneCompetitions())
             {
-                // Table Columns.
-                HtmlGenericControl tdComp       = new HtmlGenericControl("td");
-                tdComp.InnerHtml                = "<img src='" + COMP_FLAGS + match.Competition.Flag + "' alt='" + match.Competition.Name + "' title='" + match.Competition.Name + "' width ='35px;'>";
-                tdComp.Attributes["class"]      = "my-td";             
+                // Rows
+                HtmlGenericControl row                  = new HtmlGenericControl("div");
+                row.Attributes["class"]                 = "my-grid-row";
 
-                HtmlGenericControl tdMatchDay   = new HtmlGenericControl("td");
-                tdMatchDay.InnerText            = match.Matchday.ToString();
-                tdMatchDay.Attributes["class"]  = "my-td";
 
-                HtmlGenericControl tdHomeTeam   = new HtmlGenericControl("td");
-                tdHomeTeam.InnerHtml            = "<img src='" + TEAM_FLAGS + match.Competition.Area.Name + "/" + match.HomeTeam.Flag + "' alt='" + match.HomeTeam.ShortName + "' title='" + match.HomeTeam.ShortName + "' width='35px;'>";
-                tdHomeTeam.Attributes["class"]  = "my-td";
+                // Row cells.
+                HtmlGenericControl rowCellCompetition   = new HtmlGenericControl("div");
+                rowCellCompetition.Attributes["class"]  = "my-grid-cell";
+                rowCellCompetition.InnerHtml            = "<img src='" + COMP_FLAGS + match.Competition.Flag + "' alt='" + match.Competition.Name + "' title='" + match.Competition.Name + "' width ='24px;'>";
+                row.Controls.Add(rowCellCompetition);
 
-                HtmlGenericControl tdDate       = new HtmlGenericControl("td");
-                tdDate.InnerText                = bll.NormalizeApiDateTime(match.UtcDate).Value.ToString("dd MMM HH:mm");
-                tdDate.Attributes["class"]      = "my-td";
+                HtmlGenericControl rowCellMatchDay      = new HtmlGenericControl("div");
+                rowCellMatchDay.Attributes["class"]     = "my-grid-cell";
+                rowCellMatchDay.InnerHtml               = match.Matchday.ToString();
+                row.Controls.Add(rowCellMatchDay);
 
-                HtmlGenericControl tdAwayTeam   = new HtmlGenericControl("td");
-                tdAwayTeam.InnerHtml            = "<img src='" + TEAM_FLAGS + match.Competition.Area.Name + "/" + match.AwayTeam.Flag + "' alt='" + match.AwayTeam.ShortName + "' title='" + match.AwayTeam.ShortName + "' width='35px;'>";
-                tdAwayTeam.Attributes["class"]  = "my-td";
+                HtmlGenericControl rowCellHomeTeam      = new HtmlGenericControl("div");
+                rowCellHomeTeam.Attributes["class"]     = "my-grid-cell text-right";
+                rowCellHomeTeam.InnerHtml               = match.HomeTeam.ShortName + "<img class='teamFlag pl-2' src='" + TEAM_FLAGS + match.Competition.Area.Name + "/" + match.HomeTeam.Flag + "' alt='" + match.HomeTeam.ShortName + "' title='" + match.HomeTeam.ShortName + "' width='24px;'>";
+                row.Controls.Add(rowCellHomeTeam);
 
-                HtmlGenericControl tdFtOverTwoAndHalfGoals  = new HtmlGenericControl("td");
-                if(match.Id % 3 == 0)
-                    tdFtOverTwoAndHalfGoals.InnerHtml       = "<img src='" + MARKETS + "ft_over_two_and_half_goals.png' alt='FT Over 2.5 Goals' title='FT Over 2.5 Goals' width='35px;'>";
+                HtmlGenericControl rowCellDate          = new HtmlGenericControl("div");
+                rowCellDate.Attributes["class"]         = "my-grid-cell";
+                rowCellDate.InnerHtml                   = bll.NormalizeApiDateTime(match.UtcDate).Value.ToString("dd MMM HH:mm");
+                row.Controls.Add(rowCellDate);
+
+                HtmlGenericControl rowCellAwayTeam      = new HtmlGenericControl("div");
+                rowCellAwayTeam.Attributes["class"]     = "my-grid-cell text-left";
+                rowCellAwayTeam.InnerHtml               = "<img class='teamFlag pr-2' src='" + TEAM_FLAGS + match.Competition.Area.Name + "/" + match.AwayTeam.Flag + "' alt='" + match.AwayTeam.ShortName + "' title='" + match.AwayTeam.ShortName + "' width='24px;'> " + match.AwayTeam.ShortName;
+                row.Controls.Add(rowCellAwayTeam);
+
+
+                HtmlGenericControl rowCellTip           = new HtmlGenericControl("div");
+                rowCellTip.Attributes["class"]          = "my-grid-cell";
+                rowCellTip.InnerHtml                    = "<img src='" + TEAM_FLAGS + match.Competition.Area.Name + "/" + match.AwayTeam.Flag + "' alt='" + match.AwayTeam.ShortName + "' title='" + match.AwayTeam.ShortName + "' width='24px;'> " + match.AwayTeam.Id.ToString();
+                row.Controls.Add(rowCellTip);
+
+                if (match.Id % 3 == 0)
+                    rowCellTip.InnerHtml = "<p title='Full Time Under 2.5 Goals' style='display:inline; color:red;'>FT -2.5</p>";
                 else if (match.Id % 4 == 0)
-                    tdFtOverTwoAndHalfGoals.InnerHtml       = "<img src='" + MARKETS + "ft_under_two_and_half_goals.png' alt='FT Under 2.5 Goals' title='FT  Under 2.5 Goals' width='35px;'>";
+                    rowCellTip.InnerHtml = "<p title='Full Time Over 2.5 Goals' style='display:inline; color:green;'>FT +2.5</p>";
                 else
-                    tdFtOverTwoAndHalfGoals.InnerHtml       = "No Tips";
-                tdFtOverTwoAndHalfGoals.Attributes["class"] = "my-td";
+                    rowCellTip.InnerHtml = "---";
 
-
-
-                HtmlGenericControl trMatch      = new HtmlGenericControl("tr");
-                trMatch.Attributes["class"]     = "my-tr";
-
-
-                trMatch.Controls.Add(tdComp); 
-                trMatch.Controls.Add(tdMatchDay);
-                trMatch.Controls.Add(tdHomeTeam);
-                trMatch.Controls.Add(tdDate);
-                trMatch.Controls.Add(tdAwayTeam);
-                trMatch.Controls.Add(tdFtOverTwoAndHalfGoals);
-
-                tbody.Controls.Add(trMatch);               
+                body.Controls.Add(row);
             }
 
-            return table;
+
+
+            HtmlGenericControl grid = new HtmlGenericControl("div");
+            grid.Attributes["class"] = "my-grid";
+            grid.Controls.Add(header);
+            grid.Controls.Add(scroll);
+
+            return grid;
         }
+
+      
 
     }
 }
