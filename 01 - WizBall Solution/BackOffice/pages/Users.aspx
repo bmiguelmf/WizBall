@@ -93,7 +93,13 @@
     <div id="st-container" class="st-container st-effect-1">
         <!-- lateral form edit -->
         <div class="st-menu st-effect-1" id="menu-1">
-            <form class="row" id="form" name="form" method="post" class="form-horizontal">
+            <form class="row form-horizontal" id="form_edit_user" name="form_edit_user" method="post">
+
+                <div id="error_message" class="form-fonte alert alert-danger" role="alert" style="display: none">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="false"></span>
+                    <span class="sr-only">Error:</span>
+                    <span class="message"></span>
+                </div>
 
                 <div class="col-lg-12">
                     <h4 style="padding-left: 4%;">Edit user </h4>
@@ -101,34 +107,33 @@
                 <div class="col-lg-3">
                     <div class="image-upload">
                         <label for="photo">
-                            <img src="/resources/imgs/user.png" />
+                            <img id="user_photo" src="/resources/imgs/user.png" />
                         </label>
 
                         <input id="photo" name="photo" type="file" />
                     </div>
                 </div>
-                <div class="col-lg-9">
-                    <div class="col-lg-9 w-100">
+                <div class="col-lg-9 form-group">
+                    <div class="col-lg-9 mt-2 col-md-12">
                         <label class="label" for="username">Username</label><br />
-                        <input id="input_edit_username" name="username" required="" type="text" />
+                        <input id="input_edit_username" name="input_edit_username" required="" type="text" />
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 mt-2 col-md-12">
                         <label class="label" for="select_edit_status">Status</label><br />
-                        <input id="toggle_edit_status" name="select_edit_status" data-on="Active" data-off="Blocked" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="87" />
+                        <input id="toggle_edit_status" granted_id="21" blocked_id="11" name="select_edit_status" data-on="Active" data-off="Blocked" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="87" />
                         <%-- 3 button toggle --> shttp://cssdeck.com/labs/ufct35ys5t--%>
                     </div>
-                    <div class="col-lg-9 w-100">
+
+                    <div class="col-lg-9 mt-2 col-md-12">
                         <label class="label" for="input_edit_email">E-Mail</label><br />
-                        <input id="input_edit_email" name="input_edit_email" required="" type="text" />
+                        <input id="input_edit_email" name="input_edit_email" required="" type="email" />
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 mt-2 col-md-12">
                         <label class="label" for="input_edit_newsletter">Newsletter</label><br />
                         <input id="toggle_edit_newsletter" name="input_edit_newsletter" data-on="Yes" data-off="No" type="checkbox" data-toggle="toggle" data-width="87" />
                     </div>
 
-                    
-
-                    <div class="col-lg-12 w-100">
+                    <div class="col-lg-12 mt-2 col-md-12">
                         <label class="label" for="input_edit_description">Description:</label><br />
                         <textarea disabled="disabled" style="resize: none;" class="col-lg-6" id="txt_edit_description" name="input_edit_description" placeholder=""></textarea>
                     </div>

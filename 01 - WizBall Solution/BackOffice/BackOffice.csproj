@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\css\fonts.css" />
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\css\pagination.css" />
     <Content Include="resources\css\plugins\bootstrap2-toggle.min.css" />
