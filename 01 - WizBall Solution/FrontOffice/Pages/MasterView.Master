@@ -19,7 +19,7 @@
         <script src ="../Public/jQuery/jQuery.min.js"></script>        
         <link   href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
         <link   href="../Public/Styling/MasterView.css" rel="stylesheet" />
-        <link href="../Public/Styling/MasterViewNavigationBar.css" rel="stylesheet" />
+        <link   href="../Public/Styling/MasterViewNavigationBar.css" rel="stylesheet" />
 
 
         <asp:ContentPlaceHolder ID="head" runat="server">
@@ -43,6 +43,14 @@
 
                 <%-- Menus --%>
                 <div class="navigation-menus">
+
+                    <div class="menu-matches">
+
+                    </div>
+
+                    <div class="menu-historical">
+
+                    </div>
 
                 </div>
 

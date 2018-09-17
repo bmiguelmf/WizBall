@@ -81,7 +81,7 @@
 }
 .my-grid-cell:nth-child(6) {
     width: 14%;
-    min-width: 50px;
+    min-width: 45px;
 }
 
 
@@ -122,48 +122,63 @@
 
 
 
-@media only screen and (max-width: 1199px) {
+@media only screen and (max-width: 1199px) 
+{
 
-   
+}
 
 
 @media only screen and (max-width: 911px) {
-
-
-}
+    }
 
 
 @media only screen and (max-width: 767px) {
 
-    .container {
-        max-width: 650px;
-    }   
-}
+        .container {
+            max-width: 650px;
+        }
+    }
 
 
 @media only screen and (max-width: 575px) {
+        .tire-one-comps {
+            border-radius: 0;
+        }
 
-    .my-grid{
-        font-size:9px;
+        .my-grid {
+            font-size: 9px;
+        }
+
+        .container {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .competitions-wrapper img {
+            width: 32px;
+        }
+
+        .my-grid-cell:nth-child(2) {
+            display: none;
+        }
+
+
+
+
+        .teamFlag {
+            display: none;
+        }
     }
-    .container{
-        padding: 0 5px;
-        margin:0;
-    }
 
 
-    .competitions-wrapper img {
-        width: 32px;
-    }
+@media only screen and (max-width: 359px) {
 
-    .my-grid-cell:nth-child(2) {
+    .my-grid-cell:nth-child(1) {
         display: none;
     }
-
-
-
-
-    .teamFlag {
-        display: none;
+    .my-grid-cell:nth-child(6) {
+        min-width: 45px;
     }
 }
+

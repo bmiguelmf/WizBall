@@ -4,7 +4,7 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-    background-color: #0094ff;
+    background-color: #fff;
     padding: 10px;
     margin-bottom: 40px;
 }
@@ -15,8 +15,7 @@
     height: 100px;
     min-width: 100px;
     flex: 1 1 100%;
-    background-color: burlywood;
-
+    background-color: #fff;
 }
 
 
@@ -25,7 +24,7 @@
     height: 100px;
     min-width: 100px;
     flex: 1 1 100%;
-    background-color: orangered;
+    background-color: #fff;
     ;
 }
 
@@ -35,7 +34,7 @@
     height: 100px;
     min-width: 100px;
     flex: 1 1 100%;
-    background-color: purple;
+    background-color: #fff;
     ;
 }
 

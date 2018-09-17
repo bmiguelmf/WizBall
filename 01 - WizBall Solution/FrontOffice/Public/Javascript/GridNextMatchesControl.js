@@ -2,6 +2,8 @@
 
     setViewMatchesHeight();
 
+    convertUtcDateToLocalDate();
+
     window.addEventListener("resize", setViewMatchesHeight);
 
 });
@@ -49,3 +51,39 @@ function setViewMatchesHeight() {
     // And finally apply the height.
     document.getElementById("scrolableGridMatchesBody").setAttribute("style", viewMatchesHeight);
 }
+
+function convertUtcDateToLocalDate() {
+
+    
+
+    var cells = document.querySelectorAll('.my-grid-body > .my-grid-row > #cell-utc');
+
+    console.log(cells);
+
+    for (var i = 0; i < cells.length; i++) {
+
+
+        var mil = parseFloat(cells[i].getAttribute("utc-date"));
+
+        var datex = new Date(mil);
+
+        var month, day, hour, minute;
+
+
+
+        month = monthNames[datex.getMonth()];
+
+        day = ("0" + datex.getDate()).slice(-2);
+
+        hour = ("0" + datex.getHours()).slice(-2);
+
+        minute = ("0" + datex.getMinutes()).slice(-2);
+
+        cells[i].innerHTML = day + " " + month + " " + hour + ":" + minute;
+    }
+
+}
+
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
