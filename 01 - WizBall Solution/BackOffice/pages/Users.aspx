@@ -33,7 +33,7 @@
 
     <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style_all.css" rel="stylesheet" />
-    
+
 
 </head>
 <body>
@@ -112,47 +112,25 @@
                         <label class="label" for="username">Username</label><br />
                         <input id="input_edit_username" name="username" required="" type="text" />
                     </div>
-
+                    <div class="col-lg-3">
+                        <label class="label" for="select_edit_status">Status</label><br />
+                        <input id="toggle_edit_status" name="select_edit_status" data-on="Active" data-off="Blocked" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="87" />
+                        <%-- 3 button toggle --> shttp://cssdeck.com/labs/ufct35ys5t--%>
+                    </div>
                     <div class="col-lg-9 w-100">
                         <label class="label" for="input_edit_email">E-Mail</label><br />
                         <input id="input_edit_email" name="input_edit_email" required="" type="text" />
                     </div>
-                    <div class="col-lg-3 w-100">
+                    <div class="col-lg-3">
                         <label class="label" for="input_edit_newsletter">Newsletter</label><br />
-                        <input id="input_edit_newsletter" name="input_edit_newsletter" data-on="Yes" data-off="No" type="checkbox" data-toggle="toggle" data-width="87" />
+                        <input id="toggle_edit_newsletter" name="input_edit_newsletter" data-on="Yes" data-off="No" type="checkbox" data-toggle="toggle" data-width="87" />
                     </div>
 
-                    <div class="col-lg-9">
-                        <label class="label" for="select_edit_status">Status</label><br />
-                        <select id="select_edit_status" name="input_edit_status" title="Change status" class="selectpicker " data-live-search="true">
-                        </select>
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn active">
-                                <input type="radio" value="1">
-                                Option 1
-                            </label>
-                            <label class="btn">
-                                <input type="radio" value="2">
-                                Option 2
-                            </label>
-                            <label class="btn">
-                                <input type="radio" value="3">
-                                Option 3
-                            </label>
-                        </div>
-                        <div class="switch">
-                            <input type="radio" class="switch-input" name="view" value="week" id="week" checked>
-                            <label for="week" class="switch-label switch-label-off">Block</label>
-                            <input type="radio" class="switch-input" name="view" value="month" id="month">
-                            <label for="month" class="switch-label switch-label-on">Unblock</label>
-                            <span class="switch-selection"></span>
-                        </div>
-                        <%--http://cssdeck.com/labs/ufct35ys5t--%>
-                    </div>
+                    
 
                     <div class="col-lg-12 w-100">
                         <label class="label" for="input_edit_description">Description:</label><br />
-                        <textarea class="col-lg-6" id="input_edit_description" name="input_edit_description" placeholder="Write something.."></textarea>
+                        <textarea disabled="disabled" style="resize: none;" class="col-lg-6" id="txt_edit_description" name="input_edit_description" placeholder=""></textarea>
                     </div>
 
                     <div class="col-lg-12 clearfix"></div>
