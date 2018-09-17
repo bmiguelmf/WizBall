@@ -13,21 +13,12 @@ namespace FrontOffice.Pages {
     public partial class Default {
         
         /// <summary>
-        /// phCompetitions control.
+        /// phViewNextMatches control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phCompetitions;
-        
-        /// <summary>
-        /// phMatchesList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phMatchesList;
+        protected global::System.Web.UI.WebControls.PlaceHolder phViewNextMatches;
     }
 }

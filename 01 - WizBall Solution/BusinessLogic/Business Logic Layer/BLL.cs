@@ -22,9 +22,22 @@ namespace BusinessLogic.BLL
             connectionString    = ConnectionString;
         }
 
-       
+
+
 
         // UTILITIES
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                MailAddress addr = new System.Net.Mail.MailAddress(email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public DateTime? NormalizeApiDateTime(string Datetime)
         {
             if (string.IsNullOrEmpty(Datetime))
@@ -41,35 +54,50 @@ namespace BusinessLogic.BLL
 
 
             return dtNormalized;
-        }
-        private bool IsValidEmail(string email)
+        }    
+        public List<Competition> TierOneCompetitions()
         {
-            try
+            return new List<Competition>()
             {
-                MailAddress addr = new System.Net.Mail.MailAddress(email);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+                new Competition() {Id = 2002 },                 // Bundesliga.
+                new Competition() {Id = 2003 },                 // Eredivisie.
+                new Competition() {Id = 2014 },                 // LaLiga.
+                new Competition() {Id = 2015 },                 // Ligue1.
+                new Competition() {Id = 2016 },                 // Championship.
+                new Competition() {Id = 2017 },                 // PrimeiraLiga.
+                new Competition() {Id = 2019 },                 // SerieA_italia.
+                new Competition() {Id = 2021 }                  // PremierLeague.
+            };
         }
-        public void MatchBuilder(Match Match)
-        {
-            Match.Season = GetSeasonById(Match.Season.Id.ToString());
-            Match.Competition = GetCompetitionById(Match.Competition.Id.ToString());
-            Match.Competition.Area = GetAreaById(Match.Competition.Area.Id.ToString());
 
-            Match.HomeTeam = GetTeamById(Match.HomeTeam.Id.ToString());
-            Match.HomeTeam.Area = GetAreaById(Match.HomeTeam.Area.Id.ToString());
 
-            Match.AwayTeam = GetTeamById(Match.AwayTeam.Id.ToString());
-            Match.AwayTeam.Area = GetAreaById(Match.AwayTeam.Area.Id.ToString());
-        }
-        private void UserHistoryBuilder(User user)
+
+        // Entities Builders
+        public void EntityBuilder(User User)
         {
-            user.CurrentUserHistory = GetCurrentUserHistoryByUserId(user.Id.ToString());
+            User.CurrentUserHistory = GetCurrentUserHistoryByUserId(User.Id.ToString());    
         }
+        public void EntityBuilder(Match Match)
+        {
+            Match.Season            = GetSeasonById(Match.Season.Id.ToString());
+            Match.Competition       = GetCompetitionById(Match.Competition.Id.ToString());
+            Match.Competition.Area  = GetAreaById(Match.Competition.Area.Id.ToString());
+
+            Match.HomeTeam          = GetTeamById(Match.HomeTeam.Id.ToString());
+            Match.HomeTeam.Area     = GetAreaById(Match.HomeTeam.Area.Id.ToString());
+
+            Match.AwayTeam          = GetTeamById(Match.AwayTeam.Id.ToString());
+            Match.AwayTeam.Area     = GetAreaById(Match.AwayTeam.Area.Id.ToString());
+        }
+        public void EntityBuilder(UserHistory UserHistory)
+        {
+            UserHistory.Admin           = GetAdminById(UserHistory.Admin.Id.ToString());
+            // UserHistory.User            = GetUserById(UserHistory.User.Id.ToString()); Previne recursão EntityBuilder User e Useristory.
+            UserHistory.BeforeState     = GetUserStateById(UserHistory.BeforeState.Id.ToString());
+            UserHistory.AfterState      = GetUserStateById(UserHistory.AfterState.Id.ToString());
+        }
+
+
 
 
         // API SYNC METHODS.
@@ -363,23 +391,8 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        public List<Competition> TierOneCompetitions()
-        {
-            return new List<Competition>()                         
-            {
-                new Competition() {Id = 2002 },                 // Bundesliga.
-                new Competition() {Id = 2003 },                 // Eredivisie.
-                new Competition() {Id = 2014 },                 // LaLiga.
-                new Competition() {Id = 2015 },                 // Ligue1.
-                new Competition() {Id = 2016 },                 // Championship.
-                new Competition() {Id = 2017 },                 // PrimeiraLiga.
-                new Competition() {Id = 2019 },                 // SerieA_italia.
-                new Competition() {Id = 2021 }                  // PremierLeague.
-            };
-        }
-
-
         
+     
 
 
         // USER METHODS.
@@ -388,14 +401,25 @@ namespace BusinessLogic.BLL
             DALUsers dal = new DALUsers(connectionString);
 
             List<User> lstUsers = dal.GetAll();
-            lstUsers.ForEach(UserHistoryBuilder);
+            lstUsers.ForEach(EntityBuilder);
 
             return lstUsers;
         }
         public User GetUserById(string Id)
         {
+            if (string.IsNullOrEmpty(Id))
+            {
+                return null;
+            }
+
+
             DALUsers dal = new DALUsers(connectionString);
-            return dal.GetById(Id);
+            User user = dal.GetById(Id);
+
+            EntityBuilder(user);
+
+
+            return user;
         }
         public bool InsertUser(User User)
         {
@@ -414,15 +438,14 @@ namespace BusinessLogic.BLL
             // Creates and inserts default user_history for the current user.            
             UserHistory userHistory = new UserHistory()
             {
-                Admin       = new Admin()           { Id= 1},
+                Admin       = new Admin()           { Id= 1 },
                 User        = new User()            { Id= userId },
                 Description = "User registration.",
                 BeforeState = new UserState()       { Id = 1 },
                 AfterState  = new UserState()       { Id = 1 }
             };
-            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
-            dalUserHistory.Insert(userHistory);
-
+            InsertUserHistory(userHistory);
+            
             return true;
         }
         public bool UpdatetUser(User User)
@@ -514,7 +537,6 @@ namespace BusinessLogic.BLL
             if (string.IsNullOrEmpty(UserStateId))
                 return null;
 
-
             DALUsers dalUsers = new DALUsers(connectionString);
 
             return dalUsers.GetByState(UserStateId);
@@ -537,18 +559,10 @@ namespace BusinessLogic.BLL
             if (string.IsNullOrEmpty(Id))
                 return null;
 
-            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);           // Gets an user history by its id.
-            UserHistory userHistory = dalUserHistory.GetById(Id);
+            DALUserHistory  dalUserHistory  = new DALUserHistory(connectionString);           // Gets an user history by its id.
+            UserHistory     userHistory     = dalUserHistory.GetById(Id);
 
-            DALAdmins dalAdmin = new DALAdmins(connectionString);
-            userHistory.Admin = dalAdmin.GetById(userHistory.Admin.Id.ToString());
-
-            DALUsers dalUsers = new DALUsers(connectionString);
-            userHistory.User = dalUsers.GetById(userHistory.User.Id.ToString());
-
-            DALUserStates dalUserStates = new DALUserStates(connectionString);
-            userHistory.BeforeState = dalUserStates.GetById(userHistory.BeforeState.Id.ToString());
-            userHistory.AfterState = dalUserStates.GetById(userHistory.AfterState.Id.ToString());
+            EntityBuilder(userHistory);
 
             return userHistory;
         }
@@ -556,21 +570,11 @@ namespace BusinessLogic.BLL
         {
             if (string.IsNullOrEmpty(UserId))
                 return null;
-
-            DALUsers dalUsers = new DALUsers(connectionString);
-            DALAdmins dalAdmin = new DALAdmins(connectionString);
-            DALUserStates dalUserStates = new DALUserStates(connectionString);
-            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);           
-
+           
+            DALUserHistory     dalUserHistory = new DALUserHistory(connectionString);           
             List<UserHistory>  lstUserHistory = dalUserHistory.GetByUserId(UserId);
-     
-            foreach(UserHistory userHistory in lstUserHistory)
-            {              
-                userHistory.Admin           = dalAdmin.GetById(userHistory.Admin.Id.ToString());                
-                userHistory.User            = dalUsers.GetById(userHistory.User.Id.ToString());              
-                userHistory.BeforeState     = dalUserStates.GetById(userHistory.BeforeState.Id.ToString());
-                userHistory.AfterState      = dalUserStates.GetById(userHistory.AfterState.Id.ToString());
-            }
+
+            lstUserHistory.ForEach(EntityBuilder);
 
             return lstUserHistory;
         }
@@ -579,19 +583,12 @@ namespace BusinessLogic.BLL
             if (string.IsNullOrEmpty(UserId))
                 return null;
 
-            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
-            UserHistory userHistory = dalUserHistory.GetCurrentByUserId(UserId);
+            DALUserHistory  dalUserHistory  = new DALUserHistory(connectionString);
+            UserHistory     userHistory     = dalUserHistory.GetCurrentByUserId(UserId);
 
             if (userHistory is null) return null;
 
-            DALUsers dalUsers = new DALUsers(connectionString);
-            DALAdmins dalAdmin = new DALAdmins(connectionString);
-            DALUserStates dalUserStates = new DALUserStates(connectionString);
-           
-            userHistory.Admin = dalAdmin.GetById(userHistory.Admin.Id.ToString());
-            userHistory.User = dalUsers.GetById(userHistory.User.Id.ToString());
-            userHistory.BeforeState = dalUserStates.GetById(userHistory.BeforeState.Id.ToString());
-            userHistory.AfterState = dalUserStates.GetById(userHistory.AfterState.Id.ToString());
+            EntityBuilder(userHistory);
      
             return userHistory;
         }
@@ -608,6 +605,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
+
 
 
         // ADMIN METHODS.
@@ -664,33 +662,13 @@ namespace BusinessLogic.BLL
         }      
         public List<Match> GetMatchesByCompetition(string CompetitionId)
         {
-            DALTeams dalTeams = new DALTeams(connectionString);
             DALMatches dalMatches = new DALMatches(connectionString);
 
             List<Match> lstMatches = dalMatches.GetByCompetitionId(CompetitionId);
 
-            foreach (Match match in lstMatches)
-            {
-                MatchBuilder(match);
-            }
-
+            lstMatches.ForEach(EntityBuilder);
 
             return lstMatches;
-        }
-        public List<Match> GetTodayMatchesByCompetition(string CompetitionId)
-        {
-            return GetMatchesByDateAndCompetition(CompetitionId, DateTime.Today);
-        }
-        public List<Match> GetTodayMatchesByTierOneCompetitions()
-        {
-            List<Match> lstTodayMatches = new List<Match>();
-
-            foreach(Competition competition in TierOneCompetitions())
-            {
-                lstTodayMatches.AddRange(GetMatchesByDateAndCompetition(competition.Id.ToString(), DateTime.Now));
-            }
-
-            return lstTodayMatches;
         }
         public List<Match> GetNextMatchesByTierOneCompetitions()
         {
@@ -703,23 +681,20 @@ namespace BusinessLogic.BLL
                 lstTodayMatches.AddRange(dalMatches.GetSpNextMatchesByCompetitionId(competition.Id.ToString()));
             }
 
-            lstTodayMatches.ForEach(MatchBuilder);
+            lstTodayMatches.ForEach(EntityBuilder);
 
             return lstTodayMatches;
         }
         public List<Match> GetMatchesByDateAndCompetition(string CompetitionId, DateTime Date)
         {
-            DateTime dayInit = new DateTime(Date.Year, Date.Month, Date.Day, 0, 0, 0);
-            DateTime dayEnd = new DateTime(Date.Year, Date.Month, Date.Day, 23, 59, 59);
+            DateTime dayInit = new DateTime(Date.Year, Date.Month, Date.Day, 0,  0,  0);
+            DateTime dayEnd  = new DateTime(Date.Year, Date.Month, Date.Day, 23, 59, 59);
 
-            DALMatches dalMatches = new DALMatches(connectionString);
+            DALMatches dalMatches  = new DALMatches(connectionString);
 
             List<Match> lstMatches = dalMatches.GetByCompetitionIdAndByRangeDates(CompetitionId, dayInit, dayEnd);
 
-            foreach (Match match in lstMatches)
-            {
-                MatchBuilder(match);
-            }
+            lstMatches.ForEach(EntityBuilder);
 
             return lstMatches;
         }
@@ -854,44 +829,44 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        public bool SetTodayTips()
-        {
-            List<Tip> lstTipsToInsert = new List<Tip>();                                                    // List to hold the tips.
+        //public bool SetTodayTips()
+        //{
+        //    List<Tip> lstTipsToInsert = new List<Tip>();                                                    // List to hold the tips.
 
-            foreach(Match match in GetTodayMatchesByTierOneCompetitions())                                  // Foreach today match in all tier one competitions
-            {
-                DateTime? matchDate = NormalizeApiDateTime(match.UtcDate);                                  // Normalize the UtcDate to be comparable.
+        //    foreach(Match match in GetTodayMatchesByTierOneCompetitions())                                  // Foreach today match in all tier one competitions
+        //    {
+        //        DateTime? matchDate = NormalizeApiDateTime(match.UtcDate);                                  // Normalize the UtcDate to be comparable.
 
-                if(matchDate > DateTime.UtcNow)                                                             // Check if the match has not been played yet.
-                {
-                    Team homeTeam = match.HomeTeam;                                                                                     // An easy to handle pointer to home team object.
-                    Team awayTeam = match.AwayTeam;                                                                                     // An easy to handle pointer to away team object.
+        //        if(matchDate > DateTime.UtcNow)                                                             // Check if the match has not been played yet.
+        //        {
+        //            Team homeTeam = match.HomeTeam;                                                                                     // An easy to handle pointer to home team object.
+        //            Team awayTeam = match.AwayTeam;                                                                                     // An easy to handle pointer to away team object.
 
-                    List<Match> lstMatchesByCompetition = GetMatchesByCompetition(match.Competition.Id.ToString());                     // Gets a list with all matches for a given competition.
+        //            List<Match> lstMatchesByCompetition = GetMatchesByCompetition(match.Competition.Id.ToString());                     // Gets a list with all matches for a given competition.
 
-                    List<Match> lstHomeTeamMatches = lstMatchesByCompetition                                                            // Get a filtered list with only the competition matches in which the home team plays and the matches have not been played yet.
-                                                     .Where( x => ( x.HomeTeam.Id == homeTeam.Id || x.AwayTeam.Id == homeTeam.Id ) &&
-                                                                   NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow ).ToList();
+        //            List<Match> lstHomeTeamMatches = lstMatchesByCompetition                                                            // Get a filtered list with only the competition matches in which the home team plays and the matches have not been played yet.
+        //                                             .Where( x => ( x.HomeTeam.Id == homeTeam.Id || x.AwayTeam.Id == homeTeam.Id ) &&
+        //                                                           NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow ).ToList();
 
-                    List<Match> lstAwayTeamMatches = lstMatchesByCompetition                                                            // Get a filtered list with only the competition matches in which the away team plays and the matches have not been played yet.
-                                                     .Where( x => ( x.HomeTeam.Id == awayTeam.Id || x.AwayTeam.Id == awayTeam.Id ) &&
-                                                                   NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow ).ToList();
-
-
-
-                    // SET TIPS.                    
-                    Tip ftOverTwoAndHalfGoals = FulltimeOverTwoAndHalfGoals(match, lstHomeTeamMatches, lstAwayTeamMatches, homeTeam, awayTeam);
+        //            List<Match> lstAwayTeamMatches = lstMatchesByCompetition                                                            // Get a filtered list with only the competition matches in which the away team plays and the matches have not been played yet.
+        //                                             .Where( x => ( x.HomeTeam.Id == awayTeam.Id || x.AwayTeam.Id == awayTeam.Id ) &&
+        //                                                           NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow ).ToList();
 
 
-                    // Confirmar se o match em questão já tem alguma tip. só se não tiver então faz.
-                    lstTipsToInsert.Add(ftOverTwoAndHalfGoals);
-                }
-            }
 
-            InsertTips(lstTipsToInsert);
+        //            // SET TIPS.                    
+        //            Tip ftOverTwoAndHalfGoals = FulltimeOverTwoAndHalfGoals(match, lstHomeTeamMatches, lstAwayTeamMatches, homeTeam, awayTeam);
 
-            return true;
-        }
+
+        //            // Confirmar se o match em questão já tem alguma tip. só se não tiver então faz.
+        //            lstTipsToInsert.Add(ftOverTwoAndHalfGoals);
+        //        }
+        //    }
+
+        //    InsertTips(lstTipsToInsert);
+
+        //    return true;
+        //}
         private Tip FulltimeOverTwoAndHalfGoals(Match Match, List<Match> HomeTeamMatches, List<Match> AwayTeamMatches, Team HomeTeam, Team AwayTeam)
         {
             double? homeTeamHomeScoreAvg = HomeTeamMatches.Where(x => x.HomeTeam.Id == HomeTeam.Id)

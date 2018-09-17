@@ -10,7 +10,7 @@ using BusinessLogic.BLL;
 using BusinessLogic.Entities;
 using WebServices;
 using FrontOffice.Resources;
-
+using System.Web.UI.HtmlControls;
 
 namespace FrontOffice.Pages
 {
@@ -22,10 +22,22 @@ namespace FrontOffice.Pages
             if (IsPostBack) return;
 
 
-
-            phCompetitions.Controls.Add(Factory.ViewTierOneCompetitions());
             
-            phMatchesList.Controls.Add(Factory.ViewNextMatches());
+            string apiToken = WebConfigurationManager.AppSettings["ApiToken"];                              // Database sync purposes. //
+            string connString = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;         // // // // // // // // // //
+            BLL  bll = new BLL(connString, apiToken);                                                       // // // // // // // // // //
+            //bll.FullDatabaseSync();                                                                       // // // // // // // // // //
+            // bll.SyncAreas();                                                                             // // // // // // // // // //
+            //bll.SyncSeasons();                                                                            // // // // // // // // // //
+            //bll.SyncCompetitions();                                                                       // // // // // // // // // //
+            //bll.SyncTeams();                                                                              // // // // // // // // // //
+            //bll.SyncMatchesTierOne();                                                                     // // // // // // // // // //
+
+
+
+
+            phViewNextMatches.Controls.Add(ViewMatchesFactory.ViewNextMatches());
+
         }
 
     }

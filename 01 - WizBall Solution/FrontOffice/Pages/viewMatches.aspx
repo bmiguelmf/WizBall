@@ -12,8 +12,8 @@
 <%--Header--%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <script src ="../Public/Javascript/viewMatches.js"></script> 
-    <link   href="../Public/Styling/viewMatches.css" rel="stylesheet" />
+    <script src ="../Public/Javascript/ViewMatches.js"></script> 
+    <link   href="../Public/Styling/ViewMatches.css" rel="stylesheet" />
 
 </asp:Content>
 
@@ -24,11 +24,7 @@
 
 
     <%-- Place holder competitions --%>
-    <asp:PlaceHolder ID="phCompetitions" runat="server"></asp:PlaceHolder>
-
-
-    <%-- Place holder matches list --%>
-    <asp:PlaceHolder ID="phMatchesList" runat="server"></asp:PlaceHolder>
+    <asp:PlaceHolder ID="phViewNextMatches" runat="server"></asp:PlaceHolder>
 
 
 </asp:Content>

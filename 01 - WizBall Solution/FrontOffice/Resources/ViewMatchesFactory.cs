@@ -10,7 +10,7 @@ using System.Web.Configuration;
 
 namespace FrontOffice.Resources
 {
-    public static class Factory
+    public static class ViewMatchesFactory
     {
         private const string TEAM_FLAGS = "/Public/Imgs/Teams/";
         private const string COMP_FLAGS = "/Public/Imgs/Competitions/";
@@ -21,7 +21,7 @@ namespace FrontOffice.Resources
         private static string apiToken;
         private static string connString;
    
-        static Factory()
+        static ViewMatchesFactory()
         {
             apiToken    = WebConfigurationManager.AppSettings["ApiToken"];
             connString  = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
@@ -31,7 +31,7 @@ namespace FrontOffice.Resources
 
 
 
-        public static HtmlGenericControl ViewTierOneCompetitions()
+        private static HtmlGenericControl HeaderGridNextMatches()
         {
             List<Competition> lstCompetitions = bll.TierOneCompetitions();
            
@@ -64,7 +64,7 @@ namespace FrontOffice.Resources
         }
 
 
-        public static HtmlGenericControl ViewNextMatches()
+        private static HtmlGenericControl BodyGridNextMatches()
         {
             // Header.
             HtmlGenericControl header               = new HtmlGenericControl("div");
@@ -112,13 +112,14 @@ namespace FrontOffice.Resources
 
 
             HtmlGenericControl scroll               = new HtmlGenericControl("div");
-            scroll.Attributes["id"]                 = "scroll";
+            scroll.Attributes["id"]                 = "scrolableGridMatchesBody";
             scroll.Attributes["class"]              = "scroll";
 
 
             // Body
             HtmlGenericControl body                 = new HtmlGenericControl("div");
             body.Attributes["class"]                = "my-grid-body";
+            body.Attributes["id"]                   = "my-grid-body";
 
             scroll.Controls.Add(body);
 
@@ -181,7 +182,17 @@ namespace FrontOffice.Resources
             return grid;
         }
 
-      
+        
+        public static HtmlGenericControl ViewNextMatches()
+        {
+            HtmlGenericControl GridNextMatches  = new HtmlGenericControl("div");
+            GridNextMatches.Attributes["id"]    = "GridNextMatches";
+
+            GridNextMatches.Controls.Add(HeaderGridNextMatches());
+            GridNextMatches.Controls.Add(BodyGridNextMatches()  );
+
+            return GridNextMatches;
+        }
 
     }
 }
