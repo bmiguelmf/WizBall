@@ -12,6 +12,18 @@ namespace BusinessLogic.DAL
         public DALMatches(string ConnString) : base(ConnString)
         { }
 
+        // Stored Procedure
+        public List<Match> GetSpNextMatchesByCompetitionId(string CompetitionId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@competition", CompetitionId)
+            };
+
+            return base.ExecuteStoredProcedure(new Match(), "spGetNextMatches", parameters)
+                .Cast<Match>().ToList();
+        }
+
         // Gets
         public List<Match> GetAll()
         {
