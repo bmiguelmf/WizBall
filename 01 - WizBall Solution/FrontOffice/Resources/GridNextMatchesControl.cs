@@ -7,21 +7,18 @@ using BusinessLogic.Entities;
 using System.Web.UI.WebControls;
 using BusinessLogic.BLL;
 using System.Web.Configuration;
+using FrontOffice.Resources;
 
 namespace FrontOffice.Resources
 {
-    public static class ViewMatchesFactory
+    public static class GridNextMatchesControl
     {
-        private const string TEAM_FLAGS = "/Public/Imgs/Teams/";
-        private const string COMP_FLAGS = "/Public/Imgs/Competitions/";
-        private const string MARKETS    = "/Public/Imgs/Markets/";
-
 
         private static BLL bll;
         private static string apiToken;
         private static string connString;
    
-        static ViewMatchesFactory()
+        static GridNextMatchesControl()
         {
             apiToken    = WebConfigurationManager.AppSettings["ApiToken"];
             connString  = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
@@ -51,7 +48,7 @@ namespace FrontOffice.Resources
                 divComp.Attributes["class"] = "text-center competitions-wrapper";
 
                 Image compImg               = new Image();
-                compImg.ImageUrl            = COMP_FLAGS + comp.Flag;
+                compImg.ImageUrl            = Globals.COMP_FLAGS + comp.Flag;
                 compImg.AlternateText       = comp.Name;
                 compImg.Attributes["title"] = comp.Name;
 
@@ -133,7 +130,7 @@ namespace FrontOffice.Resources
                 // Row cells.
                 HtmlGenericControl rowCellCompetition   = new HtmlGenericControl("div");
                 rowCellCompetition.Attributes["class"]  = "my-grid-cell";
-                rowCellCompetition.InnerHtml            = "<img src='" + COMP_FLAGS + match.Competition.Flag + "' alt='" + match.Competition.Name + "' title='" + match.Competition.Name + "' width ='24px;'>";
+                rowCellCompetition.InnerHtml            = "<img src='" + Globals.COMP_FLAGS + match.Competition.Flag + "' alt='" + match.Competition.Name + "' title='" + match.Competition.Name + "' width ='24px;'>";
                 row.Controls.Add(rowCellCompetition);
 
                 HtmlGenericControl rowCellMatchDay      = new HtmlGenericControl("div");
@@ -143,7 +140,7 @@ namespace FrontOffice.Resources
 
                 HtmlGenericControl rowCellHomeTeam      = new HtmlGenericControl("div");
                 rowCellHomeTeam.Attributes["class"]     = "my-grid-cell text-right";
-                rowCellHomeTeam.InnerHtml               = match.HomeTeam.ShortName + "<img class='teamFlag pl-2' src='" + TEAM_FLAGS + match.Competition.Area.Name + "/" + match.HomeTeam.Flag + "' alt='" + match.HomeTeam.ShortName + "' title='" + match.HomeTeam.ShortName + "' width='24px;'>";
+                rowCellHomeTeam.InnerHtml               = match.HomeTeam.ShortName + "<img class='teamFlag pl-2' src='" + Globals.TEAM_FLAGS + match.Competition.Area.Name + "/" + match.HomeTeam.Flag + "' alt='" + match.HomeTeam.ShortName + "' title='" + match.HomeTeam.ShortName + "' width='24px;'>";
                 row.Controls.Add(rowCellHomeTeam);
 
                 HtmlGenericControl rowCellDate          = new HtmlGenericControl("div");
@@ -153,13 +150,13 @@ namespace FrontOffice.Resources
 
                 HtmlGenericControl rowCellAwayTeam      = new HtmlGenericControl("div");
                 rowCellAwayTeam.Attributes["class"]     = "my-grid-cell text-left";
-                rowCellAwayTeam.InnerHtml               = "<img class='teamFlag pr-2' src='" + TEAM_FLAGS + match.Competition.Area.Name + "/" + match.AwayTeam.Flag + "' alt='" + match.AwayTeam.ShortName + "' title='" + match.AwayTeam.ShortName + "' width='24px;'> " + match.AwayTeam.ShortName;
+                rowCellAwayTeam.InnerHtml               = "<img class='teamFlag pr-2' src='" + Globals.TEAM_FLAGS + match.Competition.Area.Name + "/" + match.AwayTeam.Flag + "' alt='" + match.AwayTeam.ShortName + "' title='" + match.AwayTeam.ShortName + "' width='24px;'> " + match.AwayTeam.ShortName;
                 row.Controls.Add(rowCellAwayTeam);
 
 
                 HtmlGenericControl rowCellTip           = new HtmlGenericControl("div");
                 rowCellTip.Attributes["class"]          = "my-grid-cell";
-                rowCellTip.InnerHtml                    = "<img src='" + TEAM_FLAGS + match.Competition.Area.Name + "/" + match.AwayTeam.Flag + "' alt='" + match.AwayTeam.ShortName + "' title='" + match.AwayTeam.ShortName + "' width='24px;'> " + match.AwayTeam.Id.ToString();
+                rowCellTip.InnerHtml                    = "<img src='" + Globals.TEAM_FLAGS + match.Competition.Area.Name + "/" + match.AwayTeam.Flag + "' alt='" + match.AwayTeam.ShortName + "' title='" + match.AwayTeam.ShortName + "' width='24px;'> " + match.AwayTeam.Id.ToString();
                 row.Controls.Add(rowCellTip);
 
                 if (match.Id % 3 == 0)
@@ -183,7 +180,7 @@ namespace FrontOffice.Resources
         }
 
         
-        public static HtmlGenericControl ViewNextMatches()
+        public static HtmlGenericControl Create()
         {
             HtmlGenericControl GridNextMatches  = new HtmlGenericControl("div");
             GridNextMatches.Attributes["id"]    = "GridNextMatches";

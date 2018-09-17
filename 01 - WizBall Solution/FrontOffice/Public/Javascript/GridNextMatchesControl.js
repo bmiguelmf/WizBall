@@ -25,11 +25,11 @@ function setViewMatchesHeight() {
 
     // Vertical.
     if (window.innerHeight > window.innerWidth) {
-        viewPortHeight = $(window).height() - 200;
+        viewPortHeight = $(window).height() - 350;
     }
     // Horizontal.
     else {
-        viewPortHeight = $(window).height() - 150;
+        viewPortHeight = $(window).height() - 300;
     }
 
 

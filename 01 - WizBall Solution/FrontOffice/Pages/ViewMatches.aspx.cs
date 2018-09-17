@@ -35,9 +35,7 @@ namespace FrontOffice.Pages
 
 
 
-
-            phViewNextMatches.Controls.Add(ViewMatchesFactory.ViewNextMatches());
-
+            phGridNextMatchesControl.Controls.Add(GridNextMatchesControl.Create());
         }
 
     }
