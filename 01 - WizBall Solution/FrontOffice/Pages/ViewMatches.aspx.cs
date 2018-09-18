@@ -11,6 +11,7 @@ using BusinessLogic.Entities;
 using WebServices;
 using FrontOffice.Resources;
 using System.Web.UI.HtmlControls;
+using System.Threading;
 
 namespace FrontOffice.Pages
 {
@@ -32,6 +33,40 @@ namespace FrontOffice.Pages
             //bll.SyncCompetitions();                                                                       // // // // // // // // // //
             //bll.SyncTeams();                                                                              // // // // // // // // // //
             //bll.SyncMatchesTierOne();                                                                     // // // // // // // // // //
+
+
+
+            //User bro = new User()
+            //{
+            //    Username = "Bro",
+            //    Email = "bmiguelmf@gmail.com",
+            //    Password = "06121984"
+            //};
+
+            //bll.InsertUser(bro);
+
+            //Page.Response.Write("User Inserirdo: Showing User");
+            //Thread.Sleep(3000);
+
+            //foreach (User user in bll.GetAllUsers())
+            //{
+            //    Page.Response.Write("");
+            //    Page.Response.Write(user.Username + " " + user.Email + " " + user.Password + " " + user.Picture + " " + user.Newsletter.ToString() + " " + user.CreatedAt + " " + user.Id.ToString());
+            //}
+
+
+
+
+            //User bro = bll.GetUserById("121");
+
+            //bro.Picture = "fds.png";
+            //bro.Email = "outro@mail.com";
+            //bro.Newsletter = true;
+            //bro.CurrentUserHistory.AfterState.Id = 11;
+            //bro.CurrentUserHistory.Description = "bloqued por bro";
+
+
+            //bll.UpdatetUser(bro, bro.CurrentUserHistory);
 
 
 

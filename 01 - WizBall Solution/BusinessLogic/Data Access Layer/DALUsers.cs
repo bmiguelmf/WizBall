@@ -73,11 +73,15 @@ namespace BusinessLogic.DAL
 
 
         // UPDATE.
+        public bool Update(User User)
+        {         
+            return base.Update(User);
+        }
         public bool Update(List<User> Users)
         {
             foreach (User user in Users)
             {
-                Update(user);
+                base.Update(user);
             }
 
             return true;

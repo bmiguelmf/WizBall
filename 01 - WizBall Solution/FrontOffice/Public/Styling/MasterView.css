@@ -1,4 +1,42 @@
-﻿body {
-    background-color: whitesmoke;
-    
+﻿.grid-wrapper {
+    width: 100%;
+    display: grid;
+
+    grid-template-rows: 10vh 85vh 5vh;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'header' 'main' 'footer';
+}
+
+header {
+    grid-area: header;
+    background-color: white;
+}
+
+main {
+    grid-area: main;
+    background-color: #f3f3f3;
+}
+footer {
+    margin: 0;
+    padding: 0;
+    grid-area: footer;
+    background-color: #333;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+footer ul {
+    text-align: center;
+    margin: 0;
+    padding: 0;   
+}
+footer ul li {
+    margin: 0 10px;
+    color: yellowgreen;
+    font-size:12px;
+    font-weight:700;
+    display: inline-block;
 }

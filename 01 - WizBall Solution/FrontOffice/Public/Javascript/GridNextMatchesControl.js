@@ -54,11 +54,7 @@ function setViewMatchesHeight() {
 
 function convertUtcDateToLocalDate() {
 
-    
-
     var cells = document.querySelectorAll('.my-grid-body > .my-grid-row > #cell-utc');
-
-    console.log(cells);
 
     for (var i = 0; i < cells.length; i++) {
 

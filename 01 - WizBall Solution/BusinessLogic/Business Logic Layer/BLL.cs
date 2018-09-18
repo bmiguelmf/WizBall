@@ -456,14 +456,26 @@ namespace BusinessLogic.BLL
             if (!IsValidEmail(User.Email))
                 return false;
 
+            DALUsers dalUsers = new DALUsers(connectionString);
+            
+            return dalUsers.Update(User);
+        }
+        public bool UpdatetUser(User User, UserHistory UserHistory)
+        {
+            if (User is null || UserHistory is null)
+                return false;
+
+            if (!IsValidEmail(User.Email))
+                return false;
+
 
             List<User> lstUsers = new List<User>();
-            lstUsers.Add(User);
 
-            DALUsers dalUsers = new DALUsers(connectionString);
-            dalUsers.Update(lstUsers);
+            if(UpdatetUser(User) && InsertUserHistory(UserHistory))            
+                return true;
+            
 
-            return true;
+            return false;
         }
         public User UserLogin(string Username, string Password)
         {
@@ -597,13 +609,11 @@ namespace BusinessLogic.BLL
             if (UserHistory is null)
                 return false;
 
-            List<UserHistory> lstUserHistory = new List<UserHistory>();
-            lstUserHistory.Add(UserHistory);
 
             DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
-            dalUserHistory.Insert(lstUserHistory);
 
-            return true;
+
+            return dalUserHistory.Insert(UserHistory);
         }
 
 

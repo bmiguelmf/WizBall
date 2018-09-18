@@ -8,73 +8,93 @@
 
 <html>
 
-    <head runat="server">
+<head runat="server">
     
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-        <title>Wizball</title>
+    <title>Wizball</title>
 
 
-        <script src ="../Public/jQuery/jQuery.min.js"></script>        
-        <link   href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
-        <link   href="../Public/Styling/MasterView.css" rel="stylesheet" />
-        <link   href="../Public/Styling/MasterViewNavigationBar.css" rel="stylesheet" />
+    <script src ="../Public/jQuery/jQuery.min.js"></script>        
+    <link   href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
+    <link   href="../Public/Styling/MasterView.css" rel="stylesheet" />
+    <link   href="../Public/Styling/MasterViewNavigationBar.css" rel="stylesheet" />
 
 
-        <asp:ContentPlaceHolder ID="head" runat="server">
-        </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
 
-    </head>
-
-
-    <body>
-
-        <form id="form1" runat="server">
-            
-
-            <%-- Navbar --%>
-            <div class="navigation-wrapper">
+</head>
 
 
-                <%-- Brand --%>
-                <div class="navigation-brand"></div>
+<body>
+    <form id="form1" runat="server">
+        
+        
+        <div class="grid-wrapper">          
 
 
-                <%-- Menus --%>
-                <div class="navigation-menus">
+            <%-- Header --%>  
+            <header>
 
-                    <div class="menu-matches">
+                <%-- Application Panel --%>
+                <div class="navigation-wrapper">
 
-                    </div>
 
-                    <div class="menu-historical">
+                    <%-- Brand --%>
+                    <div class="navigation-brand"></div>
+
+
+                    <%-- Navbar --%>
+                    <nav class="navigation-menus">
+
+                        <div class="menu-matches">
+
+                        </div>
+
+                        <div class="menu-historical">
+
+                        </div>
+
+                    </nav>
+
+
+                    <%-- User Panel --%>
+                    <div class="navigation-user">
 
                     </div>
 
                 </div>
 
-
-                <%-- Menus --%>
-                <div class="navigation-user">
-
-                </div>
-
-            </div>
-
-
+            </header>
+         
             
-            <%-- Inlcuded Page --%>  
-            <div class="container">
-                            
-                <asp:ContentPlaceHolder ID="MasterViewPlaceHolderNextMatches" runat="server">
-                </asp:ContentPlaceHolder>
+            <%-- Main --%>  
+            <main >
+                <div class="container">
 
-            </div>
+                    <asp:ContentPlaceHolder ID="MasterViewPlaceHolderNextMatches" runat="server">
+                    </asp:ContentPlaceHolder>
+                
+                </div>
+            </main>
 
 
-        </form>
+            <%-- Footer--%>
+            <footer>
+                <ul>
+                    <li>About Us</li>
+                    <li>Contacts Us</li>
+                    <li>Social</li>
+                </ul>
+            </footer>
 
-    </body>
+
+        </div>
+
+
+    </form>
+</body>
 
 </html>

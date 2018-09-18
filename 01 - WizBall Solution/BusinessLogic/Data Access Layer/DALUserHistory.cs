@@ -69,6 +69,10 @@ namespace BusinessLogic.DAL
 
             return true;
         }
+        public bool Update(UserHistory UserHistory)
+        {
+            return Update(UserHistory);
+        }
 
 
         // DELETE. (Not implemented in bll because its not suposed this table to allow deletes)
