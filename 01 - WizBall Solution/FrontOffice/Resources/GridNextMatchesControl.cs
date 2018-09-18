@@ -21,7 +21,7 @@ namespace FrontOffice.Resources
         static GridNextMatchesControl()
         {
             apiToken    = WebConfigurationManager.AppSettings["ApiToken"];
-            connString  = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
+            connString  = WebConfigurationManager.ConnectionStrings["atec"].ConnectionString;
 
             bll = new BLL(connString, apiToken);
         }
@@ -40,6 +40,7 @@ namespace FrontOffice.Resources
 
 
             HtmlGenericControl wrapper = new HtmlGenericControl("div");
+            wrapper.Attributes["id"]    = "tire-one-comps";
             wrapper.Attributes["class"] = "tire-one-comps";
             
             foreach(Competition comp in lstCompetitions)
@@ -65,6 +66,7 @@ namespace FrontOffice.Resources
         {
             // Header.
             HtmlGenericControl header               = new HtmlGenericControl("div");
+            header.Attributes["id"]                 = "my-grid-header";
             header.Attributes["class"]              = "my-grid-header";
 
 
@@ -120,7 +122,7 @@ namespace FrontOffice.Resources
 
             scroll.Controls.Add(body);
 
-            foreach (Match match in bll.GetNextMatchesByTierOneCompetitions())
+            foreach (Match match in bll.GetMatchesByCompetition("2017"))
             {
                 // Rows
                 HtmlGenericControl row                  = new HtmlGenericControl("div");

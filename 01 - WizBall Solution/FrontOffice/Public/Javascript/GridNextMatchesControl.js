@@ -1,56 +1,14 @@
 ﻿$(document).ready(function () {
 
-    setViewMatchesHeight();
+    setViewMatchesHeightx();
 
     convertUtcDateToLocalDate();
 
-    window.addEventListener("resize", setViewMatchesHeight);
+    window.addEventListener("resize", setViewMatchesHeightx);
 
 });
 
 
-function setViewMatchesHeight() {
-
-    // Gets the pointer to html element.
-    var gridMatches = document.getElementById("my-grid-body");
-
-    // Gets the n childs of grid matches.
-    var nMatches = gridMatches.childElementCount;
-
-    // Set the initial grid height just by multipling row height by total row number.
-    var gridHeight = nMatches * 29;
-    // This number can be very high (bigger than viewport) in some cases so we need to check if this is the case.
-
-
-    // First gets the viewport height based on orientation and subtract (150 or 200 px).
-    var viewPortHeight;
-
-    // Vertical.
-    if (window.innerHeight > window.innerWidth) {
-        viewPortHeight = $(window).height() - 350;
-    }
-    // Horizontal.
-    else {
-        viewPortHeight = $(window).height() - 300;
-    }
-
-
-
-    // Now while gridHeight is bigger than viewPortHeight
-    while (gridHeight > viewPortHeight) {
-
-        // Simply reduces it by 29px at a time.
-        gridHeight -= 29;
-    }
-
-    
-    // Setup attribute.
-    var viewMatchesHeight = "height:" + gridHeight + "px;";
-
-
-    // And finally apply the height.
-    document.getElementById("scrolableGridMatchesBody").setAttribute("style", viewMatchesHeight);
-}
 
 function convertUtcDateToLocalDate() {
 
@@ -79,7 +37,59 @@ function convertUtcDateToLocalDate() {
     }
 
 }
-
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
+
+
+
+function setViewMatchesHeightx() {
+
+    // Enforces Wrapper to be the whole viewport height.
+    var totalViewPort = $(window).height();
+    document.getElementById("grid-wrapper").setAttribute("style", "height:" + totalViewPort + "px;");
+
+
+    // Header Height
+    var headerHeight    = $("#header").height();
+    var footerHeight    = $("#footer").height();
+    var viewPortHeight  = $(window).height();
+
+   
+    var gridMatchesHeader       = $("#my-grid-header").height();
+    var gridMatchesCompetitons  = $("#tire-one-comps").height();
+    var gridMatchesBody = viewPortHeight - footerHeight - headerHeight - gridMatchesHeader - gridMatchesCompetitons;
+
+
+
+    while (gridMatchesBody % 29 !== 0) {
+        gridMatchesBody--;
+    }
+
+
+    // Width validations.
+    if ($(window).width() < 576 || $(window).height() < 600) {
+        document.getElementById("main").style.alignItems = "flex-start";
+        document.getElementById("tire-one-comps").style.borderRadius = "0";
+        document.getElementById("cont-matches").style.padding = "0";
+    }
+    else if($(window).width() < 768) {
+        gridMatchesBody -= 29;
+        document.getElementById("main").style.alignItems = "center";
+        document.getElementById("tire-one-comps").style.borderRadius = "7px 7px 0 0";
+        document.getElementById("cont-matches").style.padding = "0 20px";
+    }
+    else {
+        gridMatchesBody -= 58;
+        document.getElementById("main").style.alignItems = "center";
+        document.getElementById("tire-one-comps").style.borderRadius = "7px 7px 0 0";
+    }
+
+
+
+
+    // And finally apply the height.
+    document.getElementById("scrolableGridMatchesBody").setAttribute("style", "height:" + gridMatchesBody + "px;");
+
+ 
+}

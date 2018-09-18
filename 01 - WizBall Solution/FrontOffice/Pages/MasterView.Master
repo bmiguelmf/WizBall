@@ -32,11 +32,11 @@
     <form id="form1" runat="server">
         
         
-        <div class="grid-wrapper">          
+        <div class="grid-wrapper" id="grid-wrapper">          
 
 
             <%-- Header --%>  
-            <header>
+            <header id="header">
 
                 <%-- Application Panel --%>
                 <div class="navigation-wrapper">
@@ -71,8 +71,8 @@
          
             
             <%-- Main --%>  
-            <main >
-                <div class="container">
+            <main id="main">
+                <div class="container" id="cont-matches">
 
                     <asp:ContentPlaceHolder ID="MasterViewPlaceHolderNextMatches" runat="server">
                     </asp:ContentPlaceHolder>
@@ -82,7 +82,7 @@
 
 
             <%-- Footer--%>
-            <footer>
+            <footer id="footer">
                 <ul>
                     <li>About Us</li>
                     <li>Contacts Us</li>
@@ -92,7 +92,6 @@
 
 
         </div>
-
 
     </form>
 </body>
