@@ -28,8 +28,7 @@
             data: "{Username: " + JSON.stringify(username) + ", Password:" + JSON.stringify(password) + "}",
             success: function (data) {
                 $.session.set("Username", data.d['Username'].toUpperCase());
-                $.session.set("LoggedAdmin", data.d);
-
+                $.session.set("AdminId", data.d['Id']);
                 swal("Success!", "You are logged in.", "success")
                     .then((value) => {
                         window.location.href = 'Users.aspx';

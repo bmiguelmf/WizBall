@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="BackOffice.pages.Users" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserRequests.aspx.cs" Inherits="BackOffice.pages.UserRequests" %>
+
 
 <!DOCTYPE html>
 
@@ -8,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Wizball - Users</title>
+    <title>Wizball - User Requests</title>
 
     <!-- Stylesheets section -->
 
@@ -54,11 +55,11 @@
                     <li><a href="DataManagment.aspx">DATA MANAGEMENT</a></li>
 
                     <!-- Aqui vai ter uma tabela dos users e o admin vai poder fazer a gestão dos mesmos -->
-                    <li class="active"><a>USERS</a></li>
+                    <li><a href="Users.aspx">USERS</a></li>
 
                     <!-- Aqui vai ter uma tabela dos users que se registaram recentemente e ainda não foram aceites -->
                     <!-- e o admin vai poder garantir ou negar o acesso ao Website -->
-                    <li><a href="UserRequests.aspx">USER REQUESTS</a></li>
+                    <li class="active"><a>USER REQUESTS</a></li>
 
                     <!-- Aqui vai ser feita toda a gestão de newletter -->
                     <li><a href="Newsletter.aspx">NEWSLETTER</a></li>
@@ -85,67 +86,7 @@
     <!-- / top navigation bar -->
 
     <div id="st-container" class="st-container st-effect-1">
-        <!-- lateral form edit -->
-        <div class="st-menu st-effect-1" id="menu-1">
-            <form class="row form-horizontal" id="form_edit_user" name="form_edit_user" method="post">
-
-                <div id="error_message" class="form-fonte alert alert-danger" role="alert" style="display: none">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="false"></span>
-                    <span class="sr-only">Error:</span>
-                    <span class="message"></span>
-                </div>
-
-                <div class="col-lg-12">
-                    <h4 style="padding-left: 4%;">Edit user </h4>
-                </div>
-                <div class="col-lg-3">
-                    <div class="image-upload">
-                        <label for="photo">
-                            <img id="user_photo" src="/resources/imgs/user.png" />
-                        </label>
-
-                        <input id="photo" name="photo" type="file" />
-                    </div>
-                </div>
-                <div class="col-lg-9 form-group">
-                    <div class="col-lg-9 mt-2 col-md-12">
-                        <label class="label" for="username">Username</label><br />
-                        <input id="input_edit_username" name="input_edit_username" user_id="0" required="" type="text" />
-                    </div>
-                    <div class="col-lg-3 mt-2 col-md-12">
-                        <label class="label" for="select_edit_status">Status</label><br />
-                        <input id="toggle_edit_status" granted_id="21" blocked_id="11" name="select_edit_status" data-on="Active" data-off="Blocked" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="87" />
-                        <%-- 3 button toggle --> shttp://cssdeck.com/labs/ufct35ys5t--%>
-                    </div>
-
-                    <div class="col-lg-9 mt-2 col-md-12">
-                        <label class="label" for="input_edit_email">E-Mail</label><br />
-                        <input id="input_edit_email" name="input_edit_email" required="" type="email" />
-                    </div>
-                    <div class="col-lg-3 mt-2 col-md-12">
-                        <label class="label" for="input_edit_newsletter">Newsletter</label><br />
-                        <input id="toggle_edit_newsletter" name="input_edit_newsletter" data-on="Yes" data-off="No" type="checkbox" data-toggle="toggle" data-width="87" />
-                    </div>
-
-                    <div class="col-lg-12 mt-2 col-md-12">
-                        <label class="label" for="input_edit_description">Description:</label><br />
-                        <textarea disabled="disabled" style="resize: none;" class="col-lg-6" id="txt_edit_description" name="input_edit_description" placeholder=""></textarea>
-                    </div>
-
-                    <div class="col-lg-12 clearfix"></div>
-                    <div class="col-lg-6 st-menu-buttons">
-                        <button id="btn_can" class="btn btn-default" type="button">Cancel</button>
-                    </div>
-                    <div class="col-lg-6 st-menu-buttons">
-                        <button id="btn_submit" class="btn btn-primary" type="button">Submit</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-        <!-- / lateral form edit -->
-
-
+       
         <!-- Central content -->
         <div class="st-pusher">
             <div class="st-content">
@@ -153,7 +94,7 @@
                 <div class="head-container">
 
                     <!-- title -->
-                    <h3>Users</h3>
+                    <h3>User Requests</h3>
 
                     <div class="row">
                         <div class="col-lg-6 col-xs-12">
@@ -178,15 +119,6 @@
                                     </select>
                                 </p>
                             </span>
-                            <!-- / search by -->
-
-                            <!-- add new instance -->
-                            <span id="st-trigger-effects">
-                                <button data-effect="st-effect-1" class="btn btn-primary btn-sm">
-                                    Pesquisar<i
-                                        class="glyphicon glyphicon-search"></i></button>
-                            </span>
-
                         </div>
                     </div>
 
@@ -205,9 +137,8 @@
                                             <th style="width: 10%;">Photo</th>
                                             <th style="width: 17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
                                             <th style="width: 29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 13%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 13%;"><a class="order-by-desc">Newsletter<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 10%;">Action</th>
+                                            <th style="width: 21%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 15%;" colspan="2">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="users_table_body">
@@ -238,9 +169,6 @@
     <!-- Custom toggle script -->
     <script src="/resources/js/plugins/bootstrap2-toggle.min.js"></script>
 
-    <!-- Custom select script -->
-    <script src="/resources/js/plugins/select2.full.min.js"></script>
-
     <!-- Side bar effects scripts -->
     <script src="/resources/js/plugins/classie.js"></script>
     <script src="/resources/js/plugins/sidebar-effects.js"></script>
@@ -252,6 +180,6 @@
     <script src="/resources/js/plugins/jquery.session.js"></script>
 
     <!-- Users management script -->
-    <script src="/resources/js/users.js"></script>
+    <script src="/resources/js/user_requests.js"></script>
 </body>
 </html>

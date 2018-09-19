@@ -3,11 +3,7 @@
     var session_username = $('#username');
     var tbl_users = $('#users_table');
     var tbl_users_body = $('#users_table_body');
-    var btn_cancel = $('#btn_can');
-    var btn_submit = $('#btn_submit');
-    var form = $('#form_edit_user');
-    var error = $('#error_message');
-    var pagination = $('#pg_users_table');
+    //var btn_submit = $('#btn_submit');
 
     //form elements
     var toggle_status = $('#toggle_edit_status');
@@ -22,33 +18,6 @@
     var is_code_changed = false;
 
     //functions
-    function assignBtnEditClickEvent() {
-        $('.btn_edit').on("click", function () {
-            GetClickedUserToForm($(this).closest("tr").attr('value'));
-        });
-    };
-
-    function clearForm() {
-        input_username.val("");
-        input_email.val("");
-        txt_description.val("");
-    };
-
-    function clearTable(table) {
-        table.empty();
-        pagination.empty();
-    };
-
-    function disableFormTextArea() {
-        is_text_area_disabled = true;
-        txt_description.attr('disabled', 'disabled');
-    };
-
-    function enableFormTextArea() {
-        is_text_area_disabled = false;
-        txt_description.removeAttr('disabled');
-    };
-
     function GetSessionUsernameToNavbar() {
         session_username.text($.session.get('Username'));
     };
@@ -64,15 +33,15 @@
         $.getScript('/resources/js/plugins/sidebar-effects.js');
     };
 
-    function checkToggleStatus(status) {
-        if (status.Description == "Granted") {
-            is_code_changed = true;
-            toggle_status.bootstrapToggle('on');
-            toggle_status.attr('status_id', status.Id);
-        } else {
-            toggle_status.bootstrapToggle('off');
-        }
-    };
+    //function checkToggleStatus(status) {
+    //    if (status.Description == "Granted") {
+    //        is_code_changed = true;
+    //        toggle_status.bootstrapToggle('on');
+    //        toggle_status.attr('status_id', status.Id);
+    //    } else {
+    //        toggle_status.bootstrapToggle('off');
+    //    }
+    //};
 
     function checkToggleNewsletter(news) {
         if (news == true) {
@@ -88,7 +57,7 @@
     };
 
     function paginateTableAndLoadSideBarScripts(table) {
-        paginateTable(table, 1);
+        paginateTable(table, 2);
         loadSideBarEffectsScripts();
     };
 
@@ -100,7 +69,7 @@
             data: "",
             dataType: "json",
             success: function (data) {
-                clearTable(tbl_users_body);
+                tbl_users_body.empty();
                 if (data.d.length > 0) {
                     $.each(data.d, function (index, value) {
                         if (value.CurrentUserHistory.AfterState.Description != "Pending") {
@@ -115,7 +84,7 @@
                 }
             },
             error: function (data, status, error) {
-                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
+                swal("Erro!", " " + error.message + " ", "warning");
             }
         });
     };
@@ -142,14 +111,13 @@
                 if (data.d != null) {
                     //user_photo.attr('src', data.d.Picture);
                     input_username.val(data.d.Username);
-                    input_username.attr('user_id', data.d.Id);
                     input_email.val(data.d.Email);
                     toggleBothFormToggles(data.d.CurrentUserHistory.AfterState, data.d.Newsletter);
                     disableFormTextArea();
                 }
             },
             error: function (data, status, error) {
-                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
+                swal("Erro!", " " + error.message + " ", "warning");
             }
         });
     };
@@ -230,45 +198,45 @@
         }
         var User = {};
         var UserHistory = {};
-        var BeforeUserState = {};
-        var AfterUserState = {};
-        var Admin = {};
+        var UserState = {};
 
-        Admin['Id'] = ($.session.get('AdminId') == "" ? 1 : $.session.get('AdminId'));
-
-        User['Id'] = input_username.attr('user_id');
         User['Username'] = input_username.val();
         User['Email'] = input_email.val();
         User['Newsletter'] = toggle_newsletter.prop('checked');
-        User['Picture'] = user_photo.attr('src').split("/").pop();
-        User['Password'] = "user";
+        User['Picture'] = user_photo.attr('src');
 
-        UserHistory['Admin'] = Admin;
+        UserHistory['Admin'] = $.session.get('LoggedAdmin');
         UserHistory['User'] = User;
 
-        BeforeUserState['Id'] = toggle_status.attr('status_id');
-        UserHistory['BeforeState'] = BeforeUserState;
+        UserState['Id'] = toggle_status.attr('status_id');
+        UserHistory['BeforeState'] = UserState;
 
-        AfterUserState['Id'] = (toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id'));
-        UserHistory['AfterState'] = AfterUserState;
+        UserState['Id'] = (toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id'));
+        UserHistory['AftereState'] = UserState;
 
         UserHistory['Description'] = txt_description.val();
 
-        $.ajax({
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            url: "../WebService.asmx/UpdatetUser",
-            data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
-            dataType: "json",
-            success: function (data) {
-                swal("Success!", "User successfully updated!", "success").then((value) => {
-                    GetUsers();
-                });
-            },
-            error: function (data, status, error) {
-                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
-            }
-        });
+
+        //$.ajax({
+        //    type: "POST",
+        //    contentType: "application/json; charset=utf-8",
+        //    url: "../WebService.asmx/",
+        //    data: "{Movie: " + JSON.stringify(movie) + ", atores:" + JSON.stringify(atores) + ", diretores:" + JSON.stringify(diretores) + ", produtores:" + JSON.stringify(produtores) + ", estudios:" + JSON.stringify(estudios) + "}",
+        //    // JSON.stringify({Movie: movie, atores: atores, diretores: diretores, produtores: produtores, estudios: estudios }),
+
+        //    dataType: "json",
+        //    success: function (data) {
+        //        swal("Sucesso!", "Filme criado com sucesso!", "success");
+        //        //swal("Filme criado com sucesso!");
+        //        HidePanels();
+        //        ResetFormCreateMovie();
+        //        GetMovies();
+        //        panelMovies.fadeIn();
+        //    },
+        //    error: function (data, status, error) {
+        //        swal("Erro!", " " + error.message + " ", "warning");
+        //    }
+        //});
 
     });
 

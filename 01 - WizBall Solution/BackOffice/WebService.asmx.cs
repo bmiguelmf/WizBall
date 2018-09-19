@@ -52,6 +52,16 @@ namespace BackOffice
             return bll.UpdatetUser(User);
         }
         [WebMethod]
+        public bool UpdatetUser(User User, UserHistory UserHistory)
+        {
+            if (User is null)
+                return false;
+
+            BLL bll = new BLL(connString, apiToken);
+
+            return bll.UpdatetUser(User, UserHistory);
+        }
+        [WebMethod]
         public User UserLogin(string Username, string Password)
         {
             BLL bll = new BLL(connString, apiToken);

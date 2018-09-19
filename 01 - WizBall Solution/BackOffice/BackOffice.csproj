@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="pages\UserRequests.aspx" />
     <Content Include="resources\css\fonts.css" />
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\css\pagination.css" />
@@ -86,6 +87,7 @@
     <Content Include="resources\js\plugins\jquery.min.js" />
     <Content Include="resources\js\plugins\bootstrap.min.js" />
     <Content Include="resources\js\plugins\sidebar-effects.js" />
+    <Content Include="resources\js\users_requests.js" />
     <Content Include="resources\js\users.js" />
     <Content Include="resources\js\login.js" />
     <Content Include="pages\default.aspx" />
@@ -198,6 +200,13 @@
     </Compile>
     <Compile Include="pages\master.Master.designer.cs">
       <DependentUpon>master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\UserRequests.aspx.cs">
+      <DependentUpon>UserRequests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\UserRequests.aspx.designer.cs">
+      <DependentUpon>UserRequests.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>
