@@ -21,7 +21,7 @@ namespace FrontOffice.Resources
         static GridNextMatchesControl()
         {
             apiToken    = WebConfigurationManager.AppSettings["ApiToken"];
-            connString  = WebConfigurationManager.ConnectionStrings["atec"].ConnectionString;
+            connString  = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
 
             bll = new BLL(connString, apiToken);
         }

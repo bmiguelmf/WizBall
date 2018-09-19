@@ -21,6 +21,7 @@
     <link   href="../Public/Styling/MasterView.css" rel="stylesheet" />
     <link   href="../Public/Styling/MasterViewNavigationBar.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -38,34 +39,47 @@
             <%-- Header --%>  
             <header id="header">
 
-                <%-- Application Panel --%>
-                <div class="navigation-wrapper">
+
+                <%-- Brand --%>
+                <div class="navigation-brand" id="navigation-brand">
+                    <img src="/Public/Imgs/Wizball/logo_with_name.png" height="65" />
+                </div>
 
 
-                    <%-- Brand --%>
-                    <div class="navigation-brand"></div>
+                <%-- Navbar --%>
+                <nav class="navigation-menus">
+
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fas fa-futbol"></i> Current Tips</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-database"></i> Historical Tips</a>
+                        </li>
+                    </ul>
+
+                </nav>
 
 
-                    <%-- Navbar --%>
-                    <nav class="navigation-menus">
+                <%-- User Panel --%>
+                <div class="navigation-user">
+                    
 
-                        <div class="menu-matches">
+                    <div class="user-img">
+                         <img src="/Public/Imgs/Wizball/user.png" height="65" />
+                    </div>
 
-                        </div>
+                    <div class="user-options">   
 
-                        <div class="menu-historical">
-
-                        </div>
-
-                    </nav>
-
-
-                    <%-- User Panel --%>
-                    <div class="navigation-user">
+                        <a href="#"> <i class="fas fa-sign-in-alt"></i> &nbsp; Login</a>
+                        <a href="#"> <i class="fas fa-plus-circle"></i> &nbsp; Register</a>
+                        <a href="#"> <i class="fas fa-unlock-alt"> </i> &nbsp; Recover Password</a>
+                        
 
                     </div>
 
                 </div>
+
 
             </header>
          
