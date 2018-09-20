@@ -71,6 +71,7 @@
             toggle_status.attr('status_id', status.Id);
         } else {
             toggle_status.bootstrapToggle('off');
+            toggle_status.attr('status_id', status.Id);
         }
     };
 
@@ -111,7 +112,7 @@
                     assignBtnEditClickEvent();
                 }
                 else {
-                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! </td></tr>");
+                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             },
             error: function (data, status, error) {
@@ -253,7 +254,7 @@
         UserHistory['AfterState'] = AfterUserState;
 
         UserHistory['Description'] = txt_description.val();
-
+        
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",

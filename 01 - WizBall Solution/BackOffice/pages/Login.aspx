@@ -40,10 +40,10 @@
                                 <form name="login" method="post" class="m-t" role="form">
                                     <div class="form-group">
                                         <label for="username" hidden="hidden" class="col-sm-2 control-label">Username</label>
-                                        <input id="username" name="username" class="form-control" placeholder="Username" required="" />
+                                        <input id="username" name="username" class="form-control" placeholder="Username" value="passeira" required="" />
                                     </div>
                                     <div class="form-group">
-                                        <input id="password" name="password" type="password" id="pwd" class="form-control" placeholder="Password" required="" />
+                                        <input id="password" name="password" type="password" id="pwd" class="form-control" value="passeira" placeholder="Password" required="" />
                                         <i id="eye" class="fa fa-eye showpassword"></i>
                                     </div>
                                     <span id="login" class="btn btn-primary block full-width m-b">Login</span>

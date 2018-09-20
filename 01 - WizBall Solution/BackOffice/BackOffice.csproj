@@ -87,7 +87,7 @@
     <Content Include="resources\js\plugins\jquery.min.js" />
     <Content Include="resources\js\plugins\bootstrap.min.js" />
     <Content Include="resources\js\plugins\sidebar-effects.js" />
-    <Content Include="resources\js\users_requests.js" />
+    <Content Include="resources\js\user_requests.js" />
     <Content Include="resources\js\users.js" />
     <Content Include="resources\js\login.js" />
     <Content Include="pages\default.aspx" />

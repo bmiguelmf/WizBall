@@ -24,19 +24,23 @@
             type: "POST",
             contentType: "application/json; charset=utf-8",
             url: "../WebService.asmx/AdminLogin",
-            dataType: "json", 
+            dataType: "json",
             data: "{Username: " + JSON.stringify(username) + ", Password:" + JSON.stringify(password) + "}",
             success: function (data) {
-                $.session.set("Username", data.d['Username'].toUpperCase());
-                $.session.set("AdminId", data.d['Id']);
-                swal("Success!", "You are logged in.", "success")
-                    .then((value) => {
-                        window.location.href = 'Users.aspx';
-                    });
-
+                if (data.d != null) {
+                    $.session.set("Username", data.d['Username'].toUpperCase());
+                    $.session.set("AdminId", data.d['Id']);
+                    swal("Success!", "You are logged in.", "success")
+                        .then((value) => {
+                            window.location.href = 'Users.aspx';
+                        });
+                } else {
+                    swal("Error!", "Incorrect username or password. ", "warning");
+                }
+                
             },
             error: function (data, status, error) {
-                swal("Erro!", "Lamentamos, não foi possível iniciar sessão... ", "warning");
+                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
             }
         });
     }
@@ -62,8 +66,7 @@
     password.keypress(function (e) {
         var key = e.which;
         //when press enter
-        if (key == 13)
-        {
+        if (key == 13) {
             btn_login.click();
             return false;
         }

@@ -4,19 +4,9 @@
     var tbl_users = $('#users_table');
     var tbl_users_body = $('#users_table_body');
     //var btn_submit = $('#btn_submit');
-
-    //form elements
-    var toggle_status = $('#toggle_edit_status');
-    var toggle_newsletter = $('#toggle_edit_newsletter');
-    var txt_description = $('#txt_edit_description');
-    var input_username = $('#input_edit_username');
-    var input_email = $('#input_edit_email');
-    var user_photo = $('#user_photo');
-
+    
     //vars
-    var is_text_area_disabled = true;
-    var is_code_changed = false;
-
+   
     //functions
     function GetSessionUsernameToNavbar() {
         session_username.text($.session.get('Username'));
@@ -28,40 +18,17 @@
         })
     };
 
-    function loadSideBarEffectsScripts() {
-        $.getScript('/resources/js/plugins/classie.js');
-        $.getScript('/resources/js/plugins/sidebar-effects.js');
-    };
+    function assignActionBtnClickEvents() {
+        $('.btn_grant').on("click", function () {
+            GetClickedUserToForm($(this).closest("tr").attr('value'));
+        });
 
-    //function checkToggleStatus(status) {
-    //    if (status.Description == "Granted") {
-    //        is_code_changed = true;
-    //        toggle_status.bootstrapToggle('on');
-    //        toggle_status.attr('status_id', status.Id);
-    //    } else {
-    //        toggle_status.bootstrapToggle('off');
-    //    }
-    //};
+        $('.btn_revoke').on("click", function () {
+            GetClickedUserToForm($(this).closest("tr").attr('value'));
+        });
+    }
 
-    function checkToggleNewsletter(news) {
-        if (news == true) {
-            toggle_newsletter.bootstrapToggle('on');
-        } else {
-            toggle_newsletter.bootstrapToggle('off');
-        }
-    };
-
-    function toggleBothFormToggles(status, news) {
-        checkToggleStatus(status);
-        checkToggleNewsletter(news);
-    };
-
-    function paginateTableAndLoadSideBarScripts(table) {
-        paginateTable(table, 2);
-        loadSideBarEffectsScripts();
-    };
-
-    function GetUsers() {
+    function GetPendingUsers() {
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -72,15 +39,15 @@
                 tbl_users_body.empty();
                 if (data.d.length > 0) {
                     $.each(data.d, function (index, value) {
-                        if (value.CurrentUserHistory.AfterState.Description != "Pending") {
-                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
+                        if (value.CurrentUserHistory.AfterState.Description == "Pending") {
+                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td style=\"width:10%;\"><a class=\"btn_revoke\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-remove\"></i></a></td></tr>");
                         }
                     });
-                    paginateTableAndLoadSideBarScripts(tbl_users);
-                    assignBtnEditClickEvent();
+                    paginateTable(tbl_users, 2);
+                    assignActionBtnClickEvents();
                 }
                 else {
-                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! </td></tr>");
+                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             },
             error: function (data, status, error) {
@@ -163,7 +130,7 @@
     //events
     GetSessionUsernameToNavbar();
 
-    GetUsers();
+    GetPendingUsers();
 
     $('.st-pusher').click(function () {
         is_code_changed = false;
