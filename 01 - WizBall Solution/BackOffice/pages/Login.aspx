@@ -7,12 +7,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WizBall - Dashborad</title>
+
+    <!-- Favicon img -->
     <link rel="shortcut icon" type="image/x-icon" href="/resources/imgs/icon.ico" />
+
+    <!-- Bootstrap and font-awesome stylesheets -->
     <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
-    <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom table paging stylesheet -->
+    <link href="/resources/css/pagination.css" rel="stylesheet" />
+
+    <!-- Custom toggle stylesheet -->
+    <link href="/resources/css/plugins/bootstrap2-toggle.min.css" rel="stylesheet" />
+
+    <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style.css" rel="stylesheet" />
     <link href="/resources/css/estilos.css" rel="stylesheet" />
-   </head> 
+
+</head>
 <body class="gray-bg">
     <div class="animated fadeInDown loginpanel">
         <div class="container">
@@ -27,10 +40,10 @@
                                 <form name="login" method="post" class="m-t" role="form">
                                     <div class="form-group">
                                         <label for="username" hidden="hidden" class="col-sm-2 control-label">Username</label>
-                                        <input id="username" name="username" class="form-control" placeholder="Username" required="" />
+                                        <input id="username" name="username" class="form-control" placeholder="Username" value="passeira" required="" />
                                     </div>
                                     <div class="form-group">
-                                        <input id="password" name="password" type="password" id="pwd" class="form-control" placeholder="Password" required="" />
+                                        <input id="password" name="password" type="password" id="pwd" class="form-control" value="passeira" placeholder="Password" required="" />
                                         <i id="eye" class="fa fa-eye showpassword"></i>
                                     </div>
                                     <span id="login" class="btn btn-primary block full-width m-b">Login</span>
@@ -52,10 +65,22 @@
             </div>
         </div>
     </div>
+    <!-- Scripts Section-->
+
+    <!-- JQuery scripts -->
     <script src="/resources/js/plugins/jquery.min.js"></script>
-    <script src="/resources/js/plugins/jquery.session.js"></script>
+    <script src="/resources/js/plugins/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap script -->
+    <script src="/resources/js/plugins/bootstrap.min.js"></script>
+
+    <!-- Custom alert script -->
     <script src="/resources/js/plugins/sweetalert.min.js"></script>
 
+    <!-- JQuery session script -->
+    <script src="/resources/js/plugins/jquery.session.js"></script>
+
+    <!-- Login management script -->
     <script src="/resources/js/login.js"></script>
 </body>
 

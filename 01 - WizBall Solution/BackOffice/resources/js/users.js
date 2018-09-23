@@ -7,6 +7,7 @@
     var btn_submit = $('#btn_submit');
     var form = $('#form_edit_user');
     var error = $('#error_message');
+    var pagination = $('#pg_users_table');
 
     //form elements
     var toggle_status = $('#toggle_edit_status');
@@ -31,6 +32,11 @@
         input_username.val("");
         input_email.val("");
         txt_description.val("");
+    };
+
+    function clearTable(table) {
+        table.empty();
+        pagination.empty();
     };
 
     function disableFormTextArea() {
@@ -65,6 +71,7 @@
             toggle_status.attr('status_id', status.Id);
         } else {
             toggle_status.bootstrapToggle('off');
+            toggle_status.attr('status_id', status.Id);
         }
     };
 
@@ -82,7 +89,7 @@
     };
 
     function paginateTableAndLoadSideBarScripts(table) {
-        paginateTable(table, 2);
+        paginateTable(table, 1);
         loadSideBarEffectsScripts();
     };
 
@@ -94,7 +101,7 @@
             data: "",
             dataType: "json",
             success: function (data) {
-                tbl_users_body.empty();
+                clearTable(tbl_users_body);
                 if (data.d.length > 0) {
                     $.each(data.d, function (index, value) {
                         if (value.CurrentUserHistory.AfterState.Description != "Pending") {
@@ -105,11 +112,11 @@
                     assignBtnEditClickEvent();
                 }
                 else {
-                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! </td></tr>");
+                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             },
             error: function (data, status, error) {
-                swal("Erro!", " " + error.message + " ", "warning");
+                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
             }
         });
     };
@@ -136,13 +143,14 @@
                 if (data.d != null) {
                     //user_photo.attr('src', data.d.Picture);
                     input_username.val(data.d.Username);
+                    input_username.attr('user_id', data.d.Id);
                     input_email.val(data.d.Email);
                     toggleBothFormToggles(data.d.CurrentUserHistory.AfterState, data.d.Newsletter);
                     disableFormTextArea();
                 }
             },
             error: function (data, status, error) {
-                swal("Erro!", " " + error.message + " ", "warning");
+                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
             }
         });
     };
@@ -223,45 +231,45 @@
         }
         var User = {};
         var UserHistory = {};
-        var UserState = {};
+        var BeforeUserState = {};
+        var AfterUserState = {};
+        var Admin = {};
 
+        Admin['Id'] = ($.session.get('AdminId') == "" ? 1 : $.session.get('AdminId'));
+
+        User['Id'] = input_username.attr('user_id');
         User['Username'] = input_username.val();
         User['Email'] = input_email.val();
         User['Newsletter'] = toggle_newsletter.prop('checked');
-        User['Picture'] = user_photo.attr('src');
+        User['Picture'] = user_photo.attr('src').split("/").pop();
+        User['Password'] = "user";
 
-        UserHistory['Admin'] = $.session.get('LoggedAdmin');
+        UserHistory['Admin'] = Admin;
         UserHistory['User'] = User;
 
-        UserState['Id'] = toggle_status.attr('status_id');
-        UserHistory['BeforeState'] = UserState;
+        BeforeUserState['Id'] = toggle_status.attr('status_id');
+        UserHistory['BeforeState'] = BeforeUserState;
 
-        UserState['Id'] = (toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id'));
-        UserHistory['AftereState'] = UserState;
+        AfterUserState['Id'] = (toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id'));
+        UserHistory['AfterState'] = AfterUserState;
 
         UserHistory['Description'] = txt_description.val();
-
-
-        //$.ajax({
-        //    type: "POST",
-        //    contentType: "application/json; charset=utf-8",
-        //    url: "../WebService.asmx/",
-        //    data: "{Movie: " + JSON.stringify(movie) + ", atores:" + JSON.stringify(atores) + ", diretores:" + JSON.stringify(diretores) + ", produtores:" + JSON.stringify(produtores) + ", estudios:" + JSON.stringify(estudios) + "}",
-        //    // JSON.stringify({Movie: movie, atores: atores, diretores: diretores, produtores: produtores, estudios: estudios }),
-
-        //    dataType: "json",
-        //    success: function (data) {
-        //        swal("Sucesso!", "Filme criado com sucesso!", "success");
-        //        //swal("Filme criado com sucesso!");
-        //        HidePanels();
-        //        ResetFormCreateMovie();
-        //        GetMovies();
-        //        panelMovies.fadeIn();
-        //    },
-        //    error: function (data, status, error) {
-        //        swal("Erro!", " " + error.message + " ", "warning");
-        //    }
-        //});
+        
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "../WebService.asmx/UpdatetUser",
+            data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
+            dataType: "json",
+            success: function (data) {
+                swal("Success!", "User successfully updated!", "success").then((value) => {
+                    GetUsers();
+                });
+            },
+            error: function (data, status, error) {
+                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
+            }
+        });
 
     });
 

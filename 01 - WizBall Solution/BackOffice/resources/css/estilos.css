@@ -331,10 +331,6 @@ input {
     margin-left: 5px;
 }
 
-/*rotas*/
-.table > tbody > tr > .client-avatar {
-    padding-left: 15px
-}
 
 @media (max-width: 1214px) {
     .navbar-collapse.collapse {
@@ -389,79 +385,6 @@ input {
 
 }
 
-/*rotas*/
-
-.rota-hoje {padding: 15px 20px 20px 20px;border-color: #e7eaec;border-image: none;border-style: solid solid none;border-width: 1px 0;}
-.text-navy {margin-top:8px}
-.timeline-item strong {font-weight:600}
-.view-month .title {margin-bottom:18px}
-.view-month .title a {color:#676a6c}
-.calecircle {color:rgb(255, 177, 177);}
-li:last-child .calecircle {color:#f1b424;}
-.title {text-align: center;padding-top:5px;margin-bottom: 8px}
-.view-month {margin-bottom:30px}
-.cell {
-    display: inline-block;
-    width: 13.5%;
-    text-align: center;
-    position: relative;
-    padding-top:3px; padding-bottom: 3px;
-    min-height:30px;
-}
-.past {opacity: 0.3;}
-.view-month .fc-icon {    font-size: 1.5em;}
-.month-name {font-size: 14px}
-.substituicao, .substituicao2 {
-    background: rgb(255, 177, 177);
-    border-radius: 100px;
-    padding: 3px 8px;
-}
-.substituicao2 {
-    padding: 5px 7px;
-}
-.calendario_widget a {color:#333}
-.calendario_widget a {color:#333}
-.calendario_widget a:hover {background-color:#ddd; border-radius: 100px; }
-.calendario_widget a.selected,
-.calendario_widget strong.selected{
-    background-color: #f1b424;
-    border-radius: 100px;
-    padding: 3px 8px;
-}
-.m-b-xs {text-transform: uppercase;font-weight:600}
-
-.wizard > .content > .body { position: relative; }
-
-.route-hoje {
-    padding:18px 25px;
-}
-
-.selectpicker, .selectpicker:hover, .selectpicker:focus {background: #fff;color:#676a6c}
-.volunteers-hd {background-color:#f5f5f5}
-.volunteers {background-color: #f8f8f8;border:none;margin-bottom: 15px}
-.volunteers p {border-bottom:1px solid #ddd;padding:5px 15px}
-.volunteers p:last-child {border-bottom: none}
-.volunteers p .fa-circle {font-size: 5px;margin-right: 3px}
-.volunteers p .fa-eye {font-size:13px}
-
-.input-group-addon:hover, .datepicker {
-    cursor: pointer;
-}
-.js-estatisticas .ibox-content {
-    border-width: 3px 0;
-    padding: 25px 50px 50px 50px;
-}
-
-.js-estatisticas .ibox-content .list-group-item {
-    width: 80%;
-}
-
-.js-estatisticas .ibox-content .list-group-item .label-success {font-size: 10px;padding: 4px 7px; margin-right:8px}
-
-.js-assiduidade .label-primary, .js-assiduidade .label-danger {display:block;width:53px;padding:8px}
-
-.btn-white {height: 35px;} .btn-white .fa {padding-top: 3px;}
-
 a:link {
     color: #0082e6;
     background-color: transparent;
@@ -472,4 +395,33 @@ a:hover {
     color: #003864;
     background-color: transparent;
     text-decoration: underline;
+}
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+    /* style icon */
+    .inner-addon .glyphicon {
+        position: absolute;
+        padding: 10px;
+        pointer-events: none;
+    }
+
+/* align icon */
+.left-addon .glyphicon {
+    left: 0px;
+}
+
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
 }
