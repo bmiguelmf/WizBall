@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\ViewHistory.aspx" />
     <Content Include="Pages\ViewHome.aspx" />
     <Content Include="Public\Bootstrap\Bootstrap4.css" />
     <Content Include="Public\Imgs\Competitions\bundesliga.png" />
@@ -320,6 +321,13 @@
     <Compile Include="Pages\MasterView.Master.designer.cs">
       <DependentUpon>MasterView.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ViewHistory.aspx.cs">
+      <DependentUpon>ViewHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewHistory.aspx.designer.cs">
+      <DependentUpon>ViewHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ViewHome.aspx.cs">
       <DependentUpon>ViewHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -329,6 +337,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Globals.cs" />
+    <Compile Include="Resources\HistoryTipsGrid.cs" />
     <Compile Include="Resources\MatchesTipsGrid.cs" />
   </ItemGroup>
   <ItemGroup>
