@@ -1,0 +1,166 @@
+﻿::-webkit-scrollbar {
+    display: none;
+}
+:root {
+    --grid-width: 1060px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+
+
+
+
+/* VERY SMALL MOBILE SCREEN SIZES */
+/* VERY SMALL MOBILE SCREEN SIZES */
+.grid {
+    display: flex;
+    flex-direction: column;
+    max-width: var(--grid-width);
+    margin: 0 auto;
+    font-size: 9px;
+}
+
+
+.grid-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    height: 30px;
+
+    background-color:#333;
+    color:yellowgreen;
+}
+
+
+.grid-cell:nth-child(1) {
+    min-width: 20px;
+    flex: 20 20 20px;
+    text-align: center;
+    display: none;
+    white-space: nowrap;
+}
+.grid-cell:nth-child(2) {
+    min-width: 20px;
+    flex: 20 20 20px;
+    text-align: center;
+    display: none;
+    white-space: nowrap;
+}
+.grid-cell:nth-child(3) {
+    min-width: 100px;
+    flex: 100 100 100px;
+    text-align: right;
+    white-space: nowrap;
+}
+.grid-cell:nth-child(3) img {
+    display:none;
+}
+.grid-cell:nth-child(4) {
+    min-width: 80px;
+    flex: 80 80 80px;
+    text-align: center;
+    white-space: nowrap;
+}
+.grid-cell:nth-child(5) {
+    min-width: 100px;
+    flex: 100 100 100px;
+    text-align: left;
+    white-space: nowrap;
+}
+.grid-cell:nth-child(5) img {
+    display: none;
+}
+.grid-cell:nth-child(6) {
+    min-width: 40px;
+    flex: 40 40 40px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+.grid-body-scrollable {
+    overflow:scroll;
+}
+.grid-body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.grid-row {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+
+    height:30px;
+}
+.grid-row:nth-child(odd) {
+    background-color:#f2f2f2;
+}
+.grid-row:nth-child(even) {
+    background-color: #fff;
+}
+/* VERY SMALL MOBILE SCREEN SIZES */
+/* VERY SMALL MOBILE SCREEN SIZES */
+
+
+
+
+
+
+/* MEDIUM MOBILE SCREEN SIZES*/
+/* MEDIUM MOBILE SCREEN SIZES*/
+@media only screen and (min-width:361px)
+{
+    .grid-cell:nth-child(1) {
+        display: inline-block;
+    }
+}
+/* MEDIUM MOBILE SCREEN SIZES*/
+/* MEDIUM MOBILE SCREEN SIZES*/
+
+
+
+
+
+/* LARGE MOBILE SCREENS SIZES */
+/* LARGE MOBILE SCREENS SIZES */
+@media only screen and (min-width: 451px) {
+
+    .grid-cell:nth-child(2) {
+        display: inline-block;
+    }
+
+    .grid-cell:nth-child(3) img {
+        display: inline-block;
+    }
+
+    .grid-cell:nth-child(5) img {
+        display: inline-block;
+    }
+
+}
+/* LARGE MOBILE SCREENS SIZES */
+/* LARGE MOBILE SCREENS SIZES */
+
+
+
+
+
+/* TABLETS SCREENS */
+/* TABLETS SCREENS */
+@media only screen and (min-width: 576px) {
+
+    .grid {
+        font-size: 11px;
+    }
+}
+/* TABLETS SCREENS */
+/* TABLETS SCREENS */

@@ -1,152 +1,186 @@
-﻿
-.grid-wrapper {
-    width: 100%;
-    display: grid;
-
-    grid-template-rows: 100px auto 50px;
-    grid-template-columns: 1fr;
-    grid-template-areas: 'header' 'main' 'footer';
-
-}
-
-
-header {
-    grid-area: header;
-    background-color:#fff;
-    display:flex;
-    align-items:center;
-
-    padding:0 2%;
-}
-
-main {
-    grid-area: main;
-    background-color: #fafafa;
-    display: flex;
-}
-
-footer {
+﻿* {
     margin: 0;
     padding: 0;
-    grid-area: footer;
-    background-color: #333;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
 
+body {
+    background-color: whitesmoke;
+}
+
+header {
+    padding: 5px 10px;
+    color: #333;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+
+header .logo-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 1px;
+}
+
+header .logo-menu img {
+height: 25px;
+}
+
+header .logo-menu i {
+    color: #333;
+}
+
+
+/* RESTANTES COMPONENTES DO HEADER QUE SÓ APARECEM QUANDO VIEWPORT WIDTH MAIOR QUE 1060px */
+body header .dektop-menu-menus, body header .dektop-menu-user {
+    display: none;
+}
+
+
+
+/* SMALL SCREENS */
+.responsive-menu {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+    overflow: hidden;
+    height: 0;
+    border-top: 2px solid #333;
+}
+
+.responsive-menu-open {
+    padding: 10px 15px;
+    height: auto;
+}
+
+
+.responsive-menu .menu-user {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.responsive-menu .menu-user-pic {
+    flex: 1 1 50px;
+    align-self: center;
+    text-align: right;
+}
+
+.responsive-menu .menu-user-pic img {
+    width: 70px;
+    border-radius: 12px;
+    border:2px solid #333;
+}
+
+.responsive-menu .menu-user-options {
+    flex: 1 1 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.responsive-menu .menu-user-options i {
+    padding: 6px 15px;  
+}
+
+
+.responsive-menu .menu-menus {
+    padding: 5px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.responsive-menu .menu-menus i {
+    padding: 10px 0;
+}
+/* SMALL SCREENS */
+
+
+
+
+/* SCREENS BIGGER THAN 1600px */
+@media only screen and (min-width:1060px) {
+
+    /* Humburger */
+    .logo-menu i {
+        display: none;
+    }
+
+    /* Menu small devices */
+    .responsive-menu {
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        border:none;
+    }
+
+    /* RESTANTES COMPONENTES DO HEADER VOLTAM APARECE QUANDO VIEWPORT WIDTH MAIOR QUE 1060px */
+    body header .dektop-menu-menus, body header .dektop-menu-user {
+        display: flex;
+    }
+
+    header {
+        padding: 10px 30px;
+    }
+
+    header .logo-menu img {
+        height: 60px;
+    }
+
+
+
+    .dektop-menu-menus {
+        flex: 1 1 1px;
+
+        align-self: flex-end;
         display: flex;
         justify-content: center;
+    }
+
+    .dektop-menu-menus i {
+        padding: 0 15px;
+        
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .dektop-menu-menus i span {
+        font-size: 13px;
+    }
+
+
+
+    .dektop-menu-user {
+        flex: 1 1 1px;
+
+        display: flex;
         align-items: center;
-}
+        justify-content: flex-end;
 
+    }
 
-footer ul {
-    text-align: center;
-    margin: 0;
-    padding: 0;   
-}
-footer ul li {
-    margin: 0 10px;
-    color: yellowgreen;
-    font-size:12px;
-    font-weight:700;
-    display: inline-block;
-}
+    .dektop-menu-user .dektop-menu-user-pic img {
+    height: 70px;
+    border-radius: 15px;
+    }
 
-
-
-/*header*/
-.navigation-brand {
-    flex: 1 1 100px;
-}
-
-
-
-.navigation-menus {
-    flex: 1 1 100px;
-    margin: 0;
-    padding: 0 0 20px 0;
-    align-self: flex-end;
-}
-.navigation-menus ul {
-    margin:0;
-    padding:0;
-    text-align:center;
-}
-.navigation-menus ul li {
-    margin: 0;
-    padding: 0 25px;
-    display: inline;
-
-}
-.navigation-menus ul li a {
-    color: #333;
-    font-size: 15px;
-    font-weight: 700;
-    padding: 5px 20px;
-    white-space:nowrap;
-}
-.navigation-menus ul li a:hover {
-    text-decoration: none;
-    color: yellowgreen;
-    background-color: #333;
-    border-radius: 6px;
-}
-
-
-
-.navigation-user {
-    flex: 1 1 100px;
+    .dektop-menu-user .dektop-menu-user-options {
     display: flex;
-    justify-content: flex-end;
-}
-
-.user-img {
-    padding:0;
-    margin:0;
-    border-radius: 10px;
-}
-    .user-img img {
-        padding: 0;
-        margin: 0;
-        margin-right: 18px;
-        border-radius: 10px;
-
-        border: 2px solid #333;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 11px;
     }
 
-.user-options{
-    
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-
-    height:65px;
-
-
-}
-.user-options a{
-
-    padding:0;
-    margin:0;
-    font-size:12px;
-    color:#333;
-    
-    padding:2px 15px;
-}
-
-.user-options a:hover {
-    text-decoration: none;
-    color:yellowgreen;
-    background-color:#333;
-    border-radius:6px;
-}
-
-@media only screen and (max-width:1120px){
-
-    .navigation-user{
-        display:none;
-
-    }
-    .navigation-menus{
-        display:none;
+    .dektop-menu-user .dektop-menu-user-options i {
+        padding: 6px 0 6px 25px;
+        display: inline-block;
+        white-space: nowrap;
     }
 }

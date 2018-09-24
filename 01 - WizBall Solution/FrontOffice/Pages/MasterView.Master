@@ -1,113 +1,142 @@
-﻿<%@ Master 
-    Language="C#" 
-    AutoEventWireup="true" 
-    CodeBehind="MasterView.Master.cs" 
+﻿<%@ Master
+    Language="C#"
+    AutoEventWireup="true"
+    CodeBehind="MasterView.Master.cs"
     Inherits="FrontOffice.Main" %>
 
 <!DOCTYPE html>
 
 <html>
 
-<head runat="server">
+    <head runat="server">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+        <title>Wizball</title>
+
+
+        <script src="../Public/jQuery/jQuery.min.js"></script>
+        <link href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
+        <link href="../Public/Styling/MasterView.css" rel="stylesheet" />
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Importar Para O Projecto -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 
 
-    <title>Wizball</title>
+        <asp:ContentPlaceHolder ID="masterViewContentHead" runat="server">
+        </asp:ContentPlaceHolder>
+
+    </head>
 
 
-    <script src ="../Public/jQuery/jQuery.min.js"></script>        
-    <link   href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
-    <link   href="../Public/Styling/MasterView.css" rel="stylesheet" />
-    <link   href="../Public/Styling/MasterViewNavigationBar.css" rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-
-</head>
+    <body>
+        <form id="form1" runat="server">
 
 
-<body>
-    <form id="form1" runat="server">
-        
-        
-        <div class="grid-wrapper" id="grid-wrapper">          
 
+            <!-- BIG SCREEN MENUS PANEL -->
+            <header id="app-header">
 
-            <%-- Header --%>  
-            <header id="header">
+                <!-- LOGO AND HUMBURGER PANEL-->
+                <div class="logo-menu">
 
+                    <img src="/Public/Imgs/Wizball/logo_dark.png" alt="wizballlogo" />
 
-                <%-- Brand --%>
-                <div class="navigation-brand" id="navigation-brand">
-                    <img src="/Public/Imgs/Wizball/logo_with_name.png" height="65" />
+                    <i id="humburger" class="fas fa-bars fa-1x"></i>
+
                 </div>
 
 
-                <%-- Navbar --%>
-                <nav class="navigation-menus">
+                <!-- MENUS PANEL -->
+                <div class="dektop-menu-menus">
 
-                    <ul>
-                        <li>
-                            <a href="#"><i class="fas fa-futbol"></i> Current Tips</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fas fa-database"></i> Historical Tips</a>
-                        </li>
-                    </ul>
+                    <i class="fas fa-futbol"> <span>Tips</span></i>
 
-                </nav>
+                    <i class="fas fa-history"> <span>Tips History</span></i>
+
+                    <i class="fas fa-info-circle"> <span>About Us</span></i>
+
+                    <i class="fas fa-at"> <span>Contact Us</span></i>   
+
+                </div>
 
 
-                <%-- User Panel --%>
-                <div class="navigation-user">
-                    
+                <!-- USER PANEL -->
+                <div class="dektop-menu-user">
 
-                    <div class="user-img">
-                         <img src="/Public/Imgs/Wizball/user.png" height="65" />
+                    <div class="dektop-menu-user-pic">
+
+                        <img src="/Public/Imgs/Wizball/user.png" alt="guest">
+
                     </div>
 
-                    <div class="user-options">   
+                    <div class="dektop-menu-user-options">
 
-                        <a href="#"> <i class="fas fa-sign-in-alt"></i> &nbsp; Login</a>
-                        <a href="#"> <i class="fas fa-plus-circle"></i> &nbsp; Register</a>
-                        <a href="#"> <i class="fas fa-unlock-alt"> </i> &nbsp; Recover Password</a>
-                        
+                        <i class="fas fa-sign-in-alt"> <span>Login</span></i>
+
+                        <i class="fas fa-plus-circle"> <span>Register</span></i>
+
+                        <i class="fas fa-unlock-alt"> <span>Recover Password</span></i>
 
                     </div>
 
                 </div>
-
 
             </header>
-         
-            
-            <%-- Main --%>  
-            <main id="main">
-                <div class="container" id="cont-matches">
 
-                    <asp:ContentPlaceHolder ID="MasterViewPlaceHolderNextMatches" runat="server">
-                    </asp:ContentPlaceHolder>
-                
+
+
+            <!-- SMALL SCREEN MENUS PANEL -->
+            <nav id="responsive-menu" class="responsive-menu">
+
+                <!-- USER MENU PANAL -->
+                <div class="menu-user">
+
+                    <div class="menu-user-pic">
+
+                        <img src="/Public/Imgs/Wizball/user.png" alt="guest">
+                    </div>
+
+                    <div class="menu-user-options">
+
+                        <i class="fas fa-sign-in-alt"> <span>Login</span></i>
+
+                        <i class="fas fa-plus-circle"> <span>Register</span></i>
+
+                        <i class="fas fa-unlock-alt"> <span>Recover Password</span></i>
+
+                    </div>
+
                 </div>
-            </main>
+
+                <!-- PAGE MENUS PANEL -->
+                <div class="menu-menus">
+
+                    <i class="fas fa-info-circle"> <span>About Us</span></i>
+
+                    <i class="fas fa-at"> <span>Contact Us</span></i>
+
+                    <i class="fas fa-history"> <span>Tips History</span> </i>
+
+                    <i class="fas fa-futbol"> <span>Tips</span></i>
+
+                </div>
+
+            </nav>
 
 
-            <%-- Footer--%>
-            <footer id="footer">
-                <ul>
-                    <li>About Us</li>
-                    <li>Contacts Us</li>
-                    <li>Social</li>
-                </ul>
-            </footer>
+
+            <!-- SLAVE PAGE -->
+            <asp:ContentPlaceHolder ID="masterViewContentBody" runat="server">
+            </asp:ContentPlaceHolder>
+           
 
 
-        </div>
 
-    </form>
-</body>
-
+            <!-- MASTER PAGE JAVASCRIPT -->
+            <script src="../Public/Javascript/MasterView.js"></script>
+        </form>
+    </body>
 </html>

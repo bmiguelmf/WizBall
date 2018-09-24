@@ -10,15 +10,15 @@
 namespace FrontOffice.Pages {
     
     
-    public partial class Default {
+    public partial class ViewHome {
         
         /// <summary>
-        /// phGridNextMatchesControl control.
+        /// placeHolderMatchesTips control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phGridNextMatchesControl;
+        protected global::System.Web.UI.WebControls.PlaceHolder placeHolderMatchesTips;
     }
 }

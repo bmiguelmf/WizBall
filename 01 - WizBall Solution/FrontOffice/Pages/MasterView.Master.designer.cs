@@ -13,13 +13,13 @@ namespace FrontOffice {
     public partial class Main {
         
         /// <summary>
-        /// head control.
+        /// masterViewContentHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder masterViewContentHead;
         
         /// <summary>
         /// form1 control.
@@ -31,12 +31,12 @@ namespace FrontOffice {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// MasterViewPlaceHolderNextMatches control.
+        /// masterViewContentBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MasterViewPlaceHolderNextMatches;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder masterViewContentBody;
     }
 }
