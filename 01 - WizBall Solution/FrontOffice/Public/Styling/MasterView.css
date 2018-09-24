@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: lightgray;
 }
 
 header {
@@ -44,7 +44,7 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 
 /* SMALL SCREENS */
 .responsive-menu {
-    background-color: #f4f4f4;
+    background-color: lightgray;
     display: flex;
     flex-direction: column;
     font-size: 10px;
@@ -106,7 +106,7 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 
 
 /* SCREENS BIGGER THAN 1600px */
-@media only screen and (min-width:1060px) {
+@media only screen and (min-width:960px) {
 
     /* Humburger */
     .logo-menu i {

@@ -708,6 +708,19 @@ namespace BusinessLogic.BLL
 
             return lstMatches;
         }
+        public List<Match> GetMatchesByRangeDateAndCompetition(string CompetitionId, DateTime StartDate, DateTime EndDate)
+        {
+            DateTime dayInit = new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, 0, 0, 0);
+            DateTime dayEnd = new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, 23, 59, 59);
+
+            DALMatches dalMatches = new DALMatches(connectionString);
+
+            List<Match> lstMatches = dalMatches.GetByCompetitionIdAndByRangeDates(CompetitionId, dayInit, dayEnd);
+
+            lstMatches.ForEach(EntityBuilder);
+
+            return lstMatches;
+        }
         public bool InsertMatches(List<Match> Matches)
         {
             if (Matches is null)

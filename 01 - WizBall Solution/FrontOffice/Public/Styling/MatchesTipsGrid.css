@@ -2,7 +2,7 @@
     display: none;
 }
 :root {
-    --grid-width: 1060px;
+    --grid-width: 960px;
 }
 * {
     margin: 0;

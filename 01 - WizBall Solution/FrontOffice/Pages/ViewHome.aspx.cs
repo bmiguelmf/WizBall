@@ -23,7 +23,7 @@ namespace FrontOffice.Pages
 
 
             apiToken    = WebConfigurationManager.AppSettings["ApiToken"];
-            connString  = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
+            connString  = WebConfigurationManager.ConnectionStrings["atec"].ConnectionString;
             bll         = new BLL(connString, apiToken);
 
 

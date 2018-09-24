@@ -116,6 +116,7 @@ namespace FrontOffice.Resources
                 row.Controls.Add(rowCellHomeTeam);
 
                 HtmlGenericControl rowCellDate              = new HtmlGenericControl("div");
+                rowCellDate.Attributes["id"]                = "utc-date";
                 rowCellDate.Attributes["class"]             = "grid-cell";
                 rowCellDate.Attributes["utc-date"]          = globals.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
                 rowCellDate.InnerHtml                       = globals.NormalizeApiDateTime(match.UtcDate).Value.ToString("dd MMM HH:mm");
