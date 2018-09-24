@@ -264,6 +264,7 @@
             success: function (data) {
                 swal("Success!", "User successfully updated!", "success").then((value) => {
                     GetUsers();
+                    paginateTable(table, 2);
                 });
             },
             error: function (data, status, error) {
