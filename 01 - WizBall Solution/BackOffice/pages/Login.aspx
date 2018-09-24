@@ -9,21 +9,21 @@
     <title>WizBall - Dashborad</title>
 
     <!-- Favicon img -->
-    <link rel="shortcut icon" type="image/x-icon" href="/resources/imgs/icon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/resources/imgs/icon.ico"/>
 
     <!-- Bootstrap and font-awesome stylesheets -->
-    <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
     <!-- Custom table paging stylesheet -->
-    <link href="/resources/css/pagination.css" rel="stylesheet" />
+    <link href="/resources/css/pagination.css" rel="stylesheet"/>
 
     <!-- Custom toggle stylesheet -->
-    <link href="/resources/css/plugins/bootstrap2-toggle.min.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/bootstrap2-toggle.min.css" rel="stylesheet"/>
 
     <!-- Global BackOffice stylesheet -->
-    <link href="/resources/css/style.css" rel="stylesheet" />
-    <link href="/resources/css/estilos.css" rel="stylesheet" />
+    <link href="/resources/css/style.css" rel="stylesheet"/>
+    <link href="/resources/css/estilos.css" rel="stylesheet"/>
 
 </head>
 <body class="gray-bg">

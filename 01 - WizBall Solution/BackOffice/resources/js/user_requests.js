@@ -3,8 +3,6 @@
     var session_username = $('#username');
     var tbl_users = $('#users_table');
     var tbl_users_body = $('#users_table_body');
-    var btn_grant = $('.btn_grant');
-    var btn_revoke = $('.btn_revoke');
     var td_user_state = $('#user_state');
     //var btn_submit = $('#btn_submit');
 
@@ -21,7 +19,7 @@
         })
     };
 
-    function AproveUser(id, is_granted) {
+    function aproveUser(id, is_granted) {
         var permission = "Revoked";
 
         if (is_granted) {
@@ -57,8 +55,8 @@
             data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
             dataType: "json",
             success: function (data) {
-                swal("Success!", "User successfully +" + permission.toLowerCase() + "!", "success").then((value) => {
-                    GetUsers();
+                swal("Success!", "User successfully " + permission.toLowerCase() + "!", "success").then((value) => {
+                    GetPendingUsers();
                     paginateTable(table, 2);
                 });
             },
@@ -69,12 +67,13 @@
     };
 
     function assignActionBtnClickEvents() {
-        btn_grant.on("click", function () {
-            AproveUser($(this).closest("tr").attr('value'), true);
+
+        $('.btn_grant').on("click", function () {
+            aproveUser($(this).closest("tr").attr('value'), true);
         });
 
-        btn_revoke.on("click", function () {
-            AproveUser($(this).closest("tr").attr('value'), false);
+        $('.btn_revoke').on("click", function () {
+            aproveUser($(this).closest("tr").attr('value'), false);
         });
     };
 
@@ -90,10 +89,11 @@
                 if (data.d.length > 0) {
                     $.each(data.d, function (index, value) {
                         if (value.CurrentUserHistory.AfterState.Description == "Pending") {
-                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\" " + value.CurrentUserHistory.AfterState.Id +" \" style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td style=\"width:10%;\"><a class=\"btn_revoke\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-remove\"></i></a></td></tr>");
+                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\"" + value.CurrentUserHistory.AfterState.Id + "\" style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td><a class=\"btn_revoke\"><i class=\"glyphicon glyphicon-remove\"></i></a></td></tr>");
                         }
                     });
                     paginateTable(tbl_users, 2);
+                    console.log("cheguei ao sucesso");
                     assignActionBtnClickEvents();
                 }
                 else {
@@ -111,5 +111,7 @@
 
     GetPendingUsers();
 
-    console.log('READY users.js');
+
+
+    console.log('READY user_requests.js');
 });
