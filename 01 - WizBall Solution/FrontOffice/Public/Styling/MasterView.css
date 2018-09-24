@@ -6,9 +6,16 @@
     font-weight: 600;
 }
 
+
+
+
 body {
-    background-color: lightgray;
+    /* background-color: lightgray; */
+    
+    
 }
+
+
 
 header {
     padding: 5px 10px;
@@ -105,8 +112,19 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 
 
 
-/* SCREENS BIGGER THAN 1600px */
+/* SCREENS BIGGER THAN 1060px */
 @media only screen and (min-width:960px) {
+
+    #background {
+        position:absolute;
+        z-index:-1;
+        width: 100%;
+        height: 100%;
+        background-image: url('/Public/Imgs/Wizball/fds.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity:0.4;
+    }
 
     /* Humburger */
     .logo-menu i {

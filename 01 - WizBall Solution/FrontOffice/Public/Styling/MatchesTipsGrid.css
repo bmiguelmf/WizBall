@@ -161,6 +161,34 @@
     .grid {
         font-size: 11px;
     }
+
+
 }
 /* TABLETS SCREENS */
 /* TABLETS SCREENS */
+
+
+
+
+/* DESKTOP SCREENS */
+/* DESKTOP SCREENS */
+@media only screen and (min-width: 960px) {
+
+    .grid {
+        padding: 50px;
+        max-width:1200px;
+    }
+
+    .grid-header {
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    .grid-body-scrollable {
+        border: 2px solid #333;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+}
+/* DESKTOP SCREENS */
+/* DESKTOP SCREENS */
