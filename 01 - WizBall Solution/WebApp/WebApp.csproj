@@ -139,6 +139,7 @@
     <Content Include="LocalResourcesAcc\ProfilePicture\94b509da-d784-4ee3-b03d-88bb1e005a09.png" />
     <Content Include="pages\bruno_testes.aspx" />
     <Content Include="pages\Login.aspx" />
+    <Content Include="pages\MasterView.Master" />
     <Content Include="pages\ProfileEdit.aspx" />
     <Content Include="pages\RecoverPassword.aspx" />
     <Content Include="pages\Register.aspx" />
@@ -188,6 +189,7 @@
     <Content Include="pages\MainPage.html" />
     <Content Include="pages\Error.aspx" />
     <Content Include="pages\template.html" />
+    <Content Include="pages\ViewHistory.aspx" />
     <Content Include="styling\bootstrap4.css" />
     <Content Include="styling\customcode.css" />
     <Content Include="styling\font-awesome.css" />
@@ -201,6 +203,7 @@
   <ItemGroup>
     <Compile Include="App_Code\CompetitionTruncated.cs" />
     <Compile Include="App_Code\GLOBALS.cs" />
+    <Compile Include="App_Code\HistoryTipsGrid.cs" />
     <Compile Include="App_Code\MatchTruncated.cs" />
     <Compile Include="pages\bruno_testes.aspx.cs">
       <DependentUpon>bruno_testes.aspx</DependentUpon>
@@ -222,6 +225,13 @@
     </Compile>
     <Compile Include="pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\MasterView.Master.cs">
+      <DependentUpon>MasterView.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\MasterView.Master.designer.cs">
+      <DependentUpon>MasterView.Master</DependentUpon>
     </Compile>
     <Compile Include="pages\ProfileEdit.aspx.cs">
       <DependentUpon>ProfileEdit.aspx</DependentUpon>
@@ -278,6 +288,13 @@
     </Compile>
     <Compile Include="pages\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ViewHistory.aspx.cs">
+      <DependentUpon>ViewHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ViewHistory.aspx.designer.cs">
+      <DependentUpon>ViewHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
