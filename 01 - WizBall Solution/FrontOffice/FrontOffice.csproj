@@ -69,9 +69,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\ViewHistory.aspx" />
+    <Content Include="Pages\ViewEditProfile.aspx" />
     <Content Include="Pages\ViewHome.aspx" />
     <Content Include="Pages\ViewLogin.aspx" />
+    <Content Include="Pages\ViewRecoverPassword.aspx" />
+    <Content Include="Pages\ViewRegistration.aspx" />
     <Content Include="Public\Bootstrap\Bootstrap4.css" />
     <Content Include="Public\Imgs\Competitions\bundesliga.png" />
     <Content Include="Public\Imgs\Competitions\championship.png" />
@@ -326,12 +328,12 @@
     <Compile Include="Pages\MasterView.Master.designer.cs">
       <DependentUpon>MasterView.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ViewHistory.aspx.cs">
-      <DependentUpon>ViewHistory.aspx</DependentUpon>
+    <Compile Include="Pages\ViewEditProfile.aspx.cs">
+      <DependentUpon>ViewEditProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\ViewHistory.aspx.designer.cs">
-      <DependentUpon>ViewHistory.aspx</DependentUpon>
+    <Compile Include="Pages\ViewEditProfile.aspx.designer.cs">
+      <DependentUpon>ViewEditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewHome.aspx.cs">
       <DependentUpon>ViewHome.aspx</DependentUpon>
@@ -347,10 +349,22 @@
     <Compile Include="Pages\ViewLogin.aspx.designer.cs">
       <DependentUpon>ViewLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ViewRecoverPassword.aspx.cs">
+      <DependentUpon>ViewRecoverPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewRecoverPassword.aspx.designer.cs">
+      <DependentUpon>ViewRecoverPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewRegistration.aspx.cs">
+      <DependentUpon>ViewRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewRegistration.aspx.designer.cs">
+      <DependentUpon>ViewRegistration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\AuthUserPanel.cs" />
     <Compile Include="Resources\Globals.cs" />
-    <Compile Include="Resources\HistoryTipsGrid.cs" />
     <Compile Include="Resources\MatchesTipsGrid.cs" />
   </ItemGroup>
   <ItemGroup>

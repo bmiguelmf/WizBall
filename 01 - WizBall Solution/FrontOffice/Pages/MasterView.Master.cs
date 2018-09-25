@@ -71,8 +71,9 @@ namespace FrontOffice
             logoutIcon.Controls.Add(logoutLink);
 
 
-            divDesktopMenuUserOptions.Controls.Add(logoutIcon);
+            
             divDesktopMenuUserOptions.Controls.Add(editProfileIcon);
+            divDesktopMenuUserOptions.Controls.Add(logoutIcon);
 
 
         }
@@ -102,17 +103,15 @@ namespace FrontOffice
             logoutIcon.Attributes["class"] = "fas fa-sign-out-alt";
             logoutIcon.Controls.Add(logoutLink);
 
-
-            divDesktopMenuUserOptionsResp.Controls.Add(logoutIcon);
+            
             divDesktopMenuUserOptionsResp.Controls.Add(editProfileIcon);
-
-
+            divDesktopMenuUserOptionsResp.Controls.Add(logoutIcon);
         }
         private void Logout_Click(object sender, EventArgs e)
         {
             Session["User"] = null;
 
-            Page.Response.Redirect("/Pages/ViewHome.aspx");
+            Page.Response.Redirect(Request.UrlReferrer.ToString());
 
         }
         private void GenerateGuestPanelDesktop()
@@ -124,7 +123,7 @@ namespace FrontOffice
             // Creates  Login | Resgristration | Recover Password menus.
             string loginLink = "<i class='fas fa-sign-in-alt'> <a href='/Pages/ViewLogin.aspx'>Login</a></i>";
             string registrationLink = "<i class='fas fa-plus-circle'> <a href='/Pages/ViewRegistration.aspx'>Registration</a></i>";
-            string recoverPasswordLink = "<i class='fas fa-unlock-alt'> <a href ='/Pages/RecoverPassword.aspx'>Recover Password</a></i>";
+            string recoverPasswordLink = "<i class='fas fa-unlock-alt'> <a href ='/Pages/ViewRecoverPassword.aspx'>Recover Password</a></i>";
 
 
             divDesktopMenuUserOptions.InnerHtml = loginLink + registrationLink + recoverPasswordLink;
@@ -138,7 +137,7 @@ namespace FrontOffice
             // Creates  Login | Resgristration | Recover Password menus.
             string loginLink = "<i class='fas fa-sign-in-alt'> <a href='/Pages/ViewLogin.aspx'>Login</a></i>";
             string registrationLink = "<i class='fas fa-plus-circle'> <a href='/Pages/ViewRegistration.aspx'>Registration</a></i>";
-            string recoverPasswordLink = "<i class='fas fa-unlock-alt'> <a href ='/Pages/RecoverPassword.aspx'>Recover Password</a></i>";
+            string recoverPasswordLink = "<i class='fas fa-unlock-alt'> <a href ='/Pages/ViewRecoverPassword.aspx'>Recover Password</a></i>";
 
 
             divDesktopMenuUserOptionsResp.InnerHtml = loginLink + registrationLink + recoverPasswordLink;

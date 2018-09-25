@@ -496,8 +496,13 @@ namespace BusinessLogic.BLL
         }
         public bool RecoverUserPassword(string Email)
         {
-            DALUsers dalUsers = new DALUsers(connectionString);
-            User user = dalUsers.GetByEmail(Email);
+            if (!IsValidEmail(Email))
+            {
+                return false;
+            }
+
+            DALUsers dalUsers   = new DALUsers(connectionString);
+            User user           = dalUsers.GetByEmail(Email);
 
             if(user is null)
             {
@@ -508,7 +513,7 @@ namespace BusinessLogic.BLL
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("bmiguelmf@gmail.com");
                 mail.To.Add(user.Email);
-                mail.Subject = "Wizball - Password Revover";
+                mail.Subject = "Wizball - Password Recover";
                 mail.Body = "Hi there " + user.Username + " \n";
                 mail.Body += "Your password: " + user.Password + " \n\n\n";
                 mail.Body += "Wizball support team";

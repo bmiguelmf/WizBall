@@ -1,4 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewLogin.aspx.cs" Inherits="FrontOffice.Pages.ViewLogin" %>
+﻿<%@ Page 
+    Language="C#" 
+    AutoEventWireup="true" 
+    CodeBehind="ViewLogin.aspx.cs" 
+    Inherits="FrontOffice.Pages.ViewLogin" %>
 
 <!DOCTYPE html>
 

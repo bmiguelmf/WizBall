@@ -13,9 +13,7 @@ namespace FrontOffice.Pages
 {
     public partial class ViewLogin : System.Web.UI.Page
     {
-        private static BLL bll;
-        private static string apiToken;
-        private static string connString;
+        private BLL bll;
 
         private bool IsUserLoggedIn()
         {
@@ -34,13 +32,8 @@ namespace FrontOffice.Pages
 
             if (IsPostBack)
             {
-                return;
-            }
-
-
-            apiToken = WebConfigurationManager.AppSettings["ApiToken"];
-            connString = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
-            bll = new BLL(connString, apiToken);
+                bll = new Globals().CreateBll();
+            }    
         }
 
 

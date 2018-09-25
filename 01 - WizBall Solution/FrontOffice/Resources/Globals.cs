@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
+using BusinessLogic.BLL;
 
 namespace FrontOffice.Resources
 {
@@ -28,6 +31,25 @@ namespace FrontOffice.Resources
 
             return dateTimeNormalized;
         }
-    }
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                MailAddress addr = new System.Net.Mail.MailAddress(email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
+        public BLL CreateBll()
+        {     
+            string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
+            string connString  = WebConfigurationManager.ConnectionStrings["atec"].ConnectionString;
+
+            return new BLL(connString, apiToken);
+        }
+    }
 }
