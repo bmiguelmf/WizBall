@@ -28,7 +28,7 @@
             data: "{Username: " + JSON.stringify(username) + ", Password:" + JSON.stringify(password) + "}",
             success: function (data) {
                 if (data.d != null) {
-                    $.session.set("Username", data.d['Username'].toUpperCase());
+                    $.session.set("Username", data.d['Username']);
                     $.session.set("AdminId", data.d['Id']);
                     swal("Success!", "You are logged in.", "success")
                         .then((value) => {

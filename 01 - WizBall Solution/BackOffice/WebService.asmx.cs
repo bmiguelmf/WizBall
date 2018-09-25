@@ -42,24 +42,24 @@ namespace BackOffice
             return bll.InsertUser(User);
         }
         [WebMethod]
-        public bool UpdatetUser(User User)
+        public bool UpdateUser(User User)
         {
             if (User is null)
                 return false;
 
             BLL bll = new BLL(connString, apiToken);
 
-            return bll.UpdatetUser(User);
+            return bll.UpdateUser(User);
         }
         [WebMethod]
-        public bool UpdatetUser(User User, UserHistory UserHistory)
+        public bool UpdateUser(User User, UserHistory UserHistory)
         {
             if (User is null)
                 return false;
 
             BLL bll = new BLL(connString, apiToken);
 
-            return bll.UpdatetUser(User, UserHistory);
+            return bll.UpdateUser(User, UserHistory);
         }
         [WebMethod]
         public User UserLogin(string Username, string Password)
@@ -194,7 +194,7 @@ namespace BackOffice
                 return false;
 
             BLL bll = new BLL(connString, apiToken);
-            return bll.UpdatetAdmin(Admin);
+            return bll.UpdateAdmin(Admin);
         }
         [WebMethod]
         public Admin AdminLogin(string Username, string Password)
