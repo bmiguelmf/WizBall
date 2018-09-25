@@ -7,17 +7,10 @@
 
     //vars
 
+
+
     //functions
-    function GetSessionUsernameToNavbar() {
-        session_username.text($.session.get('Username').toUpperCase());
-    };
-
-    function paginateTable(table, limit) {
-        table.hpaging({
-            "limit": limit
-        })
-    };
-
+    
     function aproveUser(id, is_granted) {
         var permission = "Revoked";
 
@@ -63,7 +56,7 @@
                     });
                 } else {
                     swal("Info!", "User unsuccessfully " + permission.toLowerCase() + "!", "warning").then((value) => {
-                        
+
                     });
                 }
 

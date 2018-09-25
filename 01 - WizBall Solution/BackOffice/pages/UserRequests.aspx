@@ -86,7 +86,7 @@
     <!-- / top navigation bar -->
 
     <div id="st-container" class="st-container st-effect-1">
-       
+
         <!-- Central content -->
         <div class="st-pusher">
             <div class="st-content">
@@ -162,7 +162,7 @@
 
     <!-- Custom table paging script -->
     <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
-
+    
     <!-- Bootstrap script -->
     <script src="/resources/js/plugins/bootstrap.min.js"></script>
 

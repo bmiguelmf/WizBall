@@ -229,9 +229,12 @@
     <script src="/resources/js/plugins/jquery.min.js"></script>
     <script src="/resources/js/plugins/jquery-ui.min.js"></script>
 
+    <!-- General script -->
+    <script src="/resources/js/general.js"></script>
+
     <!-- Custom table paging script -->
     <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
-
+    
     <!-- Bootstrap script -->
     <script src="/resources/js/plugins/bootstrap.min.js"></script>
 

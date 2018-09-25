@@ -1,8 +1,4 @@
 ﻿$(document).ready(function () {
-    //html elements
-    var session_username = $('#username');
-    var tbl_users = $('#users_table');
-    var tbl_users_body = $('#users_table_body');
     var btn_cancel = $('#btn_can');
     var btn_submit = $('#btn_submit');
     var form = $('#form_edit_user');
@@ -33,12 +29,7 @@
         input_email.val("");
         txt_description.val("");
     };
-
-    function clearTable(table) {
-        table.empty();
-        pagination.empty();
-    };
-
+    
     function disableFormTextArea() {
         is_text_area_disabled = true;
         txt_description.attr('disabled', 'disabled');
@@ -48,17 +39,7 @@
         is_text_area_disabled = false;
         txt_description.removeAttr('disabled');
     };
-
-    function GetSessionUsernameToNavbar() {
-        session_username.text($.session.get('Username'));
-    };
-
-    function paginateTable(table, limit) {
-        table.hpaging({
-            "limit": limit
-        })
-    };
-
+    
     function loadSideBarEffectsScripts() {
         $.getScript('/resources/js/plugins/classie.js');
         $.getScript('/resources/js/plugins/sidebar-effects.js');
@@ -194,7 +175,6 @@
     }
 
     //events
-    GetSessionUsernameToNavbar();
 
     GetUsers();
 

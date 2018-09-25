@@ -71,13 +71,6 @@
             return false;
         }
     });
-
-
-
-
-
-
-
-
+    
     console.log('READY login.js');
 });
