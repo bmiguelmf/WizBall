@@ -20,7 +20,7 @@
 
 <asp:Content ID="viewHomeContentBody" ContentPlaceHolderID="masterViewContentBody" runat="server">
 
-    <asp:PlaceHolder ID="placeHolderMatchesTips" runat="server"></asp:PlaceHolder>
+    <asp:PlaceHolder ID="placeHolderMatchesTipsGrid" runat="server"></asp:PlaceHolder>
 
 </asp:Content>
 

@@ -1,9 +1,6 @@
 ﻿// Window resize.
 window.addEventListener("resize", setMatchesTipsGridHeight);
 
-document.getElementById("").addEventListener
-
-
 function setMatchesTipsGridHeight() {
 
     // windows height.
@@ -16,23 +13,15 @@ function setMatchesTipsGridHeight() {
     var freeHeight = winHeight - navHeight -30 -100;
 
 
-    // eightPercent.
-    //var eightPercent = Math.floor(freeHeight * 0.8);
-
-
     while (freeHeight % 30 !== 0) {
         freeHeight--;
     }
 
-    //var marginTop = (freeHeight - eightPercent) / 2;
-
 
     if (window.innerWidth >= 960) {
         document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + freeHeight + "px;");
-        //document.getElementById("grid").setAttribute("style", "margin-top:" + marginTop + "px;");
     }
     else {
-        //document.getElementById("grid").setAttribute("style", "margin-top: 0");
         document.getElementById("grid-body-scrollable").setAttribute("style", "height: auto");
     }
 

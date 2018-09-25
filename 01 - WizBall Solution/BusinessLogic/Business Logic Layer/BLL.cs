@@ -75,26 +75,33 @@ namespace BusinessLogic.BLL
         // Entities Builders
         public void EntityBuilder(User User)
         {
-            User.CurrentUserHistory = GetCurrentUserHistoryByUserId(User.Id.ToString());    
+            if (User != null)
+                User.CurrentUserHistory = GetCurrentUserHistoryByUserId(User.Id.ToString());    
         }
         public void EntityBuilder(Match Match)
         {
-            Match.Season            = GetSeasonById(Match.Season.Id.ToString());
-            Match.Competition       = GetCompetitionById(Match.Competition.Id.ToString());
-            Match.Competition.Area  = GetAreaById(Match.Competition.Area.Id.ToString());
+            if (Match != null)
+            {
+                Match.Season = GetSeasonById(Match.Season.Id.ToString());
+                Match.Competition = GetCompetitionById(Match.Competition.Id.ToString());
+                Match.Competition.Area = GetAreaById(Match.Competition.Area.Id.ToString());
 
-            Match.HomeTeam          = GetTeamById(Match.HomeTeam.Id.ToString());
-            Match.HomeTeam.Area     = GetAreaById(Match.HomeTeam.Area.Id.ToString());
+                Match.HomeTeam = GetTeamById(Match.HomeTeam.Id.ToString());
+                Match.HomeTeam.Area = GetAreaById(Match.HomeTeam.Area.Id.ToString());
 
-            Match.AwayTeam          = GetTeamById(Match.AwayTeam.Id.ToString());
-            Match.AwayTeam.Area     = GetAreaById(Match.AwayTeam.Area.Id.ToString());
+                Match.AwayTeam = GetTeamById(Match.AwayTeam.Id.ToString());
+                Match.AwayTeam.Area = GetAreaById(Match.AwayTeam.Area.Id.ToString());
+            }
         }
         public void EntityBuilder(UserHistory UserHistory)
         {
-            UserHistory.Admin           = GetAdminById(UserHistory.Admin.Id.ToString());
-            // UserHistory.User            = GetUserById(UserHistory.User.Id.ToString()); Previne recursão EntityBuilder User e Useristory.
-            UserHistory.BeforeState     = GetUserStateById(UserHistory.BeforeState.Id.ToString());
-            UserHistory.AfterState      = GetUserStateById(UserHistory.AfterState.Id.ToString());
+            if (UserHistory != null)
+            {
+                UserHistory.Admin = GetAdminById(UserHistory.Admin.Id.ToString());
+                // UserHistory.User            = GetUserById(UserHistory.User.Id.ToString()); Previne recursão EntityBuilder User e Useristory.
+                UserHistory.BeforeState = GetUserStateById(UserHistory.BeforeState.Id.ToString());
+                UserHistory.AfterState = GetUserStateById(UserHistory.AfterState.Id.ToString());
+            }
         }
 
 
@@ -481,7 +488,11 @@ namespace BusinessLogic.BLL
         {
             DALUsers dalUsers = new DALUsers(connectionString);
 
-            return dalUsers.Login(Username, Password);
+            User user = dalUsers.Login(Username, Password);
+
+            EntityBuilder(user);
+
+            return user;
         }
         public bool RecoverUserPassword(string Email)
         {

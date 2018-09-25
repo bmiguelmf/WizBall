@@ -23,14 +23,18 @@ namespace FrontOffice.Pages
 
 
             apiToken    = WebConfigurationManager.AppSettings["ApiToken"];
-            connString  = WebConfigurationManager.ConnectionStrings["atec"].ConnectionString;
+            connString  = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
             bll         = new BLL(connString, apiToken);
+
+
+           
 
 
             MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid(bll.GetNextMatchesByTierOneCompetitions());
 
 
-            placeHolderMatchesTips.Controls.Add(matchesTipsGrid.Create());
+            placeHolderMatchesTipsGrid.Controls.Add(matchesTipsGrid.Create());
+   
         }
     }
 }

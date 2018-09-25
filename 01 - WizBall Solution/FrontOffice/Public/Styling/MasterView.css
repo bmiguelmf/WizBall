@@ -32,9 +32,11 @@ header .logo-menu {
     justify-content: space-between;
     flex: 1 1 1px;
 }
-
-header .logo-menu img {
-height: 25px;
+header .logo-menu a {
+    height: 25px;
+}
+header .logo-menu a img {
+    height: 25px;
 }
 
 header .logo-menu i {
@@ -82,6 +84,7 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
     width: 70px;
     border-radius: 12px;
     border:2px solid #333;
+    background-color:white;
 }
 
 .responsive-menu .menu-user-options {
@@ -92,7 +95,12 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 }
 
 .responsive-menu .menu-user-options i {
-    padding: 6px 15px;  
+    padding: 6px 15px;
+    color: #333;
+}
+.responsive-menu .menu-user-options i a {
+    color: #333;
+    text-decoration: none;
 }
 
 
@@ -106,6 +114,11 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 
 .responsive-menu .menu-menus i {
     padding: 10px 0;
+    color: #333;
+}
+.responsive-menu .menu-menus i a{
+    text-decoration:none;
+    color: #333;
 }
 /* SMALL SCREENS */
 
@@ -148,7 +161,10 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
         padding: 10px 30px;
     }
 
-    header .logo-menu img {
+    header .logo-menu a {
+        height: 60px;
+    }
+    header .logo-menu a img {
         height: 60px;
     }
 
@@ -167,10 +183,14 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
         
         display: inline-block;
         white-space: nowrap;
+
+        
     }
 
-    .dektop-menu-menus i span {
-        font-size: 13px;
+    .dektop-menu-menus i a {
+        font-size: 12px;
+        color: #333;
+        text-decoration: none;
     }
 
 
@@ -190,15 +210,23 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
     }
 
     .dektop-menu-user .dektop-menu-user-options {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 11px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 11px;
+
+        min-width:136px;
     }
 
     .dektop-menu-user .dektop-menu-user-options i {
         padding: 6px 0 6px 25px;
         display: inline-block;
         white-space: nowrap;
+    }
+
+    .dektop-menu-user .dektop-menu-user-options i a {
+        font-size: 11px;
+        color: #333;
+        text-decoration: none;
     }
 }

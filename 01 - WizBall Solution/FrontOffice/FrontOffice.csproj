@@ -71,6 +71,7 @@
   <ItemGroup>
     <Content Include="Pages\ViewHistory.aspx" />
     <Content Include="Pages\ViewHome.aspx" />
+    <Content Include="Pages\ViewLogin.aspx" />
     <Content Include="Public\Bootstrap\Bootstrap4.css" />
     <Content Include="Public\Imgs\Competitions\bundesliga.png" />
     <Content Include="Public\Imgs\Competitions\championship.png" />
@@ -300,6 +301,7 @@
     <Content Include="Public\Imgs\Teams\spain\tenerife.ico" />
     <Content Include="Public\Imgs\Teams\spain\valencia.ico" />
     <Content Include="Public\Imgs\Teams\spain\villareal.ico" />
+    <Content Include="Public\Imgs\Users\songoku.png" />
     <Content Include="Public\Imgs\Wizball\fds.jpg" />
     <Content Include="Public\Imgs\Wizball\back-ground.jpg" />
     <Content Include="Public\Imgs\Wizball\logo.png" />
@@ -308,7 +310,7 @@
     <Content Include="Public\Imgs\Wizball\logo_dark_ico.png" />
     <Content Include="Public\Imgs\Wizball\logo_green_ico.png" />
     <Content Include="Public\Imgs\Wizball\logo_with_name.png" />
-    <Content Include="Public\Imgs\Wizball\user.png" />
+    <Content Include="Public\Imgs\Users\user.png" />
     <Content Include="Public\Javascript\MasterView.js" />
     <Content Include="Public\Javascript\MatchesTipsGrid.js" />
     <Content Include="Public\jQuery\jQuery.min.js" />
@@ -338,7 +340,15 @@
     <Compile Include="Pages\ViewHome.aspx.designer.cs">
       <DependentUpon>ViewHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ViewLogin.aspx.cs">
+      <DependentUpon>ViewLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewLogin.aspx.designer.cs">
+      <DependentUpon>ViewLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AuthUserPanel.cs" />
     <Compile Include="Resources\Globals.cs" />
     <Compile Include="Resources\HistoryTipsGrid.cs" />
     <Compile Include="Resources\MatchesTipsGrid.cs" />

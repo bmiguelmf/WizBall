@@ -29,10 +29,10 @@ namespace FrontOffice.Pages
 
 
 
-            MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid(bll.GetMatchesByRangeDateAndCompetition());
+            //MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid(bll.GetMatchesByRangeDateAndCompetition());
 
 
-            placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
+            //placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
         }
     }
 }

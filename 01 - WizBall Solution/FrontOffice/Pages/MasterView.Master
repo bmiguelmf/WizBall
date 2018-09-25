@@ -46,7 +46,7 @@
                 <!-- LOGO AND HUMBURGER PANEL-->
                 <div class="logo-menu">
 
-                    <img src="/Public/Imgs/Wizball/logo_dark.png" alt="wizballlogo" />
+                    <a href="/Pages/ViewHome.aspx"><img src="/Public/Imgs/Wizball/logo_dark.png" alt="wizballlogo" /></a>
 
                     <i id="humburger" class="fas fa-bars fa-1x"></i>
 
@@ -56,13 +56,13 @@
                 <!-- MENUS PANEL -->
                 <div class="dektop-menu-menus">
 
-                    <i class="fas fa-futbol"> <span>Tips</span></i>
+                    <i class="fas fa-futbol"> <a href="#">Tips</a></i>
 
-                    <i class="fas fa-history"> <span>Tips History</span></i>
+                    <i class="fas fa-history"> <a href="#">Tips History</a></i>
 
-                    <i class="fas fa-info-circle"> <span>About Us</span></i>
+                    <i class="fas fa-info-circle"> <a href="#">About Us</a></i>
 
-                    <i class="fas fa-at"> <span>Contact Us</span></i>   
+                    <i class="fas fa-at"> <a href="#">Contact Us</a></i>   
 
                 </div>
 
@@ -72,18 +72,14 @@
 
                     <div class="dektop-menu-user-pic">
 
-                        <img src="/Public/Imgs/Wizball/user.png" alt="guest">
-
+                        <img src="" alt="user pic" id="imgUserPic" runat="server">
+                        
                     </div>
 
-                    <div class="dektop-menu-user-options">
+                    <div class="dektop-menu-user-options" id="divDesktopMenuUserOptions" runat="server">
 
-                        <i class="fas fa-sign-in-alt"> <span>Login</span></i>
-
-                        <i class="fas fa-plus-circle"> <span>Register</span></i>
-
-                        <i class="fas fa-unlock-alt"> <span>Recover Password</span></i>
-
+                        <!-- Dinamically Generated Menus -->
+                        
                     </div>
 
                 </div>
@@ -100,16 +96,13 @@
 
                     <div class="menu-user-pic">
 
-                        <img src="/Public/Imgs/Wizball/user.png" alt="guest">
+                        <img src="" alt="user pic" id="imgUserPicResp" runat="server">
+
                     </div>
 
-                    <div class="menu-user-options">
+                    <div class="menu-user-options" id="divDesktopMenuUserOptionsResp" runat="server">
 
-                        <i class="fas fa-sign-in-alt"> <span>Login</span></i>
-
-                        <i class="fas fa-plus-circle"> <span>Register</span></i>
-
-                        <i class="fas fa-unlock-alt"> <span>Recover Password</span></i>
+                         <!-- Dinamically Generated Menus -->
 
                     </div>
 
@@ -118,13 +111,13 @@
                 <!-- PAGE MENUS PANEL -->
                 <div class="menu-menus">
 
-                    <i class="fas fa-info-circle"> <span>About Us</span></i>
+                    <i class="fas fa-info-circle"> <a href="#">About Us</a></i>
 
-                    <i class="fas fa-at"> <span>Contact Us</span></i>
+                    <i class="fas fa-at"> <a href="#">Contact Us</a></i>  
+                   
+                    <i class="fas fa-history"> <a href="#">Tips History</a></i>
 
-                    <i class="fas fa-history"> <span>Tips History</span> </i>
-
-                    <i class="fas fa-futbol"> <span>Tips</span></i>
+                    <i class="fas fa-futbol"> <a href="#">Tips</a></i>
 
                 </div>
 
