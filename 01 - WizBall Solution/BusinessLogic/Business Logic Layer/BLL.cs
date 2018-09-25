@@ -455,7 +455,7 @@ namespace BusinessLogic.BLL
             
             return true;
         }
-        public bool UpdatetUser(User User)
+        public bool UpdateUser(User User)
         {
             if (User is null)
                 return false;
@@ -467,7 +467,7 @@ namespace BusinessLogic.BLL
             
             return dalUsers.Update(User);
         }
-        public bool UpdatetUser(User User, UserHistory UserHistory)
+        public bool UpdateUser(User User, UserHistory UserHistory)
         {
             if (User is null || UserHistory is null)
                 return false;
@@ -478,7 +478,7 @@ namespace BusinessLogic.BLL
 
             List<User> lstUsers = new List<User>();
 
-            if(UpdatetUser(User) && InsertUserHistory(UserHistory))            
+            if(UpdateUser(User) && InsertUserHistory(UserHistory))            
                 return true;
             
 
@@ -658,7 +658,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        public bool UpdatetAdmin(Admin Admin)
+        public bool UpdateAdmin(Admin Admin)
         {
             if (Admin is null)
                 return false;

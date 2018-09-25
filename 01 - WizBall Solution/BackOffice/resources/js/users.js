@@ -258,7 +258,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "../WebService.asmx/UpdatetUser",
+            url: "../WebService.asmx/UpdateUser",
             data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
             dataType: "json",
             success: function (data) {
