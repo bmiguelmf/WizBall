@@ -1,34 +1,75 @@
-﻿function IsFormValid() {
+﻿function isEmailTaken() {
 
-    var result = true;
+    var txtEmail = document.getElementById("txtEmail").value;
+    var emailStatus = document.getElementById("emailStatus");
 
-    if (!isUsernameReady()) {
-        result = false;
-    }
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WizballWS.asmx/UserMailExists",
+        data: "{Email: '" + txtEmail + "'}",
+        dataType: "json",
 
-    if (!isEmailReady()) {
-        result = false;
-    }
+        success: function (data) {
+            if (data.d === true) {
+                emailStatus.innerText = "Email already in usage";
+            }
+            else {
+                emailStatus.innerText = "";
+            }
+        },
 
-    if (!isPasswordReady()) {
-        result = false;
-    }
+        error: function (data, status, error) {
+            alert(error);
+        }
 
-    VerifyUsername();
-
-    return result;
+    });
 }
+function isUsernameTaken() {
+
+    var txtUsername = document.getElementById("txtUsername").value;
+    var usernameStatus = document.getElementById("usernameStatus");
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WizballWS.asmx/UsernameExists",
+        data: "{Username: '" + txtUsername + "'}",
+        dataType: "json",
+
+        success: function (data) {
+            if (data.d === true) {
+                usernameStatus.innerText = "Username already taken";
+            }
+            else {
+                usernameStatus.innerText = "";
+            }
+        },
+
+        error: function (data, status, error) {
+            alert(error);
+        }
+
+    });
+}
+
+document.getElementById("txtEmail").addEventListener("keyup", isEmailTaken);
+document.getElementById("txtUsername").addEventListener("keyup", isUsernameTaken);
+
 
 
 function isUsernameReady() {
 
     var result = true;
 
-    var txtUsername     = document.getElementById("txtUsername").value;
-    var usernameStatus  = document.getElementById("usernameStatus");
+    var txtUsername = document.getElementById("txtUsername").value;
+    var usernameStatus = document.getElementById("usernameStatus");
 
-    if (txtUsername.length === 0) {
-        usernameStatus.innerText = "Required | Max : 50";
+    if (usernameStatus.innerText.length > 0) {
+        result = false;
+    }
+    else if (txtUsername.length === 0) {
+        usernameStatus.innerText = "Required";
         result = false;
     }
     else if (txtUsername.length > 50) {
@@ -50,6 +91,10 @@ function isEmailReady() {
 
     var emailValidator = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/;
 
+
+    if (emailStatus.innerText.length > 0) {
+        result = false;
+    }
     if (txtEmail.length === 0) {
         emailStatus.innerText = "Required";
         result = false;
@@ -94,27 +139,29 @@ function isPasswordReady() {
     return result;
 }
 
+function IsFormValid() {
+
+    var result = true;
 
 
-function VerifyUsername() {
+    if (!isUsernameReady()) {
+        result = false;
+    }
 
-    var txtUsername     = document.getElementById("txtUsername").value;
-    var usernameStatus  = document.getElementById("usernameStatus");
-
-
-    $.ajax({
-        type: "GET",
-        contentType: "application/json; charset=utf-8",
-        url: "/WizballWS.asmx/GetAllUsers",
-        dataType: "json",
-        success: function (data) {
-            alert("su");
-        },
-        error: function (data, status, error) {
-            alert("fu");
-        }
-    });
+    if (!isEmailReady())              
+    {
+        result = false;
+    }
+          
+    if (!isPasswordReady()) {
+        result = false;
+    }
 
 
+    return result;
 }
+
+
+
+
 
