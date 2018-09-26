@@ -20,21 +20,50 @@ namespace WebApp.pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
+            if (IsPostBack)
+            {
 
 
-            apiToken = WebConfigurationManager.AppSettings["ApiToken"];
-            connString = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
-            bll = new BLL(connString, apiToken);
-            
+                apiToken = WebConfigurationManager.AppSettings["ApiToken"];
+                connString = WebConfigurationManager.ConnectionStrings["ConnStringJoaoATEC"].ConnectionString;
+                bll = GLOBALS.BllSI;
 
 
 
-            HistoryTipsGrid matchesTipsGrid = new HistoryTipsGrid(bll.GetMatchesByRangeDateAndCompetition("2018",new DateTime(),new DateTime()));
+
+                HistoryTipsGrid matchesTipsGrid = new HistoryTipsGrid(bll.GetMatchesByRangeDateAndCompetition("2018", new DateTime(), new DateTime()));
 
 
-            placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
+                placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
 
+            } else
+            {
+                List<Match> matches = new List<Match>();
+                DateTime yest = DateTime.Now.AddDays(-1);
+                DateTime weekBefore = yest.AddDays(-7);
+                bll = GLOBALS.BllSI;
+
+                startRange.Value = weekBefore.ToString("yyyy-MM-dd");
+
+                endRange.Value = yest.ToString("yyyy-MM-dd");
+
+                foreach (Competition comp in bll.TierOneCompetitions())
+                {
+                    matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), weekBefore, yest));
+                }
+
+                HistoryTipsGrid matchesTipsGrid = new HistoryTipsGrid(matches);
+
+                placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
+            }
+        }
+
+        protected void Filter_Btn_Click(object sender, EventArgs e)
+        {
+            foreach (Competition comp in bll.TierOneCompetitions())
+            {
+                matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), new DateTime), yest));
+            }
         }
     }
 }

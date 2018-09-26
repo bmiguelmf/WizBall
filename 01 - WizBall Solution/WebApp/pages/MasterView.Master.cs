@@ -1,17 +1,17 @@
-﻿using System;
+﻿using BusinessLogic.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using BusinessLogic.Entities;
 using WebApp.App_Code;
 
 namespace WebApp.pages
 {
-    public partial class Main : System.Web.UI.MasterPage
-    {
+	public partial class MasterView : System.Web.UI.MasterPage
+	{
         private bool IsUserLoggedIn()
         {
             User user = Session["User"] as User;
@@ -49,7 +49,7 @@ namespace WebApp.pages
             // Gets user picture.
             User user = Session["User"] as User;
             // And sets.
-            imgUserPic.Src = GLOBALS.USERS + user.Picture;
+            imgUserPic.ImageUrl = GLOBALS.USERS + user.Picture;
 
 
             // Creates Edit Profile menu.   
@@ -81,7 +81,7 @@ namespace WebApp.pages
             // Gets user picture.
             User user = Session["User"] as User;
             // And sets.
-            imgUserPicResp.Src = GLOBALS.USERS + user.Picture;
+            imgUserPicResp.ImageUrl = GLOBALS.USERS + user.Picture;
 
 
             // Creates Edit Profile menu.   
@@ -118,7 +118,7 @@ namespace WebApp.pages
         private void GenerateGuestPanelDesktop()
         {
             // Loads default guest user picuture.
-            imgUserPicResp.Src = GLOBALS.USERS + "user.png";
+            imgUserPicResp.ImageUrl = GLOBALS.USERS + "user.png";
 
 
             // Creates  Login | Resgristration | Recover Password menus.
@@ -132,7 +132,7 @@ namespace WebApp.pages
         private void GenerateGuestPanelResponsive()
         {
             // Loads default guest user picuture.
-            imgUserPic.Src = GLOBALS.USERS + "user.png";
+            imgUserPic.ImageUrl = GLOBALS.USERS + "user.png";
 
 
             // Creates  Login | Resgristration | Recover Password menus.

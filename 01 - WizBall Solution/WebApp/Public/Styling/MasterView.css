@@ -1,0 +1,232 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+
+
+
+body {
+    /* background-color: lightgray; */
+    
+    
+}
+
+
+
+header {
+    padding: 5px 10px;
+    color: #333;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+
+header .logo-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 1px;
+}
+header .logo-menu a {
+    height: 25px;
+}
+header .logo-menu a img {
+    height: 25px;
+}
+
+header .logo-menu i {
+    color: #333;
+}
+
+
+/* RESTANTES COMPONENTES DO HEADER QUE SÓ APARECEM QUANDO VIEWPORT WIDTH MAIOR QUE 1060px */
+body header .dektop-menu-menus, body header .dektop-menu-user {
+    display: none;
+}
+
+
+
+/* SMALL SCREENS */
+.responsive-menu {
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+    overflow: hidden;
+    height: 0;
+    border-top: 2px solid #333;
+}
+
+.responsive-menu-open {
+    padding: 10px 15px;
+    height: auto;
+}
+
+
+.responsive-menu .menu-user {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.responsive-menu .menu-user-pic {
+    flex: 1 1 50px;
+    align-self: center;
+    text-align: right;
+}
+
+.responsive-menu .menu-user-pic img {
+    width: 70px;
+    border-radius: 12px;
+    border:2px solid #333;
+    background-color:white;
+}
+
+.responsive-menu .menu-user-options {
+    flex: 1 1 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.responsive-menu .menu-user-options i {
+    padding: 6px 15px;
+    color: #333;
+}
+.responsive-menu .menu-user-options i a {
+    color: #333;
+    text-decoration: none;
+}
+
+
+.responsive-menu .menu-menus {
+    padding: 5px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.responsive-menu .menu-menus i {
+    padding: 10px 0;
+    color: #333;
+}
+.responsive-menu .menu-menus i a{
+    text-decoration:none;
+    color: #333;
+}
+/* SMALL SCREENS */
+
+
+
+
+/* SCREENS BIGGER THAN 1060px */
+@media only screen and (min-width:960px) {
+
+    #background {
+        position:absolute;
+        z-index:-1;
+        width: 100%;
+        height: 100%;
+        background-image: url('/Public/Imgs/Wizball/fds.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity:0.4;
+    }
+
+    /* Humburger */
+    .logo-menu i {
+        display: none;
+    }
+
+    /* Menu small devices */
+    .responsive-menu {
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        border:none;
+    }
+
+    /* RESTANTES COMPONENTES DO HEADER VOLTAM APARECE QUANDO VIEWPORT WIDTH MAIOR QUE 1060px */
+    body header .dektop-menu-menus, body header .dektop-menu-user {
+        display: flex;
+    }
+
+    header {
+        padding: 10px 30px;
+    }
+
+    header .logo-menu a {
+        height: 60px;
+    }
+    header .logo-menu a img {
+        height: 60px;
+    }
+
+
+
+    .dektop-menu-menus {
+        flex: 1 1 1px;
+
+        align-self: flex-end;
+        display: flex;
+        justify-content: center;
+    }
+
+    .dektop-menu-menus i {
+        padding: 0 15px;
+        
+        display: inline-block;
+        white-space: nowrap;
+
+        
+    }
+
+    .dektop-menu-menus i a {
+        font-size: 12px;
+        color: #333;
+        text-decoration: none;
+    }
+
+
+
+    .dektop-menu-user {
+        flex: 1 1 1px;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+    }
+
+    .dektop-menu-user .dektop-menu-user-pic img {
+    height: 70px;
+    border-radius: 15px;
+    }
+
+    .dektop-menu-user .dektop-menu-user-options {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 11px;
+
+        min-width:136px;
+    }
+
+    .dektop-menu-user .dektop-menu-user-options i {
+        padding: 6px 0 6px 25px;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .dektop-menu-user .dektop-menu-user-options i a {
+        font-size: 11px;
+        color: #333;
+        text-decoration: none;
+    }
+}

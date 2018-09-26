@@ -37,7 +37,7 @@ namespace WebApp.pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgUserPic;
+        protected global::System.Web.UI.WebControls.Image imgUserPic;
         
         /// <summary>
         /// divDesktopMenuUserOptions control.
@@ -55,7 +55,7 @@ namespace WebApp.pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgUserPicResp;
+        protected global::System.Web.UI.WebControls.Image imgUserPicResp;
         
         /// <summary>
         /// divDesktopMenuUserOptionsResp control.
