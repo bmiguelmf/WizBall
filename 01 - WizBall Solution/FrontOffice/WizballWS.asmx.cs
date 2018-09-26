@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Web.Configuration;
 using System.Web.Services;
 using FrontOffice.Resources;
+using System.Web.Script.Services;
+
 namespace FrontOffice
 {
 
@@ -11,7 +13,7 @@ namespace FrontOffice
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    [System.Web.Script.Services.ScriptService]
+    [ScriptService]
     public class WizballWS : System.Web.Services.WebService
     {
         private BLL bll = new Globals().CreateBll();
@@ -68,6 +70,7 @@ namespace FrontOffice
             return bll.UserMailExists(Email);
         }
         [WebMethod]
+        //[ScriptMethod(UseHttpGet=true)]
         public bool UsernameExists(string Username)
         {
             return bll.UsernameExists(Username);

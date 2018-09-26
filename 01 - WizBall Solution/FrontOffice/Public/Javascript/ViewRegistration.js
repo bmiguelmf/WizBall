@@ -95,7 +95,7 @@ function isEmailReady() {
     if (emailStatus.innerText.length > 0) {
         result = false;
     }
-    if (txtEmail.length === 0) {
+    else if (txtEmail.length === 0) {
         emailStatus.innerText = "Required";
         result = false;
     }
@@ -165,3 +165,16 @@ function IsFormValid() {
 
 
 
+function registrationConfirmation() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = "block";
+
+    window.setTimeout(closeViewRegistration, 3000);
+}
+
+
+document.getElementById("close").addEventListener("click", closeViewRegistration);
+
+function closeViewRegistration() {
+    window.location.replace("/Pages/ViewHome.aspx");
+}

@@ -64,7 +64,8 @@ hr {
 
 .form-groups {
     width: 100%;
-    margin-bottom:25px;
+    margin-bottom: 25px;
+    height: 80px;
 }
 .form-body .form-imputs-labels {
     color:white;
@@ -75,15 +76,72 @@ hr {
 .form-body .form-inputs {
     width: 100%;
 }
+.status {
+    
+    display:inline-block;
+}
 
 .form-submit {
-    margin-top:30px;
-    padding:3px 0;
+    margin-top: 30px;
+    padding: 3px 0;
     width: 200px;
-    font-weight:bolder;
-    align-self:flex-end;
+    font-weight: bolder;
+    align-self: flex-end;
 }
 
 
 
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+/* The Close Button */
+#close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#close:hover,
+#close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2, .modal-content h4 {
+    margin: 20px;
+    color: yellowgreen;
+    text-align: center;
+}
+
+.modal-content a {
+    margin: 20px;
+    background-color:#333;
+    color:yellowgreen;
+    font-weight:bolder;
+    text-decoration:none;
+    padding:10px;   
+}

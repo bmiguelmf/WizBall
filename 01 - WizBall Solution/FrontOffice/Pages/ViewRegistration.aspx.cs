@@ -12,9 +12,12 @@ namespace FrontOffice.Pages
 {
     public partial class ViewRegistration : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(IsPostBack)
+            
+
+            if (IsPostBack)
             {
                 Globals globals = new Globals();
                 BLL bll = globals.CreateBll();
@@ -22,22 +25,18 @@ namespace FrontOffice.Pages
                
                 if(!FieldsValidatior())
                 {
-
                     return;
                 }
                 else if(!globals.IsValidEmail(txtEmail.Text))
                 {
-
                     return;  
                 }
                 else if (bll.UserMailExists(txtEmail.Text))
                 {
-
                     return;
                 }
                 else if (bll.UsernameExists(txtUsername.Text))
                 {
-
                     return;
                 }
                 else
@@ -51,7 +50,11 @@ namespace FrontOffice.Pages
 
                     if(bll.InsertUser(newUser))
                     {
+                        txtUsername.Text    = string.Empty;
+                        txtEmail.Text       = string.Empty;
+                        txtPassword.Text    = string.Empty;
 
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "RegistrationSuccessful", "registrationConfirmation()", true);
                     }
                 }
             }
