@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
+    //html elements
     var btn_cancel = $('#btn_can');
     var btn_submit = $('#btn_submit');
     var form = $('#form_edit_user');
     var error = $('#error_message');
-    var pagination = $('#pg_users_table');
 
     //form elements
     var toggle_status = $('#toggle_edit_status');
@@ -22,31 +22,31 @@
         $('.btn_edit').on("click", function () {
             GetClickedUserToForm($(this).closest("tr").attr('value'));
         });
-    };
+    }
 
     function clearForm() {
         input_username.val("");
         input_email.val("");
         txt_description.val("");
-    };
+    }
     
     function disableFormTextArea() {
         is_text_area_disabled = true;
         txt_description.attr('disabled', 'disabled');
-    };
+    }
 
     function enableFormTextArea() {
         is_text_area_disabled = false;
         txt_description.removeAttr('disabled');
-    };
+    }
     
     function loadSideBarEffectsScripts() {
         $.getScript('/resources/js/plugins/classie.js');
         $.getScript('/resources/js/plugins/sidebar-effects.js');
-    };
+    }
 
     function checkToggleStatus(status) {
-        if (status.Description == "Granted") {
+        if (status.Description === "Granted") {
             is_code_changed = true;
             toggle_status.bootstrapToggle('on');
             toggle_status.attr('status_id', status.Id);
@@ -54,25 +54,25 @@
             toggle_status.bootstrapToggle('off');
             toggle_status.attr('status_id', status.Id);
         }
-    };
+    }
 
     function checkToggleNewsletter(news) {
-        if (news == true) {
+        if (news === true) {
             toggle_newsletter.bootstrapToggle('on');
         } else {
             toggle_newsletter.bootstrapToggle('off');
         }
-    };
+    }
 
     function toggleBothFormToggles(status, news) {
         checkToggleStatus(status);
         checkToggleNewsletter(news);
-    };
+    }
 
-    function paginateTableAndLoadSideBarScripts(table) {
-        paginateTable(table, 1);
+    function paginateTableAndLoadSideBarScripts(table, limit) {
+        paginateTable(table, limit);
         loadSideBarEffectsScripts();
-    };
+    }
 
     function GetUsers() {
         $.ajax({
@@ -85,11 +85,11 @@
                 clearTable(tbl_users_body);
                 if (data.d.length > 0) {
                     $.each(data.d, function (index, value) {
-                        if (value.CurrentUserHistory.AfterState.Description != "Pending") {
+                        if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
                             tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
                         }
                     });
-                    paginateTableAndLoadSideBarScripts(tbl_users);
+                    paginateTableAndLoadSideBarScripts(tbl_users, 2);
                     assignBtnEditClickEvent();
                 }
                 else {
@@ -97,10 +97,10 @@
                 }
             },
             error: function (data, status, error) {
-                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
+                swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
             }
         });
-    };
+    }
 
     function GetClickedUserToForm(id) {
         $.ajax({
@@ -121,7 +121,7 @@
             },
             success: function (data) {
                 clearForm();
-                if (data.d != null) {
+                if (data.d !== null) {
                     //user_photo.attr('src', data.d.Picture);
                     input_username.val(data.d.Username);
                     input_username.attr('user_id', data.d.Id);
@@ -131,10 +131,10 @@
                 }
             },
             error: function (data, status, error) {
-                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
+                swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
             }
         });
-    };
+    }
 
     function validateForm() {
         var validated = true;
@@ -215,7 +215,7 @@
         var AfterUserState = {};
         var Admin = {};
 
-        Admin['Id'] = ($.session.get('AdminId') == "" ? 1 : $.session.get('AdminId'));
+        Admin['Id'] = $.session.get('AdminId') === "" ? 1 : $.session.get('AdminId');
 
         User['Id'] = input_username.attr('user_id');
         User['Username'] = input_username.val();
@@ -230,7 +230,7 @@
         BeforeUserState['Id'] = toggle_status.attr('status_id');
         UserHistory['BeforeState'] = BeforeUserState;
 
-        AfterUserState['Id'] = (toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id'));
+        AfterUserState['Id'] = toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id');
         UserHistory['AfterState'] = AfterUserState;
 
         UserHistory['Description'] = txt_description.val();
@@ -248,7 +248,7 @@
                 });
             },
             error: function (data, status, error) {
-                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
+                swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
             }
         });
 

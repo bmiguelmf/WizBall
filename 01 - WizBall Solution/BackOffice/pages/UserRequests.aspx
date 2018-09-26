@@ -179,6 +179,9 @@
     <!-- JQuery session script -->
     <script src="/resources/js/plugins/jquery.session.js"></script>
 
+    <!-- General script -->
+    <script src="/resources/js/general.js"></script>
+
     <!-- Users management script -->
     <script src="/resources/js/user_requests.js"></script>
 </body>

@@ -196,12 +196,21 @@ namespace BackOffice
             BLL bll = new BLL(connString, apiToken);
             return bll.UpdateAdmin(Admin);
         }
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public Admin AdminLogin(string Username, string Password)
         {
             BLL bll = new BLL(connString, apiToken);
-
-            return bll.AdminLogin(Username, Password);
+            Admin ad = bll.AdminLogin(Username, Password);
+            if (ad != null)
+            {
+                Session["Admin"] = ad;
+                return ad;
+            }
+            else
+            {
+                Session["Admin"] = null;
+                return null;
+            }
         }
     }
 }

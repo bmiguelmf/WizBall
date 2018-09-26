@@ -425,3 +425,10 @@ a:hover {
 .right-addon input {
     padding-right: 30px;
 }
+.inner-div {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 3px;
+}
