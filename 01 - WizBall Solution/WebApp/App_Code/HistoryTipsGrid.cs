@@ -22,7 +22,7 @@ namespace WebApp.App_Code
             // Grid to return.
             HtmlGenericControl grid = new HtmlGenericControl("div");
             grid.Attributes["id"] = "grid";
-            grid.Attributes["class"] = "grid";
+            grid.Attributes["class"] = "gridHist";
 
             // Header.
             HtmlGenericControl header = new HtmlGenericControl("div");

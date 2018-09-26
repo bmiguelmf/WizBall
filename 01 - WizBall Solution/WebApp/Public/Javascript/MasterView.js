@@ -1,0 +1,12 @@
+﻿//////////////////////////////////////////////////////////////////////////////
+// Event Listners.
+//////////////////////////////////////////////////////////////////////////////
+
+
+// Humburger click.
+document.getElementById("humburger").addEventListener("click", function () {
+
+    document.getElementById("responsive-menu").classList.toggle("responsive-menu-open");
+
+});
+
