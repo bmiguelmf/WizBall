@@ -55,10 +55,6 @@
       <Project>{e167f6af-ab58-46b0-a404-a2ad2d8cbd49}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebServices\WebServices.csproj">
-      <Project>{7e49aadf-dc79-4f0b-98e6-7960f1f2cec7}</Project>
-      <Name>WebServices</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

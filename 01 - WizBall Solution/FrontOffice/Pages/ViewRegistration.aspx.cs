@@ -22,22 +22,22 @@ namespace FrontOffice.Pages
                
                 if(!FieldsValidatior())
                 {
-                    lblStatus.Text = "All fields are required.";
+
                     return;
                 }
                 else if(!globals.IsValidEmail(txtEmail.Text))
                 {
-                    lblStatus.Text = "The email you provided is not valid.";
+
                     return;  
                 }
                 else if (bll.UserMailExists(txtEmail.Text))
                 {
-                    lblStatus.Text = "The email you provided is already registered.";
+
                     return;
                 }
                 else if (bll.UsernameExists(txtUsername.Text))
                 {
-                    lblStatus.Text = "The username you provided is already taken.";
+
                     return;
                 }
                 else
@@ -51,7 +51,7 @@ namespace FrontOffice.Pages
 
                     if(bll.InsertUser(newUser))
                     {
-                        lblStatus.Text = "You account has been successfuly created.";
+
                     }
                 }
             }

@@ -3,32 +3,29 @@ using BusinessLogic.Entities;
 using System.Collections.Generic;
 using System.Web.Configuration;
 using System.Web.Services;
-
-namespace WebServices
+using FrontOffice.Resources;
+namespace FrontOffice
 {
+
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     [System.Web.Script.Services.ScriptService]
-    public class WizballWebService : System.Web.Services.WebService
+    public class WizballWS : System.Web.Services.WebService
     {
-        private string connString = WebConfigurationManager.ConnectionStrings["ConnStringBroHome"].ConnectionString;
-        private string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
-
+        private BLL bll = new Globals().CreateBll();
 
 
         // USER METHODS.
         [WebMethod]
         public List<User> GetAllUsers()
         {
-            BLL bll = new BLL(connString, apiToken);
             return bll.GetAllUsers();
         }
         [WebMethod]
         public User GetUserById(string Id)
         {
-            BLL bll = new BLL(connString, apiToken);
             return bll.GetUserById(Id);
         }
         [WebMethod]
@@ -37,68 +34,59 @@ namespace WebServices
             if (User is null)
                 return false;
 
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.InsertUser(User);
         }
         [WebMethod]
-        public bool UpdatetUser(User User)
+        public bool UpdateUser(User User)
         {
             if (User is null)
                 return false;
 
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.UpdateUser(User);
+        }
+        [WebMethod]
+        public bool UpdateUserAndHistory(User User, UserHistory UserHistory)
+        {
+            if (User is null)
+                return false;
+
+            return bll.UpdateUser(User, UserHistory);
         }
         [WebMethod]
         public User UserLogin(string Username, string Password)
         {
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.UserLogin(Username, Password);
         }
         [WebMethod]
         public bool RecoverUserPassword(string Email)
         {
-            BLL bll = new BLL(connString, apiToken);
             return bll.RecoverUserPassword(Email);
         }
         [WebMethod]
         public bool UserMailExists(string Email)
         {
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.UserMailExists(Email);
         }
         [WebMethod]
         public bool UsernameExists(string Username)
         {
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.UsernameExists(Username);
         }
         [WebMethod]
         public List<User> GetUsersByState(string UserStateId)
         {
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.GetUsersByState(UserStateId);
-        }   
-        
+        }
+
         // USER_STATE METHODS.
         [WebMethod]
         public List<UserState> GetAllUserStates()
         {
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.GetAllUserStates();
         }
         [WebMethod]
         public UserState GetUserStateById(string Id)
         {
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.GetUserStateById(Id);
         }
 
@@ -111,8 +99,6 @@ namespace WebServices
                 return null;
             }
 
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.GetUserHistoryById(Id);
         }
         [WebMethod]
@@ -123,20 +109,15 @@ namespace WebServices
                 return null;
             }
 
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.GetUserHistoryByUserId(UserId);
         }
         [WebMethod]
         public UserHistory GetCurrentUserHistoryByUserId(string UserId)
         {
-            if(string.IsNullOrEmpty(UserId))
+            if (string.IsNullOrEmpty(UserId))
             {
                 return null;
             }
-
-
-            BLL bll = new BLL(connString, apiToken);
 
             return bll.GetCurrentUserHistoryByUserId(UserId);
         }
@@ -145,8 +126,6 @@ namespace WebServices
         {
             if (UserHistory is null)
                 return false;
-
-            BLL bll = new BLL(connString, apiToken);
 
             return bll.InsertUserHistory(UserHistory);
         }
@@ -157,13 +136,11 @@ namespace WebServices
         [WebMethod]
         public List<Admin> GetAllAdmins()
         {
-            BLL bll = new BLL(connString, apiToken);
             return bll.GetAllAdmins();
         }
         [WebMethod]
         public Admin GetAdminById(string Id)
         {
-            BLL bll = new BLL(connString, apiToken);
             return bll.GetAdminById(Id);
         }
         [WebMethod]
@@ -172,7 +149,6 @@ namespace WebServices
             if (Admin is null)
                 return false;
 
-            BLL bll = new BLL(connString, apiToken);
             bll.InsertAdmin(Admin);
 
             return true;
@@ -183,14 +159,11 @@ namespace WebServices
             if (Admin is null)
                 return false;
 
-            BLL bll = new BLL(connString, apiToken);
             return bll.UpdateAdmin(Admin);
         }
         [WebMethod]
         public Admin AdminLogin(string Username, string Password)
         {
-            BLL bll = new BLL(connString, apiToken);
-
             return bll.AdminLogin(Username, Password);
         }
     }
