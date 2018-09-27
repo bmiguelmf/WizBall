@@ -1,3 +1,4 @@
+
 Form ViewRegistration no butão submit como fazer return function() de forma dinámica?
 
-Webservices não podem ter overload methods?
+Form ViewRegistration apos registar um user com sucesso, enquanto está a dar a mensagem de sucesso para o utilizador, se der reload na pagina, as txts ficam com os valores antigos. Mas as validações userExists e userEmailExists aparentemente não funcionam, porquê?

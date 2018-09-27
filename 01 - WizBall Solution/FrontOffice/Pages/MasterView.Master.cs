@@ -51,28 +51,17 @@ namespace FrontOffice
             // And sets.
             imgUserPic.Src = Globals.USERS + user.Picture;
 
-
-            // Creates Edit Profile menu.   
-            HtmlGenericControl editProfileIcon = new HtmlGenericControl("i");
-            editProfileIcon.Attributes["class"] = "fas fa-user-edit";
-            HtmlGenericControl editProfileLink = new HtmlGenericControl("a");
-            editProfileLink.Attributes["href"] = "/Pages/ViewEditProfile.aspx";
-            editProfileLink.InnerText = " Edit Profile";
-            editProfileLink.Controls.Add(editProfileIcon);
-
+            // Creates Edit Profile menu.
+            string editLink = "<a href='/Pages/ViewEditProfile.aspx'><i class='fas fa-user-edit'></i> Edit Profile</a>";
 
             // Creates Logout menu.
-            HtmlGenericControl logoutIcon = new HtmlGenericControl("i");
-            logoutIcon.Attributes["class"] = "fas fa-sign-out-alt";
-            LinkButton logoutLink = new LinkButton();
-            logoutLink.Click += Logout_Click;
-            logoutLink.Text = " Log Out";
-            logoutLink.OnClientClick = "return confirm('Are you sure?')";
-            logoutLink.Controls.Add(logoutIcon);
+            LinkButton logoutLink = new LinkButton();          
+            logoutLink.Click += Logout_Click;          
+            logoutLink.OnClientClick = "return confirm('Are you sure?')";           
+            logoutLink.Text = "<i class='fas fa-sign-out-alt'></i> Log Out";
 
-
-            divDesktopMenuUserOptions.Controls.Add(editProfileIcon);
-            divDesktopMenuUserOptions.Controls.Add(logoutIcon);
+            divDesktopMenuUserOptions.InnerHtml = editLink;
+            divDesktopMenuUserOptions.Controls.Add(logoutLink);
         }
         private void GenerateUserPanelResponsive()
         {
@@ -82,27 +71,18 @@ namespace FrontOffice
             imgUserPicResp.Src = Globals.USERS + user.Picture;
 
 
-            // Creates Edit Profile menu.   
-            HtmlGenericControl editProfileIcon = new HtmlGenericControl("i");
-            editProfileIcon.Attributes["class"] = "fas fa-user-edit";
-            HtmlGenericControl editProfileLink = new HtmlGenericControl("a");
-            editProfileLink.Attributes["href"] = "/Pages/ViewEditProfile.aspx";
-            editProfileLink.InnerText = " Edit Profile";
-            editProfileLink.Controls.Add(editProfileIcon);
-
+            // Creates Edit Profile menu.
+            string editLink = "<a href='/Pages/ViewEditProfile.aspx'><i class='fas fa-user-edit'></i> Edit Profile</a>";
 
             // Creates Logout menu.
-            HtmlGenericControl logoutIcon = new HtmlGenericControl("i");
-            logoutIcon.Attributes["class"] = "fas fa-sign-out-alt";
             LinkButton logoutLink = new LinkButton();
             logoutLink.Click += Logout_Click;
-            logoutLink.Text = " Log Out";
             logoutLink.OnClientClick = "return confirm('Are you sure?')";
-            logoutLink.Controls.Add(logoutIcon);
+            logoutLink.Text = "<i class='fas fa-sign-out-alt'></i> Log Out";
 
-            
-            divDesktopMenuUserOptionsResp.Controls.Add(editProfileIcon);
-            divDesktopMenuUserOptionsResp.Controls.Add(logoutIcon);
+
+            divDesktopMenuUserOptionsResp.InnerHtml = editLink;
+            divDesktopMenuUserOptionsResp.Controls.Add(logoutLink );
         }
         private void Logout_Click(object sender, EventArgs e)
         {

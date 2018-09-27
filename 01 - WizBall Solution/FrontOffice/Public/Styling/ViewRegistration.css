@@ -77,7 +77,6 @@ hr {
     width: 100%;
 }
 .status {
-    
     display:inline-block;
 }
 
@@ -173,4 +172,5 @@ hr {
         background-size: cover;
         opacity: 0.5;
     }
+
 }

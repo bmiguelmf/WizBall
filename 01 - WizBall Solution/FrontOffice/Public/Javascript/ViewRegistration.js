@@ -1,107 +1,4 @@
-﻿// FORM VALIDATION *********************************************************
-function IsFormValid() {
-
-    var result = true;
-
-
-    if (!isUsernameReady()) {
-        result = false;
-    }
-
-    if (!isEmailReady()) {
-        result = false;
-    }
-
-    if (!isPasswordReady()) {
-        result = false;
-    }
-
-
-    return result;
-}
-function isUsernameReady() {
-
-    var result = true;
-
-    var txtUsername = document.getElementById("txtUsername").value;
-    var usernameStatus = document.getElementById("usernameStatus");
-
-    if (usernameStatus.innerText.length > 0) {
-        result = false;
-    }
-    else if (txtUsername.length === 0) {
-        usernameStatus.innerText = "Required";
-        result = false;
-    }
-    else if (txtUsername.length > 50) {
-        usernameStatus.innerText = "Max length 50";
-        result = false;
-    }
-    else {
-        usernameStatus.innerText = "";
-    }
-
-    return result;
-}
-function isEmailReady() {
-
-    var result = true;
-
-    var txtEmail = document.getElementById("txtEmail").value;
-    var emailStatus = document.getElementById("emailStatus");
-
-    var emailValidator = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/;
-
-
-    if (emailStatus.innerText.length > 0) {
-        result = false;
-    }
-    else if (txtEmail.length === 0) {
-        emailStatus.innerText = "Required";
-        result = false;
-    }
-    else if (txtEmail.length > 100) {
-        emailStatus.innerText = "Max length 100";
-        result = false;
-    }
-    else if (!emailValidator.test(txtEmail)) {
-        emailStatus.innerText = "Invalid email format";
-        result = false;
-    }
-    else {
-        emailStatus.innerText = "";
-    }
-
-    return result;
-}
-function isPasswordReady() {
-
-    var result = true;
-
-    var txtPassword = document.getElementById("txtPassword").value;
-    var passwordStatus = document.getElementById("passwordStatus");
-
-    if (txtPassword.length === 0) {
-        passwordStatus.innerText = "Required";
-        result = false;
-    }
-    else if (txtPassword.length < 6) {
-        passwordStatus.innerText = "Min length 6";
-        result = false;
-    }
-    else if (txtPassword.lenght > 100) {
-        passwordStatus.innerText = "Max length 100";
-        result = false;
-    }
-    else {
-        passwordStatus.innerText = "";
-    }
-
-    return result;
-}
-
-
-// AJAX VALIDATION *********************************************************
+﻿// AJAX VALIDATION *********************************************************
 function isEmailTaken() {
 
     var txtEmail = document.getElementById("txtEmail").value;
@@ -182,3 +79,104 @@ function closeViewRegistration() {
     window.location.replace("/Pages/ViewHome.aspx");
 }
 document.getElementById("modal-close").addEventListener("click", closeViewRegistration);
+
+
+
+// FORM VALIDATION *********************************************************
+function isUsernameReady() {
+
+    var result = true;
+
+    var txtUsername = document.getElementById("txtUsername").value;
+    var usernameStatus = document.getElementById("usernameStatus");
+
+    if (usernameStatus.innerText.length > 0) {
+        result = false;
+    }
+    else if (txtUsername.length === 0) {
+        usernameStatus.innerText = "Required";
+        result = false;
+    }
+    else if (txtUsername.length > 50) {
+        usernameStatus.innerText = "Max length 50";
+        result = false;
+    }
+    else {
+        usernameStatus.innerText = "";
+    }
+
+    return result;
+}
+function isEmailReady() {
+
+    var result = true;
+
+    var txtEmail = document.getElementById("txtEmail").value;
+    var emailStatus = document.getElementById("emailStatus");
+
+    var emailValidator = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/;
+
+
+    if (emailStatus.innerText.length > 0) {
+        result = false;
+    }
+    else if (txtEmail.length === 0) {
+        emailStatus.innerText = "Required";
+        result = false;
+    }
+    else if (txtEmail.length > 100) {
+        emailStatus.innerText = "Max length 100";
+        result = false;
+    }
+    else if (!emailValidator.test(txtEmail)) {
+        emailStatus.innerText = "Invalid email format";
+        result = false;
+    }
+    else {
+        emailStatus.innerText = "";
+    }
+
+    return result;
+}
+function isPasswordReady() {
+
+    var result = true;
+
+    var txtPassword = document.getElementById("txtPassword").value;
+    var passwordStatus = document.getElementById("passwordStatus");
+
+    if (txtPassword.length === 0) {
+        passwordStatus.innerText = "Required";
+        result = false;
+    }
+    else if (txtPassword.length < 6) {
+        passwordStatus.innerText = "Min length 6";
+        result = false;
+    }
+    else if (txtPassword.lenght > 100) {
+        passwordStatus.innerText = "Max length 100";
+        result = false;
+    }
+    else {
+        passwordStatus.innerText = "";
+    }
+
+    return result;
+}
+function IsFormValid() {
+
+    var result = true;
+
+    if (!isUsernameReady()) {
+        result = false;
+    }
+    if (!isEmailReady()) {
+        result = false;
+    }
+    if (!isPasswordReady()) {
+        result = false;
+    }
+
+
+    return result;
+}

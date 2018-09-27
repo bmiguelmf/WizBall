@@ -12,69 +12,90 @@ namespace FrontOffice.Pages
 {
     public partial class ViewRegistration : System.Web.UI.Page
     {
+        Globals globals;
+        BLL bll;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            
+        {          
             if (IsPostBack)
             {
-                Globals globals = new Globals();
-                BLL bll = globals.CreateBll();
+                globals = new Globals();
+                bll = globals.CreateBll();
 
                
-                if(!FieldsValidatior())
+                if(!UsernameValidation())
                 {
                     return;
                 }
-                else if(!globals.IsValidEmail(txtEmail.Text))
+                else if(!EmailValidation())
                 {
                     return;  
                 }
-                else if (bll.UserMailExists(txtEmail.Text))
-                {
-                    return;
-                }
-                else if (bll.UsernameExists(txtUsername.Text))
+                else if (!PasswordValidation())
                 {
                     return;
                 }
                 else
                 {
-                    User newUser = new User
+                    User newUser = new User                     // Creates new user object.
                     {
-                        Username = txtUsername.Text,
-                        Email = txtEmail.Text,
-                        Password = txtPassword.Text
+                        Username    = txtUsername.Text,
+                        Email       = txtEmail.Text,
+                        Password    = txtPassword.Text
                     };
 
-                    if(bll.InsertUser(newUser))
+                    if(bll.InsertUser(newUser))                 // Insert the user object into the database
                     {
-                        txtUsername.Text    = string.Empty;
+                        txtUsername.Text    = string.Empty;     // Clear form.
                         txtEmail.Text       = string.Empty;
                         txtPassword.Text    = string.Empty;
 
+
+                        // Calls JS function registrationConfirmation() which will display a successful message to the user.
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "RegistrationSuccessful", "registrationConfirmation()", true);
                     }
                 }
             }
         }
 
-        private bool FieldsValidatior()
+        private bool UsernameValidation()
+        {
+            string username = txtUsername.Text;
+
+            if (string.IsNullOrWhiteSpace(username))        // Validates if null or empty.
+                return false;
+            else if (username.Length > 50)                  // Validates if length > 50.
+                return false;
+            else if (bll.UsernameExists(username))          // Validates if this username is already taken.
+                return false;
+
+            return true;
+        }
+        private bool EmailValidation()
         {
             string email = txtEmail.Text;
-            string username = txtUsername.Text;
+
+            if (string.IsNullOrWhiteSpace(email))           // Validates if null or empty.
+                return false;
+            else if (email.Length > 100)                    // Validates if length > 100.
+                return false;
+            else if (!globals.IsValidEmail(email))          // Validates if valid email format.
+                return false;
+            else if (bll.UserMailExists(email))             // Validates if this email is already in usage.
+                return false;
+
+            return true;
+        }
+        private bool PasswordValidation()
+        {
             string password = txtPassword.Text;
 
-            if(string.IsNullOrWhiteSpace(email) ||
-               string.IsNullOrWhiteSpace(username) ||
-               string.IsNullOrWhiteSpace(password))
-            {              
+            if (string.IsNullOrWhiteSpace(password))                // Validates if null or empty.
                 return false;
-            }
-            else
-            {
-                return true;
-            }
+            else if (password.Length < 6 || password.Length > 100)  // Validates if length < 6 or > 100.
+                return false;
+
+            return true;
         }
     }
 }

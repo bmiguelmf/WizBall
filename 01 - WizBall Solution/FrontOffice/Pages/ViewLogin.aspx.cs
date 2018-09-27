@@ -39,20 +39,51 @@ namespace FrontOffice.Pages
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            // Form validation.
+            if(!UsernameValidation() || !PasswordValidation())
+            {
+                txtHeader.InnerText = "Invalid username and/or password";
+                return;
+            }
+            
 
-            User user =  bll.UserLogin(username, password);
+            // Tries to login.
+            User user =  bll.UserLogin(txtUsername.Text, txtPassword.Text);
 
+            
+            // Checks login result.
             if(user is null)
             {
-                Page.Response.Write("fds");
+                txtHeader.InnerText = "Login not found";
             }
             else
             {
                 Session["User"] = user;
                 Response.Redirect("/Pages/ViewHome.aspx");
             }
-        }       
+        }
+
+        private bool UsernameValidation()
+        {
+            string username = txtUsername.Text;
+
+            if (string.IsNullOrWhiteSpace(username))        // Validates if null or empty.
+                return false;
+            else if (username.Length > 50)                  // Validates if length > 50.
+                return false;
+
+            return true;
+        }
+        private bool PasswordValidation()
+        {
+            string password = txtPassword.Text;
+
+            if (string.IsNullOrWhiteSpace(password))                // Validates if null or empty.
+                return false;
+            else if (password.Length < 6 || password.Length > 100)  // Validates if length < 6 or > 100.
+                return false;
+
+            return true;
+        }
     }
 }

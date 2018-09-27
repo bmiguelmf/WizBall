@@ -8,7 +8,7 @@
 
 
 
-
+<%-- Head content --%>
 <asp:Content ID="viewHomeContentHead" ContentPlaceHolderID="masterViewContentHead" runat="server">
    
     <link rel="stylesheet" href="../Public/Styling/MatchesTipsGrid.css" />
@@ -17,7 +17,7 @@
 
 
 
-
+<%-- Body content--%>
 <asp:Content ID="viewHomeContentBody" ContentPlaceHolderID="masterViewContentBody" runat="server">
 
     <asp:PlaceHolder ID="placeHolderMatchesTipsGrid" runat="server"></asp:PlaceHolder>
@@ -26,7 +26,7 @@
 
 
 
-
+<%-- Javascript content--%>
 <asp:Content ID="viewHomeContentJavascript" ContentPlaceHolderID="masterViewContentJavascript" runat="server">
 
     <script src="../Public/Javascript/MatchesTipsGrid.js"></script>

@@ -12,19 +12,25 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
         <title>Wizball</title>
+
 
         <link rel="shortcut icon" type="image/x-icon" href="../Public/Imgs/Wizball/logo_dark_ico.ico" />
 
 
+        <!-- jQuery -->
         <script src="../Public/jQuery/jQuery.min.js"></script>
+        
+        <!-- Bootstrap -->
         <link href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
+
+        <!-- Fontawesome -->
+        <link href="../Public/Fontawesome/css/all.min.css" rel="stylesheet" />
+        
+        <!-- MasterView CSS Styling -->
         <link href="../Public/Styling/MasterView.css" rel="stylesheet" />
     
-
-        <!-- Importar Para O Projecto -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
-
 
         <asp:ContentPlaceHolder ID="masterViewContentHead" runat="server">
         </asp:ContentPlaceHolder>
@@ -125,20 +131,20 @@
 
 
 
-            <!-- SLAVE PAGE -->
+
+            <!-- Slave page -->
             <asp:ContentPlaceHolder ID="masterViewContentBody" runat="server">
             </asp:ContentPlaceHolder>
            
 
 
 
-            <!-- MASTER PAGE JAVASCRIPT -->
+            <!-- Master page javascript -->
             <script src="../Public/Javascript/MasterView.js"></script>
 
-            <!-- SLAVE PAGES JAVASCRIPT -->
+            <!-- Slave page javascript -->
             <asp:ContentPlaceHolder ID="masterViewContentJavascript" runat="server">
             </asp:ContentPlaceHolder>
-
 
         </form>
     </body>

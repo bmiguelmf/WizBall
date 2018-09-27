@@ -9,22 +9,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Wizball</title>
 
-    <script src="../Public/jQuery/jQuery.min.js"></script>
-
     <link rel="shortcut icon" type="image/x-icon" href="../Public/Imgs/Wizball/logo_dark_ico.ico" />
 
-     <!-- Bootstrap 4 -->
+    <!-- jQuery -->
+    <script src="../Public/jQuery/jQuery.min.js"></script>
+
+    <!-- Bootstrap 4 -->
     <link href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
 
-    <!-- CSS -->
-    <link href="/Public/Styling/ViewRegistration.css" rel="stylesheet" />
+    <!-- Fontawesome -->
+    <link href="../Public/Fontawesome/css/all.min.css" rel="stylesheet" />
 
-    <!-- Importar Para O Projecto -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+    <!-- ViewRegistration CSS Styling -->
+    <link href="/Public/Styling/ViewRegistration.css" rel="stylesheet" />
 
 </head>
 <body>

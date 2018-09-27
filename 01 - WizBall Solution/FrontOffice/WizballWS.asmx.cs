@@ -47,7 +47,7 @@ namespace FrontOffice
             return bll.UpdateUser(User);
         }
         [WebMethod]
-        public bool UpdateUserAndHistory(User User, UserHistory UserHistory)
+        public bool UpdateUser(User User, UserHistory UserHistory)
         {
             if (User is null)
                 return false;
@@ -70,7 +70,6 @@ namespace FrontOffice
             return bll.UserMailExists(Email);
         }
         [WebMethod]
-        //[ScriptMethod(UseHttpGet=true)]
         public bool UsernameExists(string Username)
         {
             return bll.UsernameExists(Username);

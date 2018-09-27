@@ -75,6 +75,10 @@
     <Content Include="Pages\ViewRecoverPassword.aspx" />
     <Content Include="Pages\ViewRegistration.aspx" />
     <Content Include="Public\Bootstrap\Bootstrap4.css" />
+    <Content Include="Public\Fontawesome\css\all.min.css" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="Public\Imgs\Competitions\bundesliga.png" />
     <Content Include="Public\Imgs\Competitions\championship.png" />
     <Content Include="Public\Imgs\Competitions\eredivisie.png" />
@@ -318,10 +322,12 @@
     <Content Include="Public\Imgs\Users\user.png" />
     <Content Include="Public\Javascript\MasterView.js" />
     <Content Include="Public\Javascript\MatchesTipsGrid.js" />
+    <Content Include="Public\Javascript\ViewLogin.js" />
     <Content Include="Public\Javascript\ViewRegistration.js" />
     <Content Include="Public\jQuery\jQuery.min.js" />
     <Content Include="Public\Styling\MasterView.css" />
     <Content Include="Public\Styling\MatchesTipsGrid.css" />
+    <Content Include="Public\Styling\ViewLogin.css" />
     <Content Include="Public\Styling\ViewRegistration.css" />
     <Content Include="Web.config" />
     <Content Include="WizballWS.asmx" />
@@ -380,6 +386,18 @@
   <ItemGroup>
     <Content Include="Pages\MasterView.Master" />
     <None Include="packages.config" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

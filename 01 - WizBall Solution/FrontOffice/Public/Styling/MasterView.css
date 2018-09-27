@@ -211,10 +211,10 @@ border-radius: 15px;
 
 
 .dektop-menu-user .dektop-menu-user-options a {
-    font-size: 11px;
+    font-size: 10px;
     color: #333;
     text-decoration: none;
-    padding: 6px 0 6px 25px;
+    padding: 4px 0 4px 25px;
     display: inline-block;
     white-space: nowrap;
 }
