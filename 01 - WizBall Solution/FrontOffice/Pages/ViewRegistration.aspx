@@ -30,6 +30,10 @@
 <body>
     <form id="form1" runat="server">
         
+        <!-- Background Img -->
+        <div id="background">
+        </div>
+
         <!-- Registration form -->
         <div class="form-wrapper">
 

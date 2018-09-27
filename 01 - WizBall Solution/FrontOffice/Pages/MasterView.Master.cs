@@ -53,29 +53,26 @@ namespace FrontOffice
 
 
             // Creates Edit Profile menu.   
+            HtmlGenericControl editProfileIcon = new HtmlGenericControl("i");
+            editProfileIcon.Attributes["class"] = "fas fa-user-edit";
             HtmlGenericControl editProfileLink = new HtmlGenericControl("a");
             editProfileLink.Attributes["href"] = "/Pages/ViewEditProfile.aspx";
             editProfileLink.InnerText = " Edit Profile";
-            HtmlGenericControl editProfileIcon = new HtmlGenericControl("i");
-            editProfileIcon.Attributes["class"] = "fas fa-user-edit";
-            editProfileIcon.Controls.Add(editProfileLink);
+            editProfileLink.Controls.Add(editProfileIcon);
 
 
             // Creates Logout menu.
+            HtmlGenericControl logoutIcon = new HtmlGenericControl("i");
+            logoutIcon.Attributes["class"] = "fas fa-sign-out-alt";
             LinkButton logoutLink = new LinkButton();
             logoutLink.Click += Logout_Click;
             logoutLink.Text = " Log Out";
             logoutLink.OnClientClick = "return confirm('Are you sure?')";
-            HtmlGenericControl logoutIcon = new HtmlGenericControl("i");
-            logoutIcon.Attributes["class"] = "fas fa-sign-out-alt";
-            logoutIcon.Controls.Add(logoutLink);
+            logoutLink.Controls.Add(logoutIcon);
 
 
-            
             divDesktopMenuUserOptions.Controls.Add(editProfileIcon);
             divDesktopMenuUserOptions.Controls.Add(logoutIcon);
-
-
         }
         private void GenerateUserPanelResponsive()
         {
@@ -86,22 +83,22 @@ namespace FrontOffice
 
 
             // Creates Edit Profile menu.   
+            HtmlGenericControl editProfileIcon = new HtmlGenericControl("i");
+            editProfileIcon.Attributes["class"] = "fas fa-user-edit";
             HtmlGenericControl editProfileLink = new HtmlGenericControl("a");
             editProfileLink.Attributes["href"] = "/Pages/ViewEditProfile.aspx";
             editProfileLink.InnerText = " Edit Profile";
-            HtmlGenericControl editProfileIcon = new HtmlGenericControl("i");
-            editProfileIcon.Attributes["class"] = "fas fa-user-edit";
-            editProfileIcon.Controls.Add(editProfileLink);
+            editProfileLink.Controls.Add(editProfileIcon);
 
 
             // Creates Logout menu.
+            HtmlGenericControl logoutIcon = new HtmlGenericControl("i");
+            logoutIcon.Attributes["class"] = "fas fa-sign-out-alt";
             LinkButton logoutLink = new LinkButton();
             logoutLink.Click += Logout_Click;
             logoutLink.Text = " Log Out";
             logoutLink.OnClientClick = "return confirm('Are you sure?')";
-            HtmlGenericControl logoutIcon = new HtmlGenericControl("i");
-            logoutIcon.Attributes["class"] = "fas fa-sign-out-alt";
-            logoutIcon.Controls.Add(logoutLink);
+            logoutLink.Controls.Add(logoutIcon);
 
             
             divDesktopMenuUserOptionsResp.Controls.Add(editProfileIcon);
@@ -121,9 +118,9 @@ namespace FrontOffice
 
 
             // Creates  Login | Resgristration | Recover Password menus.
-            string loginLink = "<i class='fas fa-sign-in-alt'> <a href='/Pages/ViewLogin.aspx'>Login</a></i>";
-            string registrationLink = "<i class='fas fa-plus-circle'> <a href='/Pages/ViewRegistration.aspx'>Registration</a></i>";
-            string recoverPasswordLink = "<i class='fas fa-unlock-alt'> <a href ='/Pages/ViewRecoverPassword.aspx'>Recover Password</a></i>";
+            string loginLink = "<a href='/Pages/ViewLogin.aspx'><i class='fas fa-sign-in-alt'></i> Login</a>";
+            string registrationLink = "<a href='/Pages/ViewRegistration.aspx'><i class='fas fa-plus-circle'></i> Registration</a>";
+            string recoverPasswordLink = "<a href ='/Pages/ViewRecoverPassword.aspx'><i class='fas fa-unlock-alt'></i> Recover Password</a>";
 
 
             divDesktopMenuUserOptions.InnerHtml = loginLink + registrationLink + recoverPasswordLink;
@@ -135,9 +132,9 @@ namespace FrontOffice
 
 
             // Creates  Login | Resgristration | Recover Password menus.
-            string loginLink = "<i class='fas fa-sign-in-alt'> <a href='/Pages/ViewLogin.aspx'>Login</a></i>";
-            string registrationLink = "<i class='fas fa-plus-circle'> <a href='/Pages/ViewRegistration.aspx'>Registration</a></i>";
-            string recoverPasswordLink = "<i class='fas fa-unlock-alt'> <a href ='/Pages/ViewRecoverPassword.aspx'>Recover Password</a></i>";
+            string loginLink = "<a href='/Pages/ViewLogin.aspx'><i class='fas fa-sign-in-alt'></i> Login</a>";
+            string registrationLink = "<a href='/Pages/ViewRegistration.aspx'><i class='fas fa-plus-circle'></i> Registration</a>";
+            string recoverPasswordLink = "<a href ='/Pages/ViewRecoverPassword.aspx'><i class='fas fa-unlock-alt'></i> Recover Password</a>";
 
 
             divDesktopMenuUserOptionsResp.InnerHtml = loginLink + registrationLink + recoverPasswordLink;

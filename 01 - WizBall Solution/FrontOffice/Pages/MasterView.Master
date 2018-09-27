@@ -35,8 +35,8 @@
     <body>
         <form id="form1" runat="server">
 
+           <!-- Background Img -->
            <div id="background">
-
            </div>
 
 
@@ -56,13 +56,13 @@
                 <!-- MENUS PANEL -->
                 <div class="dektop-menu-menus">
 
-                    <i class="fas fa-futbol"> <a href="#">Tips</a></i>
+                    <a href="#"><i class="fas fa-futbol"></i> Tips</a>
 
-                    <i class="fas fa-history"> <a href="#">Tips History</a></i>
+                    <a href="#"><i class="fas fa-history"></i> Tips History</a>
 
-                    <i class="fas fa-info-circle"> <a href="#">About Us</a></i>
+                    <a href="#"><i class="fas fa-info-circle"></i> About Us</a>
 
-                    <i class="fas fa-at"> <a href="#">Contact Us</a></i>   
+                    <a href="#"><i class="fas fa-at"></i> Contact Us</a> 
 
                 </div>
 
@@ -111,13 +111,13 @@
                 <!-- PAGE MENUS PANEL -->
                 <div class="menu-menus">
 
-                    <i class="fas fa-info-circle"> <a href="#">About Us</a></i>
+                    <a href="#"><i class="fas fa-info-circle"></i> About Us</a>
 
-                    <i class="fas fa-at"> <a href="#">Contact Us</a></i>  
+                    <a href="#"><i class="fas fa-at"></i> Contact Us</a>
                    
-                    <i class="fas fa-history"> <a href="#">Tips History</a></i>
+                    <a href="#"><i class="fas fa-history"></i> Tips History</a>
 
-                    <i class="fas fa-futbol"> <a href="#">Tips</a></i>
+                    <a href="#"><i class="fas fa-futbol"></i> Tips</a>
 
                 </div>
 

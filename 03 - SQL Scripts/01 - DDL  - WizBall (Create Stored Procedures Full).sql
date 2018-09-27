@@ -1,7 +1,9 @@
 USE wizball
 GO
 
-alter PROC spGetNextMatches @competition INT
+drop proc spGetNextMatches
+
+CREATE PROC spGetNextMatches @competition INT
 AS BEGIN
 
 	DECLARE		@matches TABLE															-- Returning table.
@@ -31,17 +33,20 @@ AS BEGIN
 		
 
 	DECLARE		@team	 INT															-- Variables to iterate through @teams cursor.
+	DECLARE		@date	 DATE
 	DECLARE		@teams   CURSOR 														
 	
-	SET			@teams = CURSOR FOR														-- Cursor with teams_id belonging to a specific competition.
-	SELECT		DISTINCT(home_team_id)							
+	SET			@teams = CURSOR FOR														-- Cursor with teams_id and date, belonging to a specific competition.
+	SELECT		DISTINCT(home_team_id), MIN(utc_date) AS utc_date						-- Date is necessary so we can iterate throughout the teams by the correct order.
 	FROM		matches 
-	WHERE		competition_id = @competition
+	WHERE		competition_id = @competition AND utc_date >= CONVERT(DATE, GETDATE())
+	GROUP BY	home_team_id 
+	ORDER BY	utc_date
 
 
-	OPEN @teams																			-- Opens cursor.
+	OPEN @teams																					-- Opens cursor.
 
-		FETCH NEXT FROM @teams INTO @team												-- Gets first team (team_id, date).
+		FETCH NEXT FROM @teams INTO @team, @date												-- Gets first team (team_id, date).
 
 		WHILE (@@FETCH_STATUS = 0) 	
 		BEGIN 
@@ -51,29 +56,41 @@ AS BEGIN
 									WHERE	competition_id = @competition 
 									AND		utc_date >= CONVERT(DATE, GETDATE()) 
 									AND	   (matches.home_team_id = @team OR matches.away_team_id = @team) 
-									--AND		NOT EXISTS (
-									--					SELECT	* 
-									--					FROM	@matches AS m 
-									--					WHERE	m.home_team_id = matches.home_team_id
-									--						 OR m.home_team_id = matches.away_team_id
-									--						 OR m.away_team_id = matches.home_team_id
-									--						 OR m.away_team_id = matches.away_team_id
-									--					)
+									AND		NOT EXISTS (
+														SELECT	* 
+														FROM	@matches AS m 
+														WHERE	m.home_team_id = matches.home_team_id
+															 OR m.home_team_id = matches.away_team_id
+															 OR m.away_team_id = matches.home_team_id
+															 OR m.away_team_id = matches.away_team_id
+														)
 									AND utc_date < CONVERT(DATE, GETDATE() + 3)
 									ORDER BY utc_date ASC
 
-			FETCH NEXT FROM @teams INTO @team
+			FETCH NEXT FROM @teams INTO @team, @date
 
 		END 
 
 	CLOSE	   @teams
 	DEALLOCATE @teams
 
-	SELECT distinct *  FROM @matches ORDER BY utc_date ASC
+	SELECT * FROM @matches ORDER BY utc_date ASC
 
 end
 
  
 exec spGetNextMatches 2017 -- Primeira Liga.
 exec spGetNextMatches 2016 -- Championship ( Este é um exemplo perfeito uma vez que mostra os próximos jogos mesmo a jornada já indo a meio)
+
+
+
+
+
+
+
+
+
+
+
+
 
