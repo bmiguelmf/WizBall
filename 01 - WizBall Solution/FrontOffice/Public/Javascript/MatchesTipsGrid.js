@@ -16,10 +16,17 @@ function setMatchesTipsGridHeight() {
     while (freeHeight % 30 !== 0) {
         freeHeight--;
     }
-
+    
+    //var scrollableHeigth = $("#grid-body-scrollable").height();
 
     if (window.innerWidth >= 960) {
-        document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + freeHeight + "px;");
+        //if (scrollableHeigth < freeHeight) {
+        //    document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + scrollableHeigth + "px;");
+        //}
+        //else {
+            document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + freeHeight + "px;");
+        //}
+        
     }
     else {
         document.getElementById("grid-body-scrollable").setAttribute("style", "height: auto");

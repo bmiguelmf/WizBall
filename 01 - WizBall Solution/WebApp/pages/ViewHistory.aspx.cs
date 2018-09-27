@@ -60,10 +60,17 @@ namespace WebApp.pages
 
         protected void Filter_Btn_Click(object sender, EventArgs e)
         {
+            List<Match> matches = new List<Match>();
+            DateTime startdate = DateTime.Parse(startRange.Value);
+            DateTime enddate = DateTime.Parse(endRange.Value);
             foreach (Competition comp in bll.TierOneCompetitions())
             {
-                matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), new DateTime), yest));
+                matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), startdate, enddate));
             }
+
+            HistoryTipsGrid matchesTipsGrid = new HistoryTipsGrid(matches);
+
+            placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
         }
     }
 }
