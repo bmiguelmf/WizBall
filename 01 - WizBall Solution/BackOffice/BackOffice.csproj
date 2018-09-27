@@ -91,7 +91,6 @@
     <Content Include="resources\js\user_requests.js" />
     <Content Include="resources\js\users.js" />
     <Content Include="resources\js\login.js" />
-    <Content Include="pages\default.aspx" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\Users.aspx" />
     <Content Include="pages\wizball_project\refood2\assiduidade.html" />
@@ -181,13 +180,6 @@
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

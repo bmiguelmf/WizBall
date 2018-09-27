@@ -64,11 +64,15 @@
     function assignActionBtnClickEvents() {
 
         $('.btn_grant').on("click", function () {
-            aproveUser($(this).closest("tr").attr('value'), true);
+            swal("Grant access to this user?", "Later, you can change this if necessary.", "warning").then((value) => {
+                aproveUser($(this).closest("tr").attr('value'), true);
+            });
         });
 
         $('.btn_revoke').on("click", function () {
-            aproveUser($(this).closest("tr").attr('value'), false);
+            swal("Revoke access to this user?", "Later, you can change this if necessary.", "warning").then((value) => {
+                aproveUser($(this).closest("tr").attr('value'), false);
+            });
         });
     }
 
