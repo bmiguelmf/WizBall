@@ -18,8 +18,12 @@ namespace WebApp.pages
         private static string apiToken;
         private static string connString;
 
+        private List<Competition> competitions;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            HistoryTipsGrid matchesTipsGrid;
             if (IsPostBack)
             {
 
@@ -31,13 +35,14 @@ namespace WebApp.pages
 
 
 
-                HistoryTipsGrid matchesTipsGrid = new HistoryTipsGrid(bll.GetMatchesByRangeDateAndCompetition("2018", new DateTime(), new DateTime()));
+                matchesTipsGrid = new HistoryTipsGrid(bll.GetMatchesByRangeDateAndCompetition("2018", new DateTime(), new DateTime()));
 
 
                 placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
 
             } else
             {
+                
                 List<Match> matches = new List<Match>();
                 DateTime yest = DateTime.Now.AddDays(-1);
                 DateTime weekBefore = yest.AddDays(-7);
@@ -52,7 +57,7 @@ namespace WebApp.pages
                     matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), weekBefore, yest));
                 }
 
-                HistoryTipsGrid matchesTipsGrid = new HistoryTipsGrid(matches);
+                matchesTipsGrid = new HistoryTipsGrid(matches);
 
                 placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
             }
@@ -71,6 +76,35 @@ namespace WebApp.pages
             HistoryTipsGrid matchesTipsGrid = new HistoryTipsGrid(matches);
 
             placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
+
+            if (AllCompsCB.Checked)
+            {
+                foreach (Competition comp in bll.TierOneCompetitions())
+                {
+                    matches.AddRange(GLOBALS.BllSI.GetMatchesByCompetition(comp.Id.ToString()));
+                }
+                matchesTipsGrid = new HistoryTipsGrid(matches);
+            }
+
+            
+
+            else
+            {
+                foreach (RepeaterItem i in compRep.Items)
+                {
+                    //Retrieve the state of the CheckBox
+                    CheckBox cb = (CheckBox)i.FindControl("CompCB");
+                    if (cb.Checked)
+                    {
+                        //Retrieve the value associated with that CheckBox
+                        HiddenField hiddenComp = (HiddenField)i.FindControl("HidFieldComp");
+
+                        //Now we can use that value to do whatever we want
+                        matches.AddRange(GLOBALS.BllSI.GetMatchesByCompetition(hiddenComp.Value));
+                        matchesTipsGrid = new HistoryTipsGrid(matches);
+                    }
+                }
+            }
         }
     }
 }

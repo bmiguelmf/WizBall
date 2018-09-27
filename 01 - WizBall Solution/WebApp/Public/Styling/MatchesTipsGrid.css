@@ -1,9 +1,11 @@
 ﻿::-webkit-scrollbar {
     display: none;
 }
+
 :root {
     --grid-width: 960px;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -39,11 +41,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    
     height: 30px;
-
-    background-color:#333;
-    color:yellowgreen;
+    background-color: #333;
+    color: yellowgreen;
 }
 
 
@@ -54,6 +54,7 @@
     display: none;
     white-space: nowrap;
 }
+
 .grid-cell:nth-child(2) {
     min-width: 20px;
     flex: 20 20 20px;
@@ -61,30 +62,36 @@
     display: none;
     white-space: nowrap;
 }
+
 .grid-cell:nth-child(3) {
     min-width: 100px;
     flex: 100 100 100px;
     text-align: right;
     white-space: nowrap;
 }
-.grid-cell:nth-child(3) img {
-    display:none;
-}
+
+    .grid-cell:nth-child(3) img {
+        display: none;
+    }
+
 .grid-cell:nth-child(4) {
     min-width: 80px;
     flex: 80 80 80px;
     text-align: center;
     white-space: nowrap;
 }
+
 .grid-cell:nth-child(5) {
     min-width: 100px;
     flex: 100 100 100px;
     text-align: left;
     white-space: nowrap;
 }
-.grid-cell:nth-child(5) img {
-    display: none;
-}
+
+    .grid-cell:nth-child(5) img {
+        display: none;
+    }
+
 .grid-cell:nth-child(6) {
     min-width: 40px;
     flex: 40 40 40px;
@@ -94,8 +101,9 @@
 
 
 .grid-body-scrollable {
-    overflow:scroll;
+    overflow: scroll;
 }
+
 .grid-body {
     display: flex;
     flex-direction: column;
@@ -105,16 +113,17 @@
 .grid-row {
     display: flex;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
+    height: 30px;
+}
 
-    height:30px;
-}
-.grid-row:nth-child(odd) {
-    background-color:#f2f2f2;
-}
-.grid-row:nth-child(even) {
-    background-color: #fff;
-}
+    .grid-row:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    .grid-row:nth-child(even) {
+        background-color: #fff;
+    }
 /* VERY SMALL MOBILE SCREEN SIZES */
 /* VERY SMALL MOBILE SCREEN SIZES */
 
@@ -125,8 +134,7 @@
 
 /* MEDIUM MOBILE SCREEN SIZES*/
 /* MEDIUM MOBILE SCREEN SIZES*/
-@media only screen and (min-width:361px)
-{
+@media only screen and (min-width:361px) {
     .grid-cell:nth-child(1) {
         display: inline-block;
     }
@@ -153,7 +161,6 @@
     .grid-cell:nth-child(5) img {
         display: inline-block;
     }
-
 }
 /* LARGE MOBILE SCREENS SIZES */
 /* LARGE MOBILE SCREENS SIZES */
@@ -169,8 +176,6 @@
     .grid {
         font-size: 11px;
     }
-
-
 }
 /* TABLETS SCREENS */
 /* TABLETS SCREENS */
@@ -184,7 +189,7 @@
 
     .grid {
         padding: 50px;
-        max-width:1200px;
+        max-width: 1200px;
     }
 
     .grid-header {
@@ -204,10 +209,61 @@
         padding: 0 50px 50px 50px;
         max-width: 1200px;
     }
-    
-    .third > *{
+
+    .third > * {
         width: 33%;
     }
+
+    label {
+        display: block;
+        position: relative;
+        margin: 20px;
+        padding: 15px 30px 15px 62px;
+        border: 3px solid #fff;
+        border-radius: 100px;
+        color: #fff;
+        background-color: #6a8494;
+        box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+        transition: background-color .2s, box-shadow .2s;
+    }
+
+        label::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 10px;
+            width: 32px;
+            border: 3px solid #fff;
+            border-radius: 100px;
+            transition: background-color .2s;
+        }
+
+        label:first-of-type {
+            transform: translateX(-40px);
+        }
+
+        label:last-of-type {
+            transform: translateX(40px);
+        }
+
+        label:hover, input:focus + label {
+            box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+        }
+
+    input:checked + label {
+        background-color: #ab576c;
+    }
+
+        input:checked + label::before {
+            background-color: #fff;
+        }
+
+    /*END History*/
 }
 /* DESKTOP SCREENS */
 /* DESKTOP SCREENS */
