@@ -452,9 +452,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\CompBinder.cs" />
     <Compile Include="App_Code\CompetitionTruncated.cs" />
     <Compile Include="App_Code\GLOBALS.cs" />
     <Compile Include="App_Code\HistoryTipsGrid.cs" />
+    <Content Include="App_Code\MatchBinder.cs" />
     <Compile Include="App_Code\MatchTruncated.cs" />
     <Compile Include="pages\bruno_testes.aspx.cs">
       <DependentUpon>bruno_testes.aspx</DependentUpon>
