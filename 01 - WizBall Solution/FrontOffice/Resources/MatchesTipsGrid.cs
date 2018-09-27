@@ -18,8 +18,9 @@ namespace FrontOffice.Resources
         List<Match> matches;
         public MatchesTipsGrid(List<Match> Matches)
         {
-            matches = Matches;
             globals = new Globals();
+
+            matches = Matches;
         }
 
 

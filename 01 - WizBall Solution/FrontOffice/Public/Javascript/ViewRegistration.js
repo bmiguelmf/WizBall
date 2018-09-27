@@ -1,4 +1,8 @@
-﻿// AJAX VALIDATION *********************************************************
+﻿document.getElementById("txtEmail").value = "";
+
+
+
+// AJAX VALIDATION *********************************************************
 function isEmailTaken() {
 
     var txtEmail = document.getElementById("txtEmail").value;
@@ -153,7 +157,7 @@ function isPasswordReady() {
         passwordStatus.innerText = "Min length 6";
         result = false;
     }
-    else if (txtPassword.lenght > 100) {
+    else if (txtPassword.length > 100) {
         passwordStatus.innerText = "Max length 100";
         result = false;
     }
