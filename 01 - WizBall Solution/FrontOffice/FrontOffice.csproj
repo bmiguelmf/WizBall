@@ -304,6 +304,9 @@
     <Content Include="Public\Imgs\Teams\spain\valencia.ico" />
     <Content Include="Public\Imgs\Teams\spain\villareal.ico" />
     <Content Include="Public\Imgs\Users\songoku.png" />
+    <Content Include="Public\Imgs\Wizball\bg-2.jpg" />
+    <Content Include="Public\Imgs\Wizball\bg-min.jpg" />
+    <Content Include="Public\Imgs\Wizball\bg.jpg" />
     <Content Include="Public\Imgs\Wizball\fds.jpg" />
     <Content Include="Public\Imgs\Wizball\back-ground.jpg" />
     <Content Include="Public\Imgs\Wizball\logo.png" />

@@ -1,0 +1,23 @@
+Dificuldades
+
+	Refazer stored procedure para tornar a resposta do site mais rapida
+
+	Reduzir tamanho das fotos para o site responder mais rapido
+
+	Validações java script com ajax para impedir chamadas ao servidor desnecessarias
+
+	Validação de email com regex
+
+	Chamada de funções javascript via code behind
+
+	Dupla validação no servidor
+
+	responsividade
+
+	guardar fotos no servidor com validação para tipo de ficheiro e tamanho e verificação de nome unico
+
+	converter utc_date para client date
+
+	criação de pop ups personalizadas
+
+	Acesso a API e trabalhar com objectos para realizar http requests

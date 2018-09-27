@@ -23,6 +23,9 @@
     <!-- CSS -->
     <link href="/Public/Styling/ViewRegistration.css" rel="stylesheet" />
 
+    <!-- Importar Para O Projecto -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -66,20 +69,28 @@
             
         </div>
 
+         
+        
+        <div id="outter-modal" class="outter-modal">
 
+            <div id="inner-modal">
 
-<%--        <!-- Trigger/Open The Modal -->
-        <button type="button" id="myBtn" >Open Modal</button>--%>
+                <div id="modal-header">
+                    <a href="/Pages/ViewHome.aspx"><img id="modal-logo" src="/Public/Imgs/Wizball/logo_dark.png" /></a>
+                    <i   id="modal-close" class="fas fa-times-circle fa-lg"></i>
+                </div>
 
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-
-          <!-- Modal content -->
-          <div class="modal-content">
-            <span id="close">&times;</span>
-            <h2>Registration successful!</h2>
-            <h4>Thank You...</h4>
-          </div>
+               
+                <div id="modal-message">
+                    <h3 id="modal-primary-message">Thank you for your registration</h3>
+                    <h5 id="modal-secondary-message">Please check your email for more information</h5>                   
+                </div>
+               
+                <div id="modal-footer">
+                    <h6 id="modal-counter-message">back to home... <span id="modal-counter">20</span></h6>
+                </div>
+                
+            </div>
 
         </div>
 

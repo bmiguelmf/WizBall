@@ -1,63 +1,24 @@
-﻿function isEmailTaken() {
+﻿// FORM VALIDATION *********************************************************
+function IsFormValid() {
 
-    var txtEmail = document.getElementById("txtEmail").value;
-    var emailStatus = document.getElementById("emailStatus");
+    var result = true;
 
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "../WizballWS.asmx/UserMailExists",
-        data: "{Email: '" + txtEmail + "'}",
-        dataType: "json",
 
-        success: function (data) {
-            if (data.d === true) {
-                emailStatus.innerText = "Email already in usage";
-            }
-            else {
-                emailStatus.innerText = "";
-            }
-        },
+    if (!isUsernameReady()) {
+        result = false;
+    }
 
-        error: function (data, status, error) {
-            alert(error);
-        }
+    if (!isEmailReady()) {
+        result = false;
+    }
 
-    });
+    if (!isPasswordReady()) {
+        result = false;
+    }
+
+
+    return result;
 }
-function isUsernameTaken() {
-
-    var txtUsername = document.getElementById("txtUsername").value;
-    var usernameStatus = document.getElementById("usernameStatus");
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "../WizballWS.asmx/UsernameExists",
-        data: "{Username: '" + txtUsername + "'}",
-        dataType: "json",
-
-        success: function (data) {
-            if (data.d === true) {
-                usernameStatus.innerText = "Username already taken";
-            }
-            else {
-                usernameStatus.innerText = "";
-            }
-        },
-
-        error: function (data, status, error) {
-            alert(error);
-        }
-
-    });
-}
-
-document.getElementById("txtEmail").addEventListener("keyup", isEmailTaken);
-document.getElementById("txtUsername").addEventListener("keyup", isUsernameTaken);
-
-
-
 function isUsernameReady() {
 
     var result = true;
@@ -139,42 +100,85 @@ function isPasswordReady() {
     return result;
 }
 
-function IsFormValid() {
 
-    var result = true;
+// AJAX VALIDATION *********************************************************
+function isEmailTaken() {
 
+    var txtEmail = document.getElementById("txtEmail").value;
+    var emailStatus = document.getElementById("emailStatus");
 
-    if (!isUsernameReady()) {
-        result = false;
-    }
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WizballWS.asmx/UserMailExists",
+        data: "{Email: '" + txtEmail + "'}",
+        dataType: "json",
 
-    if (!isEmailReady())              
-    {
-        result = false;
-    }
-          
-    if (!isPasswordReady()) {
-        result = false;
-    }
+        success: function (data) {
+            if (data.d === true) {
+                emailStatus.innerText = "Email already in usage";
+            }
+            else {
+                emailStatus.innerText = "";
+            }
+        },
 
+        error: function (data, status, error) {
+            alert(error);
+        }
 
-    return result;
+    });
 }
+function isUsernameTaken() {
+
+    var txtUsername = document.getElementById("txtUsername").value;
+    var usernameStatus = document.getElementById("usernameStatus");
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WizballWS.asmx/UsernameExists",
+        data: "{Username: '" + txtUsername + "'}",
+        dataType: "json",
+
+        success: function (data) {
+            if (data.d === true) {
+                usernameStatus.innerText = "Username already taken";
+            }
+            else {
+                usernameStatus.innerText = "";
+            }
+        },
+
+        error: function (data, status, error) {
+            alert(error);
+        }
+
+    });
+}
+document.getElementById("txtEmail").addEventListener("keyup", isEmailTaken);
+document.getElementById("txtUsername").addEventListener("keyup", isUsernameTaken);
 
 
 
-
-
+// MODAL *******************************************************************
 function registrationConfirmation() {
-    var modal = document.getElementById('myModal');
+
+    // Shows modal.
+    var modal = document.getElementById('outter-modal');
     modal.style.display = "block";
 
-    window.setTimeout(closeViewRegistration, 3000);
+    // Get elements.
+    var counter = document.getElementById("modal-counter");
+    var currentValue = parseInt(counter.innerText);
+
+    window.setTimeout(closeViewRegistration, currentValue * 1000);
+
+    window.setInterval(function () {
+        counter.innerText = currentValue === 0 ? 0 : --currentValue;
+    }, 1000); 
 }
-
-
-document.getElementById("close").addEventListener("click", closeViewRegistration);
-
 function closeViewRegistration() {
     window.location.replace("/Pages/ViewHome.aspx");
 }
+document.getElementById("modal-close").addEventListener("click", closeViewRegistration);
