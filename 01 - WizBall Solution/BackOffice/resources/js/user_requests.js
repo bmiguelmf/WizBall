@@ -1,16 +1,9 @@
 ﻿$(document).ready(function () {
     //html elements
-    var session_username = $('#username');
-    var tbl_users = $('#users_table');
-    var tbl_users_body = $('#users_table_body');
-    //var btn_submit = $('#btn_submit');
 
     //vars
 
-
-
     //functions
-    
     function aproveUser(id, is_granted) {
         var permission = "Revoked";
 
@@ -24,7 +17,7 @@
         var AfterUserState = {};
         var Admin = {};
 
-        Admin['Id'] = ($.session.get('AdminId') == "" ? 1 : $.session.get('AdminId'));
+        Admin['Id'] = $.session.get('AdminId') === "" ? 1 : $.session.get('AdminId');
 
         User['Id'] = id;
 
@@ -34,7 +27,7 @@
         BeforeUserState['Id'] = parseInt($('#user_state').attr('user_state'));
         UserHistory['BeforeState'] = BeforeUserState;
 
-        AfterUserState['Id'] = (is_granted ? 21 : 11);
+        AfterUserState['Id'] = is_granted ? 21 : 11;
         UserHistory['AfterState'] = AfterUserState;
 
         UserHistory['Description'] = permission + " by " + $.session.get('Username');
@@ -63,10 +56,10 @@
 
             },
             error: function (data, status, error) {
-                swal("Error!", " " + (error.message == "undefined" ? "Unknown error" : error.message) + " ", "warning");
+                swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
             }
         });
-    };
+    }
 
     function assignActionBtnClickEvents() {
 
@@ -77,7 +70,7 @@
         $('.btn_revoke').on("click", function () {
             aproveUser($(this).closest("tr").attr('value'), false);
         });
-    };
+    }
 
     function GetPendingUsers() {
         $.ajax({
@@ -89,29 +82,35 @@
             success: function (data) {
                 tbl_users_body.empty();
                 if (data.d.length > 0) {
+                    let ran_if = false;
                     $.each(data.d, function (index, value) {
-                        if (value.CurrentUserHistory.AfterState.Description == "Pending") {
+                        if (value.CurrentUserHistory.AfterState.Description === "Pending") {
+                            ran_if = true;
                             tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\"" + value.CurrentUserHistory.AfterState.Id + "\" style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td><a class=\"btn_revoke\"><i class=\"glyphicon glyphicon-trash\"></i></a></td></tr>");
                         }
                     });
-                    paginateTable(tbl_users, 2);
-                    assignActionBtnClickEvents();
+                    if (ran_if === true) {
+                        paginateTable(tbl_users, 2);
+                        assignActionBtnClickEvents();
+                    } else {
+                        swal("info!", "There are no user requests at the moment.", "info");
+                        tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                    }
                 }
                 else {
+                    swal("info!", "There are no user requests at the moment.", "info");
                     tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             },
             error: function (data, status, error) {
-                swal("Erro!", " " + error.message + " ", "warning");
+                swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
             }
         });
-    };
+    }
 
     //events
-    GetSessionUsernameToNavbar();
 
     GetPendingUsers();
-
 
 
     console.log('READY user_requests.js');

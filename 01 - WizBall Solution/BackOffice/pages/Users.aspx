@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>Wizball - Users</title>
 
@@ -65,7 +65,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
-                    <li><a href=""><i class="glyphicon glyphicon-bell"></i></a></li>
+                    <li><a><i class="glyphicon glyphicon-bell"></i></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">
@@ -74,7 +74,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Profile</a></li>
-                            <li><a id="logout" href="#">Logout</a></li>
+                            <li><a runat="server" id="logout" href="#">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -159,7 +159,7 @@
                         <div class="col-lg-6 col-xs-12">
                             <p class="select-actions">
                                 <select class="selectpicker">
-                                    <option disabled selected>Order</option>
+                                    <option disabled="disabled" selected="selected">Order</option>
                                     <option>Mais recentes</option>
                                     <option>Mais Antigos</option>
                                 </select>
@@ -229,9 +229,6 @@
     <script src="/resources/js/plugins/jquery.min.js"></script>
     <script src="/resources/js/plugins/jquery-ui.min.js"></script>
 
-    <!-- General script -->
-    <script src="/resources/js/general.js"></script>
-
     <!-- Custom table paging script -->
     <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
     
@@ -253,6 +250,9 @@
 
     <!-- JQuery session script -->
     <script src="/resources/js/plugins/jquery.session.js"></script>
+
+    <!-- General script -->
+    <script src="/resources/js/general.js"></script>
 
     <!-- Users management script -->
     <script src="/resources/js/users.js"></script>

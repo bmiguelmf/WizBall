@@ -55,7 +55,7 @@ namespace WebApp.pages
                 ErrorP.Visible = true;
                 
             }
-            GLOBALS.BllSI.UpdatetUser(CreateUserUpdate(userSession, userUpdate));
+            GLOBALS.BllSI.UpdateUser(CreateUserUpdate(userSession, userUpdate));
             Session["user"] = userSession;
             Response.Redirect("default.aspx");
         }

@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterView.master.cs" Inherits="WebApp.pages.MasterView" %>
 
 <!DOCTYPE html>
+
 <html>
 
     <head runat="server">
@@ -67,7 +68,8 @@
 
                     <div class="dektop-menu-user-pic">
 
-                        <img src="" alt="user pic" id="imgUserPic" runat="server">
+                        <asp:Image id="imgUserPic" AlternateText="user pic" ClientIDMode="Static" runat="server" />
+
                         
                     </div>
 
@@ -91,7 +93,7 @@
 
                     <div class="menu-user-pic">
 
-                        <img src="" alt="user pic" id="imgUserPicResp" runat="server">
+                        <asp:Image AlternateText="user pic" id="imgUserPicResp" ClientIDMode="Static" runat="server" />
 
                     </div>
 
@@ -138,4 +140,3 @@
         </form>
     </body>
 </html>
-
