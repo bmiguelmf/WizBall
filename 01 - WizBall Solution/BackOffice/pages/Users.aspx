@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Wizball - Users</title>
 
@@ -18,6 +18,7 @@
     <!-- Bootstrap and font-awesome stylesheets -->
     <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
     <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/animate.css" rel="stylesheet" />
 
     <!-- Custom table paging stylesheet -->
     <link href="/resources/css/pagination.css" rel="stylesheet" />
@@ -65,7 +66,8 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
-                    <li><a><i class="glyphicon glyphicon-bell"></i></a></li>
+                    <li><a href="UserRequests.aspx"><i id="bell" class="glyphicon glyphicon-bell"></i></a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">
@@ -113,7 +115,7 @@
                         <input id="input_edit_username" name="input_edit_username" user_id="0" required="" type="text" />
                     </div>
                     <div class="col-lg-3 mt-2 col-md-12">
-                        <label class="label" for="select_edit_status">Status</label><br />
+                        <label class="label" for="select_edit_status">State</label><br />
                         <input id="toggle_edit_status" granted_id="21" blocked_id="11" name="select_edit_status" data-on="Active" data-off="Blocked" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="87" />
                         <%-- 3 button toggle --> shttp://cssdeck.com/labs/ufct35ys5t--%>
                     </div>
@@ -128,8 +130,13 @@
                     </div>
 
                     <div class="col-lg-12 mt-2 col-md-12">
+                        <label class="label" for="old_description">Current state description</label><br />
+                        <textarea disabled="disabled" style="resize: none;" rows="1" class="col-lg-6" id="old_description" name="old_description" placeholder=""></textarea>
+                    </div>
+
+                    <div class="col-lg-12 mt-2 col-md-12">
                         <label class="label" for="input_edit_description">Description:</label><br />
-                        <textarea disabled="disabled" style="resize: none;" class="col-lg-6" id="txt_edit_description" name="input_edit_description" placeholder=""></textarea>
+                        <textarea disabled="disabled" style="resize: none; height: 200px" class="col-lg-6" id="txt_edit_description" name="input_edit_description" placeholder=""></textarea>
                     </div>
 
                     <div class="col-lg-12 clearfix"></div>
@@ -156,16 +163,8 @@
                     <h3>Users</h3>
 
                     <div class="row">
-                        <div class="col-lg-6 col-xs-12">
-                            <p class="select-actions">
-                                <select class="selectpicker">
-                                    <option disabled="disabled" selected="selected">Order</option>
-                                    <option>Mais recentes</option>
-                                    <option>Mais Antigos</option>
-                                </select>
-                            </p>
-                        </div>
-                        <div class="col-lg-6 col-xs-12 text-right">
+                        
+                        <div class="col-lg-12 col-xs-12 text-right">
                             <!-- search by -->
                             <span class="search-by">
                                 <p>
@@ -201,7 +200,7 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 8%;" class="text-center">
-                                                <input type="checkbox" /></th>
+                                                <input id="check_all" type="checkbox" /></th>
                                             <th style="width: 10%;">Photo</th>
                                             <th style="width: 17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
                                             <th style="width: 29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
@@ -231,7 +230,7 @@
 
     <!-- Custom table paging script -->
     <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
-    
+
     <!-- Bootstrap script -->
     <script src="/resources/js/plugins/bootstrap.min.js"></script>
 
@@ -250,6 +249,9 @@
 
     <!-- JQuery session script -->
     <script src="/resources/js/plugins/jquery.session.js"></script>
+
+    <!-- Notifications script -->
+    <script src="/resources/js/plugins/bootstrap-notify.js"></script>
 
     <!-- General script -->
     <script src="/resources/js/general.js"></script>

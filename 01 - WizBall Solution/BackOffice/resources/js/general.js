@@ -1,5 +1,5 @@
 ﻿//global scope
-
+//global vars
 //global html elements
 var tbl_users = $('#users_table');
 var tbl_users_body = $('#users_table_body');
@@ -17,27 +17,59 @@ function paginateTable(table, limit) {
     });
 }
 
-//function checkAdminLogin() {
-//    if ($.session.get('AdminUsername') === undefined) {
-//        window.location.replace("Login.aspx");
-//    }
-//}
 
-//checkAdminLogin();
 
 //document ready
 $(document).ready(function () {
     //html elements
     var session_label_username = $('#username');
+    var cb_check_all_users = $('#check_all');
 
     //vars
-
+    var bell = $('#bell');
+    var user_requests_count = 0;
 
     //functions
-   
+
     function GetSessionUsernameToNavbar() {
         session_label_username.text($.session.get('AdminUsername'));
     }
+
+    function notifyUsersRequests(number_user_requests) {
+        if (window.location.href.split("/").pop() !== "UserRequests.aspx") {
+            $.notify({
+                message: 'You have ' + number_user_requests + ' pending user requests! Click here to see more details.',
+                url: "UserRequests.aspx",
+            }, {
+                    type: 'danger',
+                    url_target: ""
+                });
+            bell.css("color", "#ffd300");
+        }
+    }
+
+    function GetPendingUsersCount() {
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "../WebService.asmx/GetAllUsers",
+            data: "",
+            dataType: "json",
+            success: function (data) {
+                if (data.d.length > 0) {
+                    $.each(data.d, function (index, value) {
+                        if (value.CurrentUserHistory.AfterState.Description === "Pending") {
+                            user_requests_count++;
+                        }
+                    });
+                    notifyUsersRequests(user_requests_count);
+                }
+            }
+        });
+    }
+
+
+
 
     //events
     $(document).keydown(function (e) {
@@ -46,8 +78,19 @@ $(document).ready(function () {
         }
     });
 
+    cb_check_all_users.change(function () {
+        if (this.checked) {
+            $('.check_all').prop('checked', true);
+        } else {
+            $('.check_all').prop('checked', false);
+        }
+    });
+
     //calls
-    GetSessionUsernameToNavbar();
+
+    GetPendingUsersCount();
     
+    GetSessionUsernameToNavbar();
+
     console.log('READY general.js');
 });

@@ -64,15 +64,36 @@
     function assignActionBtnClickEvents() {
 
         $('.btn_grant').on("click", function () {
-            swal("Grant access to this user?", "Later, you can change this if necessary.", "warning").then((value) => {
-                aproveUser($(this).closest("tr").attr('value'), true);
-            });
+            swal({
+                title: "Are you sure?",
+                text: "If necessary, you can change this later.",
+                icon: "warning",
+                buttons: true
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        aproveUser($(this).closest("tr").attr('value'), true);
+                    } else {
+                        swal("Successfully canceled.", "", "info");
+                    }
+                });
+
         });
 
         $('.btn_revoke').on("click", function () {
-            swal("Revoke access to this user?", "Later, you can change this if necessary.", "warning").then((value) => {
-                aproveUser($(this).closest("tr").attr('value'), false);
-            });
+            swal({
+                title: "Are you sure?",
+                text: "If necessary, you can change this later.",
+                icon: "warning",
+                buttons: true
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        aproveUser($(this).closest("tr").attr('value'), false);
+                    } else {
+                        swal("Successfully canceled.", "", "info");
+                    }
+                });
         });
     }
 
@@ -97,12 +118,12 @@
                         paginateTable(tbl_users, 2);
                         assignActionBtnClickEvents();
                     } else {
-                        swal("info!", "There are no user requests at the moment.", "info");
+                        swal("Info!", "There are no user requests at the moment.", "info");
                         tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                     }
                 }
                 else {
-                    swal("info!", "There are no user requests at the moment.", "info");
+                    swal("Info!", "There are no user requests at the moment.", "info");
                     tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             },

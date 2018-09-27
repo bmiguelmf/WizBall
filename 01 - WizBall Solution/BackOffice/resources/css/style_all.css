@@ -175,7 +175,7 @@ a.btn-clean {
     }
 
 /*form elements*/
-input, textarea, button, .select2-container--default .select2-selection--single {
+input, textarea {
     padding: 5px 10px;
     border: .153846rem solid #ddd;
     -webkit-border-radius: 3px;
@@ -455,7 +455,6 @@ p.select-actions button.btn-primary {
 .st-menu form textarea {
     overflow: hidden;
     width: 95%;
-    height: 200px;
     line-height: 35px;
 }
 

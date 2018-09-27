@@ -12,6 +12,7 @@
     var input_username = $('#input_edit_username');
     var input_email = $('#input_edit_email');
     var user_photo = $('#user_photo');
+    var old_description = $('#old_description');
 
     //vars
     var is_text_area_disabled = true;
@@ -29,7 +30,7 @@
         input_email.val("");
         txt_description.val("");
     }
-    
+
     function disableFormTextArea() {
         is_text_area_disabled = true;
         txt_description.attr('disabled', 'disabled');
@@ -39,7 +40,7 @@
         is_text_area_disabled = false;
         txt_description.removeAttr('disabled');
     }
-    
+
     function loadSideBarEffectsScripts() {
         $.getScript('/resources/js/plugins/classie.js');
         $.getScript('/resources/js/plugins/sidebar-effects.js');
@@ -84,15 +85,23 @@
             success: function (data) {
                 clearTable(tbl_users_body);
                 if (data.d.length > 0) {
+                    let ran_if = false;
                     $.each(data.d, function (index, value) {
                         if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
-                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
+                            ran_if = true;
+                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
                         }
                     });
-                    paginateTableAndLoadSideBarScripts(tbl_users, 2);
-                    assignBtnEditClickEvent();
+                    if (ran_if === true) {
+                        paginateTableAndLoadSideBarScripts(tbl_users, 2);
+                        assignBtnEditClickEvent();
+                    } else {
+                        swal("Info!", "There are no user requests at the moment.", "info");
+                        tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                    }
                 }
                 else {
+                    swal("Info!", "There are no user requests at the moment.", "info");
                     tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             },
@@ -128,6 +137,10 @@
                     input_email.val(data.d.Email);
                     toggleBothFormToggles(data.d.CurrentUserHistory.AfterState, data.d.Newsletter);
                     disableFormTextArea();
+                    old_description.text(data.d.CurrentUserHistory.Description);
+                    old_description.each(function () {
+                        $(this).height(0).height(this.scrollHeight);
+                    }).find('textarea').change();
                 }
             },
             error: function (data, status, error) {
@@ -234,23 +247,33 @@
         UserHistory['AfterState'] = AfterUserState;
 
         UserHistory['Description'] = txt_description.val();
-        
-        $.ajax({
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            url: "../WebService.asmx/UpdateUser",
-            data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
-            dataType: "json",
-            success: function (data) {
-                swal("Success!", "User successfully updated!", "success").then((value) => {
-                    GetUsers();
-                    paginateTable(table, 2);
-                });
-            },
-            error: function (data, status, error) {
-                swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
-            }
-        });
+        swal({
+            title: "Are you sure?",
+            text: "If necessary, you can change this later.",
+            icon: "warning",
+            buttons: true
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "../WebService.asmx/UpdateUser",
+                        data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
+                        dataType: "json",
+                        success: function (data) {
+                            swal("Success!", "User successfully updated!", "success").then((value) => {
+                                GetUsers();
+                                paginateTable(table, 2);
+                            });
+                        },
+                        error: function (data, status, error) {
+                            swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
+                        }
+                    });
+                }
+            });
+
 
     });
 
