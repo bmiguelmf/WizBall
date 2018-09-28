@@ -18,7 +18,8 @@ namespace WebApp.pages
         private static string apiToken;
         private static string connString;
 
-        private List<Competition> competitions;
+        public List<Competition> Competitions { get; set; }
+        public List<Competition> CompResolve;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,21 +33,25 @@ namespace WebApp.pages
                 connString = WebConfigurationManager.ConnectionStrings["ConnStringJoaoATEC"].ConnectionString;
                 bll = GLOBALS.BllSI;
 
-
-
-
                 matchesTipsGrid = new HistoryTipsGrid(bll.GetMatchesByRangeDateAndCompetition("2018", new DateTime(), new DateTime()));
-
 
                 placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
 
             } else
             {
-                
+                CompResolve = new List<Competition>();
                 List<Match> matches = new List<Match>();
                 DateTime yest = DateTime.Now.AddDays(-1);
                 DateTime weekBefore = yest.AddDays(-7);
                 bll = GLOBALS.BllSI;
+
+                foreach (Competition comp in bll.TierOneCompetitions())
+                {
+                    CompResolve.Add(comp);
+                }
+
+                compRep.DataSource = bll.TierOneCompetitions();
+                compRep.DataBind();
 
                 startRange.Value = weekBefore.ToString("yyyy-MM-dd");
 
@@ -77,7 +82,7 @@ namespace WebApp.pages
 
             placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
 
-            if (AllCompsCB.Checked)
+            /*if (AllCompsCB.Checked)
             {
                 foreach (Competition comp in bll.TierOneCompetitions())
                 {
@@ -104,7 +109,7 @@ namespace WebApp.pages
                         matchesTipsGrid = new HistoryTipsGrid(matches);
                     }
                 }
-            }
+            }*/
         }
     }
 }
