@@ -19,6 +19,8 @@ namespace FrontOffice
             return user is null ? false : true;
         }
 
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             SetupUserPanel();
@@ -29,6 +31,16 @@ namespace FrontOffice
                 return;
             }
         }
+
+
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Session["User"] = null;
+
+            Page.Response.Redirect(Request.UrlReferrer.ToString());
+        }
+
 
 
         private void SetupUserPanel()
@@ -44,6 +56,7 @@ namespace FrontOffice
                 GenerateGuestPanelResponsive();
             }
         }
+
         private void GenerateUserPanelDesktop()
         {
             // Gets user picture.
@@ -55,13 +68,9 @@ namespace FrontOffice
             string editLink = "<a href='/Pages/ViewEditProfile.aspx'><i class='fas fa-user-edit'></i> Edit Profile</a>";
 
             // Creates Logout menu.
-            LinkButton logoutLink = new LinkButton();          
-            logoutLink.Click += Logout_Click;          
-            logoutLink.OnClientClick = "return confirm('Are you sure?')";           
-            logoutLink.Text = "<i class='fas fa-sign-out-alt'></i> Log Out";
+            string logoutLink = "<a href='#' id='logout'><i class='fas fa-sign-out-alt'></i> Log Out</a>";
 
-            divDesktopMenuUserOptions.InnerHtml = editLink;
-            divDesktopMenuUserOptions.Controls.Add(logoutLink);
+            divDesktopMenuUserOptions.InnerHtml = editLink + logoutLink;
         }
         private void GenerateUserPanelResponsive()
         {
@@ -75,22 +84,12 @@ namespace FrontOffice
             string editLink = "<a href='/Pages/ViewEditProfile.aspx'><i class='fas fa-user-edit'></i> Edit Profile</a>";
 
             // Creates Logout menu.
-            LinkButton logoutLink = new LinkButton();
-            logoutLink.Click += Logout_Click;
-            logoutLink.OnClientClick = "return confirm('Are you sure?')";
-            logoutLink.Text = "<i class='fas fa-sign-out-alt'></i> Log Out";
+            string logoutLink = "<a href='#' id='logoutt'><i class='fas fa-sign-out-alt'></i> Log Out</a>";
 
 
-            divDesktopMenuUserOptionsResp.InnerHtml = editLink;
-            divDesktopMenuUserOptionsResp.Controls.Add(logoutLink );
+            divDesktopMenuUserOptionsResp.InnerHtml = editLink + logoutLink;
         }
-        private void Logout_Click(object sender, EventArgs e)
-        {
-            Session["User"] = null;
-
-            Page.Response.Redirect(Request.UrlReferrer.ToString());
-
-        }
+     
         private void GenerateGuestPanelDesktop()
         {
             // Loads default guest user picuture.
