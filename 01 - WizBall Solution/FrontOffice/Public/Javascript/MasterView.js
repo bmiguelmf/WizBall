@@ -9,16 +9,20 @@ document.getElementById("humburger").addEventListener("click", function () {
 
 
 // Modal logout show.
-document.getElementById("logout").addEventListener("click", function () {
+// The logout desktop btn only exists if the user has login, because its a dynamically generated btn (a).
+var desktoBtnLogout = document.getElementById("logout");
+var desktoBtnLogoutt = document.getElementById("logoutt");
+if (desktoBtnLogout != null) {
 
-    document.getElementById("outter-modal").style.display = "block";
+    desktoBtnLogout.addEventListener("click", function () {
+        document.getElementById("outter-modal").style.display = "block";
+    });
 
-});
-document.getElementById("logoutt").addEventListener("click", function () {
+    desktoBtnLogoutt.addEventListener("click", function () {
+        document.getElementById("outter-modal").style.display = "block";
+    });
+}
 
-    document.getElementById("outter-modal").style.display = "block";
-
-});
 // Modal logout close.
 document.getElementById("btnModalCancel").addEventListener("click", function () {
 

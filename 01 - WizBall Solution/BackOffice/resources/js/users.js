@@ -17,6 +17,7 @@
     //vars
     var is_text_area_disabled = true;
     var is_code_changed = false;
+    var Unedited_user = {};
 
     //functions
     function assignBtnEditClickEvent() {
@@ -29,6 +30,8 @@
         input_username.val("");
         input_email.val("");
         txt_description.val("");
+        error.hide();
+        error.find('.message').text("");
     }
 
     function disableFormTextArea() {
@@ -75,6 +78,17 @@
         loadSideBarEffectsScripts();
     }
 
+    function feedUneditedUser(Table_user) {
+
+        Unedited_user['Id'] = String(Table_user.Id);
+        Unedited_user['Username'] = Table_user.Username;
+        Unedited_user['Email'] = Table_user.Email;
+        Unedited_user['Newsletter'] = Table_user.Newsletter;
+        //Unedited_user['Picture'] = Table_user.Picture;
+        Unedited_user['Password'] = "user";
+
+    }
+
     function GetUsers() {
         $.ajax({
             type: "POST",
@@ -96,7 +110,7 @@
                         paginateTableAndLoadSideBarScripts(tbl_users, 2);
                         assignBtnEditClickEvent();
                     } else {
-                        swal("Info!", "There are no user requests at the moment.", "info");
+                        swal("Info!", "There are no user to display.", "info");
                         tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                     }
                 }
@@ -132,6 +146,7 @@
                 clearForm();
                 if (data.d !== null) {
                     //user_photo.attr('src', data.d.Picture);
+                    feedUneditedUser(data.d);
                     input_username.val(data.d.Username);
                     input_username.attr('user_id', data.d.Id);
                     input_email.val(data.d.Email);
@@ -187,6 +202,65 @@
         return validated;
     }
 
+    //function isEquivalentt(User1, User2) {
+    //    // Create arrays of property names
+    //    var User1Props = Object.getOwnPropertyNames(User1);
+    //    var User2Props = Object.getOwnPropertyNames(User2);
+
+    //    // If number of properties is different,
+    //    // objects are not equivalent
+    //    if (User1Props.length != User2Props.length) {
+    //        return false;
+    //    }
+
+    //    for (var i = 0; i < User1Props.length; i++) {
+    //        var prop = User1Props[i];
+
+    //        // If values of same property are not equal,
+    //        // objects are not equivalent
+    //        if (User1Props[prop] !== User2Props[prop]) {
+    //            return false;
+    //        } else {
+    //            if (prop["Username"] !== prop["Username"]) {
+    //                return false;
+    //            }
+    //            if (User1["Email"] !== User2["Email"]) {
+    //                return false;
+    //            }
+    //            if (User1["Newsletter"] !== User2["Newsletter"]) {
+    //                return false;
+    //            }
+    //        }
+    //    }
+
+    //    // If we made it this far, objects
+    //    // are considered equivalent
+    //    return true;
+    //}
+
+    //function isEquivalent(User1, User2) {
+
+    //    if (User1["Username"] !== User2["Username"]) {
+    //        return false;
+    //    }
+    //    if (User1["Email"] !== User2["Email"]) {
+    //        return false;
+    //    }
+    //    if (User1["Newsletter"] !== User2["Newsletter"]) {
+    //        return false;
+    //    }
+
+    //    return true;
+    //}
+
+    function userStateHasChanged(description) {
+        if (description !== "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //events
 
     GetUsers();
@@ -227,6 +301,7 @@
         var BeforeUserState = {};
         var AfterUserState = {};
         var Admin = {};
+        var user_has_changed = false;
 
         Admin['Id'] = $.session.get('AdminId') === "" ? 1 : $.session.get('AdminId');
 
@@ -234,11 +309,9 @@
         User['Username'] = input_username.val();
         User['Email'] = input_email.val();
         User['Newsletter'] = toggle_newsletter.prop('checked');
-        User['Picture'] = user_photo.attr('src').split("/").pop();
         User['Password'] = "user";
 
         UserHistory['Admin'] = Admin;
-        UserHistory['User'] = User;
 
         BeforeUserState['Id'] = toggle_status.attr('status_id');
         UserHistory['BeforeState'] = BeforeUserState;
@@ -246,7 +319,33 @@
         AfterUserState['Id'] = toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id');
         UserHistory['AfterState'] = AfterUserState;
 
+        //if (isEquivalent(User, Unedited_user)) {
+        //    //se o email, username e newsleter nao mudarem
+        //    //verifica se o estado mudou
+        //    user_has_changed = false;
+        //    if (userStateHasChanged(txt_description.val())) {
+        //        user_has_changed = true;
+        //        UserHistory['Description'] = txt_description.val();
+        //    }
+
+        //} else {
+        //    user_has_changed = true;
+        //    if (userStateHasChanged(txt_description.val())) {
+        //        UserHistory['Description'] = txt_description.val();
+        //    } else {
+        //        UserHistory['Description'] = "Edited by " + $.session.get('AdminUsername');
+        //    }
+        //}
+
+        user_has_changed = true;
         UserHistory['Description'] = txt_description.val();
+
+        //finally add user last field => Picture
+        User['Picture'] = user_photo.attr('src').split("/").pop();
+
+        UserHistory['User'] = User;
+
+        //confrimation
         swal({
             title: "Are you sure?",
             text: "If necessary, you can change this later.",
@@ -255,22 +354,27 @@
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        url: "../WebService.asmx/UpdateUser",
-                        data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
-                        dataType: "json",
-                        success: function (data) {
-                            swal("Success!", "User successfully updated!", "success").then((value) => {
-                                GetUsers();
-                                paginateTable(table, 2);
-                            });
-                        },
-                        error: function (data, status, error) {
-                            swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
-                        }
-                    });
+                    if (user_has_changed) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "../WebService.asmx/UpdateUser",
+                            data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
+                            dataType: "json",
+                            success: function (data) {
+                                swal("Success!", "User successfully updated!", "success").then((value) => {
+                                    GetUsers();
+                                    paginateTable(table, 2);
+                                });
+                            },
+                            error: function (data, status, error) {
+                                swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
+                            }
+                        });
+                    } else {
+                        swal("Nothing to update...", "", "info");
+                    }
+
                 }
             });
 

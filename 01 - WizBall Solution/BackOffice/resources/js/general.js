@@ -28,6 +28,7 @@ $(document).ready(function () {
     //vars
     var bell = $('#bell');
     var user_requests_count = 0;
+    var error = $('#error_message');
 
     //functions
 
@@ -37,14 +38,17 @@ $(document).ready(function () {
 
     function notifyUsersRequests(number_user_requests) {
         if (window.location.href.split("/").pop() !== "UserRequests.aspx") {
-            $.notify({
-                message: 'You have ' + number_user_requests + ' pending user requests! Click here to see more details.',
-                url: "UserRequests.aspx",
-            }, {
-                    type: 'danger',
-                    url_target: ""
-                });
-            bell.css("color", "#ffd300");
+            if (number_user_requests !== 0) {
+                $.notify({
+                    message: 'You have ' + number_user_requests + ' pending user requests! Click here to see more details.',
+                    url: "UserRequests.aspx",
+                }, {
+                        type: 'danger',
+                        url_target: ""
+                    });
+                bell.css("color", "#ffd300");
+            }
+
         }
     }
 
@@ -89,7 +93,7 @@ $(document).ready(function () {
     //calls
 
     GetPendingUsersCount();
-    
+
     GetSessionUsernameToNavbar();
 
     console.log('READY general.js');

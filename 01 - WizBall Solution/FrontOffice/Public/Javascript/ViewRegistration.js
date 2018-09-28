@@ -1,4 +1,5 @@
-﻿document.getElementById("txtEmail").value = "";
+﻿// EXEC EVERY PAGE LOAD
+clearForm();
 
 
 
@@ -167,6 +168,7 @@ function isPasswordReady() {
 
     return result;
 }
+
 function IsFormValid() {
 
     var result = true;
@@ -183,4 +185,11 @@ function IsFormValid() {
 
 
     return result;
+}
+function clearForm() {
+    document.getElementById("txtUsername").value = "";
+    document.getElementById("txtEmail").value = "";
+    document.getElementById("txtPassword").value = "";
+
+    document.getElementById("btnSubmit").blur();
 }
