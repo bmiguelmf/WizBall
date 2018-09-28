@@ -110,7 +110,7 @@
                         paginateTableAndLoadSideBarScripts(tbl_users, 2);
                         assignBtnEditClickEvent();
                     } else {
-                        swal("Info!", "There are no user requests at the moment.", "info");
+                        swal("Info!", "There are no user to display.", "info");
                         tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                     }
                 }

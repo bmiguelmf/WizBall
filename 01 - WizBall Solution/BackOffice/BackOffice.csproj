@@ -69,6 +69,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="pages\DataManagment.aspx" />
+    <Content Include="pages\Newsletter.aspx" />
     <Content Include="pages\UserRequests.aspx" />
     <Content Include="resources\css\fonts.css" />
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
@@ -182,6 +184,13 @@
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pages\DataManagment.aspx.cs">
+      <DependentUpon>DataManagment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\DataManagment.aspx.designer.cs">
+      <DependentUpon>DataManagment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -195,6 +204,13 @@
     </Compile>
     <Compile Include="pages\master.Master.designer.cs">
       <DependentUpon>master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Newsletter.aspx.cs">
+      <DependentUpon>Newsletter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Newsletter.aspx.designer.cs">
+      <DependentUpon>Newsletter.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\UserRequests.aspx.cs">
       <DependentUpon>UserRequests.aspx</DependentUpon>
