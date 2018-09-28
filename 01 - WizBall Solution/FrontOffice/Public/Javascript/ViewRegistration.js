@@ -191,5 +191,5 @@ function clearForm() {
     document.getElementById("txtEmail").value = "";
     document.getElementById("txtPassword").value = "";
 
-    document.getElementById("btnSubmit").btnSubmit.blur();
+    document.getElementById("btnSubmit").blur();
 }

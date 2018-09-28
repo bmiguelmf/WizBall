@@ -23,6 +23,7 @@ namespace FrontOffice.Pages
 
                 if (result)
                 {
+                    emailStatus.InnerText = "";
                     title.InnerText = "Email found";
 
                     Session["antiXeats"] = false;
