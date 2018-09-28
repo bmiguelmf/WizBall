@@ -1,5 +1,4 @@
-﻿using BusinessLogic.BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,38 +8,38 @@ using FrontOffice.Resources;
 
 namespace FrontOffice.Pages
 {
-    public partial class ViewRecoverPassword : System.Web.UI.Page
+    public partial class ViewRecoverPassword2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(IsPostBack)
+            
+            if(!IsPostBack)                                                                 // Primeiro pedido
             {
-                Globals globals = new Globals();
+                Session["antiXeats"] = true;
+            }   
+            else if (IsPostBack && (bool)Session["antiXeats"])                              // Postback passou pelas validações js então é porque é para tentar recuperar pass
+            {
+                bool result = new Globals().CreateBll().UserMailExists(txtEmail.Text);
 
-                if(globals.IsValidEmail(txtEmail.Text))
+                if (result)
                 {
-                    bool result = globals.CreateBll().RecoverUserPassword(txtEmail.Text);
+                    title.InnerText = "Email found";
 
-                    if (result)
-                    {
-                        lblStatus.Text = "Your login information has been sent to the provided email.";
-                        lblStatus.BackColor = System.Drawing.Color.Green;
-                        lblStatus.ForeColor = System.Drawing.Color.White;
-                    }
-                    else
-                    {
-                        lblStatus.Text = "The email you provided does not exists.";
-                        lblStatus.BackColor = System.Drawing.Color.Red;
-                        lblStatus.ForeColor = System.Drawing.Color.White;
-                    }
+                    Session["antiXeats"] = false;
+
+                    Page.ClientScript.RegisterStartupScript(GetType(), "recoverPasswordConfirmation", "recoverPasswordConfirmation()", true);
                 }
                 else
                 {
-                    lblStatus.Text = "The provided email is not valid.";
-                    lblStatus.BackColor = System.Drawing.Color.Red;
-                    lblStatus.ForeColor = System.Drawing.Color.White;
-                }               
+                    emailStatus.InnerText = "Email not found";  
+                }
             }
+            else
+            {
+                txtEmail.Text = string.Empty;
+                Session["antiXeats"] = true;
+            }
+
         }
     }
 }

@@ -323,11 +323,13 @@
     <Content Include="Public\Javascript\MasterView.js" />
     <Content Include="Public\Javascript\MatchesTipsGrid.js" />
     <Content Include="Public\Javascript\ViewLogin.js" />
+    <Content Include="Public\Javascript\ViewRecoverPassword.js" />
     <Content Include="Public\Javascript\ViewRegistration.js" />
     <Content Include="Public\jQuery\jQuery.min.js" />
     <Content Include="Public\Styling\MasterView.css" />
     <Content Include="Public\Styling\MatchesTipsGrid.css" />
     <Content Include="Public\Styling\ViewLogin.css" />
+    <Content Include="Public\Styling\ViewRecoverPassword.css" />
     <Content Include="Public\Styling\ViewRegistration.css" />
     <Content Include="Web.config" />
     <Content Include="WizballWS.asmx" />
