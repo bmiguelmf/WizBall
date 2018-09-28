@@ -28,6 +28,7 @@ $(document).ready(function () {
     //vars
     var bell = $('#bell');
     var user_requests_count = 0;
+    var error = $('#error_message');
 
     //functions
 

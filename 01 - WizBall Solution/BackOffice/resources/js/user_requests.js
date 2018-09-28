@@ -30,7 +30,7 @@
         AfterUserState['Id'] = is_granted ? 21 : 11;
         UserHistory['AfterState'] = AfterUserState;
 
-        UserHistory['Description'] = permission + " by " + $.session.get('Username');
+        UserHistory['Description'] = permission + " by " + $.session.get('AdminUsername');
 
         console.log(UserHistory);
 
