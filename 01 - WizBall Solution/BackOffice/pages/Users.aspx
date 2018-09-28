@@ -112,7 +112,7 @@
                 <div class="col-lg-9 form-group">
                     <div class="col-lg-9 mt-2 col-md-12">
                         <label class="label" for="username">Username</label><br />
-                        <input id="input_edit_username" name="input_edit_username" user_id="0" required="" type="text" />
+                        <input id="input_edit_username" maxlength="50" name="input_edit_username" user_id="0" required="" type="text" />
                     </div>
                     <div class="col-lg-3 mt-2 col-md-12">
                         <label class="label" for="select_edit_status">State</label><br />
@@ -122,7 +122,7 @@
 
                     <div class="col-lg-9 mt-2 col-md-12">
                         <label class="label" for="input_edit_email">E-Mail</label><br />
-                        <input id="input_edit_email" name="input_edit_email" required="" type="email" />
+                        <input id="input_edit_email" maxlength="100" name="input_edit_email" required="" type="email" />
                     </div>
                     <div class="col-lg-3 mt-2 col-md-12">
                         <label class="label" for="input_edit_newsletter">Newsletter</label><br />
