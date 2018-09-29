@@ -5,6 +5,8 @@ var tbl_users = $('#users_table');
 var tbl_users_body = $('#users_table_body');
 var pagination = $('#pg_users_table');
 
+tbl_users.DataTable();
+
 //global functions
 function clearTable(table) {
     table.empty();

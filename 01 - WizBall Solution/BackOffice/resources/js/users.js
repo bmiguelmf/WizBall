@@ -17,6 +17,8 @@
     //vars
     var is_text_area_disabled = true;
     var is_code_changed = false;
+
+    //objects
     var Unedited_user = {};
 
     //functions
@@ -41,6 +43,7 @@
 
     function disableFormTextArea() {
         is_text_area_disabled = true;
+        txt_description.val("");
         txt_description.attr('disabled', 'disabled');
     }
 
@@ -50,8 +53,8 @@
     }
 
     function loadSideBarEffectsScripts() {
-        $.getScript('/resources/js/plugins/classie.js');
-        $.getScript('/resources/js/plugins/sidebar-effects.js');
+        $.getScript('/resources/js/plugins/sidebar/classie.js');
+        $.getScript('/resources/js/plugins/sidebar/sidebar-effects.js');
     }
 
     function checkToggleStatus(status) {
@@ -91,7 +94,6 @@
         Unedited_user['Newsletter'] = Table_user.Newsletter;
         //Unedited_user['Picture'] = Table_user.Picture;
         Unedited_user['Password'] = "user";
-
     }
 
     function GetUsers() {
@@ -227,12 +229,10 @@
     }
 
     function isEquivalent(User1, User2) {
-        // Create arrays of property names
+
         var User1Props = Object.getOwnPropertyNames(User1);
         var User2Props = Object.getOwnPropertyNames(User2);
 
-        // If number of properties is different,
-        // objects are not equivalent
         if (User1Props.length != User2Props.length) {
             return false;
         }
@@ -240,38 +240,9 @@
         for (var i = 0; i < User1Props.length; i++) {
             var prop = User1Props[i];
 
-            // If values of same property are not equal,
-            // objects are not equivalent
-            if (User1Props[prop] !== User2Props[prop]) {
+            if (User1[prop] !== User2[prop]) {
                 return false;
-            } else {
-                if (prop["Username"] !== prop["Username"]) {
-                    return false;
-                }
-                if (User1["Email"] !== User2["Email"]) {
-                    return false;
-                }
-                if (User1["Newsletter"] !== User2["Newsletter"]) {
-                    return false;
-                }
             }
-        }
-
-        // If we made it this far, objects
-        // are considered equivalent
-        return true;
-    }
-
-    function isEquivalentt(User1, User2) {
-
-        if (User1["Username"] !== User2["Username"]) {
-            return false;
-        }
-        if (User1["Email"] !== User2["Email"]) {
-            return false;
-        }
-        if (User1["Newsletter"] !== User2["Newsletter"]) {
-            return false;
         }
 
         return true;
@@ -285,10 +256,101 @@
         }
     }
 
-    //events
+    function validateAndSubmit() {
+        if (!validateForm()) {
+            return;
+        }
+        var User = {};
+        var UserHistory = {};
+        var BeforeUserState = {};
+        var AfterUserState = {};
+        var Admin = {};
+        var user_has_changed = true;
+        var ajax_url = "";
+        var ajax_data = "";
 
+        Admin['Id'] = $.session.get('AdminId') === "" ? 1 : $.session.get('AdminId');
+
+        User['Id'] = input_username.attr('user_id');
+
+        User['Username'] = input_username.val();
+
+        User['Email'] = input_email.val();
+        User['Newsletter'] = toggle_newsletter.prop('checked');
+        User['Password'] = "user";
+
+        UserHistory['Admin'] = Admin;
+
+        BeforeUserState['Id'] = toggle_status.attr('status_id');
+        UserHistory['BeforeState'] = BeforeUserState;
+
+        AfterUserState['Id'] = toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id');
+        UserHistory['AfterState'] = AfterUserState;
+        UserHistory['Description'] = txt_description.val();
+
+        if (userStateHasChanged(txt_description.val())) {
+            ajax_url = "UpdateUserAndUserHistory";
+        } else if (isEquivalent(User, Unedited_user) === false) {
+            ajax_url = "UpdateUser";
+        } else {
+            ajax_url = undefined;
+            user_has_changed = false;
+        }
+
+        //finally add user last field => Picture
+        User['Picture'] = user_photo.attr('src').split("/").pop();
+
+        UserHistory['User'] = User;
+
+        if (ajax_url === "UpdateUser") {
+            ajax_data = "{User: " + JSON.stringify(User) + "}";
+        } else if (ajax_url === "UpdateUserAndUserHistory") {
+            ajax_data = "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}"
+        } else {
+            ajax_data = undefined;
+        }
+
+        //confrimation
+        if (user_has_changed) {
+            swal({
+                title: "Are you sure?",
+                text: "If necessary, you can change this later.",
+                icon: "warning",
+                buttons: true
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "../WebService.asmx/" + ajax_url,
+                            data: ajax_data,
+                            dataType: "json",
+                            success: function (data) {
+                                swal("Success!", "User successfully updated!", "success").then((value) => {
+                                    GetUsers();
+                                    paginateTable(tbl_users, 2);
+                                });
+                            },
+                            error: function (data, status, error) {
+                                swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+                            }
+                        });
+
+
+                    }
+                });
+        } else {
+            swal("Nothing to update...", "", "info");
+        }
+
+
+    }
+
+    //calls
     GetUsers();
 
+    //events
     $('.st-pusher').click(function () {
         is_code_changed = false;
     });
@@ -317,95 +379,8 @@
     });
 
     btn_submit.click(function () {
-        if (!validateForm()) {
-            return;
-        }
-        var User = {};
-        var UserHistory = {};
-        var BeforeUserState = {};
-        var AfterUserState = {};
-        var Admin = {};
-        var user_has_changed = false;
-
-        Admin['Id'] = $.session.get('AdminId') === "" ? 1 : $.session.get('AdminId');
-
-        User['Id'] = input_username.attr('user_id');
-        
-        User['Username'] = input_username.val();
-        
-        User['Email'] = input_email.val();
-        User['Newsletter'] = toggle_newsletter.prop('checked');
-        User['Password'] = "user";
-
-        UserHistory['Admin'] = Admin;
-
-        BeforeUserState['Id'] = toggle_status.attr('status_id');
-        UserHistory['BeforeState'] = BeforeUserState;
-
-        AfterUserState['Id'] = toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id');
-        UserHistory['AfterState'] = AfterUserState;
-
-        if (isEquivalent(User, Unedited_user)) {
-            //se o email, username e newsleter nao mudarem
-            //verifica se o estado mudou
-            user_has_changed = false;
-            if (userStateHasChanged(txt_description.val())) {
-                user_has_changed = true;
-                UserHistory['Description'] = txt_description.val();
-            }
-        } else {
-            user_has_changed = true;
-            if (userStateHasChanged(txt_description.val())) {
-                UserHistory['Description'] = txt_description.val();
-            } else {
-                UserHistory['Description'] = "Edited by " + $.session.get('AdminUsername');
-            }
-        }
-
-        UserHistory['Description'] = txt_description.val();
-
-        //finally add user last field => Picture
-        User['Picture'] = user_photo.attr('src').split("/").pop();
-
-        UserHistory['User'] = User;
-
-        user_has_changed = true;
-        //confrimation
-        swal({
-            title: "Are you sure?",
-            text: "If necessary, you can change this later.",
-            icon: "warning",
-            buttons: true
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    if (user_has_changed) {
-                        $.ajax({
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            url: "../WebService.asmx/UpdateUser",
-                            data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
-                            dataType: "json",
-                            success: function (data) {
-                                swal("Success!", "User successfully updated!", "success").then((value) => {
-                                    GetUsers();
-                                    paginateTable(table, 2);
-                                });
-                            },
-                            error: function (data, status, error) {
-                                swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
-                            }
-                        });
-                    } else {
-                        swal("Nothing to update...", "", "info");
-                    }
-
-                }
-            });
-
-
+        validateAndSubmit();
     });
-
 
     console.log('READY users.js');
 });

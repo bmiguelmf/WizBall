@@ -19,11 +19,11 @@ W<!DOCTYPE html>
     <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
     <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
 
-    <!-- Custom table paging stylesheet -->
+    <!-- Custom paging stylesheet -->
     <link href="/resources/css/pagination.css" rel="stylesheet" />
 
     <!-- Custom toggle stylesheet -->
-    <link href="/resources/css/plugins/bootstrap2-toggle.min.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/toggle/bootstrap2-toggle.min.css" rel="stylesheet" />
 
     <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style_all.css" rel="stylesheet" />
@@ -156,27 +156,27 @@ W<!DOCTYPE html>
     <!-- Scripts Section-->
 
     <!-- JQuery scripts -->
-    <script src="/resources/js/plugins/jquery.min.js"></script>
-    <script src="/resources/js/plugins/jquery-ui.min.js"></script>
+    <script src="/resources/js/plugins/jquery/jquery.min.js"></script>
+    <script src="/resources/js/plugins/jquery/jquery-ui.min.js"></script>
 
     <!-- Custom table paging script -->
-    <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
+    <script src="/resources/js/plugins/pagination/jquery.table.hpaging.min.js"></script>
     
     <!-- Bootstrap script -->
-    <script src="/resources/js/plugins/bootstrap.min.js"></script>
+    <script src="/resources/js/plugins/bootstrap/bootstrap.min.js"></script>
 
     <!-- Custom toggle script -->
-    <script src="/resources/js/plugins/bootstrap2-toggle.min.js"></script>
+    <script src="/resources/js/plugins/toggle/bootstrap2-toggle.min.js"></script>
 
     <!-- Side bar effects scripts -->
-    <script src="/resources/js/plugins/classie.js"></script>
-    <script src="/resources/js/plugins/sidebar-effects.js"></script>
+    <script src="/resources/js/plugins/sidebar/classie.js"></script>
+    <script src="/resources/js/plugins/sidebar/sidebar-effects.js"></script>
 
     <!-- Custom alert script -->
-    <script src="/resources/js/plugins/sweetalert.min.js"></script>
+    <script src="/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
 
     <!-- JQuery session script -->
-    <script src="/resources/js/plugins/jquery.session.js"></script>
+    <script src="/resources/js/plugins/jquery/jquery.session.js"></script>
 
     <!-- General script -->
     <script src="/resources/js/general.js"></script>
