@@ -9,24 +9,17 @@ var pagination = $('#pg_users_table');
 //global functions
 function clearTable(table) {
     table.empty();
-    pagination.empty();
 }
 
 function paginateTable(table, limit) {
-    table.hpaging({
-        "limit": limit
+    //table.hpaging({
+    //    "limit": limit
+    //});
+
+    table.dataTable({
+        "pageLength": 5
     });
 }
-
-var container = $(this);
-
-
-
-$('#teste').click(function () {
-    $('.pagination > a').remove();
-});
-
-
 
 //document ready
 $(document).ready(function () {

@@ -72,6 +72,7 @@
     <Content Include="pages\DataManagment.aspx" />
     <Content Include="pages\Newsletter.aspx" />
     <Content Include="pages\UserRequests.aspx" />
+    <Content Include="resources\css\data-table.css" />
     <Content Include="resources\css\fonts.css" />
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\css\pagination.css" />
@@ -81,7 +82,8 @@
     <Content Include="resources\css\slide.css" />
     <Content Include="resources\js\plugins\notification\bootstrap-notify.js" />
     <Content Include="resources\js\plugins\bootstrap\bootstrap-select.min.js" />
-    <Content Include="resources\js\plugins\pagination\pagination.js" />
+    <Content Include="resources\js\plugins\pagination\data-table-options.js" />
+    <Content Include="resources\js\plugins\pagination\data-tables.js" />
     <Content Include="resources\js\plugins\sidebar\classie.js" />
     <Content Include="resources\js\plugins\toggle\bootstrap2-toggle.min.js" />
     <Content Include="resources\js\plugins\sweetalert\sweetalert.min.js" />

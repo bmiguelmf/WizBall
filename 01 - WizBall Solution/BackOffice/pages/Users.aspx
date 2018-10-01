@@ -28,6 +28,7 @@
 
     <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style_all.css" rel="stylesheet" />
+    <link href="/resources/css/data-table.css" rel="stylesheet" />
 
 
 </head>
@@ -107,7 +108,7 @@
                         </label>
 
                         <input id="photo" name="photo" type="file" />
-                        <input hidden="hidden" id="photo_nme" value=""/>
+                        <input hidden="hidden" id="photo_nme" value="" />
                     </div>
                 </div>
                 <div class="col-lg-9 form-group">
@@ -210,11 +211,10 @@
                                             <th style="width: 10%;">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="users_table_body">
-                                    </tbody>
-                                    <tfoot id="users_table_foot">
-                                        <button type="button" id="teste">tou</button>
-                                    </tfoot>
+                                        <tbody id="users_table_body" class="data-scroll">
+
+                                        </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -233,7 +233,9 @@
     <script src="/resources/js/plugins/jquery/jquery-ui.min.js"></script>
 
     <!-- Custom table paging script -->
-    <script src="/resources/js/plugins/pagination/jquery.table.hpaging.min.js"></script>
+    <%--<script src="/resources/js/plugins/pagination/jquery.table.hpaging.min.js"></script>--%>
+    <script src="/resources/js/plugins/pagination/data-table-options.js"></script>
+    <script src="/resources/js/plugins/pagination/data-tables.js"></script>
 
     <!-- Bootstrap script -->
     <script src="/resources/js/plugins/bootstrap/bootstrap.min.js"></script>

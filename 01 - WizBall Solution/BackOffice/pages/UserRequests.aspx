@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserRequests.aspx.cs" Inherits="BackOffice.pages.UserRequests" %>
 
-W<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -27,6 +27,7 @@ W<!DOCTYPE html>
 
     <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style_all.css" rel="stylesheet" />
+    <link href="/resources/css/data-table.css" rel="stylesheet" />
 
 
 </head>
@@ -160,7 +161,7 @@ W<!DOCTYPE html>
     <script src="/resources/js/plugins/jquery/jquery-ui.min.js"></script>
 
     <!-- Custom table paging script -->
-    <script src="/resources/js/plugins/pagination/jquery.table.hpaging.min.js"></script>
+    <%--<script src="/resources/js/plugins/pagination/data-tables.js"></script>--%>
     
     <!-- Bootstrap script -->
     <script src="/resources/js/plugins/bootstrap/bootstrap.min.js"></script>
