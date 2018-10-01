@@ -81,6 +81,7 @@
     <Content Include="resources\css\slide.css" />
     <Content Include="resources\js\plugins\notification\bootstrap-notify.js" />
     <Content Include="resources\js\plugins\bootstrap\bootstrap-select.min.js" />
+    <Content Include="resources\js\plugins\pagination\pagination.js" />
     <Content Include="resources\js\plugins\sidebar\classie.js" />
     <Content Include="resources\js\plugins\toggle\bootstrap2-toggle.min.js" />
     <Content Include="resources\js\plugins\sweetalert\sweetalert.min.js" />

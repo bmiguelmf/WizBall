@@ -212,6 +212,9 @@
                                     </thead>
                                     <tbody id="users_table_body">
                                     </tbody>
+                                    <tfoot id="users_table_foot">
+                                        <button type="button" id="teste">tou</button>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>

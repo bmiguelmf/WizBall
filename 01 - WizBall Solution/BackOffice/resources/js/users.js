@@ -334,8 +334,6 @@
             ajax_data = undefined;
         }
 
-        console.log(User);
-
         //confrimation
         if (user_has_changed) {
             swal({

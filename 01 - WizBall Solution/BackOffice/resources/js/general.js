@@ -3,9 +3,8 @@
 //global html elements
 var tbl_users = $('#users_table');
 var tbl_users_body = $('#users_table_body');
+var users_table_foot = $('#users_table_foot');
 var pagination = $('#pg_users_table');
-
-tbl_users.DataTable();
 
 //global functions
 function clearTable(table) {
@@ -18,6 +17,14 @@ function paginateTable(table, limit) {
         "limit": limit
     });
 }
+
+var container = $(this);
+
+
+
+$('#teste').click(function () {
+    $('.pagination > a').remove();
+});
 
 
 
