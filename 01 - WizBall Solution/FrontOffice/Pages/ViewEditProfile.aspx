@@ -4,14 +4,119 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Wizball</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../Public/Imgs/Wizball/logo_dark_ico.ico" />
+
+    <!-- jQuery -->
+    <script src="../Public/jQuery/jQuery.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <link href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
+
+    <!-- Fontawesome -->
+    <link href="../Public/Fontawesome/css/all.min.css" rel="stylesheet" />
+
+    <!-- ViewRegistration CSS Styling -->
+    <link href="/Public/Styling/ViewEditProfile.css" rel="stylesheet" />
+
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        
+        <!-- Background Img -->
+        <div id="background">
+        </div>
 
+        <!-- Registration form -->
+        <div class="form-wrapper">
+
+            <div class="form-header">
+                
+                <a title="Home" href="/Pages/ViewHome.aspx"><img src="../Public/Imgs/Wizball/logo_dark.png" /></a>
+              
+            </div>
+           
+            <div class="form-body">
+
+                <h5  runat="server">Edit profile</h5>
+                <hr />
+
+                <div class="form-user-picture">
+                     
+                    <asp:Image ID="imgUserPic" runat="server" />
+
+                    <input type="file" id="fileuploadUserPicture" runat="server" accept="image/png, image/jpeg, image/ico"/>
+                    
+                    <div class="customFileUpload">
+                        <button type="button" id="btnCustomFileUpload"><i class="fas fa-upload" ></i> Upload your avatar</button>
+                    </div>
+                              
+                </div>
+                
+                 <div class="form-groups">
+                    <asp:Label ID="lblNewsLetter" CssClass="form-imputs-labels" runat="server" Text="News Letter" AssociatedControlID="cbNewsLetter"></asp:Label>
+                     <asp:CheckBox ID="cbNewsLetter" runat="server" />
+                </div>
+
+                <div class="form-groups">
+                    <asp:Label ID="lblUsername" CssClass="form-imputs-labels" runat="server" Text="Username" AssociatedControlID="txtUsername"></asp:Label>
+                    <asp:TextBox ID="txtUsername" CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Username"></asp:TextBox>
+                    <span class="status" style="color: orange"><small id="usernameStatus"></small></span>
+                </div>
+
+                <div class="form-groups">
+                    <asp:Label ID="lblEmail" CssClass="form-imputs-labels" runat="server" Text="Email" AssociatedControlID="txtEmail"></asp:Label>
+                    <asp:TextBox ID="txtEmail"  CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Email" TextMode="Email"></asp:TextBox>
+                    <span class="status" style="color: orange"><small id="emailStatus"></small></span>
+                </div>
+
+                <div class="form-groups">
+                    <asp:Label ID="lblPassword" CssClass="form-imputs-labels" runat="server" Text="Password" AssociatedControlID="txtPassword"></asp:Label>
+                    <asp:TextBox ID="txtPassword" CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+                    <span class="status" style="color: orange"><small id="passwordStatus"></small></span>
+                </div>
+                
+
+               <asp:Button ID="btnSubmit" CssClass="btn btn-success form-submit" runat="server" Text="Submit" OnClientClick="return IsFormValid();" />
+                            
+            </div>
+            
+        </div>
+
+         
+        
+        <div id="outter-modal" class="outter-modal">
+
+            <div id="inner-modal">
+
+                <div id="modal-header">
+                    <a href="/Pages/ViewHome.aspx"><img id="modal-logo" src="/Public/Imgs/Wizball/logo_dark.png" /></a>
+                    <i   id="modal-close" class="fas fa-times-circle fa-lg"></i>
+                </div>
+
+               
+                <div id="modal-message">
+                    <h3 id="modal-primary-message">Thank you for your registration</h3>
+                    <h5 id="modal-secondary-message">Please check your email for more information</h5>                   
+                </div>
+               
+                <div id="modal-footer">
+                    <h6 id="modal-counter-message">back to home... <span id="modal-counter">20</span></h6>
+                </div>
+                
+            </div>
 
         </div>
+
+
+
+        <!-- Javascript -->
+        <script src="/Public/Javascript/ViewEditProfile.js"></script>
+
     </form>
 </body>
 </html>

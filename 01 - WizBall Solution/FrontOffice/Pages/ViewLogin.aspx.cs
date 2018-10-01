@@ -42,6 +42,7 @@ namespace FrontOffice.Pages
             // Form validation.
             if(!UsernameValidation() || !PasswordValidation())
             {
+                txtHeader.Style.Value = "color:orange;";
                 txtHeader.InnerText = "Invalid username and/or password";
                 return;
             }
@@ -54,6 +55,7 @@ namespace FrontOffice.Pages
             // Checks login result.
             if(user is null)
             {
+                txtHeader.Style.Value = "color:orange;";
                 txtHeader.InnerText = "Login not found";
             }
             else
