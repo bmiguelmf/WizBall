@@ -48,40 +48,60 @@
                 <div class="form-user-picture">
                      
                     <asp:Image ID="imgUserPic" runat="server" />
-
-                    <input type="file" id="fileuploadUserPicture" runat="server" accept="image/png, image/jpeg, image/ico"/>
+                    <input type="file" id="fileuploadUserPicture" name="userPicture"  runat="server"/>
                     
                     <div class="customFileUpload">
                         <button type="button" id="btnCustomFileUpload"><i class="fas fa-upload" ></i> Upload your avatar</button>
+                        <p id="upload-status"></p>
                     </div>
-                              
+                    
                 </div>
                 
-                 <div class="form-groups">
-                    <asp:Label ID="lblNewsLetter" CssClass="form-imputs-labels" runat="server" Text="News Letter" AssociatedControlID="cbNewsLetter"></asp:Label>
-                     <asp:CheckBox ID="cbNewsLetter" runat="server" />
-                </div>
+               
 
                 <div class="form-groups">
-                    <asp:Label ID="lblUsername" CssClass="form-imputs-labels" runat="server" Text="Username" AssociatedControlID="txtUsername"></asp:Label>
-                    <asp:TextBox ID="txtUsername" CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Username"></asp:TextBox>
-                    <span class="status" style="color: orange"><small id="usernameStatus"></small></span>
-                </div>
-
-                <div class="form-groups">
-                    <asp:Label ID="lblEmail" CssClass="form-imputs-labels" runat="server" Text="Email" AssociatedControlID="txtEmail"></asp:Label>
+                    <div class="sub-groups">
+                         <asp:Label ID="lblUsername" CssClass="form-imputs-labels" runat="server" Text="Username" AssociatedControlID="txtUsername"></asp:Label>
+                        <asp:TextBox ID="txtUsername" CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Username"></asp:TextBox>
+                        <span class="status" style="color: orange"><small id="usernameStatus"></small></span>
+                    </div>
+                    <div class="sub-groups">
+                        <asp:Label ID="lblEmail" CssClass="form-imputs-labels" runat="server" Text="Email" AssociatedControlID="txtEmail"></asp:Label>
                     <asp:TextBox ID="txtEmail"  CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Email" TextMode="Email"></asp:TextBox>
                     <span class="status" style="color: orange"><small id="emailStatus"></small></span>
+                    </div>
+                   
                 </div>
 
                 <div class="form-groups">
-                    <asp:Label ID="lblPassword" CssClass="form-imputs-labels" runat="server" Text="Password" AssociatedControlID="txtPassword"></asp:Label>
-                    <asp:TextBox ID="txtPassword" CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
-                    <span class="status" style="color: orange"><small id="passwordStatus"></small></span>
+                    <div class="sub-groups">
+                        <asp:Label ID="lblPassword" CssClass="form-imputs-labels" runat="server" Text="New password" AssociatedControlID="txtPassword"></asp:Label>
+                        <asp:TextBox ID="txtPassword" CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+                        <span class="status" style="color: orange"><small id="passwordStatus"></small></span>
+                    </div>
+                    <div class="sub-groups">
+                       <asp:Label ID="lblPasswordTwo" CssClass="form-imputs-labels" runat="server" Text="Retype password" AssociatedControlID="txtPasswordTwo"></asp:Label>
+                        <asp:TextBox ID="txtPasswordTwo" CssClass="form-inputs form-control form-control-sm"  runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+                        <span class="status" style="color: orange"><small id="passwordStatusTwo"></small></span>
+                    </div>
                 </div>
+              
+
+                
                 
 
-               <asp:Button ID="btnSubmit" CssClass="btn btn-success form-submit" runat="server" Text="Submit" OnClientClick="return IsFormValid();" />
+                 <div class="form-checkbox">
+                     <div class="form-check">
+                        <label class="form-check-label">
+                            <input id="cbNewsLetter"  class="form-check-input" type="checkbox" runat="server" />
+                                Subscribe newsletter
+                        </label>
+                    </div>
+
+                </div>
+
+
+               <button type="button" id="btnSubmit" class="btn btn-success form-submit" onclick="IsFormValid();" >Submit</button>
                             
             </div>
             
@@ -89,23 +109,30 @@
 
          
         
+        <!-- Modal update profile confirmation -->
         <div id="outter-modal" class="outter-modal">
 
             <div id="inner-modal">
 
                 <div id="modal-header">
-                    <a href="/Pages/ViewHome.aspx"><img id="modal-logo" src="/Public/Imgs/Wizball/logo_dark.png" /></a>
-                    <i   id="modal-close" class="fas fa-times-circle fa-lg"></i>
+                    <a href="/Pages/ViewHome.aspx">
+                        <img id="modal-logo" src="/Public/Imgs/Wizball/logo_dark.png" />
+                    </a>
                 </div>
 
-               
+
                 <div id="modal-message">
-                    <h3 id="modal-primary-message">Thank you for your registration</h3>
-                    <h5 id="modal-secondary-message">Please check your email for more information</h5>                   
+                    <p id="modal-primary-message">Update confirmation</p>
+                    <input type="password" id="currentPassword" placeholder="Current password" class="form-control form-control-sm" />
+                    <span class="currentPasswordStatus" style="color: orange"><small id="currentPasswordStatus"></small></span>
                 </div>
-               
+
+                
                 <div id="modal-footer">
-                    <h6 id="modal-counter-message">back to home... <span id="modal-counter">20</span></h6>
+     
+                    <button type="button" id="btnModalCancel" class="btn btn-danger btn-sm modal-btn"><i class="fas fa-undo"></i> Cancel</button>        
+                    <button type="submit" id="btnModalConfirm" class="btn btn-success btn-sm modal-btn" onclick="return passwordValitation();"><i class="fas fa-check"></i> Confirm</button>
+               
                 </div>
                 
             </div>

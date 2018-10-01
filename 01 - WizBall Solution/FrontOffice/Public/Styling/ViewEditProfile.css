@@ -16,7 +16,6 @@ form {
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 
@@ -24,7 +23,6 @@ form {
     width: 60%;
     min-width: 320px;
 }
-
 .form-header {
     display: flex;
     justify-content: space-between;
@@ -33,7 +31,6 @@ form {
     width: 100%;
     background-color: #fff;
 }
-
 .form-header img {
     height: 50px;
 }
@@ -48,8 +45,6 @@ form {
     background-color: #444;
     padding: 40px;
 }
-
-
 .form-body h5 {
     color: yellowgreen;
     align-self: flex-end;
@@ -65,30 +60,39 @@ hr {
 
 .form-user-picture{
     display: flex;
-    flex-direction:column;
-    justify-content:space-between;
     align-items:center;
+    justify-content:flex-start;
+    width:100%;
+    margin-bottom:40px;
 }
 #imgUserPic{
-    height:200px;
+    height:100px;
 }
+
 
 #fileuploadUserPicture{
     display:none;
 }
 .customFileUpload {
-    padding: 10px;
+    padding: 0 30px;
 }
-
+.customFileUpload #upload-status {
+    font-size:11px;
+    color:orange;
+}
 #btnCustomFileUpload {
     background-color: transparent;
     border: none;
     color: yellowgreen;
     font-size: 12px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
+
+
 .form-groups {
+    display:flex;
+    justify-content:space-between;
     width: 100%;
     margin-bottom: 25px;
     height: 80px;
@@ -106,6 +110,23 @@ hr {
     display: inline-block;
 }
 
+.sub-groups {
+
+    width:48%;
+}
+
+
+.form-checkbox {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+}
+.form-check-label {
+    color:yellowgreen;
+    font-size:15px;
+
+}
+
 
 .form-submit {
     margin-top: 30px;
@@ -119,24 +140,24 @@ hr {
 
 
 
+/* MODAL UPDATE CONFIRMATION */
 #outter-modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 20vh; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
-
 #inner-modal {
     background-color: #fff;
     margin: auto;
     padding: 25px;
     border: 1px solid #888;
-    width: 30%;
+    width: 70%;
     border-radius: 4px;
 }
 
@@ -148,51 +169,45 @@ hr {
     background-color: #fff;
     padding-bottom: 6px;
 }
-
 #modal-logo {
-    height: 30px;
+    height: 25px;
 }
-
-#modal-close {
-    color: yellowgreen;
-}
-
-    #modal-close:hover,
-    #modal-close:focus {
-        color: orange;
-        cursor: pointer;
-    }
 
 
 #modal-message {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    padding: 50px;
+    padding: 20px;
 }
-
 #modal-primary-message {
+    font-size: 11px;
     text-align: center;
+    margin: 0;
+    padding: 20px 0;
 }
 
-#modal-secondary-message {
-    margin-top: 20px;
-    text-align: center;
-}
 
 #modal-footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
-    margin-top: 6px;
 }
-
-#modal-counter-message {
-    margin: 0px;
+.modal-btn {
+    width: 100px;
+    min-width: 70px;
+    margin: 30px 15px 0 15px;
+    color: white !important;
+    font-size: 10px;
 }
+/* MODAL UPDATE CONFIRMATION */
 
 
 @media only screen and (min-width:960px) {
+
+    /* Prevents form from beeing cutted when in small devices. */
+    form {
+        align-items: center;
+    }
 
     #background {
         position: absolute;
@@ -204,4 +219,63 @@ hr {
         background-size: cover;
         opacity: 0.5;
     }
+
+
+
+    /* MODAL LOGOUT */
+    #inner-modal {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        width: 40%;
+        border-radius: 4px;
+    }
+
+
+    #modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding-bottom: 6px;
+    }
+    #modal-logo {
+        height: 30px;
+    }
+
+
+    #modal-message {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        padding: 15px;
+    }
+    #modal-primary-message {
+        font-size: 24px;
+        text-align: center;
+        margin: 0;
+        padding: 50px 0;
+    }
+
+
+    #modal-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-btn {
+        width: 200px;
+        min-width: 100px;
+        margin: 30px 30px 0 30px;
+        color: white !important;
+        font-size: 15px;
+    }
+    /* MODAL LOGOUT */
 }
+
+
+
+
+
+    

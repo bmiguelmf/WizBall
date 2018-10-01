@@ -19,8 +19,6 @@ namespace FrontOffice
             return user is null ? false : true;
         }
 
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             SetupUserPanel();

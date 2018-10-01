@@ -16,12 +16,6 @@ namespace FrontOffice.Pages
 
         private bool IsUserLoggedIn()
         {
-            // Get songoku for test porpuses.
-
-            User u = bll.UserLogin("songoku", "06121984");
-
-            Session["User"] = u;
-
             User user = Session["User"] as User;
 
             return user is null ? false : true;
@@ -29,20 +23,55 @@ namespace FrontOffice.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsUserLoggedIn())
+            {
+                Page.Response.Redirect("/Pages/ViewHome.aspx");
+            }
+
             bll = new Globals().CreateBll();
-            IsUserLoggedIn();
-            PrepareForm();
 
-            //if(!IsUserLoggedIn())
-            //{
-            //    Page.Response.Redirect("/Pages/ViewHome.aspx");
-            //}
+            if (!IsPostBack)
+            {
+                PrepareForm();
+            }
+            else
+            {
+                User user = Session["User"] as User;
 
-            //if (!IsPostBack)
-            //{
-            //    bll = new Globals().CreateBll();
-            //    PrepareForm();
-            //}      
+                user.Username = txtUsername.Text;
+                user.Email = txtEmail.Text;
+                user.Password = txtPassword.Text.Length > 0 ? txtPassword.Text : user.Password;
+                user.Newsletter = cbNewsLetter.Checked;           
+                if (Request.Files[0] != null)
+                {
+                    HttpPostedFile userPic = Request.Files[0];
+
+                    if (userPic.ContentLength > 0)
+                    {      
+                        if(userPic.ContentLength < 512001)
+                        {
+                            user.Picture = userPic.FileName;
+
+                            string FileName = userPic.FileName;
+
+                            int FileSize = userPic.ContentLength;
+
+                            byte[] FileByteArray = new byte[FileSize];
+
+                            userPic.InputStream.Read(FileByteArray, 0, FileSize);
+
+                            string path = Server.MapPath("~") + Globals.USERS + FileName;
+
+                            userPic.SaveAs(path);
+                        }                      
+                    }                  
+                }
+
+
+                bll.UpdateUser(user);
+
+                imgUserPic.ImageUrl = Globals.USERS + user.Picture;
+            }
         }
 
 
@@ -51,12 +80,10 @@ namespace FrontOffice.Pages
             User user = Session["User"] as User;
 
             imgUserPic.ImageUrl = Globals.USERS + user.Picture;             // Set user picture.
-   
-
-            txtUsername.Text    = user.Username;
-            txtEmail.Text       = user.Email;
-
-            txtPassword.Text = user.Password;
+            txtUsername.Text        = user.Username;
+            txtEmail.Text           = user.Email;
+            cbNewsLetter.Checked    = user.Newsletter;
+            txtPassword.Text        = user.Password;
         }
     }
 }

@@ -165,7 +165,7 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 
 
 
-/* SCREENS BIGGER THAN 1060px */
+/* SCREENS BIGGER THAN 960px */
 @media only screen and (min-width:960px) {
 
 #background {
