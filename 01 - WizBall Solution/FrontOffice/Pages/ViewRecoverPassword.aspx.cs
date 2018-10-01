@@ -4,35 +4,54 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BusinessLogic.BLL;
+using BusinessLogic.Entities;
 using FrontOffice.Resources;
 
 namespace FrontOffice.Pages
 {
     public partial class ViewRecoverPassword2 : System.Web.UI.Page
     {
+        BLL bll;
+
+        private bool IsUserLoggedIn()
+        {
+            User user = Session["User"] as User;
+
+            return user is null ? false : true;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if(!IsPostBack)                                                                 // Primeiro pedido
+            if(IsUserLoggedIn())                                                            // If user is logged in then cant access this page.
+            {           
+                Page.Response.Redirect("/Pages/ViewHome.aspx");                             // Go home instead.
+            }
+
+            if(!IsPostBack)                                                                 // First call.
             {
-                Session["antiXeats"] = true;
+                Session["antiXeats"] = true;                                                // Sets antiXeats true (Flag to prevent malicious user behavior).
             }   
-            else if (IsPostBack && (bool)Session["antiXeats"])                              // Postback passou pelas validações js então é porque é para tentar recuperar pass
+            else if (IsPostBack && (bool)Session["antiXeats"])                              // Post back and antiXeats true.
             {
-                bool result = new Globals().CreateBll().UserMailExists(txtEmail.Text);
+                bll = new Globals().CreateBll();
 
-                if (result)
+                bool isEmailInDB = bll.UserMailExists(txtEmail.Text);                       // Tries to get email from the database.
+
+                if (isEmailInDB)                                                            // If success.
                 {
-                    emailStatus.InnerText = "";
-                    title.InnerText = "Email found";
+                    bll.RecoverUserPassword(txtEmail.Text);                                 // Send email to user with account information.
 
-                    Session["antiXeats"] = false;
+                    emailStatus.InnerText = "";                                             // Reset possible notifications.                                 
+
+                    Session["antiXeats"] = false;                                           // change flag antiXeats state.
 
                     Page.ClientScript.RegisterStartupScript(GetType(), "recoverPasswordConfirmation", "recoverPasswordConfirmation()", true);
+
                 }
                 else
                 {
-                    emailStatus.InnerText = "Email not found";  
+                    emailStatus.InnerText = "Email not found";                              // Alerts user.
                 }
             }
             else

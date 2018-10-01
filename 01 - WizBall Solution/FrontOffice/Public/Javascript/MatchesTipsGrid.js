@@ -1,6 +1,8 @@
 ﻿// Window resize.
 window.addEventListener("resize", setMatchesTipsGridHeight);
 
+var scrollableHeigth = $("#grid-body-scrollable").height();
+
 function setMatchesTipsGridHeight() {
 
     // windows height.
@@ -16,18 +18,18 @@ function setMatchesTipsGridHeight() {
     while (freeHeight % 30 !== 0) {
         freeHeight--;
     }
-    
-    //var scrollableHeigth = $("#grid-body-scrollable").height();
 
     if (window.innerWidth >= 960) {
-        //if (scrollableHeigth < freeHeight) {
-        //    document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + scrollableHeigth + "px;");
-        //}
-        //else {
+        if (scrollableHeigth < freeHeight) {
+            document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + scrollableHeigth + "px;");
+            var fds = (freeHeight - scrollableHeigth - 30) / 2;
+            document.getElementById("grid").setAttribute("style", "margin-top:" + fds + "px;");
+        }
+        else {
             document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + freeHeight + "px;");
-        //}
-        
+        }
     }
+    
     else {
         document.getElementById("grid-body-scrollable").setAttribute("style", "height: auto");
     }

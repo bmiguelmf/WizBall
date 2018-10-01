@@ -58,6 +58,16 @@ namespace FrontOffice.Pages
                 txtHeader.Style.Value = "color:orange;";
                 txtHeader.InnerText = "Login not found";
             }
+            else if (user.CurrentUserHistory.AfterState.Id == 1)
+            {
+                txtHeader.Style.Value = "color:orange;";
+                txtHeader.InnerText = "Your account is waiting for admin approval";
+            }
+            else if (user.CurrentUserHistory.AfterState.Id == 11)
+            {
+                txtHeader.Style.Value = "color:orange;";
+                txtHeader.InnerText = "Account blocked";                
+            }
             else
             {
                 Session["User"] = user;

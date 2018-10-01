@@ -12,7 +12,7 @@ document.getElementById("humburger").addEventListener("click", function () {
 // The logout desktop btn only exists if the user has login, because its a dynamically generated btn (a).
 var desktoBtnLogout = document.getElementById("logout");
 var desktoBtnLogoutt = document.getElementById("logoutt");
-if (desktoBtnLogout != null) {
+if (desktoBtnLogout !== null) {
 
     desktoBtnLogout.addEventListener("click", function () {
         document.getElementById("outter-modal").style.display = "block";
