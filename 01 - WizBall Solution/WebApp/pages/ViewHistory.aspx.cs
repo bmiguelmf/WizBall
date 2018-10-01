@@ -82,7 +82,7 @@ namespace WebApp.pages
 
             placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
 
-            /*if (AllCompsCB.Checked)
+            if (AllCompsCB.Checked)
             {
                 foreach (Competition comp in bll.TierOneCompetitions())
                 {
@@ -98,8 +98,8 @@ namespace WebApp.pages
                 foreach (RepeaterItem i in compRep.Items)
                 {
                     //Retrieve the state of the CheckBox
-                    CheckBox cb = (CheckBox)i.FindControl("CompCB");
-                    if (cb.Checked)
+                    //CheckBox cb = (CheckBox)i.FindControl("CompCB");
+                    if (AllCompsCB.Checked)
                     {
                         //Retrieve the value associated with that CheckBox
                         HiddenField hiddenComp = (HiddenField)i.FindControl("HidFieldComp");
@@ -109,7 +109,7 @@ namespace WebApp.pages
                         matchesTipsGrid = new HistoryTipsGrid(matches);
                     }
                 }
-            }*/
+            }
         }
     }
 }

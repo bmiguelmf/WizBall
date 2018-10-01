@@ -22,26 +22,14 @@
 
         </asp:Panel>
     </div>
-    <asp:CheckBox Text="All Competitions" ID="AllCompsCB" ClientIDMode="Static" name="AllCompsCB" runat="server" />
-        <div class="row">
-                <div class="form-group">
-                    <div class="col-md-3">
-                        <label class="btn btn-primary">
-                            <img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Running.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label>
-                    </div>
-                </div>
-
-        </div>
-        <asp:Repeater ID="compRep" runat="server">
-            <ItemTemplate>
-                <asp:HiddenField Value='<%# DataBinder.Eval(Container.DataItem, "Id") %>' ID='HidFieldComp' runat="server" />
-                <asp:CheckBox value='<%# DataBinder.Eval(Container.DataItem, "Id")%>' ID='ckBtn' runat="server" />
-                <asp:Label Text='<%# DataBinder.Eval(Container.DataItem, "Name") %>' for='ckBtn' runat="server" />
-                <span class="glyphicon glyphicon-ok glyphicon-lg"></span>
-                <h5><%# DataBinder.Eval(Container.DataItem, "Name") %></h5>
-            </ItemTemplate>
-        </asp:Repeater>
-
+    <asp:CheckBox ID="AllCompsCB" ClientIDMode="Static" name="AllCompsCB" runat="server" />
+    <asp:Repeater ID="compRep" runat="server">
+        <ItemTemplate>
+            <asp:HiddenField Value='<%# DataBinder.Eval(Container.DataItem, "Id") %>' ID='HidFieldComp' runat="server" />
+            <asp:CheckBox value='<%# DataBinder.Eval(Container.DataItem, "Id")%>' ID='ckBtn' runat="server" />
+            
+        </ItemTemplate>
+    </asp:Repeater>
 
     <asp:PlaceHolder ID="placeHolderHistoryTips" runat="server"></asp:PlaceHolder>
 
