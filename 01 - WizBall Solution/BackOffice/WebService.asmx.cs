@@ -52,7 +52,7 @@ namespace BackOffice
             return bll.UpdateUser(User);
         }
         [WebMethod]
-        public bool UpdateUser(User User, UserHistory UserHistory)
+        public bool UpdateUserAndUserHistory(User User, UserHistory UserHistory)
         {
             if (User is null)
                 return false;

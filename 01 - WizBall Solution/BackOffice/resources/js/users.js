@@ -11,12 +11,16 @@
     var txt_description = $('#txt_edit_description');
     var input_username = $('#input_edit_username');
     var input_email = $('#input_edit_email');
+    var user_photo_input = $('#photo');
     var user_photo = $('#user_photo');
+    var photo_real_name = $('#photo_nme');
     var old_description = $('#old_description');
 
     //vars
     var is_text_area_disabled = true;
     var is_code_changed = false;
+
+    //objects
     var Unedited_user = {};
 
     //functions
@@ -27,6 +31,8 @@
     }
 
     function clearForm() {
+        photo_real_name.val("");
+        user_photo.attr("src", "/resources/imgs/users/");
         input_username.val("");
         input_email.val("");
         txt_description.val("");
@@ -34,8 +40,31 @@
         error.find('.message').text("");
     }
 
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+
+    function loadImage(e) {
+        user_photo.attr('src', e.target.result);
+    };
+
+    user_photo_input.change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = loadImage;
+            reader.readAsDataURL(this.files[0]);
+
+            // This is what you should do
+            photo_real_name.val("");
+            photo_real_name.val(this.files[0].name);
+            console.log(photo_real_name.val());
+        }
+    });
+
     function disableFormTextArea() {
         is_text_area_disabled = true;
+        txt_description.val("");
         txt_description.attr('disabled', 'disabled');
     }
 
@@ -45,8 +74,8 @@
     }
 
     function loadSideBarEffectsScripts() {
-        $.getScript('/resources/js/plugins/classie.js');
-        $.getScript('/resources/js/plugins/sidebar-effects.js');
+        $.getScript('/resources/js/plugins/sidebar/classie.js');
+        $.getScript('/resources/js/plugins/sidebar/sidebar-effects.js');
     }
 
     function checkToggleStatus(status) {
@@ -84,9 +113,8 @@
         Unedited_user['Username'] = Table_user.Username;
         Unedited_user['Email'] = Table_user.Email;
         Unedited_user['Newsletter'] = Table_user.Newsletter;
-        //Unedited_user['Picture'] = Table_user.Picture;
+        Unedited_user['Picture'] = Table_user.Picture;
         Unedited_user['Password'] = "user";
-
     }
 
     function GetUsers() {
@@ -103,7 +131,7 @@
                     $.each(data.d, function (index, value) {
                         if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
                             ran_if = true;
-                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
+                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
                         }
                     });
                     if (ran_if === true) {
@@ -145,7 +173,8 @@
             success: function (data) {
                 clearForm();
                 if (data.d !== null) {
-                    //user_photo.attr('src', data.d.Picture);
+                    user_photo.attr('src', '/resources/imgs/users/' + data.d.Picture);
+                    photo_real_name.val(data.d.Picture);
                     feedUneditedUser(data.d);
                     input_username.val(data.d.Username);
                     input_username.attr('user_id', data.d.Id);
@@ -171,14 +200,33 @@
         if (input_username.val() === "") {
             input_username.closest(".form-group").addClass("has-error");
             error.fadeIn();
-            error.find('.message').text("Please, fill in the username field.");
+            error.find('.message').text("Please fill in the username field.");
             validated = false;
         }
+        if (input_username.val().length > 50) {
+            input_username.closest(".form-group").addClass("has-error");
+            error.fadeIn();
+            error.find('.message').text("The username must be less than 50 characters.");
+            validated = false;
+        }
+
 
         if (input_email.val() === "") {
             input_email.closest(".form-group").addClass("has-error");
             error.fadeIn();
-            error.find('.message').text("Please, fill in the e-mail field.");
+            error.find('.message').text("Please fill in the e-mail field.");
+            validated = false;
+        }
+        if (!isEmail(input_email.val())) {
+            input_email.closest(".form-group").addClass("has-error");
+            error.fadeIn();
+            error.find('.message').text("Please input a valid email.");
+            validated = false;
+        }
+        if (input_email.val().length > 100) {
+            input_username.closest(".form-group").addClass("has-error");
+            error.fadeIn();
+            error.find('.message').text("The email must be less than 100 characters.");
             validated = false;
         }
 
@@ -186,7 +234,7 @@
             if (txt_description.val() === "") {
                 txt_description.closest(".form-group").addClass("has-error");
                 error.fadeIn();
-                error.find('.message').text("Please, fill in the description field.");
+                error.find('.message').text("Please fill in the description field.");
                 validated = false;
             }
         }
@@ -202,56 +250,25 @@
         return validated;
     }
 
-    //function isEquivalentt(User1, User2) {
-    //    // Create arrays of property names
-    //    var User1Props = Object.getOwnPropertyNames(User1);
-    //    var User2Props = Object.getOwnPropertyNames(User2);
+    function isEquivalent(User1, User2) {
 
-    //    // If number of properties is different,
-    //    // objects are not equivalent
-    //    if (User1Props.length != User2Props.length) {
-    //        return false;
-    //    }
+        var User1Props = Object.getOwnPropertyNames(User1);
+        var User2Props = Object.getOwnPropertyNames(User2);
 
-    //    for (var i = 0; i < User1Props.length; i++) {
-    //        var prop = User1Props[i];
+        if (User1Props.length != User2Props.length) {
+            return false;
+        }
 
-    //        // If values of same property are not equal,
-    //        // objects are not equivalent
-    //        if (User1Props[prop] !== User2Props[prop]) {
-    //            return false;
-    //        } else {
-    //            if (prop["Username"] !== prop["Username"]) {
-    //                return false;
-    //            }
-    //            if (User1["Email"] !== User2["Email"]) {
-    //                return false;
-    //            }
-    //            if (User1["Newsletter"] !== User2["Newsletter"]) {
-    //                return false;
-    //            }
-    //        }
-    //    }
+        for (var i = 0; i < User1Props.length; i++) {
+            var prop = User1Props[i];
 
-    //    // If we made it this far, objects
-    //    // are considered equivalent
-    //    return true;
-    //}
+            if (User1[prop] !== User2[prop]) {
+                return false;
+            }
+        }
 
-    //function isEquivalent(User1, User2) {
-
-    //    if (User1["Username"] !== User2["Username"]) {
-    //        return false;
-    //    }
-    //    if (User1["Email"] !== User2["Email"]) {
-    //        return false;
-    //    }
-    //    if (User1["Newsletter"] !== User2["Newsletter"]) {
-    //        return false;
-    //    }
-
-    //    return true;
-    //}
+        return true;
+    }
 
     function userStateHasChanged(description) {
         if (description !== "") {
@@ -261,10 +278,104 @@
         }
     }
 
-    //events
+    function validateAndSubmit() {
+        if (!validateForm()) {
+            return;
+        }
+        var User = {};
+        var UserHistory = {};
+        var BeforeUserState = {};
+        var AfterUserState = {};
+        var Admin = {};
+        var user_has_changed = true;
+        var ajax_url = "";
+        var ajax_data = "";
 
+        Admin['Id'] = $.session.get('AdminId') === "" ? 1 : $.session.get('AdminId');
+
+        User['Id'] = input_username.attr('user_id');
+
+        User['Username'] = input_username.val();
+
+        User['Email'] = input_email.val();
+        User['Newsletter'] = toggle_newsletter.prop('checked');
+        User['Password'] = "user";
+
+        UserHistory['Admin'] = Admin;
+
+        BeforeUserState['Id'] = toggle_status.attr('status_id');
+        UserHistory['BeforeState'] = BeforeUserState;
+
+        AfterUserState['Id'] = toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id');
+        UserHistory['AfterState'] = AfterUserState;
+        UserHistory['Description'] = txt_description.val();
+
+        User['Picture'] = photo_real_name.val();
+
+        UserHistory['User'] = User;
+
+
+        if (userStateHasChanged(txt_description.val())) {
+            ajax_url = "UpdateUserAndUserHistory";
+        } else if (isEquivalent(User, Unedited_user) === false) {
+            ajax_url = "UpdateUser";
+        } else {
+            ajax_url = undefined;
+            user_has_changed = false;
+        }
+
+
+
+        if (ajax_url === "UpdateUser") {
+            ajax_data = "{User: " + JSON.stringify(User) + "}";
+        } else if (ajax_url === "UpdateUserAndUserHistory") {
+            ajax_data = "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}"
+        } else {
+            ajax_data = undefined;
+        }
+
+        console.log(User);
+
+        //confrimation
+        if (user_has_changed) {
+            swal({
+                title: "Are you sure?",
+                text: "If necessary, you can change this later.",
+                icon: "warning",
+                buttons: true
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "../WebService.asmx/" + ajax_url,
+                            data: ajax_data,
+                            dataType: "json",
+                            success: function (data) {
+                                swal("Success!", "User successfully updated!", "success").then((value) => {
+                                    GetUsers();
+                                });
+                            },
+                            error: function (data, status, error) {
+                                swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+                            }
+                        });
+
+
+                    }
+                });
+        } else {
+            swal("Nothing to update...", "", "info");
+        }
+
+
+    }
+
+    //calls
     GetUsers();
 
+    //events
     $('.st-pusher').click(function () {
         is_code_changed = false;
     });
@@ -293,92 +404,7 @@
     });
 
     btn_submit.click(function () {
-        if (!validateForm()) {
-            return;
-        }
-        var User = {};
-        var UserHistory = {};
-        var BeforeUserState = {};
-        var AfterUserState = {};
-        var Admin = {};
-        var user_has_changed = false;
-
-        Admin['Id'] = $.session.get('AdminId') === "" ? 1 : $.session.get('AdminId');
-
-        User['Id'] = input_username.attr('user_id');
-        User['Username'] = input_username.val();
-        User['Email'] = input_email.val();
-        User['Newsletter'] = toggle_newsletter.prop('checked');
-        User['Password'] = "user";
-
-        UserHistory['Admin'] = Admin;
-
-        BeforeUserState['Id'] = toggle_status.attr('status_id');
-        UserHistory['BeforeState'] = BeforeUserState;
-
-        AfterUserState['Id'] = toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id');
-        UserHistory['AfterState'] = AfterUserState;
-
-        //if (isEquivalent(User, Unedited_user)) {
-        //    //se o email, username e newsleter nao mudarem
-        //    //verifica se o estado mudou
-        //    user_has_changed = false;
-        //    if (userStateHasChanged(txt_description.val())) {
-        //        user_has_changed = true;
-        //        UserHistory['Description'] = txt_description.val();
-        //    }
-
-        //} else {
-        //    user_has_changed = true;
-        //    if (userStateHasChanged(txt_description.val())) {
-        //        UserHistory['Description'] = txt_description.val();
-        //    } else {
-        //        UserHistory['Description'] = "Edited by " + $.session.get('AdminUsername');
-        //    }
-        //}
-
-        user_has_changed = true;
-        UserHistory['Description'] = txt_description.val();
-
-        //finally add user last field => Picture
-        User['Picture'] = user_photo.attr('src').split("/").pop();
-
-        UserHistory['User'] = User;
-
-        //confrimation
-        swal({
-            title: "Are you sure?",
-            text: "If necessary, you can change this later.",
-            icon: "warning",
-            buttons: true
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    if (user_has_changed) {
-                        $.ajax({
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            url: "../WebService.asmx/UpdateUser",
-                            data: "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}",
-                            dataType: "json",
-                            success: function (data) {
-                                swal("Success!", "User successfully updated!", "success").then((value) => {
-                                    GetUsers();
-                                    paginateTable(table, 2);
-                                });
-                            },
-                            error: function (data, status, error) {
-                                swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
-                            }
-                        });
-                    } else {
-                        swal("Nothing to update...", "", "info");
-                    }
-
-                }
-            });
-
-
+        validateAndSubmit();
     });
 
     console.log('READY users.js');

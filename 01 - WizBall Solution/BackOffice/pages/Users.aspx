@@ -18,13 +18,13 @@
     <!-- Bootstrap and font-awesome stylesheets -->
     <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
     <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
-    <link href="/resources/css/plugins/animate.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/animations/animate.css" rel="stylesheet" />
 
-    <!-- Custom table paging stylesheet -->
+    <!-- Custom paging stylesheet -->
     <link href="/resources/css/pagination.css" rel="stylesheet" />
 
     <!-- Custom toggle stylesheet -->
-    <link href="/resources/css/plugins/bootstrap2-toggle.min.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/toggle/bootstrap2-toggle.min.css" rel="stylesheet" />
 
     <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style_all.css" rel="stylesheet" />
@@ -103,16 +103,17 @@
                 <div class="col-lg-3">
                     <div class="image-upload">
                         <label for="photo">
-                            <img id="user_photo" src="/resources/imgs/user.png" />
+                            <img id="user_photo" src="" />
                         </label>
 
                         <input id="photo" name="photo" type="file" />
+                        <input hidden="hidden" id="photo_nme" value=""/>
                     </div>
                 </div>
                 <div class="col-lg-9 form-group">
                     <div class="col-lg-9 mt-2 col-md-12">
                         <label class="label" for="username">Username</label><br />
-                        <input id="input_edit_username" name="input_edit_username" user_id="0" required="" type="text" />
+                        <input id="input_edit_username" maxlength="50" name="input_edit_username" user_id="0" required="" type="text" />
                     </div>
                     <div class="col-lg-3 mt-2 col-md-12">
                         <label class="label" for="select_edit_status">State</label><br />
@@ -122,7 +123,7 @@
 
                     <div class="col-lg-9 mt-2 col-md-12">
                         <label class="label" for="input_edit_email">E-Mail</label><br />
-                        <input id="input_edit_email" name="input_edit_email" required="" type="email" />
+                        <input id="input_edit_email" maxlength="100" name="input_edit_email" required="" type="email" />
                     </div>
                     <div class="col-lg-3 mt-2 col-md-12">
                         <label class="label" for="input_edit_newsletter">Newsletter</label><br />
@@ -163,7 +164,7 @@
                     <h3>Users</h3>
 
                     <div class="row">
-                        
+
                         <div class="col-lg-12 col-xs-12 text-right">
                             <!-- search by -->
                             <span class="search-by">
@@ -225,33 +226,30 @@
     <!-- Scripts Section-->
 
     <!-- JQuery scripts -->
-    <script src="/resources/js/plugins/jquery.min.js"></script>
-    <script src="/resources/js/plugins/jquery-ui.min.js"></script>
+    <script src="/resources/js/plugins/jquery/jquery.min.js"></script>
+    <script src="/resources/js/plugins/jquery/jquery-ui.min.js"></script>
 
     <!-- Custom table paging script -->
-    <script src="/resources/js/plugins/jquery.table.hpaging.min.js"></script>
+    <script src="/resources/js/plugins/pagination/jquery.table.hpaging.min.js"></script>
 
     <!-- Bootstrap script -->
-    <script src="/resources/js/plugins/bootstrap.min.js"></script>
+    <script src="/resources/js/plugins/bootstrap/bootstrap.min.js"></script>
 
     <!-- Custom toggle script -->
-    <script src="/resources/js/plugins/bootstrap2-toggle.min.js"></script>
-
-    <!-- Custom select script -->
-    <script src="/resources/js/plugins/select2.full.min.js"></script>
+    <script src="/resources/js/plugins/toggle/bootstrap2-toggle.min.js"></script>
 
     <!-- Side bar effects scripts -->
-    <script src="/resources/js/plugins/classie.js"></script>
-    <script src="/resources/js/plugins/sidebar-effects.js"></script>
+    <script src="/resources/js/plugins/sidebar/classie.js"></script>
+    <script src="/resources/js/plugins/sidebar/sidebar-effects.js"></script>
 
     <!-- Custom alert script -->
-    <script src="/resources/js/plugins/sweetalert.min.js"></script>
+    <script src="/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
 
     <!-- JQuery session script -->
-    <script src="/resources/js/plugins/jquery.session.js"></script>
+    <script src="/resources/js/plugins/jquery/jquery.session.js"></script>
 
     <!-- Notifications script -->
-    <script src="/resources/js/plugins/bootstrap-notify.js"></script>
+    <script src="/resources/js/plugins/notification/bootstrap-notify.js"></script>
 
     <!-- General script -->
     <script src="/resources/js/general.js"></script>

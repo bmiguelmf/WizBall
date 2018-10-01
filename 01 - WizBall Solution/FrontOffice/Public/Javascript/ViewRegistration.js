@@ -18,7 +18,7 @@ function isEmailTaken() {
 
         success: function (data) {
             if (data.d === true) {
-                emailStatus.innerText = "Email already in usage";
+                emailStatus.innerText = "Email already taken";
             }
             else {
                 emailStatus.innerText = "";
