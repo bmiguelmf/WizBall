@@ -103,10 +103,11 @@
                 <div class="col-lg-3">
                     <div class="image-upload">
                         <label for="photo">
-                            <img id="user_photo" src="/resources/imgs/user.png" />
+                            <img id="user_photo" src="" />
                         </label>
 
                         <input id="photo" name="photo" type="file" />
+                        <input hidden="hidden" id="photo_nme" value=""/>
                     </div>
                 </div>
                 <div class="col-lg-9 form-group">

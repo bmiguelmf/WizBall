@@ -68,7 +68,7 @@
     <script src="/resources/js/plugins/jquery/jquery-ui.min.js"></script>
 
     <!-- Bootstrap script -->
-    <script src="/resources/js/plugins/bootstrap.min.js"></script>
+    <script src="/resources/js/plugins/bootstrap/bootstrap.min.js"></script>
 
     <!-- Custom alert script -->
     <script src="/resources/js/plugins/sweetalert/sweetalert.min.js"></script>

@@ -76,8 +76,8 @@
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\css\pagination.css" />
     <Content Include="resources\css\plugins\toggle\bootstrap2-toggle.min.css" />
-    <Content Include="resources\imgs\Users\songoku.png" />
-    <Content Include="resources\imgs\Users\user.png" />
+    <Content Include="resources\imgs\users\songoku.png" />
+    <Content Include="resources\imgs\users\user.png" />
     <Content Include="resources\css\slide.css" />
     <Content Include="resources\js\plugins\notification\bootstrap-notify.js" />
     <Content Include="resources\js\plugins\bootstrap\bootstrap-select.min.js" />

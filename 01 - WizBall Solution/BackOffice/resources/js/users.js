@@ -11,7 +11,9 @@
     var txt_description = $('#txt_edit_description');
     var input_username = $('#input_edit_username');
     var input_email = $('#input_edit_email');
+    var user_photo_input = $('#photo');
     var user_photo = $('#user_photo');
+    var photo_real_name = $('#photo_nme');
     var old_description = $('#old_description');
 
     //vars
@@ -29,6 +31,8 @@
     }
 
     function clearForm() {
+        photo_real_name.val("");
+        user_photo.attr("src", "/resources/imgs/users/");
         input_username.val("");
         input_email.val("");
         txt_description.val("");
@@ -40,6 +44,23 @@
         var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         return regex.test(email);
     }
+
+    function loadImage(e) {
+        user_photo.attr('src', e.target.result);
+    };
+
+    user_photo_input.change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = loadImage;
+            reader.readAsDataURL(this.files[0]);
+
+            // This is what you should do
+            photo_real_name.val("");
+            photo_real_name.val(this.files[0].name);
+            console.log(photo_real_name.val());
+        }
+    });
 
     function disableFormTextArea() {
         is_text_area_disabled = true;
@@ -92,7 +113,7 @@
         Unedited_user['Username'] = Table_user.Username;
         Unedited_user['Email'] = Table_user.Email;
         Unedited_user['Newsletter'] = Table_user.Newsletter;
-        //Unedited_user['Picture'] = Table_user.Picture;
+        Unedited_user['Picture'] = Table_user.Picture;
         Unedited_user['Password'] = "user";
     }
 
@@ -110,7 +131,7 @@
                     $.each(data.d, function (index, value) {
                         if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
                             ran_if = true;
-                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
+                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
                         }
                     });
                     if (ran_if === true) {
@@ -152,7 +173,8 @@
             success: function (data) {
                 clearForm();
                 if (data.d !== null) {
-                    //user_photo.attr('src', data.d.Picture);
+                    user_photo.attr('src', '/resources/imgs/users/' + data.d.Picture);
+                    photo_real_name.val(data.d.Picture);
                     feedUneditedUser(data.d);
                     input_username.val(data.d.Username);
                     input_username.attr('user_id', data.d.Id);
@@ -288,6 +310,11 @@
         UserHistory['AfterState'] = AfterUserState;
         UserHistory['Description'] = txt_description.val();
 
+        User['Picture'] = photo_real_name.val();
+
+        UserHistory['User'] = User;
+
+
         if (userStateHasChanged(txt_description.val())) {
             ajax_url = "UpdateUserAndUserHistory";
         } else if (isEquivalent(User, Unedited_user) === false) {
@@ -297,10 +324,7 @@
             user_has_changed = false;
         }
 
-        //finally add user last field => Picture
-        User['Picture'] = user_photo.attr('src').split("/").pop();
 
-        UserHistory['User'] = User;
 
         if (ajax_url === "UpdateUser") {
             ajax_data = "{User: " + JSON.stringify(User) + "}";
@@ -309,6 +333,8 @@
         } else {
             ajax_data = undefined;
         }
+
+        console.log(User);
 
         //confrimation
         if (user_has_changed) {
@@ -329,7 +355,6 @@
                             success: function (data) {
                                 swal("Success!", "User successfully updated!", "success").then((value) => {
                                     GetUsers();
-                                    paginateTable(tbl_users, 2);
                                 });
                             },
                             error: function (data, status, error) {
