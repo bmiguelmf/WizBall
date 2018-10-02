@@ -16,7 +16,7 @@ namespace BackOffice.pages
         protected void Page_Load(object sender, EventArgs e)
         {
             //connString = WebConfigurationManager.ConnectionStrings["ConnStringPasseiraAtec"].ConnectionString;
-            connString = WebConfigurationManager.ConnectionStrings["ConnStringPasseiraHome"].ConnectionString;
+            connString = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
             apiToken = WebConfigurationManager.AppSettings["ApiToken"];
 
             bll = new BLL(connString, apiToken);

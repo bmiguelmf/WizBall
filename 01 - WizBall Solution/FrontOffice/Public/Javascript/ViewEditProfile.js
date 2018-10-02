@@ -13,12 +13,12 @@ fileUpload.addEventListener("change", function () {
 
     if (this.files && this.files[0]) {
 
-        if (this.files[0].size > 512000) {
-            uploadStatus.innerHTML = "Max file size: 500 Kb";
+        if (!validFileType(this.files[0])) {
+            uploadStatus.innerHTML = "Acceptable file types: jpeg, png, ico";
             return;
         }
-        else if (!validFileType(this.files[0])) {
-            uploadStatus.innerHTML = "Acceptable file types: jpeg, png, ico";
+        else if (this.files[0].size > 512000) {
+            uploadStatus.innerHTML = "Max file size: 500 Kb";
             return;
         }
         else {

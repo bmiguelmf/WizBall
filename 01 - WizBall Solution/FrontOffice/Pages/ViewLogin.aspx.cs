@@ -66,7 +66,7 @@ namespace FrontOffice.Pages
             else if (user.CurrentUserHistory.AfterState.Id == 11)
             {
                 txtHeader.Style.Value = "color:orange;";
-                txtHeader.InnerText = "Account blocked";                
+                txtHeader.InnerText = "Account blocked: " + user.CurrentUserHistory.AfterState.Description;                
             }
             else
             {
