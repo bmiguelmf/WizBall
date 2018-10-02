@@ -94,6 +94,7 @@
     <Content Include="resources\js\plugins\bootstrap\bootstrap.min.js" />
     <Content Include="resources\js\plugins\sidebar\sidebar-effects.js" />
     <Content Include="resources\js\general.js" />
+    <Content Include="resources\js\data-management.js" />
     <Content Include="resources\js\user_requests.js" />
     <Content Include="resources\js\users.js" />
     <Content Include="resources\js\login.js" />

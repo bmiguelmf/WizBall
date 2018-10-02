@@ -31,7 +31,7 @@
                     <div class="col-md-6 formpanel" style="display: flex; align-items: center;">
                         <div class="middle-box text-center loginscreen animated fadeInDown">
                             <div style="margin: auto;width: 100%;height: 100%;border-radius: 3px;">
-                                <h2>WizBall Dashboard</h2>
+                                <h2>WizBall BackOffice</h2>
                                 <%--<p>Aqui é feita toda a gestão do <a href="https://google.pt">nosso site</a> para que tenhas os melhores resultados nas tuas apostas!<br /></p>--%>
                                 <p>Here we work on <a href="https://google.pt">Wizball website</a> maintenance so you can obtain the best results in your bets!</p>
                                 <div class="clearfix"></div>

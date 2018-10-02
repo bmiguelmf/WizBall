@@ -25,19 +25,20 @@
         var validated = true;
         $(".has-error").removeClass("has-error");
 
-        if (input_username.val() === "") {
-            input_username.closest(".form-group").addClass("has-error");
-            error.fadeIn();
-            error.find('.message').text("Please, fill in the username field.");
-            validated = false;
-        }
-
         if (input_password.val() === "") {
             input_password.closest(".form-group").addClass("has-error");
             error.fadeIn();
-            error.find('.message').text("Please, fill in the password field.");
+            error.find('.message').text("Please fill in the password field.");
             validated = false;
         }
+
+        if (input_username.val() === "") {
+            input_username.closest(".form-group").addClass("has-error");
+            error.fadeIn();
+            error.find('.message').text("Please fill in the username field.");
+            validated = false;
+        }
+
         
         if (validated) {
             error.hide();
