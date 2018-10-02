@@ -123,21 +123,25 @@ namespace FrontOffice.Resources
                 HtmlGenericControl rowCellTip               = new HtmlGenericControl("div");
                 rowCellTip.Attributes["class"]              = "grid-cell";
                 Tip tip = bll.GetTipByMatchId(match.Id.ToString());
-                if (tip.BetNoBet)
+                if(tip != null)
                 {
-                    if(tip.Forecast)
+                    if (tip.BetNoBet)
                     {
-                        rowCellTip.InnerHtml = "<img src='" + Globals.WIZBALL + "yes.png' alt='bet in' title='Bet in favor full-time over two and half goals' width ='15px;'>";
+                        if (tip.Forecast)
+                        {
+                            rowCellTip.InnerHtml = "<img src='" + Globals.WIZBALL + "yes.png' alt='bet in' title='Bet in favor full-time over two and half goals' width ='15px;'>";
+                        }
+                        else
+                        {
+                            rowCellTip.InnerHtml = "<img src='" + Globals.WIZBALL + "no.png' alt='bet against' title='Bet against full-time over two and half goals' width ='15px;'>";
+                        }
                     }
                     else
                     {
-                        rowCellTip.InnerHtml = "<img src='" + Globals.WIZBALL + "no.png' alt='bet against' title='Bet against full-time over two and half goals' width ='15px;'>";
+                        rowCellTip.InnerHtml = "<span title='Unpredictable'>No bet</span>";
                     }
                 }
-                else
-                {
-                    rowCellTip.InnerHtml = "<span title='Unpredictable'>No bet</span>";
-                }
+                
                                    
                 row.Controls.Add(rowCellTip);
 
