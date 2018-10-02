@@ -44,8 +44,8 @@
                 console.log(data.d);
                 if (data.d) {
                     swal("Success!", "User successfully " + permission.toLowerCase() + "!", "success").then((value) => {
-                        GetPendingUsers();
-                        paginateTable(tbl_users, 2);
+                        //GetPendingUsers();
+                        window.location.reload();
                     });
                 } else {
                     swal("Info!", "User unsuccessfully " + permission.toLowerCase() + "!", "warning").then((value) => {
@@ -74,7 +74,7 @@
                     if (willDelete) {
                         aproveUser($(this).closest("tr").attr('value'), true);
                     } else {
-                        swal("Successfully canceled.", "", "info");
+                        swal("Canceled!", "", "info");
                     }
                 });
 
@@ -91,7 +91,7 @@
                     if (willDelete) {
                         aproveUser($(this).closest("tr").attr('value'), false);
                     } else {
-                        swal("Successfully canceled.", "", "info");
+                        swal("Canceled!", "", "info");
                     }
                 });
         });
@@ -111,11 +111,11 @@
                     $.each(data.d, function (index, value) {
                         if (value.CurrentUserHistory.AfterState.Description === "Pending") {
                             ran_if = true;
-                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/Users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\"" + value.CurrentUserHistory.AfterState.Id + "\" style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td><a class=\"btn_revoke\"><i class=\"glyphicon glyphicon-trash\"></i></a></td></tr>");
+                            tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8%;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/Users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\"" + value.CurrentUserHistory.AfterState.Id + "\" style=\"width:16%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td style=\"width:10%;\"><a class=\"btn_revoke\"><i class=\"glyphicon glyphicon-trash\"></i></a></td></tr>");
                         }
                     });
                     if (ran_if === true) {
-                        paginateTable(tbl_users, 2);
+                        paginateTable(tbl_users, 3);
                         assignActionBtnClickEvents();
                     } else {
                         swal("Info!", "There are no user requests at the moment.", "info");

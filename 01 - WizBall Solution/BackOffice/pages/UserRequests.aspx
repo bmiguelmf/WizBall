@@ -92,62 +92,44 @@
             <div class="st-content">
 
                 <div class="head-container">
-
                     <!-- title -->
                     <h3>User Requests</h3>
-
-                    <div class="row">
-                        <div class="col-lg-6 col-xs-12">
-                            <p class="select-actions">
-                                <select class="selectpicker">
-                                    <option disabled selected>Order</option>
-                                    <option>Mais recentes</option>
-                                    <option>Mais Antigos</option>
-                                </select>
-                            </p>
-                        </div>
-                        <div class="col-lg-6 col-xs-12 text-right">
-                            <!-- search by -->
-                            <span class="search-by">
-                                <p>
-                                    <input type="text" name="" placeholder="Pesquisar utilizadores" />
-                                    <select class="selectpicker">
-                                        <option>Tudo</option>
-                                        <option>Bloqueados</option>
-                                        <option>Pendentes</option>
-                                        <option>Ativos</option>
-                                    </select>
-                                </p>
-                            </span>
-                        </div>
-                    </div>
-
                 </div>
 
-                <div class="body-container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- list/table-->
-                            <div class="content table-full-width" style="position: relative;">
-                                <table id="users_table" class="table table-hover">
-                                    <thead>
-                                        <tr>
+            <div class="body-container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- list/table-->
+                        <div class="content table-full-width" style="position: relative;">
+                            <table id="users_table" class="table table-hover">
+                                <thead>
+                                   <%-- <tr>
+                                        <th style="width: 8%;" class="text-center">
+                                            <input type="checkbox" /></th>
+                                        <th style="width: 10%;">Photo</th>
+                                        <th style="width: 17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                        <th style="width: 29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                        <th style="width: 21%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                        <th style="width: 15%;" colspan="2">Action</th>
+                                    </tr>--%>
+                                    <tr>
                                             <th style="width: 8%;" class="text-center">
-                                                <input type="checkbox" /></th>
+                                                <input id="check_all" type="checkbox" /></th>
                                             <th style="width: 10%;">Photo</th>
                                             <th style="width: 17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
                                             <th style="width: 29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 21%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 15%;" colspan="2">Action</th>
+                                            <th style="width: 16%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 10%;">Grant</th>
+                                            <th style="width: 10%;">Revoke</th>
                                         </tr>
-                                    </thead>
-                                    <tbody id="users_table_body">
-                                    </tbody>
-                                </table>
-                            </div>
+                                </thead>
+                                <tbody id="users_table_body" class="data-scroll">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
 
             </div>
         </div>
@@ -162,7 +144,9 @@
 
     <!-- Custom table paging script -->
     <%--<script src="/resources/js/plugins/pagination/data-tables.js"></script>--%>
-    
+    <script src="/resources/js/plugins/pagination/data-table-options.js"></script>
+    <script src="/resources/js/plugins/pagination/data-tables.js"></script>
+
     <!-- Bootstrap script -->
     <script src="/resources/js/plugins/bootstrap/bootstrap.min.js"></script>
 

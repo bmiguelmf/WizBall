@@ -134,7 +134,7 @@
                         }
                     });
                     if (ran_if === true) {
-                        paginateTableAndLoadSideBarScripts(tbl_users, 2);
+                        paginateTableAndLoadSideBarScripts(tbl_users, 3);
                         assignBtnEditClickEvent();
                     } else {
                         swal("Info!", "There are no user to display.", "info");
