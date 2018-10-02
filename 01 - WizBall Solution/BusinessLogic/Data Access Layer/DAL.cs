@@ -341,15 +341,20 @@ namespace BusinessLogic.DAL
 
 
 
-        public enum DbOperator { GreaterThan, LesserThan, EqualsTo, GreaterThanOrEqualsTo, LesserThanOrEqualsTo };
+        public enum DbOperator {
+            GreaterThan,
+            LesserThan,
+            EqualsTo,
+            GreaterThanOrEqualsTo,
+            LesserThanOrEqualsTo
+        };
         public struct DbWhere
         {
             public string Field { get; set; }
             public string Value { get; set; }
             public string Alias { get; set; }
             public DbOperator Operator { get; set; }
-        }
-       
+        }      
         public string ConvertSqlOperator(DbOperator Operator)
         {
             switch (Operator)
