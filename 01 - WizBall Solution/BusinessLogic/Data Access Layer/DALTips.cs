@@ -19,6 +19,16 @@ namespace BusinessLogic.DAL
         {
             return GetById(new Tip(), Id) as Tip;
         }
+        public Tip GetByMatch(string MatchId)
+        {
+            List<Tip> lstTips = GetWhere(new Tip(),
+                                    new Dictionary<string, string>()
+                                    { { "match_id", MatchId } })
+
+                                    .Cast<Tip>().ToList();
+
+            return lstTips.Count > 0 ? lstTips[0] : null;
+        }
         public List<Tip> GetByCompetition(string CompetitionId)
         {
             return GetWhere(new Tip(),
@@ -26,7 +36,7 @@ namespace BusinessLogic.DAL
                             { { "competition_id", CompetitionId } })
 
                             .Cast<Tip>().ToList();
-        }
+        }      
         public List<Tip> GetByCompetitionAndSeason(string CompetitionId, string SeasonId)
         {
             return GetWhere(new Tip(),

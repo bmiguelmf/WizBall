@@ -1,7 +1,7 @@
 USE wizball
 GO
 
-CREATE PROC spGetNextMatches @competition INT
+alter PROC spGetNextMatches @competition INT
 AS BEGIN
 
 	DECLARE		@matches TABLE															-- Returning table.
@@ -59,7 +59,7 @@ AS BEGIN
 									--						 OR m.away_team_id = matches.home_team_id
 									--						 OR m.away_team_id = matches.away_team_id
 									--					)
-									AND utc_date < CONVERT(DATE, GETDATE() + 3)
+									AND utc_date < CONVERT(DATE, GETDATE() + 5)
 									ORDER BY utc_date ASC
 
 			FETCH NEXT FROM @teams INTO @team

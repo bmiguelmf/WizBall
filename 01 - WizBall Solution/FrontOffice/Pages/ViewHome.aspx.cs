@@ -13,13 +13,9 @@ namespace FrontOffice.Pages
 {
     public partial class ViewHome : System.Web.UI.Page
     {
-        private BLL bll;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            bll = new Globals().CreateBll();
-
-            MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid(bll.GetNextMatchesByTierOneCompetitions());
+            MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid();
 
             placeHolderMatchesTipsGrid.Controls.Add(matchesTipsGrid.Create());
         }

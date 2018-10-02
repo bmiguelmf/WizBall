@@ -31,6 +31,7 @@ function setMatchesTipsGridHeight() {
     }
     
     else {
+        document.getElementById("grid").setAttribute("style", "margin-top:auto;");
         document.getElementById("grid-body-scrollable").setAttribute("style", "height: auto");
     }
 

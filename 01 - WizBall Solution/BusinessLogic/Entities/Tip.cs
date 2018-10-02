@@ -77,6 +77,4 @@ namespace BusinessLogic.Entities
                                   Result == null ? null : Result == false ? "false" : "true" };
         }
     }
-
-   
 }

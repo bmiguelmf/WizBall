@@ -308,11 +308,7 @@
     <Content Include="Public\Imgs\Teams\spain\valencia.ico" />
     <Content Include="Public\Imgs\Teams\spain\villareal.ico" />
     <Content Include="Public\Imgs\Users\songoku.png" />
-    <Content Include="Public\Imgs\Wizball\bg-2.jpg" />
     <Content Include="Public\Imgs\Wizball\bg-min.jpg" />
-    <Content Include="Public\Imgs\Wizball\bg.jpg" />
-    <Content Include="Public\Imgs\Wizball\fds.jpg" />
-    <Content Include="Public\Imgs\Wizball\back-ground.jpg" />
     <Content Include="Public\Imgs\Wizball\logo.png" />
     <Content Include="Public\Imgs\Wizball\logo_dark.png" />
     <Content Include="Public\Imgs\Wizball\logo_dark_ico.ico" />
@@ -320,6 +316,8 @@
     <Content Include="Public\Imgs\Wizball\logo_green_ico.png" />
     <Content Include="Public\Imgs\Wizball\logo_with_name.png" />
     <Content Include="Public\Imgs\Users\user.png" />
+    <Content Include="Public\Imgs\Wizball\no.png" />
+    <Content Include="Public\Imgs\Wizball\yes.png" />
     <Content Include="Public\Javascript\MasterView.js" />
     <Content Include="Public\Javascript\MatchesTipsGrid.js" />
     <Content Include="Public\Javascript\ViewEditProfile.js" />

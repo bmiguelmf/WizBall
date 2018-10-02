@@ -38,6 +38,18 @@ namespace BusinessLogic.BLL
                 return false;
             }
         }
+        public DateTime NormalizeApiDateTimeVersioTwo(string Datetime)
+        {
+            DateTime dtNormalized;
+
+            DateTime.TryParse(Datetime,
+                              null,
+                              System.Globalization.DateTimeStyles.AdjustToUniversal,
+                              out dtNormalized);
+
+
+            return dtNormalized;
+        }
         public DateTime? NormalizeApiDateTime(string Datetime)
         {
             if (string.IsNullOrEmpty(Datetime))
@@ -76,31 +88,33 @@ namespace BusinessLogic.BLL
         public void EntityBuilder(User User)
         {
             if (User != null)
-                User.CurrentUserHistory = GetCurrentUserHistoryByUserId(User.Id.ToString());    
+            {
+                User.CurrentUserHistory = GetCurrentUserHistoryByUserId(User.Id.ToString());
+            }               
         }
         public void EntityBuilder(Match Match)
         {
             if (Match != null)
             {
-                Match.Season = GetSeasonById(Match.Season.Id.ToString());
-                Match.Competition = GetCompetitionById(Match.Competition.Id.ToString());
-                Match.Competition.Area = GetAreaById(Match.Competition.Area.Id.ToString());
+                Match.Season            = GetSeasonById(Match.Season.Id.ToString());
+                Match.Competition       = GetCompetitionById(Match.Competition.Id.ToString());
+                Match.Competition.Area  = GetAreaById(Match.Competition.Area.Id.ToString());
 
-                Match.HomeTeam = GetTeamById(Match.HomeTeam.Id.ToString());
-                Match.HomeTeam.Area = GetAreaById(Match.HomeTeam.Area.Id.ToString());
+                Match.HomeTeam          = GetTeamById(Match.HomeTeam.Id.ToString());
+                Match.HomeTeam.Area     = GetAreaById(Match.HomeTeam.Area.Id.ToString());
 
-                Match.AwayTeam = GetTeamById(Match.AwayTeam.Id.ToString());
-                Match.AwayTeam.Area = GetAreaById(Match.AwayTeam.Area.Id.ToString());
+                Match.AwayTeam          = GetTeamById(Match.AwayTeam.Id.ToString());
+                Match.AwayTeam.Area     = GetAreaById(Match.AwayTeam.Area.Id.ToString());
             }
         }
         public void EntityBuilder(UserHistory UserHistory)
         {
             if (UserHistory != null)
             {
-                UserHistory.Admin = GetAdminById(UserHistory.Admin.Id.ToString());
-                // UserHistory.User            = GetUserById(UserHistory.User.Id.ToString()); Previne recursão EntityBuilder User e Useristory.
-                UserHistory.BeforeState = GetUserStateById(UserHistory.BeforeState.Id.ToString());
-                UserHistory.AfterState = GetUserStateById(UserHistory.AfterState.Id.ToString());
+                UserHistory.Admin           = GetAdminById(UserHistory.Admin.Id.ToString());
+                // UserHistory.User         = GetUserById(UserHistory.User.Id.ToString()); Previne recursão EntityBuilder User e Useristory.
+                UserHistory.BeforeState     = GetUserStateById(UserHistory.BeforeState.Id.ToString());
+                UserHistory.AfterState      = GetUserStateById(UserHistory.AfterState.Id.ToString());
             }
         }
 
@@ -820,6 +834,11 @@ namespace BusinessLogic.BLL
             DALTips dalTips = new DALTips(connectionString);
             return dalTips.GetById(Id);
         }
+        public Tip GetTipByMatchId(string Id)
+        {
+            DALTips dalTips = new DALTips(connectionString);
+            return dalTips.GetByMatch(Id);
+        }
         public bool InsertTip(Tip Tip)
         {
             if (Tip is null)
@@ -868,87 +887,62 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        //public bool SetTodayTips()
-        //{
-        //    List<Tip> lstTipsToInsert = new List<Tip>();                                                    // List to hold the tips.
-
-        //    foreach(Match match in GetTodayMatchesByTierOneCompetitions())                                  // Foreach today match in all tier one competitions
-        //    {
-        //        DateTime? matchDate = NormalizeApiDateTime(match.UtcDate);                                  // Normalize the UtcDate to be comparable.
-
-        //        if(matchDate > DateTime.UtcNow)                                                             // Check if the match has not been played yet.
-        //        {
-        //            Team homeTeam = match.HomeTeam;                                                                                     // An easy to handle pointer to home team object.
-        //            Team awayTeam = match.AwayTeam;                                                                                     // An easy to handle pointer to away team object.
-
-        //            List<Match> lstMatchesByCompetition = GetMatchesByCompetition(match.Competition.Id.ToString());                     // Gets a list with all matches for a given competition.
-
-        //            List<Match> lstHomeTeamMatches = lstMatchesByCompetition                                                            // Get a filtered list with only the competition matches in which the home team plays and the matches have not been played yet.
-        //                                             .Where( x => ( x.HomeTeam.Id == homeTeam.Id || x.AwayTeam.Id == homeTeam.Id ) &&
-        //                                                           NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow ).ToList();
-
-        //            List<Match> lstAwayTeamMatches = lstMatchesByCompetition                                                            // Get a filtered list with only the competition matches in which the away team plays and the matches have not been played yet.
-        //                                             .Where( x => ( x.HomeTeam.Id == awayTeam.Id || x.AwayTeam.Id == awayTeam.Id ) &&
-        //                                                           NormalizeApiDateTime(x.UtcDate) < DateTime.UtcNow ).ToList();
-
-
-
-        //            // SET TIPS.                    
-        //            Tip ftOverTwoAndHalfGoals = FulltimeOverTwoAndHalfGoals(match, lstHomeTeamMatches, lstAwayTeamMatches, homeTeam, awayTeam);
-
-
-        //            // Confirmar se o match em questão já tem alguma tip. só se não tiver então faz.
-        //            lstTipsToInsert.Add(ftOverTwoAndHalfGoals);
-        //        }
-        //    }
-
-        //    InsertTips(lstTipsToInsert);
-
-        //    return true;
-        //}
-        private Tip FulltimeOverTwoAndHalfGoals(Match Match, List<Match> HomeTeamMatches, List<Match> AwayTeamMatches, Team HomeTeam, Team AwayTeam)
+        public void FTOverTwoAndHalfGoalsTips()
         {
-            double? homeTeamHomeScoreAvg = HomeTeamMatches.Where(x => x.HomeTeam.Id == HomeTeam.Id)
-                                                          .Average(x => x.Score.FullTime.HomeTeam);
+            List<Match> lstMatches = GetNextMatchesByTierOneCompetitions();                         // Gets a matches list with all elegible matches for setting up tips.
 
-            double? awayTeamAwayScoreAvg = AwayTeamMatches.Where(x => x.AwayTeam.Id == AwayTeam.Id)
-                                                          .Average(x => x.Score.FullTime.AwayTeam);
+            foreach(Match match in lstMatches)                      
+            {      
+                Tip matchTip = GetTipByMatchId(match.Id.ToString());                                // First we try to get from the database the tip corresponding to the current match.
 
-
-            double? bothTeamsAvgGoals = (homeTeamHomeScoreAvg + awayTeamAwayScoreAvg) / 2;
-
-
-            bool betNoBet;
-            bool forecast;
-
-            if (bothTeamsAvgGoals > 2.65)
-            {
-                betNoBet = true;
-                forecast = true;
+                if(matchTip is null)                                                                // Only if this match does not already has a tip in the database then we will generate one.
+                {
+                    SetFTOverTwoAndHalfGoalsTip(match);
+                }
             }
-            else if (bothTeamsAvgGoals < 2.35)
-            {
-                betNoBet = true;
-                forecast = false;
-            }
-            else
-            {
-                betNoBet = false;
-                forecast = false;
-            }
-            
-
-            Tip tip = new Tip()
-            {
-                Match = Match,
-                Market = new Market() { Id = 1 },              
-                BetNoBet = betNoBet,
-                Forecast = forecast
-            };
-
-
-            return tip;
         }
+        private void SetFTOverTwoAndHalfGoalsTip(Match Match)
+        {
+            int homeTeam = Match.HomeTeam.Id;
+            int awayTeam = Match.AwayTeam.Id;
+         
+
+            List<Match> lstCompetitonMatches    = GetMatchesByCompetition(Match.Competition.Id.ToString());
+            List<Match> playedMatches           = lstCompetitonMatches.Where(x => x.Score.Winner != "").ToList();
+
+
+            double? homeTeamAvgHomeGoals        = playedMatches.Where(x => x.HomeTeam.Id == homeTeam).Average(x => x.Score.FullTime.HomeTeam);
+            double? awayTeamAvgAwayGoals        = playedMatches.Where(x => x.AwayTeam.Id == awayTeam).Average(x => x.Score.FullTime.AwayTeam);
+            double? totalAvg                    = homeTeamAvgHomeGoals + awayTeamAvgAwayGoals;
+
+
+            Tip tip = new Tip();
+
+            if (totalAvg > 3)       // Sure bet.
+            {
+                tip.Match       = new Match    { Id = Match.Id };
+                tip.Market      = new Market    { Id = 1 };
+                tip.BetNoBet    = true;
+                tip.Forecast    = true;
+            }
+            else if(totalAvg < 2)   // Sure no bet.
+            {
+                tip.Match       = new Match     { Id = Match.Id };
+                tip.Market      = new Market    { Id = 1 };
+                tip.BetNoBet    = true;
+                tip.Forecast    = false;
+            }
+            else                    // Just to danger. 
+            {
+                tip.Match       = new Match     { Id = Match.Id };
+                tip.Market      = new Market    { Id = 1 };
+                tip.BetNoBet    = false;
+                tip.Forecast    = false;
+            }
+
+            InsertTip(tip);
+        }
+
     }
 }
 
