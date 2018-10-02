@@ -86,9 +86,7 @@
                     </div>
                 </div>
               
-
-                
-                
+        
 
                  <div class="form-checkbox">
                      <div class="form-check">

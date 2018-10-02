@@ -1,26 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI.HtmlControls;
 using BusinessLogic.Entities;
-using System.Web.UI.WebControls;
 using BusinessLogic.BLL;
-using System.Web.Configuration;
-using FrontOffice.Resources;
 
 
 namespace FrontOffice.Resources
 {
     public class MatchesTipsGrid
     {
-        Globals globals;
-        List<Match> matches;
-        public MatchesTipsGrid(List<Match> Matches)
+        BLL bll;
+        public MatchesTipsGrid()
         {
-            globals = new Globals();
-
-            matches = Matches;
+            bll = new Globals().CreateBll();  
         }
 
 
@@ -92,7 +84,7 @@ namespace FrontOffice.Resources
             header.Controls.Add(cellFtOverTwoAndHalGoals);
 
 
-
+            List<Match> matches = bll.GetNextMatchesByTierOneCompetitions();
             foreach (Match match in matches)
             {
                 // Rows
@@ -119,8 +111,8 @@ namespace FrontOffice.Resources
                 HtmlGenericControl rowCellDate              = new HtmlGenericControl("div");
                 rowCellDate.Attributes["id"]                = "utc-date";
                 rowCellDate.Attributes["class"]             = "grid-cell";
-                rowCellDate.Attributes["utc-date"]          = globals.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
-                rowCellDate.InnerHtml                       = globals.NormalizeApiDateTime(match.UtcDate).Value.ToString("dd MMM HH:mm");
+                rowCellDate.Attributes["utc-date"]          = bll.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
+                rowCellDate.InnerHtml                       = bll.NormalizeApiDateTime(match.UtcDate).Value.ToString("dd MMM HH:mm");
                 row.Controls.Add(rowCellDate);
 
                 HtmlGenericControl rowCellAwayTeam          = new HtmlGenericControl("div");
@@ -129,11 +121,28 @@ namespace FrontOffice.Resources
                 row.Controls.Add(rowCellAwayTeam);
 
                 HtmlGenericControl rowCellTip               = new HtmlGenericControl("div");
-                rowCellTip.Attributes["class"]              = "grid-cell";                
-                if (match.Id % 3 == 0)
-                    rowCellTip.InnerHtml = "Yes";
-                else 
-                    rowCellTip.InnerHtml = "No";
+                rowCellTip.Attributes["class"]              = "grid-cell";
+                Tip tip = bll.GetTipByMatchId(match.Id.ToString());
+                if(tip != null)
+                {
+                    if (tip.BetNoBet)
+                    {
+                        if (tip.Forecast)
+                        {
+                            rowCellTip.InnerHtml = "<img src='" + Globals.WIZBALL + "yes.png' alt='bet in' title='Bet in favor full-time over two and half goals' width ='15px;'>";
+                        }
+                        else
+                        {
+                            rowCellTip.InnerHtml = "<img src='" + Globals.WIZBALL + "no.png' alt='bet against' title='Bet against full-time over two and half goals' width ='15px;'>";
+                        }
+                    }
+                    else
+                    {
+                        rowCellTip.InnerHtml = "<span title='Unpredictable'>No bet</span>";
+                    }
+                }
+                
+                                   
                 row.Controls.Add(rowCellTip);
 
 

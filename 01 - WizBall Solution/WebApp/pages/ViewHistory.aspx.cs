@@ -104,8 +104,8 @@ namespace WebApp.pages
                 foreach (RepeaterItem i in compRep.Items)
                 {
                     //Retrieve the state of the CheckBox
-                    CheckBox cb = (CheckBox)i.FindControl("CompCB");
-                    if (cb.Checked)
+                    //CheckBox cb = (CheckBox)i.FindControl("CompCB");
+                    if (AllCompsCB.Checked)
                     {
                         //Retrieve the value associated with that CheckBox
                         HiddenField hiddenComp = (HiddenField)i.FindControl("HidFieldComp");

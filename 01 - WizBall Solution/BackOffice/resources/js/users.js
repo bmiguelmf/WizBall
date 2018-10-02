@@ -45,8 +45,8 @@
         return regex.test(email);
     }
 
-    function loadImage(e) {
-        user_photo.attr('src', e.target.result);
+    function loadImage(event) {
+        user_photo.attr('src', event.target.result);
     };
 
     user_photo_input.change(function () {
@@ -55,7 +55,6 @@
             reader.onload = loadImage;
             reader.readAsDataURL(this.files[0]);
 
-            // This is what you should do
             photo_real_name.val("");
             photo_real_name.val(this.files[0].name);
             console.log(photo_real_name.val());
@@ -135,7 +134,7 @@
                         }
                     });
                     if (ran_if === true) {
-                        paginateTableAndLoadSideBarScripts(tbl_users, 2);
+                        paginateTableAndLoadSideBarScripts(tbl_users, 3);
                         assignBtnEditClickEvent();
                     } else {
                         swal("Info!", "There are no user to display.", "info");
@@ -352,7 +351,8 @@
                             dataType: "json",
                             success: function (data) {
                                 swal("Success!", "User successfully updated!", "success").then((value) => {
-                                    GetUsers();
+                                    window.location.reload();
+                                    //GetUsers();
                                 });
                             },
                             error: function (data, status, error) {

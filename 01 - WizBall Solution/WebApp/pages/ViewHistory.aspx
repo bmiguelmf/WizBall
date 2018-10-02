@@ -21,6 +21,20 @@
             </div>
 
         </asp:Panel>
+<<<<<<< HEAD
+=======
+    </div>
+    <asp:CheckBox ID="AllCompsCB" ClientIDMode="Static" name="AllCompsCB" runat="server" />
+    <asp:Repeater ID="compRep" runat="server">
+        <ItemTemplate>
+            <asp:HiddenField Value='<%# DataBinder.Eval(Container.DataItem, "Id") %>' ID='HidFieldComp' runat="server" />
+            <asp:CheckBox value='<%# DataBinder.Eval(Container.DataItem, "Id")%>' ID='ckBtn' runat="server" />
+            
+        </ItemTemplate>
+    </asp:Repeater>
+
+    <asp:PlaceHolder ID="placeHolderHistoryTips" runat="server"></asp:PlaceHolder>
+>>>>>>> 9a2594793e916258437877535f4e848872a65ed5
 
         <asp:Panel CssClass="alert alert-dark" runat="server">
             <div class="card-body">
