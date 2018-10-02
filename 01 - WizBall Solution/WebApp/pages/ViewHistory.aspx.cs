@@ -44,13 +44,19 @@ namespace WebApp.pages
                 DateTime yest = DateTime.Now.AddDays(-1);
                 DateTime weekBefore = yest.AddDays(-7);
                 bll = GLOBALS.BllSI;
+                List<Competition> competitions = new List<Competition>();
 
                 foreach (Competition comp in bll.TierOneCompetitions())
                 {
                     CompResolve.Add(comp);
                 }
 
-                compRep.DataSource = bll.TierOneCompetitions();
+                foreach (Competition competition in bll.TierOneCompetitions())
+                {
+                    competitions.Add(bll.GetCompetitionById(competition.Id.ToString()));
+                }
+
+                compRep.DataSource = competitions;
                 compRep.DataBind();
 
                 startRange.Value = weekBefore.ToString("yyyy-MM-dd");
@@ -82,7 +88,7 @@ namespace WebApp.pages
 
             placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
 
-            /*if (AllCompsCB.Checked)
+            if (AllCompsCB.Checked)
             {
                 foreach (Competition comp in bll.TierOneCompetitions())
                 {
@@ -109,7 +115,7 @@ namespace WebApp.pages
                         matchesTipsGrid = new HistoryTipsGrid(matches);
                     }
                 }
-            }*/
+            }
         }
     }
 }
