@@ -104,16 +104,26 @@ namespace WebApp.pages
                 foreach (RepeaterItem i in compRep.Items)
                 {
                     //Retrieve the state of the CheckBox
-                    //CheckBox cb = (CheckBox)i.FindControl("CompCB");
-                    if (AllCompsCB.Checked)
+                    CheckBox cb = (CheckBox)i.FindControl("ckBtn");
+                    if (cb.Checked)
                     {
+                            
+                            //Retrieve the value associated with that CheckBox
+                            //HiddenField hiddenComp = (HiddenField)i.FindControl("HidFieldComp");
+
+                            //Now we can use that value to do whatever we want
+                            matches.AddRange(GLOBALS.BllSI.GetMatchesByCompetition(cb.ID));
+                    }
+                    
                         //Retrieve the value associated with that CheckBox
-                        HiddenField hiddenComp = (HiddenField)i.FindControl("HidFieldComp");
+                        /*HiddenField hiddenComp = (HiddenField)i.FindControl("HidFieldComp");
 
                         //Now we can use that value to do whatever we want
                         matches.AddRange(GLOBALS.BllSI.GetMatchesByCompetition(hiddenComp.Value));
-                        matchesTipsGrid = new HistoryTipsGrid(matches);
-                    }
+                        matchesTipsGrid = new HistoryTipsGrid(matches);*/
+
+                    
+                    
                 }
             }
         }
