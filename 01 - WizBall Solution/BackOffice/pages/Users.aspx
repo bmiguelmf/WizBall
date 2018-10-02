@@ -164,33 +164,6 @@
                     <!-- title -->
                     <h3>Users</h3>
 
-                    <div class="row">
-
-                        <div class="col-lg-12 col-xs-12 text-right">
-                            <!-- search by -->
-                            <span class="search-by">
-                                <p>
-                                    <input type="text" name="" placeholder="Pesquisar utilizadores" />
-                                    <select class="selectpicker">
-                                        <option>Tudo</option>
-                                        <option>Bloqueados</option>
-                                        <option>Pendentes</option>
-                                        <option>Ativos</option>
-                                    </select>
-                                </p>
-                            </span>
-                            <!-- / search by -->
-
-                            <!-- add new instance -->
-                            <span id="st-trigger-effects">
-                                <button data-effect="st-effect-1" class="btn btn-primary btn-sm">
-                                    Pesquisar<i
-                                        class="glyphicon glyphicon-search"></i></button>
-                            </span>
-
-                        </div>
-                    </div>
-
                 </div>
 
                 <div class="body-container">
@@ -211,9 +184,8 @@
                                             <th style="width: 10%;">Action</th>
                                         </tr>
                                     </thead>
-                                        <tbody id="users_table_body" class="data-scroll">
-
-                                        </tbody>
+                                    <tbody id="users_table_body" class="data-scroll">
+                                    </tbody>
 
                                 </table>
                             </div>

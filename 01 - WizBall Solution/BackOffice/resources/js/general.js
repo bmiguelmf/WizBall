@@ -8,16 +8,16 @@ var pagination = $('#pg_users_table');
 
 //global functions
 function clearTable(table) {
-    table.empty();
+    table.empty
+    //table_settings.ajax.reload();
 }
 
 function paginateTable(table, limit) {
-    //table.hpaging({
-    //    "limit": limit
-    //});
-
     table.dataTable({
-        "pageLength": 5
+        destroy: true,
+        "pageLength": limit,
+        "bLengthChange": false,
+        "bAutoWidth": false
     });
 }
 
