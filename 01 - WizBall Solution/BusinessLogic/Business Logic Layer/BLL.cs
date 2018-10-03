@@ -698,7 +698,12 @@ namespace BusinessLogic.BLL
         public Match GetMatchById(string Id)
         {
             DALMatches dalMatches = new DALMatches(connectionString);
-            return dalMatches.GetById(Id);
+            
+            Match match = dalMatches.GetById(Id);
+
+            EntityBuilder(match);
+
+            return match; 
         }      
         public List<Match> GetMatchesByCompetition(string CompetitionId)
         {
@@ -839,7 +844,7 @@ namespace BusinessLogic.BLL
             DALTips dalTips = new DALTips(connectionString);
             return dalTips.GetByMatch(Id);
         }
-        public List<Tip> GetWhereResultNotSet()
+        public List<Tip> GetTipsByResultNotSet()
         {
             DALTips dalTips = new DALTips(connectionString);
             return dalTips.GetWhereResultNotSet();
@@ -893,33 +898,56 @@ namespace BusinessLogic.BLL
             return true;
         }
 
-        public void FTOverTwoAndHalfGoalsTips()
+        public void GenerateTipsFTOverTwoAndHalfGoalsByDate()
         {
-            List<Match> lstMatches = GetNextMatchesByTierOneCompetitions();                         // Gets a matches list with all elegible matches for setting up tips.
+            DateTime dt = new DateTime(2018, 10, 2);
+            List<Match> lstMatches = GetMatchesByDateAndCompetition("2016", dt);                 // Gets a List<Match> with only elegible matches for setting up tips. (Just right the next match by team)
 
-            foreach(Match match in lstMatches)                      
-            {      
-                Tip matchTip = GetTipByMatchId(match.Id.ToString());                                // First we try to get from the database the tip corresponding to the current match.
+            foreach (Match match in lstMatches)
+            {
+                Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
 
-                if(matchTip is null)                                                                // Only if this match does not already has a tip in the database then we will generate one.
+                if (matchTip is null)                                                        // Only if this match does not already has a tip in the database then we will generate one.
                 {
-                    SetFTOverTwoAndHalfGoalsTip(match);
+                    SetTipFTOverTwoAndHalfGoals(match);                                     // Method call which will generate the tip.
                 }
             }
         }
-        private void SetFTOverTwoAndHalfGoalsTip(Match Match)
+        public void GenerateTipsFTOverTwoAndHalfGoals()                                             
         {
-            int homeTeam = Match.HomeTeam.Id;
-            int awayTeam = Match.AwayTeam.Id;
-         
+            // The method responsibility is to decide which matches are eligible for the Full Time Over Two And Half Goals generation tip.
 
-            List<Match> lstCompetitonMatches    = GetMatchesByCompetition(Match.Competition.Id.ToString());
-            List<Match> playedMatches           = lstCompetitonMatches.Where(x => x.Score.Winner != "").ToList();
+            List<Match> lstMatches = GetNextMatchesByTierOneCompetitions();                 // Gets a List<Match> with only elegible matches for setting up tips. (Just right the next match by team)
+
+            foreach (Match match in lstMatches)                      
+            {
+                Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
+
+                if(matchTip is null)                                                        // Only if this match does not already has a tip in the database then we will generate one.
+                {
+                    SetTipFTOverTwoAndHalfGoals(match);                                     // Method call which will generate the tip.
+                }
+            }
+        }
+        private void SetTipFTOverTwoAndHalfGoals(Match Match)
+        {
+            // The method responsibility is to generate a tip for a given match.
+            
+
+            int homeTeam = Match.HomeTeam.Id;           // Easy to handle pointer to homeTeam id.
+            int awayTeam = Match.AwayTeam.Id;           // Easy to handle pointer to awayTeam id.
 
 
-            double? homeTeamAvgHomeGoals        = playedMatches.Where(x => x.HomeTeam.Id == homeTeam).Average(x => x.Score.FullTime.HomeTeam);
-            double? awayTeamAvgAwayGoals        = playedMatches.Where(x => x.AwayTeam.Id == awayTeam).Average(x => x.Score.FullTime.AwayTeam);
-            double? totalAvg                    = homeTeamAvgHomeGoals + awayTeamAvgAwayGoals;
+            List<Match> lstCompetitonMatches    = GetMatchesByCompetition(Match.Competition.Id.ToString());                 // Gets all matches for the competition which the current match belongs to.
+            List<Match> playedMatches           = lstCompetitonMatches.Where(x => x.Score.Winner != "").ToList();           // Then filters it just to get the played matches.
+
+
+            double? homeTeamAvgResult           = playedMatches.Where(x => x.HomeTeam.Id == homeTeam)                       // Gets the avg fult time result for the matches where the Home Team = to homeTeam.
+                                                  .Average(x => x.Score.FullTime.HomeTeam + x.Score.FullTime.AwayTeam);
+            double? awayTeamAvgResult           = playedMatches.Where(x => x.AwayTeam.Id == awayTeam)                       // Gets the avg fult time result for the matches where the Away Team = to awayTeam.
+                                                  .Average(x => x.Score.FullTime.HomeTeam + x.Score.FullTime.AwayTeam);
+            double? totalAvg                    = (homeTeamAvgResult + awayTeamAvgResult) / 2;
+
 
 
             Tip tip = new Tip();
@@ -938,7 +966,7 @@ namespace BusinessLogic.BLL
                 tip.BetNoBet    = true;
                 tip.Forecast    = false;
             }
-            else                    // Just to danger. 
+            else                    // Unpredictable bet. 
             {
                 tip.Match       = new Match     { Id = Match.Id };
                 tip.Market      = new Market    { Id = 1 };
@@ -949,35 +977,35 @@ namespace BusinessLogic.BLL
             InsertTip(tip);
         }
 
-        public void SetFTOverTwoAndHalfGoalsResults()
+        public void SetResultsFTOverTwoAndHalfGoals()
         {
-            List<Tip> lstTips = GetWhereResultNotSet();
+            // The method responsibility is to update previous generated tips with real matches result after them being played.
+
+            List<Tip> lstTips = GetTipsByResultNotSet();                                                     // List of tips waiting for the match to happen. (Result = null)             
 
             foreach (Tip tip in lstTips)
             {
-                Match match = GetMatchById(tip.Match.Id.ToString());
+                Match match = GetMatchById(tip.Match.Id.ToString());                                        // Then we will check if the corresponding match for each tip has already been played.
 
-                if (NormalizeApiDateTime(match.UtcDate) >= DateTime.Today) continue;
+                if (match.Score.Winner == string.Empty)                                                     // Because the application generate tips some days before the corresponding match happens.
+                {                                                                                           // we must check if the match has already been played. Otherwise continue to next tip.
+                    continue;               
+                }
 
-                double? totalGoals = match.Score.FullTime.HomeTeam + match.Score.FullTime.AwayTeam;
+                double? totalGoals = match.Score.FullTime.HomeTeam + match.Score.FullTime.AwayTeam;         // Total goals is equal to the som of home team score plus away team score
 
-                if(totalGoals > 2.5)
+                if(totalGoals > 2.5)                                                                        // Checks whether the match had over two and half goals or not.
                 {
-                    tip.Result = true;
+                    tip.Result = true;                                                                      // Sets the tip result value.
                 }
                 else
                 {
-                    tip.Result = false;
+                    tip.Result = false;                                                                     // Sets the tip result value.      
                 }
             }
 
-            UpdateTips(lstTips);
+            UpdateTips(lstTips);                                                                            // Finally updates all the tips with the result now set.
         }
-        // Obeter a lista de tips com result a null
-        // Ir uma a uma das tips
-        // Obter o jogo correspondent
-        // Comprar
-        //guardar
 
     }
 }

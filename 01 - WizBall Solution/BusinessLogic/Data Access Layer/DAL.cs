@@ -110,7 +110,7 @@ namespace BusinessLogic.DAL
         #region GETS
 
         /// <summary>
-        /// Provides a raw way of querying the database to get the corresponding Entity object.
+        /// Provides an easy way of querying raw selects against the database and returns the corresponding Entity object.
         /// </summary>
         /// <param name="Entity">An object that implements Abstract Class Entity.</param>
         /// <returns>Returns a list of objects of type Entity object.</returns>
@@ -126,7 +126,7 @@ namespace BusinessLogic.DAL
 
 
         /// <summary>
-        /// Get all elements from the database for the corresponding Entity object.
+        /// Gets all elements from the database for the corresponding Entity object.
         /// </summary>
         /// <param name="Entity">An object that implements Abstract Class Entity.</param>
         /// <returns>Returns a list of objects of type Entity object.</returns>
@@ -142,7 +142,7 @@ namespace BusinessLogic.DAL
 
 
         /// <summary>
-        /// Get one particular element from the database for the corresponding Entity object.
+        /// Gets one particular element from the database for the corresponding Entity object.
         /// </summary>
         /// <param name="Entity">An object that implements Abstract Class Entity.</param>
         /// <param name="Id">Id of the element to search.</param>
@@ -162,7 +162,7 @@ namespace BusinessLogic.DAL
 
 
         /// <summary>
-        /// Get a subset of elements from the database for the corresponding Entity object.
+        /// Gets a subset of elements from the database for the corresponding Entity object.
         /// </summary>
         /// <param name="Entity">An object that implements Abstract Class Entity.</param>
         /// <param name="Where">ex: { {field1, value1 }, {field2, value2} } </param>
@@ -195,7 +195,7 @@ namespace BusinessLogic.DAL
             return ExecuteReader(Entity, cmd);
         }
         /// <summary>
-        /// Get a subset of elements from the database for the corresponding Entity object.
+        /// Gets a subset of elements from the database for the corresponding Entity object.
         /// </summary>
         /// <param name="Entity">An object that implements Abstract Class Entity.</param>
         /// <param name="Where">ex: { {field1, value1 }, {field2, value2} } </param>
@@ -238,7 +238,7 @@ namespace BusinessLogic.DAL
         #region INSERTS
 
         /// <summary>
-        /// Insert one particular element of type Entity object into the corresponding database table.
+        /// Inserts one particular element of type Entity object into the corresponding database table.
         /// </summary>
         /// <param name="Entity">An object that implements Abstract Class Entity.</param>
         /// <returns>True if successfully.</returns>
@@ -297,7 +297,7 @@ namespace BusinessLogic.DAL
         #region UPDATES
 
         /// <summary>
-        /// Update one particular element of type Entity object from the corresponding database table.
+        /// Updates one particular element of type Entity object from the corresponding database table.
         /// </summary>
         /// <param name="Entity">An object that implements Abstract Class Entity.</param>
         /// <returns>True if successfully.</returns>
@@ -340,7 +340,7 @@ namespace BusinessLogic.DAL
         #region DELETES
 
         /// <summary>
-        /// Delete one particular element of type Entity object from the corresponding database table.
+        /// Deletes one particular element of type Entity object from the corresponding database table.
         /// </summary>
         /// <param name="Entity">An object that implements Abstract Class Entity.</param>
         /// <returns>True if successfully.</returns>
@@ -355,7 +355,6 @@ namespace BusinessLogic.DAL
         }
 
         #endregion
-
 
 
         public enum DbOperator {
@@ -402,7 +401,6 @@ namespace BusinessLogic.DAL
                     }
             }
         }
-
     }
    
 }

@@ -17,7 +17,7 @@ namespace FrontOffice.Pages
         {
             MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid();
 
-            new Globals().CreateBll().FTOverTwoAndHalfGoalsTips();
+            new Globals().CreateBll().SetResultsFTOverTwoAndHalfGoals();
 
             placeHolderMatchesTipsGrid.Controls.Add(matchesTipsGrid.Create());
         }
