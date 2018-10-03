@@ -7,13 +7,15 @@
         float: left;
         padding: 8px 16px;
         text-decoration: none;
+        border-radius: 3px !important;
     }
 
-        .pagination a.active {
+        .pagination .active {
             background-color: #003864;
             color: white;
         }
 
         .pagination a:hover:not(.active) {
-            background-color: #fff;
+            background-color: #F5F5F5;
         }
+ 

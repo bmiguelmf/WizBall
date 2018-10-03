@@ -94,16 +94,25 @@
                 <div class="head-container">
                     <!-- title -->
                     <h3>User Requests</h3>
+                    <div class="row">
+                        <div class="col-12 col-xs-12 pull-right">
+
+                            <!-- add new instance -->
+                            <button id="grant_all_users" class="btn btn-primary">Grant</button>
+                            <button id="revoke_all_users" class="btn btn-primary">Revoke</button>
+                        </div>
+
+                    </div>
                 </div>
 
-            <div class="body-container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!-- list/table-->
-                        <div class="content table-full-width" style="position: relative;">
-                            <table id="users_table" class="table table-hover">
-                                <thead>
-                                   <%-- <tr>
+                <div class="body-container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- list/table-->
+                            <div class="content table-full-width" style="position: relative;">
+                                <table id="users_table" class="table table-hover">
+                                    <thead>
+                                        <%-- <tr>
                                         <th style="width: 8%;" class="text-center">
                                             <input type="checkbox" /></th>
                                         <th style="width: 10%;">Photo</th>
@@ -112,9 +121,9 @@
                                         <th style="width: 21%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
                                         <th style="width: 15%;" colspan="2">Action</th>
                                     </tr>--%>
-                                    <tr>
+                                        <tr>
                                             <th style="width: 8%;" class="text-center">
-                                                <input id="check_all" type="checkbox" /></th>
+                                                <input id="check-all" class="checkbox-change" type="checkbox" /></th>
                                             <th style="width: 10%;">Photo</th>
                                             <th style="width: 17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
                                             <th style="width: 29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
@@ -122,14 +131,14 @@
                                             <th style="width: 10%;">Grant</th>
                                             <th style="width: 10%;">Revoke</th>
                                         </tr>
-                                </thead>
-                                <tbody id="users_table_body" class="data-scroll">
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody id="users_table_body" class="data-scroll">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
             </div>
         </div>

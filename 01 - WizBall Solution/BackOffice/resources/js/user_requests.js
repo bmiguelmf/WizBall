@@ -1,9 +1,16 @@
 ﻿
 //html elements
+var btn_grant_all_users = $('#grant_all_users');
+var btn_revoke_all_users = $('#revoke_all_users');
 
 //vars
-
+var pending_users_ids = [];
 //functions
+function removeActionButtons() {
+    btn_grant_all_users.remove;
+    btn_revoke_all_users.remove;
+}
+
 function aproveUser(id, is_granted) {
     var permission = "Revoked";
 
@@ -108,23 +115,28 @@ function GetPendingUsers() {
             tbl_users_body.empty();
             if (data.d.length > 0) {
                 let ran_if = false;
+                let i = 0;
                 $.each(data.d, function (index, value) {
                     if (value.CurrentUserHistory.AfterState.Description === "Pending") {
                         ran_if = true;
-                        tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8%;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/Users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\"" + value.CurrentUserHistory.AfterState.Id + "\" style=\"width:16%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td style=\"width:10%;\"><a class=\"btn_revoke\"><i class=\"glyphicon glyphicon-trash\"></i></a></td></tr>");
+                        pending_users_ids[i] = value.Id;
+                        tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8%;\" class=\"text-center\"><input user_id=\"" + value.Id + "\" class=\"check-all checkbox-change\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/Users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\"" + value.CurrentUserHistory.AfterState.Id + "\" style=\"width:16%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td style=\"width:10%;\"><a class=\"btn_revoke\"><i class=\"glyphicon glyphicon-trash\"></i></a></td></tr>");
                     }
+                    i++;
                 });
                 if (ran_if === true) {
                     paginateTable(tbl_users, 3);
                     assignActionBtnClickEvents();
                 } else {
                     swal("Info!", "There are no user requests at the moment.", "info");
-                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                    removeActionButtons();
+                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             }
             else {
                 swal("Info!", "There are no user requests at the moment.", "info");
-                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                removeActionButtons();
+                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
             }
         },
         error: function (data, status, error) {
@@ -133,9 +145,75 @@ function GetPendingUsers() {
     });
 }
 
-//events
+function aproveAllUsers(ids, is_granted) {
+    var permission = "Revoked";
 
+    if (is_granted) {
+        permission = "Granted";
+    }
+
+    for (i = 0; i < ids.length; i++) {
+        aproveUser(ids[i], is_granted);
+    }
+
+    swal("Success!", "Users successfully " + permission.toLowerCase() + "!", "success").then((value) => {
+        //GetPendingUsers();
+        window.location.reload();
+    });
+
+}
+
+//calls
 GetPendingUsers();
 
+//events
+btn_grant_all_users.click(function () {
+    if ($('.check-all').filter(":checked").length > 0) {
+        // any one is checked
+        //TODO Ir buscar o attr user_id das que estão selecionadas,
+        //criar um array com os ids e enviar para o metodo approveAllUsers com true
+    }
+    else {
+        swal({
+            title: "Are you sure?",
+            text: "If necessary, you can change this later.",
+            icon: "warning",
+            buttons: true
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    aproveAllUsers(pending_users_ids, true);
+                } else {
+                    swal("Canceled!", "", "info");
+                }
+            });
+    }
+});
+
+btn_revoke_all_users.click(function () {
+    if ($('.check-all').filter(":checked").length > 0) {
+        // any one is checked
+        //TODO Ir buscar o attr user_id das que estão selecionadas,
+        //criar um array com os ids e enviar para o metodo approveAllUsers com false
+
+    } else if ($('#check-all').prop('checked') === true) {
+
+    }
+    else {
+        swal({
+            title: "Are you sure?",
+            text: "If necessary, you can change this later.",
+            icon: "warning",
+            buttons: true
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    aproveAllUsers(pending_users_ids, false);
+                } else {
+                    swal("Canceled!", "", "info");
+                }
+            });
+    }
+});
 
 console.log('READY user_requests.js');

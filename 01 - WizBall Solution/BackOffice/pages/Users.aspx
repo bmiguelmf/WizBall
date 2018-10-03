@@ -163,7 +163,6 @@
 
                     <!-- title -->
                     <h3>Users</h3>
-
                 </div>
 
                 <div class="body-container">
@@ -194,7 +193,7 @@
                 </div>
 
             </div>
-        </div>
+    </div>
         <!-- / Central content -->
 
     </div>
