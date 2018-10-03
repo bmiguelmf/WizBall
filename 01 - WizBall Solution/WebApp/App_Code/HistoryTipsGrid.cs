@@ -60,17 +60,23 @@ namespace WebApp.App_Code
             cellMatchDay.InnerHtml = "MD";
             header.Controls.Add(cellMatchDay);
 
+            HtmlGenericControl cellDate = new HtmlGenericControl("div");
+            cellDate.Attributes["class"] = "grid-cell";
+            cellDate.Attributes["title"] = "Match Date";
+            cellDate.InnerText = "Date";
+            header.Controls.Add(cellDate);
+
             HtmlGenericControl cellHomeTeam = new HtmlGenericControl("div");
             cellHomeTeam.Attributes["class"] = "grid-cell";
             cellHomeTeam.Attributes["title"] = "Home Team";
             cellHomeTeam.InnerText = "Home Team";
             header.Controls.Add(cellHomeTeam);
 
-            HtmlGenericControl cellDate = new HtmlGenericControl("div");
-            cellDate.Attributes["class"] = "grid-cell";
-            cellDate.Attributes["title"] = "Match Date";
-            cellDate.InnerText = "Date";
-            header.Controls.Add(cellDate);
+            HtmlGenericControl cellFTS = new HtmlGenericControl("div");
+            cellFTS.Attributes["class"] = "grid-cell";
+            cellFTS.Attributes["title"] = "Away Team";
+            cellFTS.InnerText = "HTS";
+            header.Controls.Add(cellFTS);
 
             HtmlGenericControl cellAwayTeam = new HtmlGenericControl("div");
             cellAwayTeam.Attributes["class"] = "grid-cell";
@@ -104,16 +110,21 @@ namespace WebApp.App_Code
                 rowCellMatchDay.InnerHtml = match.Matchday.ToString();
                 row.Controls.Add(rowCellMatchDay);
 
-                HtmlGenericControl rowCellHomeTeam = new HtmlGenericControl("div");
-                rowCellHomeTeam.Attributes["class"] = "grid-cell";
-                rowCellHomeTeam.InnerHtml = match.HomeTeam.ShortName + "<img class='teamFlag pl-2' src='" + GLOBALS.TEAM_FLAGS + match.Competition.Area.Name + "/" + match.HomeTeam.Flag + "' alt='" + match.HomeTeam.ShortName + "' title='" + match.HomeTeam.ShortName + "' width='20px;'>";
-                row.Controls.Add(rowCellHomeTeam);
-
                 HtmlGenericControl rowCellDate = new HtmlGenericControl("div");
                 rowCellDate.Attributes["class"] = "grid-cell";
                 rowCellDate.Attributes["utc-date"] = GLOBALS.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
                 rowCellDate.InnerHtml = GLOBALS.NormalizeApiDateTime(match.UtcDate).Value.ToString("dd MMM HH:mm");
                 row.Controls.Add(rowCellDate);
+
+                HtmlGenericControl rowCellHomeTeam = new HtmlGenericControl("div");
+                rowCellHomeTeam.Attributes["class"] = "grid-cell";
+                rowCellHomeTeam.InnerHtml = match.HomeTeam.ShortName + "<img class='teamFlag pl-2' src='" + GLOBALS.TEAM_FLAGS + match.Competition.Area.Name + "/" + match.HomeTeam.Flag + "' alt='" + match.HomeTeam.ShortName + "' title='" + match.HomeTeam.ShortName + "' width='20px;'>";
+                row.Controls.Add(rowCellHomeTeam);
+
+                HtmlGenericControl rowFTS = new HtmlGenericControl("div");
+                rowFTS.Attributes["class"] = "grid-cell";
+                rowFTS.InnerHtml = match.Score.FullTime.HomeTeam + " - " + match.Score.FullTime.AwayTeam;
+                row.Controls.Add(rowFTS);
 
                 HtmlGenericControl rowCellAwayTeam = new HtmlGenericControl("div");
                 rowCellAwayTeam.Attributes["class"] = "grid-cell";

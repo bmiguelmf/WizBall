@@ -8,7 +8,7 @@ var pagination = $('#pg_users_table');
 
 //global functions
 function clearTable(table) {
-    table.empty
+    table.empty;
     //table_settings.ajax.reload();
 }
 
@@ -17,7 +17,17 @@ function paginateTable(table, limit) {
         destroy: true,
         "pageLength": limit,
         "bLengthChange": false,
-        "bAutoWidth": false
+        "bAutoWidth": false,
+        "fnDrawCallback": function (oSettings) {
+            if (window.location.href.split("/").pop() === "Users.aspx") {
+                loadSideBarEffectsScripts();
+                assignBtnEditClickEvent();
+            }
+            if (window.location.href.split("/").pop() === "UserRequests.aspx") {
+                assignActionBtnClickEvents();
+            }
+            
+        }
     });
 }
 
@@ -43,7 +53,7 @@ $(document).ready(function () {
             if (number_user_requests !== 0) {
                 $.notify({
                     message: 'You have ' + number_user_requests + ' pending user requests! Click here to see more details.',
-                    url: "UserRequests.aspx",
+                    url: "UserRequests.aspx"
                 }, {
                         type: 'danger',
                         url_target: ""

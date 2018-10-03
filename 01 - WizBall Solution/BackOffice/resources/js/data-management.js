@@ -116,7 +116,7 @@ function feedUneditedUser(Table_user) {
     Unedited_user['Password'] = $.session.get('UserPassword');
 }
 
-function GetUsers() {
+function GetUsers1() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -124,17 +124,52 @@ function GetUsers() {
         data: "",
         dataType: "json",
         success: function (data) {
-            clearTable(tbl_users_body);
+            clearTable($('#users_table_body1'));
             if (data.d.length > 0) {
                 let ran_if = false;
                 $.each(data.d, function (index, value) {
                     if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
                         ran_if = true;
-                        tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
+                        $('#users_table_body1').append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
                     }
                 });
                 if (ran_if === true) {
-                    paginateTableAndLoadSideBarScripts(tbl_users, 3);
+                    paginateTableAndLoadSideBarScripts($('#users_table1'), 3);
+                    assignBtnEditClickEvent();
+                } else {
+                    swal("Info!", "There are no user to display.", "info");
+                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                }
+            }
+            else {
+                swal("Info!", "There are no user requests at the moment.", "info");
+                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+            }
+        },
+        error: function (data, status, error) {
+            swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+        }
+    });
+}
+function GetUsers2() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/GetAllUsers",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            clearTable($('#users_table_body2'));
+            if (data.d.length > 0) {
+                let ran_if = false;
+                $.each(data.d, function (index, value) {
+                    if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
+                        ran_if = true;
+                        $('#users_table_body2').append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
+                    }
+                });
+                if (ran_if === true) {
+                    paginateTableAndLoadSideBarScripts($('#users_table2'), 3);
                     assignBtnEditClickEvent();
                 } else {
                     swal("Info!", "There are no user to display.", "info");
@@ -372,7 +407,8 @@ function validateAndSubmit() {
 }
 
 //calls
-GetUsers();
+GetUsers1();
+GetUsers2();
 
 //events
 $('.st-pusher').click(function () {
