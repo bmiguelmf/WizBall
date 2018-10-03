@@ -109,6 +109,21 @@ namespace BusinessLogic.DAL
 
         #region GETS
 
+        /// <summary>
+        /// Provides a raw way of querying the database to get the corresponding Entity object.
+        /// </summary>
+        /// <param name="Entity">An object that implements Abstract Class Entity.</param>
+        /// <returns>Returns a list of objects of type Entity object.</returns>
+        protected List<Entity> GetRaw(Entity Entity, string QueryRaw)
+        {
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = string.Format(QueryRaw)
+            };
+
+            return ExecuteReader(Entity, cmd);
+        }
+
 
         /// <summary>
         /// Get all elements from the database for the corresponding Entity object.
@@ -206,14 +221,16 @@ namespace BusinessLogic.DAL
 
             foreach (DbWhere where in Where)
             {
-                cmd.Parameters.AddWithValue("@" + where.Alias, where.Value);
+                if(where.Value is null)
+                    cmd.Parameters.AddWithValue("@" + where.Alias, DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@" + where.Alias, where.Value);
             }
-
-
+            
 
             return ExecuteReader(Entity, cmd);
         }
-
+        
 
         #endregion
 

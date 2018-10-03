@@ -839,6 +839,11 @@ namespace BusinessLogic.BLL
             DALTips dalTips = new DALTips(connectionString);
             return dalTips.GetByMatch(Id);
         }
+        public List<Tip> GetWhereResultNotSet()
+        {
+            DALTips dalTips = new DALTips(connectionString);
+            return dalTips.GetWhereResultNotSet();
+        }
         public bool InsertTip(Tip Tip)
         {
             if (Tip is null)
@@ -873,20 +878,21 @@ namespace BusinessLogic.BLL
             if (Tip is null)
                 return false;
 
+            DALTips dalTips = new DALTips(connectionString);
 
-
-            List<Tip> lstTips = new List<Tip>()
-            {
-                Tip
-            };
-
+            return dalTips.Update(Tip);
+        }
+        public bool UpdateTips(List<Tip> Tips)
+        {
+            if (Tips is null)
+                return false;
 
             DALTips dalTips = new DALTips(connectionString);
-            dalTips.Update(lstTips);
-
+            dalTips.Update(Tips);
 
             return true;
         }
+
         public void FTOverTwoAndHalfGoalsTips()
         {
             List<Match> lstMatches = GetNextMatchesByTierOneCompetitions();                         // Gets a matches list with all elegible matches for setting up tips.
@@ -942,6 +948,36 @@ namespace BusinessLogic.BLL
 
             InsertTip(tip);
         }
+
+        public void SetFTOverTwoAndHalfGoalsResults()
+        {
+            List<Tip> lstTips = GetWhereResultNotSet();
+
+            foreach (Tip tip in lstTips)
+            {
+                Match match = GetMatchById(tip.Match.Id.ToString());
+
+                if (NormalizeApiDateTime(match.UtcDate) >= DateTime.Today) continue;
+
+                double? totalGoals = match.Score.FullTime.HomeTeam + match.Score.FullTime.AwayTeam;
+
+                if(totalGoals > 2.5)
+                {
+                    tip.Result = true;
+                }
+                else
+                {
+                    tip.Result = false;
+                }
+            }
+
+            UpdateTips(lstTips);
+        }
+        // Obeter a lista de tips com result a null
+        // Ir uma a uma das tips
+        // Obter o jogo correspondent
+        // Comprar
+        //guardar
 
     }
 }

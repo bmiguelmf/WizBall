@@ -36,7 +36,11 @@ namespace BusinessLogic.DAL
                             { { "competition_id", CompetitionId } })
 
                             .Cast<Tip>().ToList();
-        }      
+        }
+        public List<Tip> GetWhereResultNotSet()
+        {
+            return GetRaw(new Tip(), "SELECT * FROM tips WHERE result is null").Cast<Tip>().ToList();
+        }
         public List<Tip> GetByCompetitionAndSeason(string CompetitionId, string SeasonId)
         {
             return GetWhere(new Tip(),
@@ -72,6 +76,10 @@ namespace BusinessLogic.DAL
         }
 
         // Update.
+        public bool Update(Tip Tip)
+        {
+            return base.Update(Tip);
+        }
         public bool Update(List<Tip> Tips)
         {
             foreach (Tip tip in Tips)

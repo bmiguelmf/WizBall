@@ -47,7 +47,7 @@ namespace FrontOffice.Resources
         public BLL CreateBll()
         {     
             string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
-            string connString  = WebConfigurationManager.ConnectionStrings["PasseiraHome"].ConnectionString;
+            string connString  = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
 
             return new BLL(connString, apiToken);
         }
