@@ -730,6 +730,16 @@ namespace BusinessLogic.BLL
 
             return lstTodayMatches;
         }
+        public List<Match> GetMatchesHistoryByCompetition(string CompetitionId)
+        {
+            DALMatches dalMatches = new DALMatches(connectionString);
+
+            List<Match> lstMatches = dalMatches.GetHistoryByCompetitionId(CompetitionId);
+
+            lstMatches.ForEach(EntityBuilder);
+
+            return lstMatches;
+        }
         public List<Match> GetMatchesByDateAndCompetition(string CompetitionId, DateTime Date)
         {
             DateTime dayInit = new DateTime(Date.Year, Date.Month, Date.Day, 0,  0,  0);

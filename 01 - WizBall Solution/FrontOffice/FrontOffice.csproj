@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\ViewEditProfile.aspx" />
+    <Content Include="Pages\ViewHistoryTips.aspx" />
     <Content Include="Pages\ViewHome.aspx" />
     <Content Include="Pages\ViewLogin.aspx" />
     <Content Include="Pages\ViewRecoverPassword.aspx" />
@@ -326,6 +327,7 @@
     <Content Include="Public\Javascript\ViewRegistration.js" />
     <Content Include="Public\jQuery\jQuery.min.js" />
     <Content Include="Public\Styling\MasterView.css" />
+    <Content Include="Public\Styling\MatchesTipsHistoryGrid.css" />
     <Content Include="Public\Styling\MatchesTipsGrid.css" />
     <Content Include="Public\Styling\ViewEditProfile.css" />
     <Content Include="Public\Styling\ViewLogin.css" />
@@ -348,6 +350,13 @@
     </Compile>
     <Compile Include="Pages\ViewEditProfile.aspx.designer.cs">
       <DependentUpon>ViewEditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewHistoryTips.aspx.cs">
+      <DependentUpon>ViewHistoryTips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewHistoryTips.aspx.designer.cs">
+      <DependentUpon>ViewHistoryTips.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewHome.aspx.cs">
       <DependentUpon>ViewHome.aspx</DependentUpon>
@@ -379,6 +388,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Globals.cs" />
+    <Compile Include="Resources\MatchesTipsHistoryGrid.cs" />
     <Compile Include="Resources\MatchesTipsGrid.cs" />
     <Compile Include="WizballWS.asmx.cs">
       <DependentUpon>WizballWS.asmx</DependentUpon>

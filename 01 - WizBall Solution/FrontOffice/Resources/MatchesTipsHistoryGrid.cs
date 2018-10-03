@@ -7,10 +7,10 @@ using BusinessLogic.BLL;
 
 namespace FrontOffice.Resources
 {
-    public class MatchesTipsGrid
+    public class MatchesTipsHistoryGrid
     {
         BLL bll;
-        public MatchesTipsGrid()
+        public MatchesTipsHistoryGrid()
         {
             bll = new Globals().CreateBll();  
         }
@@ -58,17 +58,23 @@ namespace FrontOffice.Resources
             cellMatchDay.InnerHtml                          = "MD";
             header.Controls.Add(cellMatchDay);
 
+            HtmlGenericControl cellDate = new HtmlGenericControl("div");
+            cellDate.Attributes["class"] = "grid-cell";
+            cellDate.Attributes["title"] = "Match Date";
+            cellDate.InnerText = "Date";
+            header.Controls.Add(cellDate);
+
             HtmlGenericControl cellHomeTeam                 = new HtmlGenericControl("div");
             cellHomeTeam.Attributes["class"]                = "grid-cell";
             cellHomeTeam.Attributes["title"]                = "Home Team";
             cellHomeTeam.InnerText                          = "Home Team";
             header.Controls.Add(cellHomeTeam);
 
-            HtmlGenericControl cellDate                     = new HtmlGenericControl("div");
-            cellDate.Attributes["class"]                    = "grid-cell";
-            cellDate.Attributes["title"]                    = "Match Date";
-            cellDate.InnerText                              = "Date";
-            header.Controls.Add(cellDate);
+            HtmlGenericControl cellFTS = new HtmlGenericControl("div");
+            cellFTS.Attributes["class"] = "grid-cell";
+            cellFTS.Attributes["title"] = "Full time score";
+            cellFTS.InnerText = "FTS";
+            header.Controls.Add(cellFTS);
 
             HtmlGenericControl cellAwayTeam                 = new HtmlGenericControl("div");
             cellAwayTeam.Attributes["class"]                = "grid-cell";
@@ -82,8 +88,14 @@ namespace FrontOffice.Resources
             cellFtOverTwoAndHalGoals.InnerText              = "FT +2.5";
             header.Controls.Add(cellFtOverTwoAndHalGoals);
 
+            HtmlGenericControl cellResult = new HtmlGenericControl("div");
+            cellResult.Attributes["class"] = "grid-cell";
+            cellResult.Attributes["title"] = "Outcome";
+            cellResult.InnerText = "Outcome";
+            header.Controls.Add(cellResult);
 
-            List<Match> matches = bll.GetNextMatchesByTierOneCompetitions();
+
+            List<Match> matches = bll.GetMatchesHistoryByCompetition("2016");
             foreach (Match match in matches)
             {
                 // Rows
@@ -102,17 +114,23 @@ namespace FrontOffice.Resources
                 rowCellMatchDay.InnerHtml                   = match.Matchday.ToString();
                 row.Controls.Add(rowCellMatchDay);
 
+                HtmlGenericControl rowCellDate = new HtmlGenericControl("div");
+                rowCellDate.Attributes["id"] = "utc-date";
+                rowCellDate.Attributes["class"] = "grid-cell";
+                rowCellDate.Attributes["utc-date"] = bll.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
+                rowCellDate.InnerHtml = bll.NormalizeApiDateTime(match.UtcDate).Value.ToString("dd MMM HH:mm");
+                row.Controls.Add(rowCellDate);
+
                 HtmlGenericControl rowCellHomeTeam          = new HtmlGenericControl("div");
                 rowCellHomeTeam.Attributes["class"]         = "grid-cell";
                 rowCellHomeTeam.InnerHtml                   = match.HomeTeam.ShortName + "<img class='teamFlag pl-2' src='" + Globals.TEAM_FLAGS + match.Competition.Area.Name + "/" + match.HomeTeam.Flag + "' alt='" + match.HomeTeam.ShortName + "' title='" + match.HomeTeam.ShortName + "' width='20px;'>";
                 row.Controls.Add(rowCellHomeTeam);
 
-                HtmlGenericControl rowCellDate              = new HtmlGenericControl("div");
-                rowCellDate.Attributes["id"]                = "utc-date";
-                rowCellDate.Attributes["class"]             = "grid-cell";
-                rowCellDate.Attributes["utc-date"]          = bll.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
-                rowCellDate.InnerHtml                       = bll.NormalizeApiDateTime(match.UtcDate).Value.ToString("dd MMM HH:mm");
-                row.Controls.Add(rowCellDate);
+                HtmlGenericControl rowCellFTS = new HtmlGenericControl("div");
+                rowCellFTS.Attributes["class"] = "grid-cell";
+                rowCellFTS.InnerHtml = match.Score.FullTime.HomeTeam + " - " + match.Score.FullTime.AwayTeam;
+                row.Controls.Add(rowCellFTS);
+
 
                 HtmlGenericControl rowCellAwayTeam          = new HtmlGenericControl("div");
                 rowCellAwayTeam.Attributes["class"]         = "grid-cell";
@@ -122,17 +140,23 @@ namespace FrontOffice.Resources
                 HtmlGenericControl rowCellTip               = new HtmlGenericControl("div");
                 rowCellTip.Attributes["class"]              = "grid-cell";
                 Tip tip = bll.GetTipByMatchId(match.Id.ToString());
-                if(tip != null)
+                if (tip is null)
+                {
+                    rowCellTip.InnerHtml = "<span title='Not available'>N/A</span>";
+                }
+                else
                 {
                     if (tip.BetNoBet)
                     {
                         if (tip.Forecast)
                         {
-                            rowCellTip.InnerHtml = "<img src='" + Globals.WIZBALL + "yes.png' alt='bet in' title='Bet in favor full-time over two and half goals' width ='15px;'>";
+                            rowCellTip.Attributes["style"] = "color: yellowgreen";
+                            rowCellTip.InnerHtml = "+2.5";
                         }
                         else
                         {
-                            rowCellTip.InnerHtml = "<img src='" + Globals.WIZBALL + "no.png' alt='bet against' title='Bet against full-time over two and half goals' width ='15px;'>";
+                            rowCellTip.Attributes["style"] = "color: red";
+                            rowCellTip.InnerHtml = "-2.5";
                         }
                     }
                     else
@@ -140,9 +164,36 @@ namespace FrontOffice.Resources
                         rowCellTip.InnerHtml = "<span title='Unpredictable'>No bet</span>";
                     }
                 }
-                
-                                   
                 row.Controls.Add(rowCellTip);
+
+
+                HtmlGenericControl rowCellOutcome = new HtmlGenericControl("div");
+                rowCellOutcome.Attributes["class"] = "grid-cell";
+                if (tip is null)
+                {
+                    rowCellOutcome.Attributes["style"] = "color: gray";
+                    rowCellOutcome.InnerHtml = "N/A";
+                }
+                else if(!tip.BetNoBet)
+                {
+                    rowCellOutcome.InnerHtml = "No Bet";
+                }
+                else if (tip.Result is null)
+                {
+                    rowCellOutcome.Attributes["style"] = "color: gray";
+                    rowCellOutcome.InnerHtml = "N/A";
+                }
+                else if ((tip.Forecast == tip.Result) || (!tip.Forecast == !tip.Result))
+                {
+                    rowCellOutcome.InnerHtml = "<img src='" + Globals.WIZBALL + "yes.png' alt='bet in' title='Bet in favor full-time over two and half goals' width ='15px;'>";
+                }
+                else if ((tip.Forecast == !tip.Result) || (!tip.Forecast == tip.Result))
+                {
+                    rowCellOutcome.InnerHtml = "<img src='" + Globals.WIZBALL + "no.png' alt='bet against' title='Bet against full-time over two and half goals' width ='15px;'>";
+                }
+               
+                row.Controls.Add(rowCellOutcome);
+                
 
 
                 body.Controls.Add(row);
@@ -154,3 +205,26 @@ namespace FrontOffice.Resources
         }
     }
 }
+
+
+
+      //if (tip is null)
+      //          {
+      //              rowCellOutcome.Attributes["style"] = "color: gray";
+      //              rowCellOutcome.InnerHtml = "N/A";
+      //          }
+      //          else if(tip.Result is null)
+      //          {
+      //              rowCellOutcome.Attributes["style"] = "color: gray";
+      //              rowCellOutcome.InnerHtml = "N/A";
+      //          }
+      //          else if ((bool) tip.Result)
+      //          {
+      //              rowCellOutcome.Attributes["style"] = "color: yellowgreen";
+      //              rowCellOutcome.InnerHtml = "+2.5";
+      //          }
+      //          else
+      //          {
+      //              rowCellOutcome.Attributes["style"] = "color: red";
+      //              rowCellOutcome.InnerHtml = "-2.5";
+      //          }

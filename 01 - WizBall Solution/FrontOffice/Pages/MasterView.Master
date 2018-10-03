@@ -95,7 +95,7 @@
 
                 <a href="#"><i class="fas fa-futbol"></i> Tips</a>
 
-                <a href="#"><i class="fas fa-history"></i> Tips History</a>
+                <a href="/Pages/ViewHistoryTips.aspx"><i class="fas fa-history"></i> Tips History</a>
 
                 <a href="#"><i class="fas fa-info-circle"></i> About Us</a>
 
@@ -150,7 +150,7 @@
 
                 <a href="#"><i class="fas fa-at"></i> Contact Us</a>
 
-                <a href="#"><i class="fas fa-history"></i> Tips History</a>
+                <a href="/Pages/ViewHistoryTips.aspx"><i class="fas fa-history"></i> Tips History</a>
 
                 <a href="#"><i class="fas fa-futbol"></i> Tips</a>
 
