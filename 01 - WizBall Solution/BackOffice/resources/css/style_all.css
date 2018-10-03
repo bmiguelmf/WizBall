@@ -275,7 +275,7 @@ p.select-actions button.btn-primary {
         border-bottom: 2px solid #f0f3f7;
     }
 
-    .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > th {
+    .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > th, .no-users {
         padding: 15px;
         font-weight: 600;
         color: #999;

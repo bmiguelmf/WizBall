@@ -1,15 +1,24 @@
 ﻿//global scope
 //global vars
+
 //global html elements
 var tbl_users = $('#users_table');
 var tbl_users_body = $('#users_table_body');
 var users_table_foot = $('#users_table_foot');
 var pagination = $('#pg_users_table');
+var checked_user_ids = [];
 
 //global functions
 function clearTable(table) {
     table.empty;
     //table_settings.ajax.reload();
+}
+
+function GetCheckedUserIdsToArray() {
+    checked_user_ids = $('.check-all').filter(":checked").map(function () {
+        return $(this).attr('user_id');
+    }).get();
+    console.log(checked_user_ids);
 }
 
 function paginateTable(table, limit) {
@@ -19,6 +28,13 @@ function paginateTable(table, limit) {
         "bLengthChange": false,
         "bAutoWidth": false,
         "fnDrawCallback": function (oSettings) {
+            $('#check-all').on('change', function () {
+                GetCheckedUserIdsToArray();
+            });
+            $('.check-all').prop('checked', false);
+            $('.check-all').on('change', function () {
+                GetCheckedUserIdsToArray();
+            });
             if (window.location.href.split("/").pop() === "Users.aspx") {
                 loadSideBarEffectsScripts();
                 assignBtnEditClickEvent();
@@ -26,16 +42,16 @@ function paginateTable(table, limit) {
             if (window.location.href.split("/").pop() === "UserRequests.aspx") {
                 assignActionBtnClickEvents();
             }
-            
         }
     });
 }
+
 
 //document ready
 $(document).ready(function () {
     //html elements
     var session_label_username = $('#username');
-    var cb_check_all_users = $('#check_all');
+    var cb_check_all_users = $('#check-all');
 
     //vars
     var bell = $('#bell');
@@ -43,7 +59,6 @@ $(document).ready(function () {
     var error = $('#error_message');
 
     //functions
-
     function GetSessionUsernameToNavbar() {
         session_label_username.text($.session.get('AdminUsername'));
     }
@@ -84,9 +99,6 @@ $(document).ready(function () {
         });
     }
 
-
-
-
     //events
     $(document).keydown(function (e) {
         if (e.keyCode === 27) {
@@ -96,11 +108,15 @@ $(document).ready(function () {
 
     cb_check_all_users.change(function () {
         if (this.checked) {
-            $('.check_all').prop('checked', true);
+            $('.check-all').prop('checked', true);
+
         } else {
-            $('.check_all').prop('checked', false);
+            $('.check-all').prop('checked', false);
+
         }
     });
+
+
 
     //calls
 

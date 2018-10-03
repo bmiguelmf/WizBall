@@ -138,12 +138,12 @@ function GetUsers() {
                     assignBtnEditClickEvent();
                 } else {
                     swal("Info!", "There are no user to display.", "info");
-                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             }
             else {
-                swal("Info!", "There are no user requests at the moment.", "info");
-                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                swal("Info!", "There are no user to display", "info");
+                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
             }
         },
         error: function (data, status, error) {
