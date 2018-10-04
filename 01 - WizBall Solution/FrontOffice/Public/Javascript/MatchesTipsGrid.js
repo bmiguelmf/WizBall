@@ -1,7 +1,7 @@
 ﻿// Window resize.
 window.addEventListener("resize", setMatchesTipsGridHeight);
 
-var scrollableHeigth = $("#grid-body-scrollable").height();
+//var scrollableHeigth = getScrollableVisibleHeight();
 
 
 function setMatchesTipsGridHeight() {
@@ -13,7 +13,7 @@ function setMatchesTipsGridHeight() {
     var navHeight = $("#app-header").height();
 
     // Navigation height.
-    var compFilters = $("#filters").outerHeight();
+    var compFilters = parseInt($("#filters").outerHeight());
 
     // Free height.
     var freeHeight = winHeight - navHeight - compFilters -30 -100;
@@ -23,24 +23,33 @@ function setMatchesTipsGridHeight() {
         freeHeight--;
     }
 
+
+    scrollableHeigth = getScrollableVisibleHeight();
+
     if (window.innerWidth >= 960) {
+
         if (scrollableHeigth < freeHeight) {
             document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + scrollableHeigth + "px;");
-            var fds = (freeHeight - scrollableHeigth - 30) / 2;
-            document.getElementById("grid").setAttribute("style", "margin-top:" + fds + "px;");
         }
         else {
             document.getElementById("grid-body-scrollable").setAttribute("style", "height:" + freeHeight + "px;");
         }
     }
-    
-    else {
-        document.getElementById("grid").setAttribute("style", "margin-top:auto;");
-        document.getElementById("grid-body-scrollable").setAttribute("style", "height: auto");
-    }
-
 }
 
+function getScrollableVisibleHeight() {
+
+    var rowsCounter = 0;
+    var rows = document.getElementById("grid-body").childNodes;
+
+    for (var i = 0; i < rows.length; i++) {
+        if (rows[i].style.display !== "none") {
+            rowsCounter++;
+        }
+    }
+
+    return rowsCounter * 30;
+}
 
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -91,13 +100,13 @@ document.getElementById("filters").addEventListener("click", function (e) {
 
     if (e.target && (e.target.id === "show-all-outter" || e.target.id === "show-all")) {
 
-        alert("All");
-     
+        showFilterAll();
+        setMatchesTipsGridHeight();
     }
     else if (e.target && (e.target.id === "show-none-outter" || e.target.id === "show-none")) {
 
-        alert("none");
-
+        hideFilterAll();
+        setMatchesTipsGridHeight();
     }
     else if (e.target && e.target.nodeName === "DIV") {
 
@@ -132,9 +141,12 @@ function filterByCompetitions() {
             hideFilter(compId);                                         // Hides all rows which belongs to the respective competition id
         }
         else {
-            showFilter(compId);                                        // Show all rows which belongs to the respective competition id
+            showFilter(compId);                                         // Show all rows which belongs to the respective competition id
         }
+
+        setMatchesTipsGridHeight();
     }
+
 }
 
 function showFilter(competitionId) {
@@ -147,6 +159,7 @@ function showFilter(competitionId) {
             gridRows[i].style.display = "flex";
         }
     }
+
 }
 function hideFilter(competitionId) {
 
@@ -158,4 +171,35 @@ function hideFilter(competitionId) {
             gridRows[i].style.display = "none";
         }
     }
+
 }
+
+function showFilterAll() {
+
+    // Grid rows
+    var gridRows = document.getElementById("grid-body").childNodes;
+    for (var i = 0; i < gridRows.length; i++) {
+         gridRows[i].style.display = "flex";
+    }
+
+
+    // Competitions filters
+    var filters = document.getElementById("filters").childNodes;
+    for (i = 1; i < filters.length; i++) {
+        filters[i].classList.remove("unselected");
+    }
+}
+function hideFilterAll() {
+    var gridRows = document.getElementById("grid-body").childNodes;
+
+    for (var i = 0; i < gridRows.length; i++) {
+        gridRows[i].style.display = "none";
+    }
+
+    // Competitions filters
+    var filters = document.getElementById("filters").childNodes;
+    for (i = 1; i < filters.length; i++) {
+        filters[i].classList.add("unselected");
+    }
+}
+

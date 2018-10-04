@@ -28,8 +28,8 @@ namespace FrontOffice.Resources
             HtmlGenericControl allComps     = new HtmlGenericControl("div");
             allComps.Attributes["id"]       = "filters-opts";
             allComps.Attributes["class"]    = "filters-opts";
-            allComps.InnerHtml = "<span id='show-all-outter'><i id='show-all' class='fas fa-check'></i></span>" +
-                                 "<span id='show-none-outter'><i id='show-none' class='fas fa-times'></i></span>";
+            allComps.InnerHtml = "<span id='show-all-outter'>All</span><pipe>|</pipe>" +
+                                 "<span id='show-none-outter'>None</span>";
             filters.Controls.Add(allComps);
 
             List<Competition> competitions  = bll.TierOneCompetitions();
