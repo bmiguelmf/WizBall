@@ -213,6 +213,8 @@ namespace BackOffice
             }
         }
 
+
+
         // SYNC METHODS
         [WebMethod]
         public bool FullDatabaseSync()
@@ -233,6 +235,8 @@ namespace BackOffice
             return bll.SyncTeams();
         }
 
+
+
         // TEAMS METHODS
         [WebMethod]
         public List<Team> GetAllTeams()
@@ -241,6 +245,14 @@ namespace BackOffice
             return bll.GetAllTeams();
         }
 
+
+
         // MATCHES METHODS
+        [WebMethod]
+        public List<Match> GetNextMatchesByTierOneCompetitions()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetNextMatchesByTierOneCompetitions();
+        }
     }
 }

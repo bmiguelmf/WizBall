@@ -49,18 +49,6 @@ function loadImage(event) {
     user_photo.attr('src', event.target.result);
 }
 
-user_photo_input.change(function () {
-    if (this.files && this.files[0]) {
-        var reader = new FileReader();
-        reader.onload = loadImage;
-        reader.readAsDataURL(this.files[0]);
-
-        photo_real_name.val("");
-        photo_real_name.val(this.files[0].name);
-        console.log(photo_real_name.val());
-    }
-});
-
 function disableFormTextArea() {
     is_text_area_disabled = true;
     txt_description.val("");
@@ -375,6 +363,18 @@ function validateAndSubmit() {
 GetUsers();
 
 //events
+user_photo_input.change(function () {
+    if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = loadImage;
+        reader.readAsDataURL(this.files[0]);
+
+        photo_real_name.val("");
+        photo_real_name.val(this.files[0].name);
+        console.log(photo_real_name.val());
+    }
+});
+
 $('.st-pusher').click(function () {
     is_code_changed = false;
 });
