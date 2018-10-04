@@ -93,7 +93,7 @@
             <!-- Menus panel -->
             <div class="dektop-menu-menus">
 
-                <a href="#"><i class="fas fa-futbol"></i> Tips</a>
+                <a href="/Pages/ViewHome.aspx"><i class="fas fa-futbol"></i> Tips</a>
 
                 <a href="/Pages/ViewHistoryTips.aspx"><i class="fas fa-history"></i> Tips History</a>
 
@@ -152,7 +152,7 @@
 
                 <a href="/Pages/ViewHistoryTips.aspx"><i class="fas fa-history"></i> Tips History</a>
 
-                <a href="#"><i class="fas fa-futbol"></i> Tips</a>
+                <a href="/Pages/ViewHome.aspx"><i class="fas fa-futbol"></i> Tips</a>
 
             </div>
 

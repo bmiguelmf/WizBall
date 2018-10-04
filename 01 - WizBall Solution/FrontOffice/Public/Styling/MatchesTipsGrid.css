@@ -18,6 +18,49 @@
 
 /* VERY SMALL MOBILE SCREEN SIZES */
 /* VERY SMALL MOBILE SCREEN SIZES */
+.filters {
+    display: flex;
+    flex-direction: row;
+    max-width: var(--grid-width);
+    justify-content:space-around;
+    margin: 0 auto;
+    font-size: 9px;
+
+    background-color:yellowgreen;
+}
+
+.filters-opts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 0 10px;
+}
+.filters-opts span {
+    color: #333;
+    font-size: 15px;
+    width: 50px;
+    text-align: center;
+    cursor:pointer;
+}
+
+.competition {
+    cursor: pointer;
+    background-image: none;
+    background-color: white;
+    border-radius: 50px;
+}
+.competition-flag {
+    width: 20px;
+    margin: 12px;
+}
+.unselected {
+    background-image: radial-gradient(circle, yellowgreen,yellowgreen,yellowgreen, white,white);
+}
+
+/************************************************************************************************************/
 .grid {
     display: flex;
     flex-direction: column;
@@ -64,7 +107,7 @@
 }
 .grid-cell:nth-child(4) {
     min-width: 80px;
-    flex: 80 80 80px;
+    flex: 40 40 80px;
     text-align: center;
     white-space: nowrap;
 }
@@ -174,14 +217,26 @@
 /* DESKTOP SCREENS */
 @media only screen and (min-width: 960px) {
 
+    #filtersAndGrid{
+        padding:50px;
+    }
+
+    .filters {
+        padding: 10px 0;
+        max-width: 1200px;
+        border: 2px solid #333;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+
+    /************************************************************************************************************/
     .grid {
-        padding: 50px;
         max-width:1200px;
     }
 
     .grid-header {
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
+        /*border-top-right-radius: 5px;
+        border-top-left-radius: 5px;*/
     }
 
     .grid-body-scrollable {
