@@ -7,8 +7,8 @@ var btn_revoke_all_users = $('#revoke_all_users');
 var pending_users_ids = [];
 //functions
 function removeActionButtons() {
-    btn_grant_all_users.remove;
-    btn_revoke_all_users.remove;
+    btn_grant_all_users.remove();
+    btn_revoke_all_users.remove();
 }
 
 function aproveUser(id, is_granted) {
@@ -168,15 +168,28 @@ GetPendingUsers();
 
 //events
 btn_grant_all_users.click(function () {
-    if ($('.check-all').filter(":checked").length > 0) {
-        // any one is checked
-        //TODO Ir buscar o attr user_id das que estão selecionadas,
-        //criar um array com os ids e enviar para o metodo approveAllUsers com true
+    if (checked_user_ids > 0) {
+        // any user is checked
+        swal({
+            title: "Are you sure?",
+            text: "This action will grant selected " + checked_user_ids.length === 1 ? "user" : "users",
+            icon: "warning",
+            buttons: true
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    for (var i = 0; i < checked_user_ids.length; i++) {
+                        aproveUser(checked_user_ids[i], true);
+                    }
+                } else {
+                    swal("Canceled!", "", "info");
+                }
+            });
     }
     else {
         swal({
             title: "Are you sure?",
-            text: "If necessary, you can change this later.",
+            text: "This action will grant all users.",
             icon: "warning",
             buttons: true
         })
@@ -191,18 +204,28 @@ btn_grant_all_users.click(function () {
 });
 
 btn_revoke_all_users.click(function () {
-    if ($('.check-all').filter(":checked").length > 0) {
-        // any one is checked
-        //TODO Ir buscar o attr user_id das que estão selecionadas,
-        //criar um array com os ids e enviar para o metodo approveAllUsers com false
-
-    } else if ($('#check-all').prop('checked') === true) {
-
+    if (checked_user_ids > 0) {
+        // any user is checked
+        swal({
+            title: "Are you sure?",
+            text: "This action will revoke selected " + checked_user_ids.length === 1 ? "user" : "users",
+            icon: "warning",
+            buttons: true
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    for (var i = 0; i < checked_user_ids.length; i++) {
+                        aproveUser(checked_user_ids[i], false);
+                    }
+                } else {
+                    swal("Canceled!", "", "info");
+                }
+            });
     }
     else {
         swal({
             title: "Are you sure?",
-            text: "If necessary, you can change this later.",
+            text: "This action will revoke all users.",
             icon: "warning",
             buttons: true
         })

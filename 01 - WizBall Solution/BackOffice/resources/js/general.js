@@ -14,6 +14,10 @@ function clearTable(table) {
     //table_settings.ajax.reload();
 }
 
+function uncheckCheckedCheckbox() {
+    $('.check-all').prop('checked', false);
+}
+
 function GetCheckedUserIdsToArray() {
     checked_user_ids = $('.check-all').filter(":checked").map(function () {
         return $(this).attr('user_id');
@@ -31,7 +35,7 @@ function paginateTable(table, limit) {
             $('#check-all').on('change', function () {
                 GetCheckedUserIdsToArray();
             });
-            $('.check-all').prop('checked', false);
+            uncheckCheckedCheckbox();
             $('.check-all').on('change', function () {
                 GetCheckedUserIdsToArray();
             });
@@ -111,13 +115,11 @@ $(document).ready(function () {
             $('.check-all').prop('checked', true);
 
         } else {
-            $('.check-all').prop('checked', false);
+            uncheckCheckedCheckbox();
 
         }
     });
-
-
-
+    
     //calls
 
     GetPendingUsersCount();

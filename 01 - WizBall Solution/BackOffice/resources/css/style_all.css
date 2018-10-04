@@ -106,12 +106,10 @@ a.btn-clean {
 }
 
     .navbar-inverse .navbar-right.navbar-nav > li > a {
-        padding-top: 10px;
         padding-bottom: 10px;
     }
 
 .navbar-inverse .navbar-nav > li > a {
-    color: #333;
     font-size: 11px;
     text-transform: uppercase;
     font-weight: 600;

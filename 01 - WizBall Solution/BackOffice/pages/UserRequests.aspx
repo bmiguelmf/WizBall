@@ -65,8 +65,6 @@
                     <li><a href="Newsletter.aspx">NEWSLETTER</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
-                    <li><a href=""><i class="glyphicon glyphicon-bell"></i></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                             aria-expanded="false">

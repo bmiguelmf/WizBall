@@ -183,7 +183,7 @@
                                             <th style="width: 10%;">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="users_table_body" class="data-scroll">
+                                    <tbody id="users_table_body">
                                     </tbody>
 
                                 </table>

@@ -7,6 +7,7 @@
     var btn_login = $('#login');
     var form = $('#form_login');
     var error = $('#error_message');
+    var is_logged = false;
 
     //vars
     var passShown = 0;
@@ -39,7 +40,7 @@
             validated = false;
         }
 
-        
+
         if (validated) {
             error.hide();
             error.find('.message').text("");
@@ -69,6 +70,7 @@
                 if (data.d !== null) {
                     $.session.set("AdminUsername", data.d['Username']);
                     $.session.set("AdminId", data.d['Id']);
+                    is_logged = true;
                     swal("Success!", "You are logged in.", "success")
                         .then((value) => {
                             window.location.href = 'Users.aspx';
@@ -78,7 +80,7 @@
                         clearForm();
                     });
                 }
-                
+
             },
             error: function (data, status, error) {
                 swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
@@ -101,8 +103,17 @@
     });
 
     btn_login.click(function () {
-        authenticate();
+        // prevent double enter click
+        if (!is_logged) {
+            authenticate();
+        }
     });
-   
+
+    $(document).keydown(function (e) {
+        if (e.keyCode === 13) {
+            btn_login.trigger('click');
+        }
+    });
+
     console.log('READY login.js');
 });
