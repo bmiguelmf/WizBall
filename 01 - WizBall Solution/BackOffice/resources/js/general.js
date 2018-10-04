@@ -1,6 +1,7 @@
-﻿//global scope
+﻿
+//global scope
 //global vars
-
+var user_requests_count = 0;
 //global html elements
 var tbl_users = $('#users_table');
 var tbl_users_body = $('#users_table_body');
@@ -59,7 +60,6 @@ $(document).ready(function () {
 
     //vars
     var bell = $('#bell');
-    var user_requests_count = 0;
     var error = $('#error_message');
 
     //functions

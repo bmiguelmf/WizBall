@@ -10,7 +10,48 @@ var content_table_body = $('#content_table_body');
 //objects
 
 //functions
+function fillContentTableHead(entity) {
+    if (entity.toLowerCase() === "matches") {
+        content_table_head.append("<tr> <th style=\"width:\" class=\"text-center\"><a class=\"order-by-desc\">Competition<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:\" class=\"text-center\"><a class=\"order-by-desc\">Home team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:\" class=\"text-center\"></th> <th style=\"width:\" class=\"text-center\"></th> <th style=\"width:\" class=\"text-center\"></th> <th style=\"width:\" class=\"text-center\"><a class=\"order-by-desc\">Away team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:\" class=\"text-center\"><a class=\"order-by-desc\">Date<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
+    } else if (entity.toLowerCase() === "teams") {
+        content_table_head.append(/*HTML head para equipas*/);
+    } else {
+        swal("Error!", "Could not load content table header.", "warning").then((value) => {
+            location.reload(true);
+        });
+    }
+}
 
+function gsevgfwe(date) {
+
+    var day = date.slice(7, 10);
+    var month = date.slice(4, 7);
+    var hour = date.slice(16, 18);
+    var min = date.slice(19, 21);
+
+    return day + " " + month + " " + hour + "h" + min;
+}
+
+function turnDateIntoLocalDate(utc_date) {
+    var convertable_date = new Date(utc_date);
+    var local_date = new Date();
+    convertable_date.setHours(convertable_date.getHours() + local_date.getTimezoneOffset());
+    return convertable_date.toString();
+}
+
+function fillContentTableBody(entity, value) {
+    if (entity.toLowerCase() === "matches") {
+        
+        console.log(turnDateIntoLocalDate(value.UtcDate.toString()));
+        content_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:\">" + value.Competition.Name + "</td> <td style=\"width:\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <th style=\"width:\">VS</th> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:\">" + value.AwayTeam.Name + "</td> <td style=\"width:\"></td> </tr>");
+    } else if (entity.toLowerCase() === "teams") {
+        content_table_body.append(/*HTML head para equipas*/);
+    } else {
+        swal("Error!", "Could not load content table body.", "warning").then((value) => {
+            location.reload(true);
+        });
+    }
+}
 
 function GetTeams() {
     $.ajax({
@@ -23,27 +64,40 @@ function GetTeams() {
             clearTable(content_table_head);
             clearTable(content_table_body);
             if (data.d.length > 0) {
-                let ran_if = false;
+                console.log(data.d);
+                fillContentTableHead("teams");
                 $.each(data.d, function (index, value) {
-                    if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
-                        ran_if = true;
-                        $('#users_table_body1').append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
-                    }
+                    fillContentTableBody("teams");
                 });
-                if (ran_if === true) {
-                    
-                } else {
-                    swal("Info!", "There are no user to display.", "info");
-                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
-                }
             }
             else {
                 swal("Info!", "There are no teams at the moment. Please run full sync.", "info");
-                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                content_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No teams to display! <td></td><td></td><td></td></td></tr>");
             }
         },
         error: function (data, status, error) {
             swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+        }
+    });
+}
+
+function FullDatabaseSync() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/FullDatabaseSync",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            if (data.d) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
+        error: function (data, status, error) {
+            return false;
         }
     });
 }
@@ -52,30 +106,71 @@ function GetMatches() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/GetAllUsers",
+        url: "../WebService.asmx/GetNextMatchesByTierOneCompetitions",
         data: "",
         dataType: "json",
         success: function (data) {
-            clearTable($('#users_table_body2'));
+            clearTable(content_table_head);
+            clearTable(content_table_body);
             if (data.d.length > 0) {
-                let ran_if = false;
+                fillContentTableHead("matches");
                 $.each(data.d, function (index, value) {
-                    if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
-                        ran_if = true;
-                        $('#users_table_body2').append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8 %;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
-                    }
+                    fillContentTableBody("matches", value);
                 });
-                if (ran_if === true) {
-                    paginateTableAndLoadSideBarScripts($('#users_table2'), 3);
-                    assignBtnEditClickEvent();
-                } else {
-                    swal("Info!", "There are no user to display.", "info");
-                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
-                }
             }
             else {
-                swal("Info!", "There are no user requests at the moment.", "info");
-                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                swal({
+                    title: "There are no matches at the moment",
+                    text: "Please run full sync.",
+                    icon: "info",
+                    buttons: {
+                        full_sync: {
+                            closeModal: false,
+                            text: "Sync now!",
+                            value: "full_sync"
+                        }
+                    },
+                    closeModal: false
+                })
+                    .then((value) => {
+                        switch (value) {
+                            case "full_sync":
+                                FullDatabaseSync();
+                                swal({
+                                    title: "Synchronizing the data",
+                                    text: "Please wait a few seconds...",
+                                    icon: "info",
+                                    timer: 150000,
+                                    buttons: false,
+                                    closeOnEsc: false,
+                                    closeOnClickOutside: false
+                                }).then((value) => {
+                                    swal({
+                                        title: "Success!",
+                                        icon: "success",
+                                        timer: 3000
+                                    }).then((value) => {
+                                        GetMatches();
+                                    });
+
+                                });
+                                break;
+
+                            default:
+                                if (user_requests_count <= 0) {
+                                    window.location.href = "Users.aspx";
+                                } else {
+                                    window.location.href = "UserRequests.aspx";
+                                }
+                        }
+                    });
+
+
+
+
+
+
+                content_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No matches to display! <td></td><td></td><td></td></td></tr>");
             }
         },
         error: function (data, status, error) {
@@ -84,236 +179,12 @@ function GetMatches() {
     });
 }
 
-function GetClickedUserToForm(id) {
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/GetUserById",
-        data: "{Id: " + JSON.stringify(id) + "}",
-        dataType: "json",
-        statusCode: {
-            404: function (data) {
-                swal("Oops...", "This user no longer exists!", "error").then((value) => {
-                    location.reload(true);
-                });
-            },
-            500: function (data) {
-                swal("Oops...", "Sorry, we are currently unable to fulfill your request!", "error");
-            }
-        },
-        success: function (data) {
-            clearForm();
-            if (data.d !== null) {
-                user_photo.attr('src', '/resources/imgs/users/' + data.d.Picture);
-                photo_real_name.val(data.d.Picture);
-                feedUneditedUser(data.d);
-                input_username.val(data.d.Username);
-                input_username.attr('user_id', data.d.Id);
-                input_email.val(data.d.Email);
-                toggleBothFormToggles(data.d.CurrentUserHistory.AfterState, data.d.Newsletter);
-                disableFormTextArea();
-                old_description.text(data.d.CurrentUserHistory.Description);
-                old_description.each(function () {
-                    $(this).height(0).height(this.scrollHeight);
-                }).find('textarea').change();
-                $.session.set("UserPassword", data.d.Password);
-            }
-        },
-        error: function (data, status, error) {
-            swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
-        }
-    });
-}
-
-function validateForm() {
-    var validated = true;
-    $(".has-error").removeClass("has-error");
-
-    if (input_username.val() === "") {
-        input_username.closest(".form-group").addClass("has-error");
-        error.fadeIn();
-        error.find('.message').text("Please fill in the username field.");
-        validated = false;
-    }
-    if (input_username.val().length > 50) {
-        input_username.closest(".form-group").addClass("has-error");
-        error.fadeIn();
-        error.find('.message').text("The username must be less than 50 characters.");
-        validated = false;
-    }
-
-
-    if (input_email.val() === "") {
-        input_email.closest(".form-group").addClass("has-error");
-        error.fadeIn();
-        error.find('.message').text("Please fill in the e-mail field.");
-        validated = false;
-    }
-    if (!isEmail(input_email.val())) {
-        input_email.closest(".form-group").addClass("has-error");
-        error.fadeIn();
-        error.find('.message').text("Please input a valid email.");
-        validated = false;
-    }
-    if (input_email.val().length > 100) {
-        input_username.closest(".form-group").addClass("has-error");
-        error.fadeIn();
-        error.find('.message').text("The email must be less than 100 characters.");
-        validated = false;
-    }
-
-    if (is_text_area_disabled === false) {
-        if (txt_description.val() === "") {
-            txt_description.closest(".form-group").addClass("has-error");
-            error.fadeIn();
-            error.find('.message').text("Please fill in the description field.");
-            validated = false;
-        }
-    }
-
-    if (validated) {
-        error.hide();
-        error.find('.message').text("");
-    } else {
-        error.fadeIn();
-        $("html, body").animate({ scrollTop: 0 }, "slow");
-    }
-
-    return validated;
-}
-
-function isEquivalent(User1, User2) {
-
-    var User1Props = Object.getOwnPropertyNames(User1);
-    var User2Props = Object.getOwnPropertyNames(User2);
-
-    if (User1Props.length !== User2Props.length) {
-        return false;
-    }
-
-    for (var i = 0; i < User1Props.length; i++) {
-        var prop = User1Props[i];
-
-        if (User1[prop] !== User2[prop]) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function userStateHasChanged(description) {
-    if (description !== "") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function validateAndSubmit() {
-    if (!validateForm()) {
-        return;
-    }
-    var User = {};
-    var UserHistory = {};
-    var BeforeUserState = {};
-    var AfterUserState = {};
-    var Admin = {};
-    var user_has_changed = true;
-    var ajax_url = "";
-    var ajax_data = "";
-
-    Admin['Id'] = $.session.get('AdminId') === "" ? 1 : $.session.get('AdminId');
-
-    User['Id'] = input_username.attr('user_id');
-
-    User['Username'] = input_username.val();
-
-    User['Email'] = input_email.val();
-    User['Newsletter'] = toggle_newsletter.prop('checked');
-    User['Password'] = $.session.get('UserPassword');
-
-    UserHistory['Admin'] = Admin;
-
-    BeforeUserState['Id'] = toggle_status.attr('status_id');
-    UserHistory['BeforeState'] = BeforeUserState;
-
-    AfterUserState['Id'] = toggle_status.prop('checked') ? toggle_status.attr('granted_id') : toggle_status.attr('blocked_id');
-    UserHistory['AfterState'] = AfterUserState;
-    UserHistory['Description'] = txt_description.val();
-
-    User['Picture'] = photo_real_name.val();
-
-    UserHistory['User'] = User;
-
-
-    if (userStateHasChanged(txt_description.val())) {
-        ajax_url = "UpdateUserAndUserHistory";
-    } else if (isEquivalent(User, Unedited_user) === false) {
-        ajax_url = "UpdateUser";
-    } else {
-        ajax_url = undefined;
-        user_has_changed = false;
-    }
-
-
-
-    if (ajax_url === "UpdateUser") {
-        ajax_data = "{User: " + JSON.stringify(User) + "}";
-    } else if (ajax_url === "UpdateUserAndUserHistory") {
-        ajax_data = "{User: " + JSON.stringify(User) + ", UserHistory:" + JSON.stringify(UserHistory) + "}";
-    } else {
-        ajax_data = undefined;
-    }
-
-    //confrimation
-    if (user_has_changed) {
-        swal({
-            title: "Are you sure?",
-            text: "If necessary, you can change this later.",
-            icon: "warning",
-            buttons: true
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        url: "../WebService.asmx/" + ajax_url,
-                        data: ajax_data,
-                        dataType: "json",
-                        success: function (data) {
-                            swal("Success!", "User successfully updated!", "success").then((value) => {
-                                window.location.reload();
-                                //GetUsers();
-                            });
-                        },
-                        error: function (data, status, error) {
-                            swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
-                        }
-                    });
-
-
-                }
-            });
-    } else {
-        swal("Nothing to update...", "", "info");
-    }
-
-
-}
-
 //calls
-GetUsers1();
-GetUsers2();
+GetMatches();
 
 //events
 $('.st-pusher').click(function () {
     is_code_changed = false;
-});
-
-btn_cancel.on("click", function () {
-    $('.st-pusher').trigger('click');
 });
 
 $(document).keydown(function (e) {
@@ -322,21 +193,8 @@ $(document).keydown(function (e) {
     }
 });
 
-toggle_status.on('change', function (ev) {
-    ev.preventDefault();
-    if (is_code_changed === false) {
-        if (is_text_area_disabled === true) {
-            enableFormTextArea();
-        } else {
-            disableFormTextArea();
-        }
-    } else {
-        is_code_changed = false;
-    }
-});
-
 $('#show_teams').click(function () {
-    GetTeams();
+    //GetTeams();
 });
 
 console.log('READY users.js');
