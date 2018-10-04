@@ -15,6 +15,11 @@ user ou user history ou apenas user
 
 7 - Live import photo e validação do form para as fotos
 
+4 - Tratar das imagens do users.
+IMPORTANT 5 - Ordenar ao carregar nas th
+
+IMPORTANT 6 - Pesquisar e filtrar users
+
 -----------DONE--------------01:29 01/10/201801:30 01/10/2018
 
 3 - Tratar da paginação. Das duas um, 
@@ -22,16 +27,9 @@ ou coloco a paginação direita ou coloco
 todos os users  dentro da tabela como 
 estão os jogos na app principal.
 
-4 - Tratar das imagens do users.
-
-IMPORTANT 5 - Ordenar ao carregar nas th
-
-IMPORTANT 6 - Pesquisar e filtrar users
-
-8 - Tamanho minímo a tabela 
-
 IMPORTANT 9 - Botão de grant/revoke 
 all user requests.
 
-IMPORTANT 10 - 
+-----------DONE--------------23:19 03/10/201823:20 03W/10/2018
 
+VERIFICAR -- 8 - Tamanho minímo a tabela 
