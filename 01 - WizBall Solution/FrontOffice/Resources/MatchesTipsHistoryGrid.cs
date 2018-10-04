@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.UI.HtmlControls;
 using BusinessLogic.Entities;
 using BusinessLogic.BLL;
+using System.Linq;
 
 
 namespace FrontOffice.Resources
@@ -95,7 +96,7 @@ namespace FrontOffice.Resources
             header.Controls.Add(cellResult);
 
 
-            List<Match> matches = bll.GetMatchesHistoryByCompetition("2016");
+            List<Match> matches = bll.GetMatchesHistoryByCompetition("2016").OrderByDescending( x => bll.NormalizeApiDateTime(x.UtcDate)).ToList();
             foreach (Match match in matches)
             {
                 // Rows
@@ -150,7 +151,7 @@ namespace FrontOffice.Resources
                     {
                         if (tip.Forecast)
                         {
-                            rowCellTip.Attributes["style"] = "color: yellowgreen";
+                            rowCellTip.Attributes["style"] = "color: green";
                             rowCellTip.InnerHtml = "+2.5";
                         }
                         else
@@ -176,7 +177,7 @@ namespace FrontOffice.Resources
                 }
                 else if(!tip.BetNoBet)
                 {
-                    rowCellOutcome.InnerHtml = "No Bet";
+                    rowCellOutcome.InnerHtml = "No bet";
                 }
                 else if (tip.Result is null)
                 {

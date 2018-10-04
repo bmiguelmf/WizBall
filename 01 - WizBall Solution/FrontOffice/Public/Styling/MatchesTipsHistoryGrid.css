@@ -173,7 +173,7 @@
     }
     .grid-cell:nth-child(6) {
         order: 6;
-    }
+    }  
     .grid-cell:nth-child(7) {
         order: 7;
     }
@@ -226,6 +226,13 @@
         border: 2px solid #333;
         border-bottom-right-radius: 5px;
         border-bottom-left-radius: 5px;
+    }
+
+    .grid-cell:nth-child(4) img {
+        display: inline-block;
+    }
+    .grid-cell:nth-child(6) img {
+        display: inline-block;
     }
 }
 /* DESKTOP SCREENS */

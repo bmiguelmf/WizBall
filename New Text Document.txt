@@ -1,0 +1,23 @@
+Boa tarde
+
+
+Vamos então iniciar a paresentação intermédia do projecto spad.
+
+
+O que é o projecto spad?
+O projeto SPAD visa automatizar o processo de recolha, presistência, processamento e por fim consulta de prognósticos de jogos de futebol. 
+
+Dito isto fica agora claro dizer que a nossa aplicação é na sua essencia uma aplicação de consulta de dados.
+
+
+
+Eu digo isto porquê?
+Esta facto condiciona a nossa apresentação de hoje uma vez que não temos ainda grandes interacções com os utilizadores
+
+
+
+Antes de mais o foco desta apresentação é mostrar as funcionalidades que um utilizador pode realizar na aplicação, bem como mostrar as funcionalidades escondidas.
+
+
+
+Neste momento estamos mais preocupados em fornecer informação de forma consistente, de forma intuitiva e segura.

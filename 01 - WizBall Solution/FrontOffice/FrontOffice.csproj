@@ -320,6 +320,7 @@
     <Content Include="Public\Imgs\Wizball\no.png" />
     <Content Include="Public\Imgs\Wizball\yes.png" />
     <Content Include="Public\Javascript\MasterView.js" />
+    <Content Include="Public\Javascript\MatchesTipsHistoryGrid.js" />
     <Content Include="Public\Javascript\MatchesTipsGrid.js" />
     <Content Include="Public\Javascript\ViewEditProfile.js" />
     <Content Include="Public\Javascript\ViewLogin.js" />
