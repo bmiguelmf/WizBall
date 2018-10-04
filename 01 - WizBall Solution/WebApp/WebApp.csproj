@@ -138,6 +138,7 @@
     <Content Include="GlobalResourcesAcc\imgs\teams\portugal\VitoriaSetubal.ico" />
     <Content Include="LocalResourcesAcc\ProfilePicture\94b509da-d784-4ee3-b03d-88bb1e005a09.png" />
     <Content Include="pages\bruno_testes.aspx" />
+    <Content Include="pages\ViewContactUs.aspx" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\MasterView.Master" />
     <Content Include="pages\ProfileEdit.aspx" />
@@ -464,6 +465,13 @@
     </Compile>
     <Compile Include="pages\bruno_testes.aspx.designer.cs">
       <DependentUpon>bruno_testes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ViewContactUs.aspx.cs">
+      <DependentUpon>ViewContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ViewContactUs.aspx.designer.cs">
+      <DependentUpon>ViewContactUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\CredMaster.Master.cs">
       <DependentUpon>CredMaster.Master</DependentUpon>

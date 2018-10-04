@@ -1,4 +1,10 @@
-﻿function isEmailTaken() {
+﻿// EXEC EVERY PAGE LOAD
+clearForm();
+
+
+
+// AJAX VALIDATION *********************************************************
+function isEmailTaken() {
 
     var txtEmail = document.getElementById("txtEmail").value;
     var emailStatus = document.getElementById("emailStatus");
@@ -12,7 +18,7 @@
 
         success: function (data) {
             if (data.d === true) {
-                emailStatus.innerText = "Email already in usage";
+                emailStatus.innerText = "Email already taken";
             }
             else {
                 emailStatus.innerText = "";
@@ -52,12 +58,36 @@ function isUsernameTaken() {
 
     });
 }
-
 document.getElementById("txtEmail").addEventListener("keyup", isEmailTaken);
 document.getElementById("txtUsername").addEventListener("keyup", isUsernameTaken);
 
 
 
+// MODAL *******************************************************************
+function registrationConfirmation() {
+
+    // Shows modal.
+    var modal = document.getElementById('outter-modal');
+    modal.style.display = "block";
+
+    // Get elements.
+    var counter = document.getElementById("modal-counter");
+    var currentValue = parseInt(counter.innerText);
+
+    window.setTimeout(closeViewRegistration, currentValue * 1000);
+
+    window.setInterval(function () {
+        counter.innerText = currentValue === 0 ? 0 : --currentValue;
+    }, 1000); 
+}
+function closeViewRegistration() {
+    window.location.replace("/Pages/ViewHome.aspx");
+}
+document.getElementById("modal-close").addEventListener("click", closeViewRegistration);
+
+
+
+// FORM VALIDATION *********************************************************
 function isUsernameReady() {
 
     var result = true;
@@ -95,7 +125,7 @@ function isEmailReady() {
     if (emailStatus.innerText.length > 0) {
         result = false;
     }
-    if (txtEmail.length === 0) {
+    else if (txtEmail.length === 0) {
         emailStatus.innerText = "Required";
         result = false;
     }
@@ -128,7 +158,7 @@ function isPasswordReady() {
         passwordStatus.innerText = "Min length 6";
         result = false;
     }
-    else if (txtPassword.lenght > 100) {
+    else if (txtPassword.length > 100) {
         passwordStatus.innerText = "Max length 100";
         result = false;
     }
@@ -143,16 +173,12 @@ function IsFormValid() {
 
     var result = true;
 
-
     if (!isUsernameReady()) {
         result = false;
     }
-
-    if (!isEmailReady())              
-    {
+    if (!isEmailReady()) {
         result = false;
     }
-          
     if (!isPasswordReady()) {
         result = false;
     }
@@ -160,8 +186,10 @@ function IsFormValid() {
 
     return result;
 }
+function clearForm() {
+    document.getElementById("txtUsername").value = "";
+    document.getElementById("txtEmail").value = "";
+    document.getElementById("txtPassword").value = "";
 
-
-
-
-
+    document.getElementById("btnSubmit").blur();
+}
