@@ -172,7 +172,7 @@ btn_grant_all_users.click(function () {
         // any user is checked
         swal({
             title: "Are you sure?",
-            text: "This action will grant selected " + checked_user_ids.length === 1 ? "user" : "users",
+            text: "This action will grant selected users.",
             icon: "warning",
             buttons: true
         })
@@ -208,7 +208,7 @@ btn_revoke_all_users.click(function () {
         // any user is checked
         swal({
             title: "Are you sure?",
-            text: "This action will revoke selected " + checked_user_ids.length === 1 ? "user" : "users",
+            text: "This action will revoke selected users.",
             icon: "warning",
             buttons: true
         })

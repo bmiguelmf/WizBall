@@ -69,7 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pages\DataManagment.aspx" />
+    <Content Include="pages\DataManagement.aspx" />
     <Content Include="pages\Newsletter.aspx" />
     <Content Include="pages\UserRequests.aspx" />
     <Content Include="resources\css\data-table.css" />
@@ -187,12 +187,12 @@
     <Content Include="WebService.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\DataManagment.aspx.cs">
-      <DependentUpon>DataManagment.aspx</DependentUpon>
+    <Compile Include="pages\DataManagement.aspx.cs">
+      <DependentUpon>DataManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\DataManagment.aspx.designer.cs">
-      <DependentUpon>DataManagment.aspx</DependentUpon>
+    <Compile Include="pages\DataManagement.aspx.designer.cs">
+      <DependentUpon>DataManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

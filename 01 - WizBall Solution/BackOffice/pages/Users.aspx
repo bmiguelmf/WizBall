@@ -53,7 +53,7 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <!-- Aqui vai ter as tabelas para alteração de dados e o sync -->
-                    <li><a href="DataManagment.aspx">DATA MANAGEMENT</a></li>
+                    <li><a href="DataManagement.aspx">DATA MANAGEMENT</a></li>
 
                     <!-- Aqui vai ter uma tabela dos users e o admin vai poder fazer a gestão dos mesmos -->
                     <li class="active"><a>USERS</a></li>
@@ -119,7 +119,6 @@
                     <div class="col-lg-3 mt-2 col-md-12">
                         <label class="label" for="select_edit_status">State</label><br />
                         <input id="toggle_edit_status" granted_id="21" blocked_id="11" name="select_edit_status" data-on="Active" data-off="Blocked" type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-width="87" />
-                        <%-- 3 button toggle --> shttp://cssdeck.com/labs/ufct35ys5t--%>
                     </div>
 
                     <div class="col-lg-9 mt-2 col-md-12">
@@ -193,7 +192,7 @@
                 </div>
 
             </div>
-    </div>
+        </div>
         <!-- / Central content -->
 
     </div>
@@ -204,7 +203,6 @@
     <script src="/resources/js/plugins/jquery/jquery-ui.min.js"></script>
 
     <!-- Custom table paging script -->
-    <%--<script src="/resources/js/plugins/pagination/jquery.table.hpaging.min.js"></script>--%>
     <script src="/resources/js/plugins/pagination/data-table-options.js"></script>
     <script src="/resources/js/plugins/pagination/data-tables.js"></script>
 

@@ -30,6 +30,8 @@ estão os jogos na app principal.
 IMPORTANT 9 - Botão de grant/revoke 
 all user requests.
 
+VERIFICAR -- 8 - Tamanho minímo a tabela 
+
 -----------DONE--------------23:19 03/10/201823:20 03W/10/2018
 
-VERIFICAR -- 8 - Tamanho minímo a tabela 
+IDEIA Quando carregar na foto da team aparecer a foto em grande no ecra numa espécie de visualizador.

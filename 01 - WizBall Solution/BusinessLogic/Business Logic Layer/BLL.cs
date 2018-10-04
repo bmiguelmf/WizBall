@@ -923,7 +923,7 @@ namespace BusinessLogic.BLL
                 }
             }
         }
-        public void GenerateTipsFTOverTwoAndHalfGoals()                                             
+        public void GenerateTipsFTOverTwoAndHalfGoals()
         {
             // The method responsibility is to decide which matches are eligible for the Full Time Over Two And Half Goals generation tip.
 

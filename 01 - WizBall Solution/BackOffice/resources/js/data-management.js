@@ -1,130 +1,27 @@
 ﻿
 //html elements
-var btn_cancel = $('#btn_can');
-var btn_submit = $('#btn_submit');
-var form = $('#form_edit_user');
-var error = $('#error_message');
+var content_table = $('#content_table');
+var content_table_head = $('#content_table_head');
+var content_table_body = $('#content_table_body');
 
-//form elements
-var toggle_status = $('#toggle_edit_status');
-var toggle_newsletter = $('#toggle_edit_newsletter');
-var txt_description = $('#txt_edit_description');
-var input_username = $('#input_edit_username');
-var input_email = $('#input_edit_email');
-var user_photo_input = $('#photo');
-var user_photo = $('#user_photo');
-var photo_real_name = $('#photo_nme');
-var old_description = $('#old_description');
 
 //vars
-var is_text_area_disabled = true;
-var is_code_changed = false;
 
 //objects
-var Unedited_user = {};
 
 //functions
-function assignBtnEditClickEvent() {
-    $('.btn_edit').on("click", function () {
-        GetClickedUserToForm($(this).closest("tr").attr('value'));
-    });
-}
 
-function clearForm() {
-    photo_real_name.val("");
-    user_photo.attr("src", "/resources/imgs/users/");
-    input_username.val("");
-    input_email.val("");
-    txt_description.val("");
-    error.hide();
-    error.find('.message').text("");
-}
 
-function isEmail(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
-}
-
-function loadImage(event) {
-    user_photo.attr('src', event.target.result);
-}
-
-user_photo_input.change(function () {
-    if (this.files && this.files[0]) {
-        var reader = new FileReader();
-        reader.onload = loadImage;
-        reader.readAsDataURL(this.files[0]);
-
-        photo_real_name.val("");
-        photo_real_name.val(this.files[0].name);
-        console.log(photo_real_name.val());
-    }
-});
-
-function disableFormTextArea() {
-    is_text_area_disabled = true;
-    txt_description.val("");
-    txt_description.attr('disabled', 'disabled');
-}
-
-function enableFormTextArea() {
-    is_text_area_disabled = false;
-    txt_description.removeAttr('disabled');
-}
-
-function loadSideBarEffectsScripts() {
-    $.getScript('/resources/js/plugins/sidebar/classie.js');
-    $.getScript('/resources/js/plugins/sidebar/sidebar-effects.js');
-}
-
-function checkToggleStatus(status) {
-    if (status.Description === "Granted") {
-        is_code_changed = true;
-        toggle_status.bootstrapToggle('on');
-        toggle_status.attr('status_id', status.Id);
-    } else {
-        toggle_status.bootstrapToggle('off');
-        toggle_status.attr('status_id', status.Id);
-    }
-}
-
-function checkToggleNewsletter(news) {
-    if (news === true) {
-        toggle_newsletter.bootstrapToggle('on');
-    } else {
-        toggle_newsletter.bootstrapToggle('off');
-    }
-}
-
-function toggleBothFormToggles(status, news) {
-    checkToggleStatus(status);
-    checkToggleNewsletter(news);
-}
-
-function paginateTableAndLoadSideBarScripts(table, limit) {
-    paginateTable(table, limit);
-    loadSideBarEffectsScripts();
-}
-
-function feedUneditedUser(Table_user) {
-
-    Unedited_user['Id'] = String(Table_user.Id);
-    Unedited_user['Username'] = Table_user.Username;
-    Unedited_user['Email'] = Table_user.Email;
-    Unedited_user['Newsletter'] = Table_user.Newsletter;
-    Unedited_user['Picture'] = Table_user.Picture;
-    Unedited_user['Password'] = $.session.get('UserPassword');
-}
-
-function GetUsers1() {
+function GetTeams() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/GetAllUsers",
+        url: "../WebService.asmx/GetAllTeams",
         data: "",
         dataType: "json",
         success: function (data) {
-            clearTable($('#users_table_body1'));
+            clearTable(content_table_head);
+            clearTable(content_table_body);
             if (data.d.length > 0) {
                 let ran_if = false;
                 $.each(data.d, function (index, value) {
@@ -134,15 +31,14 @@ function GetUsers1() {
                     }
                 });
                 if (ran_if === true) {
-                    paginateTableAndLoadSideBarScripts($('#users_table1'), 3);
-                    assignBtnEditClickEvent();
+                    
                 } else {
                     swal("Info!", "There are no user to display.", "info");
                     tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             }
             else {
-                swal("Info!", "There are no user requests at the moment.", "info");
+                swal("Info!", "There are no teams at the moment. Please run full sync.", "info");
                 tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center\"> No users to display! <td></td><td></td><td></td></td></tr>");
             }
         },
@@ -151,7 +47,8 @@ function GetUsers1() {
         }
     });
 }
-function GetUsers2() {
+
+function GetMatches() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -438,8 +335,8 @@ toggle_status.on('change', function (ev) {
     }
 });
 
-btn_submit.click(function () {
-    validateAndSubmit();
+$('#show_teams').click(function () {
+    GetTeams();
 });
 
 console.log('READY users.js');

@@ -212,5 +212,35 @@ namespace BackOffice
                 return null;
             }
         }
+
+        // SYNC METHODS
+        [WebMethod]
+        public bool FullDatabaseSync()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.FullDatabaseSync();
+        }
+        [WebMethod]
+        public bool SyncAreas()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.SyncAreas();
+        }
+        [WebMethod]
+        public bool SyncTeams()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.SyncTeams();
+        }
+
+        // TEAMS METHODS
+        [WebMethod]
+        public List<Team> GetAllTeams()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetAllTeams();
+        }
+
+        // MATCHES METHODS
     }
 }
