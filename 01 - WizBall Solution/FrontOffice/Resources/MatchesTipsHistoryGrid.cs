@@ -96,7 +96,7 @@ namespace FrontOffice.Resources
             header.Controls.Add(cellResult);
 
 
-            List<Match> matches = bll.GetMatchesHistoryByCompetition("2016").OrderByDescending( x => bll.NormalizeApiDateTime(x.UtcDate)).ToList();
+            List<Match> matches = bll.GetMatchesHistoryLastWeek().OrderByDescending( x => bll.NormalizeApiDateTime(x.UtcDate)).ToList();
             foreach (Match match in matches)
             {
                 // Rows

@@ -20,10 +20,11 @@ namespace FrontOffice.Pages
             placeHolderMatchesTipsGrid.Controls.Add(matchesTipsGrid.FiltersAndGrid());
 
             //new Globals().CreateBll().FullDatabaseSync();
+            //new Globals().CreateBll().SyncMatchesTierOne();
             //new Globals().CreateBll().GenerateTipsFTOverTwoAndHalfGoals();
             //new Globals().CreateBll().SetResultsFTOverTwoAndHalfGoals();
 
-            
+
         }
     }
 }

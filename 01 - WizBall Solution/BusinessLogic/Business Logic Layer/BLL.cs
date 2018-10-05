@@ -730,6 +730,17 @@ namespace BusinessLogic.BLL
 
             return lstTodayMatches;
         }
+        public List<Match> GetMatchesHistoryLastWeek()
+        {
+            // Falta implementar limite por data
+            List<Match> lstMatches = new List<Match>();
+            foreach(Competition comp in TierOneCompetitions())
+            {
+                lstMatches.AddRange(GetMatchesHistoryByCompetition(comp.Id.ToString()));
+            }
+
+            return lstMatches;
+        }
         public List<Match> GetMatchesHistoryByCompetition(string CompetitionId)
         {
             DALMatches dalMatches = new DALMatches(connectionString);
@@ -907,7 +918,7 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-
+        // TIPS GENERATION AND RESULTS UPDATES
         public void GenerateTipsFTOverTwoAndHalfGoalsByDate()
         {
             DateTime dt = new DateTime(2018, 10, 2);
@@ -986,7 +997,6 @@ namespace BusinessLogic.BLL
 
             InsertTip(tip);
         }
-
         public void SetResultsFTOverTwoAndHalfGoals()
         {
             // The method responsibility is to update previous generated tips with real matches result after them being played.

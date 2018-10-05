@@ -14,7 +14,7 @@ namespace BackOffice
     [System.Web.Script.Services.ScriptService]
     public class WebService : System.Web.Services.WebService
     {
-        private string connString = WebConfigurationManager.ConnectionStrings["ConnStringPasseiraAtec"].ConnectionString;
+        private string connString = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
         private string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
 
 
@@ -252,7 +252,8 @@ namespace BackOffice
         public List<Match> GetNextMatchesByTierOneCompetitions()
         {
             BLL bll = new BLL(connString, apiToken);
-            return bll.GetNextMatchesByTierOneCompetitions();
+            List<Match> fds = bll.GetNextMatchesByTierOneCompetitions();
+            return fds;
         }
     }
 }

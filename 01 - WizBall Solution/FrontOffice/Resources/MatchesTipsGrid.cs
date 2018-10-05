@@ -83,33 +83,35 @@ namespace FrontOffice.Resources
 
 
             // Header cells.
-            HtmlGenericControl cellCompetition = new HtmlGenericControl("div");
+            HtmlGenericControl cellCompetition  = new HtmlGenericControl("div");
+            cellCompetition.Attributes["id"]    = "header-cell-competitions";
             cellCompetition.Attributes["class"] = "grid-cell";
             cellCompetition.Attributes["title"] = "Competition";
-            cellCompetition.InnerText = "C";
+            cellCompetition.InnerHtml           = "C <i class='fas fa-long-arrow-alt-down' style='color:transparent;'></i>";
             header.Controls.Add(cellCompetition);
 
-            HtmlGenericControl cellMatchDay = new HtmlGenericControl("div");
-            cellMatchDay.Attributes["class"] = "grid-cell";
-            cellMatchDay.Attributes["title"] = "Match Day";
+            HtmlGenericControl cellMatchDay     = new HtmlGenericControl("div");
+            cellMatchDay.Attributes["class"]    = "grid-cell";
+            cellMatchDay.Attributes["title"]    = "Match Day";
             cellMatchDay.InnerHtml = "MD";
             header.Controls.Add(cellMatchDay);
 
-            HtmlGenericControl cellHomeTeam = new HtmlGenericControl("div");
-            cellHomeTeam.Attributes["class"] = "grid-cell";
-            cellHomeTeam.Attributes["title"] = "Home Team";
-            cellHomeTeam.InnerText = "Home Team";
+            HtmlGenericControl cellHomeTeam     = new HtmlGenericControl("div");
+            cellHomeTeam.Attributes["class"]    = "grid-cell";
+            cellHomeTeam.Attributes["title"]    = "Home Team";
+            cellHomeTeam.InnerHtml              = "Home Team";
             header.Controls.Add(cellHomeTeam);
 
-            HtmlGenericControl cellDate = new HtmlGenericControl("div");
-            cellDate.Attributes["class"] = "grid-cell";
-            cellDate.Attributes["title"] = "Match Date";
-            cellDate.InnerText = "Date";
+            HtmlGenericControl cellDate         = new HtmlGenericControl("div");
+            cellDate.Attributes["id"]           = "header-cell-date";
+            cellDate.Attributes["class"]        = "grid-cell";
+            cellDate.Attributes["title"]        = "Match Date";
+            cellDate.InnerHtml                  = "Date <i class='fas fa-long-arrow-alt-down' style='color:transparent;'></i>";
             header.Controls.Add(cellDate);
 
-            HtmlGenericControl cellAwayTeam = new HtmlGenericControl("div");
-            cellAwayTeam.Attributes["class"] = "grid-cell";
-            cellAwayTeam.Attributes["title"] = "Away Team";
+            HtmlGenericControl cellAwayTeam     = new HtmlGenericControl("div");
+            cellAwayTeam.Attributes["class"]    = "grid-cell";
+            cellAwayTeam.Attributes["title"]    = "Away Team";
             cellAwayTeam.InnerText = "Away Team";
             header.Controls.Add(cellAwayTeam);
 

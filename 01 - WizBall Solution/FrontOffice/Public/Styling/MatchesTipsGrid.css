@@ -45,7 +45,6 @@
     cursor:pointer;
 }
 pipe{
-    font-weight:bolder;
     font-size:9px;
 }
 
@@ -84,7 +83,9 @@ pipe{
     background-color:#333;
     color:yellowgreen;
 }
-
+#header-cell-competitions, #header-cell-date {
+    cursor: pointer;
+}
 
 .grid-cell:nth-child(1) {
     min-width: 20px;

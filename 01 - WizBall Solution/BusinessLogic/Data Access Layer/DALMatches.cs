@@ -49,7 +49,7 @@ namespace BusinessLogic.DAL
                 new DbWhere
                 {
                     Field = "utc_date",
-                    Value = today.Year + "-" + today.Month + "-" + today.Day + " 00:00:00",
+                    Value = today.Year + "-" + today.Month + "-" + today.Day + " " + today.Hour  + ":" + today.Minute + ":" + today.Second,
                     Alias = "utc_date",
                     Operator = DbOperator.LesserThanOrEqualsTo
                 },
