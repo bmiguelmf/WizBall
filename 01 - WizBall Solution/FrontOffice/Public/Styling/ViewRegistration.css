@@ -49,15 +49,13 @@ form {
 
 
 
-.form-body {   
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    background-color: #444;
-
-    padding:40px;
+.form-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(4,4,4,0.7);
+    padding: 40px;
 }
 .form-body h5 {
     color: yellowgreen;

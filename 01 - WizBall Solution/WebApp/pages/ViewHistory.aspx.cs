@@ -33,7 +33,7 @@ namespace WebApp.pages
                 connString = WebConfigurationManager.ConnectionStrings["ConnStringJoaoATEC"].ConnectionString;
                 bll = GLOBALS.BllSI;
 
-                matchesTipsGrid = new HistoryTipsGrid(bll.GetMatchesByRangeDateAndCompetition("2018", new DateTime(), new DateTime()));
+                //matchesTipsGrid = new HistoryTipsGrid(bll.GetMatchesByRangeDateAndCompetition("2018", new DateTime(), new DateTime()));
 
                 placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
 
@@ -65,7 +65,7 @@ namespace WebApp.pages
 
                 foreach (Competition comp in bll.TierOneCompetitions())
                 {
-                    matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), weekBefore, yest));
+                    //matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), weekBefore, yest));
                 }
 
                 matchesTipsGrid = new HistoryTipsGrid(matches);
@@ -81,7 +81,7 @@ namespace WebApp.pages
             DateTime enddate = DateTime.Parse(endRange.Value);
             foreach (Competition comp in bll.TierOneCompetitions())
             {
-                matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), startdate, enddate));
+                //matches.AddRange(bll.GetMatchesByRangeDateAndCompetition(comp.Id.ToString(), startdate, enddate));
             }
 
             HistoryTipsGrid matchesTipsGrid = new HistoryTipsGrid(matches);

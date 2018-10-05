@@ -235,41 +235,22 @@ headerCellCompetitions.addEventListener("click", function () {
 });
 function sortCompetitionsAsc() {
 
-    for (var i = 0; i < rows.length - 1; i++) {
+    console.time("Sorting Comp Asc");
+    sortTableAsc("compid");
+    console.timeEnd("Sorting Comp Asc");
 
-        minIndex = i;
-
-        for (var j = i + 1; j < rows.length; j++) {
-
-            if (rows[j].getAttribute("compid") < rows[minIndex].getAttribute("compid")) {
-                minIndex = j;
-            }
-        }
-
-        table.insertBefore(rows[minIndex], rows[i]);
-    }
 }
 function sortCompetitionsDesc() {
 
-    for (var i = 0; i < rows.length - 1; i++) {
-
-        minIndex = i;
-
-        for (var j = i + 1; j < rows.length; j++) {
-
-            if (rows[j].getAttribute("compid") > rows[minIndex].getAttribute("compid")) {
-                minIndex = j;
-            }
-        }
-
-        table.insertBefore(rows[minIndex], rows[i]);
-    }
+    console.time("Sorting Comp Desc");
+    sortTableDesc("compid");
+    console.timeEnd("Sorting Comp Desc");
 }
 
 headerCellDate.addEventListener("click", function () {
 
     dateSortingArrow.style.color = "#9acd32";                        // Sets header-cell-competitions to visible. 
-    FtotahgSortingArrow.style.color = "transparent";                    // Sets header-cell-ftotahg arrow to transparent.    
+    FtotahgSortingArrow.style.color = "transparent";                    // Sets header-cell-ftotahg arrow to transparent.  
     CompetitionsSortingArrow.style.color = "transparent";                    // Sets header-cell-competitions arrow to transparent.
 
 
@@ -293,35 +274,15 @@ headerCellDate.addEventListener("click", function () {
 });
 function sortDateAsc() {
 
-    for (var i = 0; i < rows.length - 1; i++) {
+    console.time("Sorting Date Asc");
+    sortTableAsc("dateTime");
+    console.timeEnd("Sorting Date Asc");
 
-        minIndex = i;
-
-        for (var j = i + 1; j < rows.length; j++) {
-
-            if (rows[j].getAttribute("dateTime") < rows[minIndex].getAttribute("dateTime")) {
-                minIndex = j;
-            }
-        }
-
-        table.insertBefore(rows[minIndex], rows[i]);
-    }
 }
 function sortDateDesc() {
-
-    for (var i = 0; i < rows.length - 1; i++) {
-
-        minIndex = i;
-
-        for (var j = i + 1; j < rows.length; j++) {
-
-            if (rows[j].getAttribute("dateTime") > rows[minIndex].getAttribute("dateTime")) {
-                minIndex = j;
-            }
-        }
-
-        table.insertBefore(rows[minIndex], rows[i]);
-    }
+    console.time("Sorting Date Desc");
+    sortTableDesc("dateTime");
+    console.timeEnd("Sorting Date Desc");
 }
 
 headerCellFtotahg.addEventListener("click", function () {
@@ -351,29 +312,31 @@ headerCellFtotahg.addEventListener("click", function () {
 });
 function sortFtotahgAsc() {
 
-    for (var i = 0; i < rows.length - 1; i++) {
+    console.time("Sorting Tip 2.5 Asc");
+    sortTableAsc("ftotahg");
+    console.timeEnd("Sorting Tip 2.5 Asc");
 
-        minIndex = i;
-
-        for (var j = i + 1; j < rows.length; j++) {
-
-            if (rows[j].getAttribute("ftotahg") < rows[minIndex].getAttribute("ftotahg")) {
-                minIndex = j;
-            }
-        }
-
-        table.insertBefore(rows[minIndex], rows[i]);
-    }
 }
 function sortFtotahgDesc() {
 
+    console.time("Sorting Tip 2.5 Desc");
+    sortTableDesc("ftotahg");
+    console.timeEnd("Sorting Tip 2.5 Desc");
+
+}
+
+// ----------------------------------------------------------------------------------------------------------------
+// --- Bubble sort                                                                
+// ----------------------------------------------------------------------------------------------------------------
+function sortTableAsc(column) {
+
     for (var i = 0; i < rows.length - 1; i++) {
 
         minIndex = i;
 
         for (var j = i + 1; j < rows.length; j++) {
 
-            if (rows[j].getAttribute("ftotahg") > rows[minIndex].getAttribute("ftotahg")) {
+            if (rows[j].getAttribute(column) < rows[minIndex].getAttribute(column)) {
                 minIndex = j;
             }
         }
@@ -381,7 +344,22 @@ function sortFtotahgDesc() {
         table.insertBefore(rows[minIndex], rows[i]);
     }
 }
+function sortTableDesc(column) {
 
+    for (var i = 0; i < rows.length - 1; i++) {
+
+        minIndex = i;
+
+        for (var j = i + 1; j < rows.length; j++) {
+
+            if (rows[j].getAttribute(column) > rows[minIndex].getAttribute(column)) {
+                minIndex = j;
+            }
+        }
+
+        table.insertBefore(rows[minIndex], rows[i]);
+    }
+}
 
 
 

@@ -144,7 +144,7 @@ namespace FrontOffice.Resources
                 HtmlGenericControl row      = new HtmlGenericControl("div");
                 row.Attributes["class"]     = "grid-row";
                 row.Attributes["CompId"]    = match.Competition.Id.ToString();
-                row.Attributes["dateTime"]  = bll.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMinutes.ToString();
+                row.Attributes["dateTime"]  = (bll.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMinutes).ToString();
 
 
 
@@ -227,13 +227,13 @@ namespace FrontOffice.Resources
                             {
                                 row.Attributes["outcome"] = "0";
                                 rowCellOutcome.Attributes["style"] = "color: green";
-                                rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "yes.png' alt='Img success' title='Success' />";
+                                rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "yes.png' alt='Img success' title='Successful tip' />";
                             }
                             else
                             {
                                 row.Attributes["outcome"] = "1";
                                 rowCellOutcome.Attributes["style"] = "color: red";
-                                rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "no.png' alt='Img fail' title='Fail' />";
+                                rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "no.png' alt='Img fail' title='Failed tip' />";
                             }
                         }
                         else
@@ -242,13 +242,13 @@ namespace FrontOffice.Resources
                             {
                                 row.Attributes["outcome"] = "1";
                                 rowCellOutcome.Attributes["style"] = "color: red";
-                                rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "no.png' alt='Img fail' title='Fail' />";                              
+                                rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "no.png' alt='Img fail' title='Failed tip' />";                              
                             }
                             else
                             {
                                 row.Attributes["outcome"] = "0";
                                 rowCellOutcome.Attributes["style"] = "color: green";
-                                rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "yes.png' alt='Img success' title='Success' />";
+                                rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "yes.png' alt='Img success' title='Successful tip' />";
 
                             }
                         }

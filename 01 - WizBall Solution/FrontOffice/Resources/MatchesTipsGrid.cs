@@ -166,30 +166,34 @@ namespace FrontOffice.Resources
                 Tip tip = bll.GetTipByMatchId(match.Id.ToString());
                 HtmlGenericControl rowCellTip           = new HtmlGenericControl("div");
                 rowCellTip.Attributes["class"]          = "grid-cell";
-                row.Attributes["ftotahg"]               = tip is null ? "4" : tip.BetNoBet == false ? "1" : tip.Forecast == true ? "0" : "2";
+                
                 if (tip != null)
                 {
                     if (tip.BetNoBet)
                     {
                         if (tip.Forecast)
                         {
+                            row.Attributes["ftotahg"] = "0";
                             rowCellTip.Attributes["style"] = "color: green";
                             rowCellTip.InnerHtml = "<span title='Bet in favor full-time over two and half goals'>+2.5</span>";
                         }
                         else
                         {
+                            row.Attributes["ftotahg"] = "1";
                             rowCellTip.Attributes["style"] = "color: red";
                             rowCellTip.InnerHtml = "<span title='Bet against full-time over two and half goals'>-2.5</span>";
                         }
                     }
                     else
                     {
+                        row.Attributes["ftotahg"] = "2";
                         rowCellTip.InnerHtml = "<span title='Unpredictable'>No bet</span>";
                     }
                 }
                 else
                 {
-                    rowCellTip.InnerHtml = "<span title='Unpredictable'>N/A</span>";
+                    row.Attributes["ftotahg"] = "3";
+                    rowCellTip.InnerHtml = "<span title='Not available'>N/A</span>";
                 }
 
 
