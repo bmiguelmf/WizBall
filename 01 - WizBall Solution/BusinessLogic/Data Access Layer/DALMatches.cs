@@ -40,30 +40,6 @@ namespace BusinessLogic.DAL
 
                             .Cast<Match>().ToList();
         }
-        public List<Match> GetHistoryByCompetitionId(string CompetitionId)
-        {
-            DateTime today = DateTime.Now;
-
-            List<DbWhere> lstDbWheres = new List<DbWhere>()
-            {
-                new DbWhere
-                {
-                    Field = "utc_date",
-                    Value = today.Year + "-" + today.Month + "-" + today.Day + " " + today.Hour  + ":" + today.Minute + ":" + today.Second,
-                    Alias = "utc_date",
-                    Operator = DbOperator.LesserThanOrEqualsTo
-                },
-                new DbWhere
-                {
-                    Field = "competition_id",
-                    Value = CompetitionId,
-                    Alias = "competition_id",
-                    Operator = DbOperator.EqualsTo
-                },
-            };
-
-            return GetWhere(new Match(), lstDbWheres).Cast<Match>().ToList();
-        }
         public List<Match> GetByCompetitionIdAndByRangeDates(string CompetitionId, DateTime DateInit, DateTime DateEnd)
         {
             List<DbWhere> lstDbWheres = new List<DbWhere>()

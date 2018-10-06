@@ -244,16 +244,5 @@ namespace BackOffice
             BLL bll = new BLL(connString, apiToken);
             return bll.GetAllTeams();
         }
-
-
-
-        // MATCHES METHODS
-        [WebMethod]
-        public List<Match> GetNextMatchesByTierOneCompetitions()
-        {
-            BLL bll = new BLL(connString, apiToken);
-            List<Match> fds = bll.GetNextMatchesByTierOneCompetitions();
-            return fds;
-        }
     }
 }

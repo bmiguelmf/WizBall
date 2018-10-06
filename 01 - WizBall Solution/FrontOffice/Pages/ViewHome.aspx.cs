@@ -15,14 +15,19 @@ namespace FrontOffice.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+            //new Globals().CreateBll().FullDatabaseSync();
+
+
+            //new Globals().CreateBll().GenerateNextTips();
+            //new Globals().CreateBll().GenerateHistoryTips();
+            //new Globals().CreateBll().SetTipsResults();
+
+
             MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid();
 
             placeHolderMatchesTipsGrid.Controls.Add(matchesTipsGrid.FiltersAndGrid());
-
-            //new Globals().CreateBll().FullDatabaseSync();
-            //new Globals().CreateBll().SyncMatchesTierOne();
-            //new Globals().CreateBll().GenerateTipsFTOverTwoAndHalfGoals();
-            //new Globals().CreateBll().SetResultsFTOverTwoAndHalfGoals();
 
 
         }

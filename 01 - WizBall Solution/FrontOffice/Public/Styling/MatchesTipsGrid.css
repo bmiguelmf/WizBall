@@ -83,7 +83,7 @@ pipe{
     background-color:#333;
     color:yellowgreen;
 }
-#header-cell-competitions, #header-cell-date {
+#header-cell-competitions, #header-cell-date, #header-cell-ftotahg {
     cursor: pointer;
 }
 
@@ -134,11 +134,11 @@ pipe{
 
 
 .grid-body-scrollable {
-    overflow:scroll;
+    overflow: scroll;
 }
 .grid-body {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;   
 }
 
 

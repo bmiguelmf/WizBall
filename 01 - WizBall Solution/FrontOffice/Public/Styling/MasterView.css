@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
-    font-weight: 600;
+    font-weight: 100;
 }
 header {
     padding: 5px 10px;
@@ -105,13 +105,13 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 
 
 .responsive-menu {
-    background-color: #eee;
+    background-color: #333;
     display: flex;
     flex-direction: column;
     font-size: 10px;
     overflow: hidden;
-    height: 0;
     border-top: 2px solid #333;
+    height: 0;
 }
 .responsive-menu-open {
     padding: 10px 15px;
@@ -131,8 +131,7 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 }
 .responsive-menu .menu-user-pic img {
     width: 70px;
-    border-radius: 12px;
-    border:2px solid #333;
+    border-radius: 8px;    
     background-color:white;
 }
 .responsive-menu .menu-user-options {
@@ -143,7 +142,7 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 }
 .responsive-menu .menu-user-options a {
     padding: 6px 15px;
-    color: #333;
+    color: yellowgreen;
     text-decoration: none;
 }
 
@@ -158,7 +157,7 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 .responsive-menu .menu-menus a {
     padding: 10px 0;
     text-decoration: none;
-    color: #333;
+    color: yellowgreen;
 }
 /* SMALL SCREENS */
 

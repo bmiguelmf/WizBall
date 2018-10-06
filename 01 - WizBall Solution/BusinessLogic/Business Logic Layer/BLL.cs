@@ -715,68 +715,54 @@ namespace BusinessLogic.BLL
 
             return lstMatches;
         }
+
+        public List<Match> GetNextMatchesByCompetition(string CompetitionId)
+        {
+            DALMatches dalMatches = new DALMatches(connectionString);
+
+            List<Match> nextMatches =  dalMatches.GetSpNextMatchesByCompetitionId(CompetitionId);
+
+            nextMatches.ForEach(EntityBuilder);
+
+            return nextMatches;
+        }
         public List<Match> GetNextMatchesByTierOneCompetitions()
         {
-            List<Match> lstTodayMatches = new List<Match>();
-
-            DALMatches dalMatches = new DALMatches(connectionString);
+            List<Match> nextMatches = new List<Match>();
 
             foreach (Competition competition in TierOneCompetitions())
             {
-                lstTodayMatches.AddRange(dalMatches.GetSpNextMatchesByCompetitionId(competition.Id.ToString()));
+                nextMatches.AddRange(GetNextMatchesByCompetition(competition.Id.ToString()));
             }
 
-            lstTodayMatches.ForEach(EntityBuilder);
-
-            return lstTodayMatches;
+            return nextMatches;
         }
-        public List<Match> GetMatchesHistoryLastWeek()
-        {
-            // Falta implementar limite por data
+
+        public List<Match> GetHistoryMatchesByTierOneCompetitions()
+        {           
             List<Match> lstMatches = new List<Match>();
-            foreach(Competition comp in TierOneCompetitions())
-            {
-                lstMatches.AddRange(GetMatchesHistoryByCompetition(comp.Id.ToString()));
+
+            foreach (Competition competition in TierOneCompetitions())
+            {            
+                DateTime startDate     = DateTime.UtcNow.AddYears(-1);
+                DateTime finalDate     = DateTime.UtcNow.AddHours(-3);
+
+                lstMatches.AddRange(GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate));
             }
 
             return lstMatches;
         }
-        public List<Match> GetMatchesHistoryByCompetition(string CompetitionId)
+        public List<Match> GetMatchesByCompetitionAndRangeDates(string CompetitionId, DateTime StartDate, DateTime FinalDate)
         {
             DALMatches dalMatches = new DALMatches(connectionString);
 
-            List<Match> lstMatches = dalMatches.GetHistoryByCompetitionId(CompetitionId);
-
+            List<Match> lstMatches = dalMatches.GetByCompetitionIdAndByRangeDates(CompetitionId, StartDate, FinalDate);
+   
             lstMatches.ForEach(EntityBuilder);
 
             return lstMatches;
         }
-        public List<Match> GetMatchesByDateAndCompetition(string CompetitionId, DateTime Date)
-        {
-            DateTime dayInit = new DateTime(Date.Year, Date.Month, Date.Day, 0,  0,  0);
-            DateTime dayEnd  = new DateTime(Date.Year, Date.Month, Date.Day, 23, 59, 59);
 
-            DALMatches dalMatches  = new DALMatches(connectionString);
-
-            List<Match> lstMatches = dalMatches.GetByCompetitionIdAndByRangeDates(CompetitionId, dayInit, dayEnd);
-
-            lstMatches.ForEach(EntityBuilder);
-
-            return lstMatches;
-        }
-        public List<Match> GetMatchesByRangeDateAndCompetition(string CompetitionId, DateTime StartDate, DateTime EndDate)
-        {
-            DateTime dayInit = new DateTime(StartDate.Year, StartDate.Month, StartDate.Day, 0, 0, 0);
-            DateTime dayEnd = new DateTime(EndDate.Year, EndDate.Month, EndDate.Day, 23, 59, 59);
-
-            DALMatches dalMatches = new DALMatches(connectionString);
-
-            List<Match> lstMatches = dalMatches.GetByCompetitionIdAndByRangeDates(CompetitionId, dayInit, dayEnd);
-
-            lstMatches.ForEach(EntityBuilder);
-
-            return lstMatches;
-        }
         public bool InsertMatches(List<Match> Matches)
         {
             if (Matches is null)
@@ -918,98 +904,124 @@ namespace BusinessLogic.BLL
 
             return true;
         }
+        
         // TIPS GENERATION AND RESULTS UPDATES
-        public void GenerateTipsFTOverTwoAndHalfGoalsByDate()
+        public void GenerateHistoryTips()
         {
-            DateTime dt = new DateTime(2018, 10, 2);
-            List<Match> lstMatches = GetMatchesByDateAndCompetition("2016", dt);                 // Gets a List<Match> with only elegible matches for setting up tips. (Just right the next match by team)
+            // This method required that all matches have be sync.
+            SyncMatchesTierOne();
 
-            foreach (Match match in lstMatches)
+
+            DateTime startDate = DateTime.UtcNow.AddYears(-1);         
+            DateTime finalDate = DateTime.UtcNow.AddHours(-3);                  // -4 Ensures that matches have been played.
+
+            foreach (Competition competition in TierOneCompetitions())
             {
-                Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
+                // Gets a list with matches that already have been played for a given competition.
+                List<Match> playedMatches = GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate);
 
-                if (matchTip is null)                                                        // Only if this match does not already has a tip in the database then we will generate one.
+
+                foreach (Match match in playedMatches)
                 {
-                    SetTipFTOverTwoAndHalfGoals(match);                                     // Method call which will generate the tip.
+                    Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
+
+                    if (matchTip is null)                                                       // Only if this match does not already has a tip in the database then we will generate one.
+                    {
+                        SetTip(match, playedMatches);                                           // Method call which will generate the tip.
+                    }
                 }
-            }
-        }
-        public void GenerateTipsFTOverTwoAndHalfGoals()
+            }  
+        }     
+        public void GenerateNextTips()
         {
             // The method responsibility is to decide which matches are eligible for the Full Time Over Two And Half Goals generation tip.
 
-            List<Match> lstMatches = GetNextMatchesByTierOneCompetitions();                 // Gets a List<Match> with only elegible matches for setting up tips. (Just right the next match by team)
+            // This method required that all matches have be sync.
+            SyncMatchesTierOne();
 
-            foreach (Match match in lstMatches)                      
+
+            DateTime startDate = DateTime.UtcNow.AddYears(-1);          // Ensure the beginning of the season.      
+            DateTime finalDate = DateTime.UtcNow.Date;                  // Today 00:00:00 this ensures only matches before today.              
+
+            foreach (Competition competition in TierOneCompetitions())
             {
-                Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
+                List<Match> nextMatches     = GetNextMatchesByCompetition(competition.Id.ToString());                                       // Gets matches from today up to next 2 days.
+                List<Match> playedMatches   = GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate);        // Gets all played matches not including today's matches.
 
-                if(matchTip is null)                                                        // Only if this match does not already has a tip in the database then we will generate one.
-                {
-                    SetTipFTOverTwoAndHalfGoals(match);                                     // Method call which will generate the tip.
-                }
+                foreach (Match match in nextMatches)
+                {                   
+                    Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
+
+                    if (matchTip is null)                                                       // Only if this match does not already has a tip in the database then we will generate one.
+                    {
+                        SetTip(match, playedMatches);                                           // Method call which will generate the tip.
+                    }
+                } 
             }
         }
-        private void SetTipFTOverTwoAndHalfGoals(Match Match)
+        private void SetTip(Match Match, List<Match> PlayedMatches)
         {
             // The method responsibility is to generate a tip for a given match.
-            
 
-            int homeTeam = Match.HomeTeam.Id;           // Easy to handle pointer to homeTeam id.
-            int awayTeam = Match.AwayTeam.Id;           // Easy to handle pointer to awayTeam id.
+            int homeTeam = Match.HomeTeam.Id;                           // Easy to handle pointer to homeTeam id.
+            int awayTeam = Match.AwayTeam.Id;                           // Easy to handle pointer to awayTeam id.
 
-
-            List<Match> lstCompetitonMatches    = GetMatchesByCompetition(Match.Competition.Id.ToString());                 // Gets all matches for the competition which the current match belongs to.
-            List<Match> playedMatches           = lstCompetitonMatches.Where(x => x.Score.Winner != "").ToList();           // Then filters it just to get the played matches.
+            // Elegible matches are those which have a date before to the match beeing evaluated.
+            List<Match> eligibleMatches = PlayedMatches.Where(x => NormalizeApiDateTime(x.UtcDate) < NormalizeApiDateTime(Match.UtcDate)).ToList();
 
 
-            double? homeTeamAvgResult           = playedMatches.Where(x => x.HomeTeam.Id == homeTeam)                       // Gets the avg fult time result for the matches where the Home Team = to homeTeam.
-                                                  .Average(x => x.Score.FullTime.HomeTeam + x.Score.FullTime.AwayTeam);
-            double? awayTeamAvgResult           = playedMatches.Where(x => x.AwayTeam.Id == awayTeam)                       // Gets the avg fult time result for the matches where the Away Team = to awayTeam.
-                                                  .Average(x => x.Score.FullTime.HomeTeam + x.Score.FullTime.AwayTeam);
-            double? totalAvg                    = (homeTeamAvgResult + awayTeamAvgResult) / 2;
+            double? homeTeamAvgResult = eligibleMatches.Where(x => x.HomeTeam.Id == homeTeam).Average(x => x.Score.FullTime.HomeTeam);
+            double? awayTeamAvgResult = eligibleMatches.Where(x => x.AwayTeam.Id == awayTeam).Average(x => x.Score.FullTime.AwayTeam);
 
+            homeTeamAvgResult *= 1.5;
+            awayTeamAvgResult *= 0.5;
+
+            double? totalAvg = homeTeamAvgResult + awayTeamAvgResult;
 
 
             Tip tip = new Tip();
-
-            if (totalAvg > 3)       // Sure bet.
+            if (totalAvg > 4)       // Sure bet.
             {
-                tip.Match       = new Match    { Id = Match.Id };
-                tip.Market      = new Market    { Id = 1 };
-                tip.BetNoBet    = true;
-                tip.Forecast    = true;
+                tip.Match = new Match { Id = Match.Id };
+                tip.Market = new Market { Id = 1 };
+                tip.BetNoBet = true;
+                tip.Forecast = true;
             }
-            else if(totalAvg < 2)   // Sure no bet.
+            else if (totalAvg < 1.5)   // Sure no bet.
             {
-                tip.Match       = new Match     { Id = Match.Id };
-                tip.Market      = new Market    { Id = 1 };
-                tip.BetNoBet    = true;
-                tip.Forecast    = false;
+                tip.Match = new Match { Id = Match.Id };
+                tip.Market = new Market { Id = 1 };
+                tip.BetNoBet = true;
+                tip.Forecast = false;
             }
             else                    // Unpredictable bet. 
             {
-                tip.Match       = new Match     { Id = Match.Id };
-                tip.Market      = new Market    { Id = 1 };
-                tip.BetNoBet    = false;
-                tip.Forecast    = false;
+                tip.Match = new Match { Id = Match.Id };
+                tip.Market = new Market { Id = 1 };
+                tip.BetNoBet = false;
+                tip.Forecast = false;
             }
 
             InsertTip(tip);
         }
-        public void SetResultsFTOverTwoAndHalfGoals()
+
+        public void SetTipsResults()
         {
             // The method responsibility is to update previous generated tips with real matches result after them being played.
 
-            List<Tip> lstTips = GetTipsByResultNotSet();                                                     // List of tips waiting for the match to happen. (Result = null)             
+            // This method required that all matches have been sync.
+            SyncMatchesTierOne();
+
+
+            List<Tip> lstTips = GetTipsByResultNotSet();                                                    // List of tips waiting for the match to happen. (Result = null)             
 
             foreach (Tip tip in lstTips)
             {
                 Match match = GetMatchById(tip.Match.Id.ToString());                                        // Then we will check if the corresponding match for each tip has already been played.
 
-                if (match.Score.Winner == string.Empty)                                                     // Because the application generate tips some days before the corresponding match happens.
-                {                                                                                           // we must check if the match has already been played. Otherwise continue to next tip.
-                    continue;               
+                if (NormalizeApiDateTime(match.UtcDate) > DateTime.UtcNow.AddHours(-3))                     // Grants that the match has already been played.                    
+                {
+                    continue;
                 }
 
                 double? totalGoals = match.Score.FullTime.HomeTeam + match.Score.FullTime.AwayTeam;         // Total goals is equal to the som of home team score plus away team score

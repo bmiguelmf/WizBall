@@ -15,7 +15,7 @@ namespace FrontOffice.Pages
 
             MatchesTipsHistoryGrid matchesTipsHistoryGrid = new MatchesTipsHistoryGrid();
 
-            placeHolderTipsHistoryGrid.Controls.Add(matchesTipsHistoryGrid.Create());
+            placeHolderTipsHistoryGrid.Controls.Add(matchesTipsHistoryGrid.FiltersAndGrid());
         }
     }
 }

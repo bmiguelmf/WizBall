@@ -80,7 +80,7 @@ document.getElementById("filters").addEventListener("click", function (e) {     
         if (div.classList.contains("competition")) {                                                    // If the element has the class named "competition" then we know that is a valid div to be evaluated.
 
             div.classList.toggle("unselected");                                                         // Toggle the class unselected. This will deselect this particular competition in case it is selected,
-            // Or select it in case it is deselected.
+                                                                                                        // Or select it in case it is deselected.
             filterRowsByCompetitions();                                                                 // Then call filterByCompetition() which will filter the matchesTipsGrid accordingly to the user competition selection/deselection.
 
             setMatchesTipsGridHeight();                                                                 // Finally because the visible number of rows in MatchesTipsGrid may changed we need to reset its height.
@@ -173,7 +173,7 @@ function hideAllRows() {
     var filters = document.getElementById("filters").childNodes;            // Gets all childrens in filters div.
 
     for (i = 1; i < filters.length; i++) {                                  // For each item except the first one (which is not a competition instead is the div options).
-        filters[i].classList.add("unselected");                             // Adds class named unselected.
+        filters[i].classList.add("unselected");                             // Adds class named unselected.       
     }
 }
 
@@ -183,81 +183,11 @@ function hideAllRows() {
 // ----------------------------------------------------------------------------------------------------------------
 // --- MatchesTipsGrid columns sorting                                                                    
 // ----------------------------------------------------------------------------------------------------------------
-var dateSorting         = "desc";
-document.getElementById("header-cell-date").addEventListener("click", function () {
-
-    // Sets header-cell-competitions arrow to transparent.
-    var headerCellCompetitionsArrow = document.getElementById("header-cell-competitions").querySelector("I").style.color = "transparent";
-
-    
-    var headerCellDateArrow = document.getElementById("header-cell-date").querySelector("I");       // Sets header-cell-date arrow to greenyellow.
-    headerCellDateArrow.style.color = "#9acd32";
-
-    
-    headerCellDateArrow.classList.toggle("fa-long-arrow-alt-up");                                   // Toggle sorting icon.
-    headerCellDateArrow.classList.toggle("fa-long-arrow-alt-down");
-
-   
-    if (dateSorting === "desc")                                                                     // Sorts columns accordingly.
-    {
-        sortDateAsc();
-        dateSorting = "asc";   
-    }
-    else if (dateSorting === "asc") {
-
-        sortDateDesc();
-        dateSorting = "desc";
-    }
-
-    resetRowsColors();
-});
-function sortDateAsc() {
-
-    var date_j, date_i;
-    var rows = document.getElementById("grid-body").childNodes;
-    var table = document.getElementById("grid-body");
-
-    for (var i = 0; i < rows.length - 1; i++) {
-        for (var j = i + 1; j < rows.length; j++) {
-
-            date_i = parseFloat(rows[i].querySelector("#utc-date").getAttribute("utc-date"));
-            date_j = parseFloat(rows[j].querySelector("#utc-date").getAttribute("utc-date"));
-
-            if (date_j < date_i) {
-                table.insertBefore(rows[j], rows[i]);
-            }
-
-        }
-    }
-
-}
-function sortDateDesc() {
-
-    var date_j, date_i;
-    var rows = document.getElementById("grid-body").childNodes;
-    var table = document.getElementById("grid-body");
-
-    for (var i = 0; i < rows.length - 1; i++) {
-        for (var j = i + 1; j < rows.length; j++) {
-
-            date_i = parseFloat(rows[i].querySelector("#utc-date").getAttribute("utc-date"));
-            date_j = parseFloat(rows[j].querySelector("#utc-date").getAttribute("utc-date"));
-
-            if (date_j > date_i) {
-                table.insertBefore(rows[j], rows[i]);
-            }
-
-        }
-    }
-
-}
-
-
-var competitionsSorting = "desc";
+var competitionsSorting = "asc";
 document.getElementById("header-cell-competitions").addEventListener("click", function () {
-
-     // Sets header-cell-date arrow to transparent.
-    var headerCellDateArrow = document.getElementById("header-cell-date").querySelector("I").style.color = "transparent";
+  
+    document.getElementById("header-cell-date").querySelector("I").style.color      = "transparent";                // Sets header-cell-date arrow to transparent.
+    document.getElementById("header-cell-ftotahg").querySelector("I").style.color   = "transparent";                // Sets header-cell-ftotahg arrow to transparent. 
 
 
     var headerCellCompetitionsArrow = document.getElementById("header-cell-competitions").querySelector("I");       // Sets header-cell-competitions arrow to greenyellow.
@@ -316,6 +246,144 @@ function sortCompetitionsDesc() {
             comp_j = parseInt(rows[j].getAttribute("compid"));
 
             if (comp_j > comp_i) {
+                table.insertBefore(rows[j], rows[i]);
+            }
+
+        }
+    }
+
+}
+
+var dateSorting = "desc";
+document.getElementById("header-cell-date").addEventListener("click", function () {
+
+    document.getElementById("header-cell-ftotahg").querySelector("I").style.color       = "transparent";        // Sets header-cell-ftotahg arrow to transparent.    
+    document.getElementById("header-cell-competitions").querySelector("I").style.color  = "transparent";        // Sets header-cell-competitions arrow to transparent.
+
+
+    var headerCellDateArrow = document.getElementById("header-cell-date").querySelector("I");                   // Sets header-cell-date arrow to greenyellow.
+    headerCellDateArrow.style.color = "#9acd32";
+
+
+    headerCellDateArrow.classList.toggle("fa-long-arrow-alt-up");                                               // Toggle sorting icon.
+    headerCellDateArrow.classList.toggle("fa-long-arrow-alt-down");
+
+
+    if (dateSorting === "desc")                                                                                 // Sorts columns accordingly.
+    {
+        sortDateAsc();
+        dateSorting = "asc";
+    }
+    else if (dateSorting === "asc") {
+
+        sortDateDesc();
+        dateSorting = "desc";
+    }
+
+    resetRowsColors();
+});
+function sortDateAsc() {
+
+    var date_j, date_i;
+    var rows = document.getElementById("grid-body").childNodes;
+    var table = document.getElementById("grid-body");
+
+    for (var i = 0; i < rows.length - 1; i++) {
+        for (var j = i + 1; j < rows.length; j++) {
+
+            date_i = parseFloat(rows[i].querySelector("#utc-date").getAttribute("utc-date"));
+            date_j = parseFloat(rows[j].querySelector("#utc-date").getAttribute("utc-date"));
+
+            if (date_j < date_i) {
+                table.insertBefore(rows[j], rows[i]);
+            }
+
+        }
+    }
+
+}
+function sortDateDesc() {
+
+    var date_j, date_i;
+    var rows = document.getElementById("grid-body").childNodes;
+    var table = document.getElementById("grid-body");
+
+    for (var i = 0; i < rows.length - 1; i++) {
+        for (var j = i + 1; j < rows.length; j++) {
+
+            date_i = parseFloat(rows[i].querySelector("#utc-date").getAttribute("utc-date"));
+            date_j = parseFloat(rows[j].querySelector("#utc-date").getAttribute("utc-date"));
+
+            if (date_j > date_i) {
+                table.insertBefore(rows[j], rows[i]);
+            }
+
+        }
+    }
+
+}
+
+var ftotahgSorting = "desc";
+document.getElementById("header-cell-ftotahg").addEventListener("click", function () {
+  
+    document.getElementById("header-cell-date").querySelector("I").style.color = "transparent";             // Sets header-cell-date arrow to transparent.    
+    document.getElementById("header-cell-competitions").querySelector("I").style.color = "transparent";     // Sets header-cell-competitions arrow to transparent.
+
+
+    var headerCellFtotahgArrow = document.getElementById("header-cell-ftotahg").querySelector("I");         // Sets header-cell-date arrow to greenyellow.
+    headerCellFtotahgArrow.style.color = "#9acd32";
+
+
+    headerCellFtotahgArrow.classList.toggle("fa-long-arrow-alt-up");                                        // Toggle sorting icon.
+    headerCellFtotahgArrow.classList.toggle("fa-long-arrow-alt-down");
+
+
+    if (ftotahgSorting === "desc")                                                                             // Sorts columns accordingly.
+    {
+        sortFtotahgAsc();
+        ftotahgSorting = "asc";
+    }
+    else if (ftotahgSorting === "asc") {
+
+        sortFtotahgDesc();
+        ftotahgSorting = "desc";
+    }
+
+    resetRowsColors();
+});
+function sortFtotahgAsc() {
+
+    var ftotahg_j, ftotahg_i;
+    var rows  = document.getElementById("grid-body").childNodes;
+    var table = document.getElementById("grid-body");
+
+    for (var i = 0; i < rows.length - 1; i++) {
+        for (var j = i + 1; j < rows.length; j++) {
+
+            ftotahg_i = parseInt(rows[i].getAttribute("ftotahg"));
+            ftotahg_j = parseInt(rows[j].getAttribute("ftotahg"));
+
+            if (ftotahg_j < ftotahg_i) {
+                table.insertBefore(rows[j], rows[i]);
+            }
+
+        }
+    }
+
+}
+function sortFtotahgDesc() {
+
+    var ftotahg_j, ftotahg_i;
+    var rows = document.getElementById("grid-body").childNodes;
+    var table = document.getElementById("grid-body");
+
+    for (var i = 0; i < rows.length - 1; i++) {
+        for (var j = i + 1; j < rows.length; j++) {
+
+            ftotahg_i = parseInt(rows[i].getAttribute("ftotahg"));
+            ftotahg_j = parseInt(rows[j].getAttribute("ftotahg"));
+
+            if (ftotahg_j > ftotahg_i) {
                 table.insertBefore(rows[j], rows[i]);
             }
 
@@ -394,6 +462,7 @@ function convertUtcDateToLocalDate() {
 // ----------------------------------------------------------------------------------------------------------------
 // --- On view load executions                                                                
 // ----------------------------------------------------------------------------------------------------------------
-setMatchesTipsGridHeight();
-convertUtcDateToLocalDate();
-
+window.addEventListener("load", function () {
+    convertUtcDateToLocalDate();
+    setMatchesTipsGridHeight();
+});

@@ -23,6 +23,6 @@
 
 <asp:Content ID="viewHistoryTipsContentJavascript" ContentPlaceHolderID="masterViewContentJavascript" runat="server">
 
-        <script src="../Public/Javascript/MatchesTipsGrid.js"></script>
+    <script src="../Public/Javascript/MatchesTipsHistoryGrid.js"></script>
 
 </asp:Content>
