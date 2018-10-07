@@ -186,8 +186,14 @@ pipe{
         font-size: 11px;
         width: 35px;
     }
+   
+    .grid-cell:nth-child(2) {
+        flex: 50 50 50px;
+        display: inline-block;
+    }
 
     .grid-cell:nth-child(2) {
+        flex: 50 50 50px;
         display: inline-block;
     }
 

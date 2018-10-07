@@ -87,7 +87,7 @@ namespace FrontOffice.Resources
             cellCompetition.Attributes["id"]    = "header-cell-competitions";
             cellCompetition.Attributes["class"] = "grid-cell";
             cellCompetition.Attributes["title"] = "Competition";
-            cellCompetition.InnerHtml           = "C <i class='fas fa-long-arrow-alt-down' style='color:transparent;'></i>";
+            cellCompetition.InnerHtml           = "Comp <i class='fas fa-long-arrow-alt-down' style='color:transparent;'></i>";
             header.Controls.Add(cellCompetition);
 
             HtmlGenericControl cellMatchDay     = new HtmlGenericControl("div");
@@ -144,7 +144,7 @@ namespace FrontOffice.Resources
                 HtmlGenericControl row      = new HtmlGenericControl("div");
                 row.Attributes["class"]     = "grid-row";
                 row.Attributes["CompId"]    = match.Competition.Id.ToString();
-                row.Attributes["dateTime"]  = bll.NormalizeApiDateTime(match.UtcDate).ToString();
+                row.Attributes["dateTime"]  = bll.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMinutes.ToString();
 
 
 
@@ -215,9 +215,6 @@ namespace FrontOffice.Resources
                 row.Controls.Add(rowCellTip);
 
 
-
-                row.Attributes["outcome"] = tip is null ? "4" : tip.BetNoBet == false ? "1" : tip.Result == true ? "0" : "2";
-
                 HtmlGenericControl rowCellOutcome   = new HtmlGenericControl("div");
                 rowCellOutcome.Attributes["class"]  = "grid-cell";
                 if (tip != null && tip.Result != null)
@@ -228,11 +225,13 @@ namespace FrontOffice.Resources
                         {
                             if((bool)tip.Result)
                             {
+                                row.Attributes["outcome"] = "0";
                                 rowCellOutcome.Attributes["style"] = "color: green";
                                 rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "yes.png' alt='Img success' title='Success' />";
                             }
                             else
                             {
+                                row.Attributes["outcome"] = "1";
                                 rowCellOutcome.Attributes["style"] = "color: red";
                                 rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "no.png' alt='Img fail' title='Fail' />";
                             }
@@ -241,11 +240,13 @@ namespace FrontOffice.Resources
                         {
                             if ((bool)tip.Result)
                             {
+                                row.Attributes["outcome"] = "1";
                                 rowCellOutcome.Attributes["style"] = "color: red";
                                 rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "no.png' alt='Img fail' title='Fail' />";                              
                             }
                             else
                             {
+                                row.Attributes["outcome"] = "0";
                                 rowCellOutcome.Attributes["style"] = "color: green";
                                 rowCellOutcome.InnerHtml = "<img class='outcomeImg' src='" + Globals.WIZBALL + "yes.png' alt='Img success' title='Success' />";
 
@@ -257,10 +258,12 @@ namespace FrontOffice.Resources
                         int? result = match.Score.FullTime.HomeTeam + match.Score.FullTime.AwayTeam;
                         if(result < 2.5)
                         {
+                            row.Attributes["outcome"] = "3";
                             rowCellOutcome.InnerHtml = "<span title='Outcome -2.5 goals' style='color:red;'>-2.5</span>";
                         }
                         else
                         {
+                            row.Attributes["outcome"] = "2";
                             rowCellOutcome.InnerHtml = "<span title='Outcome +2.5 goals' style='color:green;'>+2.5</span>";
                         }
                         
@@ -268,6 +271,7 @@ namespace FrontOffice.Resources
                 }
                 else
                 {
+                    row.Attributes["outcome"] = "4";
                     rowCellOutcome.InnerHtml = "<span title='Not available'>N/A</span>";
                 }
                 row.Controls.Add(rowCellOutcome);

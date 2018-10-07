@@ -167,6 +167,8 @@ body header .dektop-menu-menus, body header .dektop-menu-user {
 /* SCREENS BIGGER THAN 960px */
 @media only screen and (min-width:960px) {
 
+
+
 #background {
     position:absolute;
     z-index:-1;
@@ -280,17 +282,59 @@ header .logo-menu a img {
     text-decoration: none;
     display: inline-block;
     white-space: nowrap;
+        
+    margin:0 4px;
+    position: relative;
+}
+.dektop-menu-menus a::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: yellowgreen;
+    content: "";
+    transform:scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s;
+}
+.dektop-menu-menus a::before {
+    position: absolute;
+    top: -5px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: yellowgreen;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+}
+.dektop-menu-menus a:hover::after {
+    transform: scaleX(1);
+    transform-origin: right;
+}
+.dektop-menu-menus a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
+
+.active-menu::after {
+    background-color: #555 !important;
+    transform: scaleX(1) !important;
+}
+.active-menu::before {
+    background-color: #555 !important;
+    transform: scaleX(0) !important;
+}
 
 .dektop-menu-user {
-    flex: 1 1 1px;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-}
+        flex: 1 1 1px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
 .dektop-menu-user .dektop-menu-user-pic img {
 height: 70px;
 border-radius: 15px;

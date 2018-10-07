@@ -904,16 +904,62 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        
-        // TIPS GENERATION AND RESULTS UPDATES
-        public void GenerateHistoryTips()
+
+        // TIPS GENERATION
+        public void RunNextMatchesTips()
         {
-            // This method required that all matches have be sync.
+            // This method requires that all matches have been sync.
             SyncMatchesTierOne();
 
+            SetNextMatchesTips();
 
-            DateTime startDate = DateTime.UtcNow.AddYears(-1);         
-            DateTime finalDate = DateTime.UtcNow.AddHours(-3);                  // -4 Ensures that matches have been played.
+            SetTipsResults();
+        }
+        public void RunHistoryMatchesTips()
+        {
+            // This method requires that all matches have been sync.
+            SyncMatchesTierOne();
+
+            SetHistoryMatchesTips();
+
+            SetTipsResults();
+        }
+
+        /// <summary>
+        /// Gets the next most close (within 3 days) match by team which are eligible for getting the Full-time Over Two And Half Goals tip.
+        /// Then for each one of the elegibles matches by team which havent yet a generated tip, this method calls the SetTip(Match, PlayedMatches) for each one of them.
+        /// </summary>
+        private void SetNextMatchesTips()
+        {
+            // The method responsibility is to decide which matches are eligible for the Full Time Over Two And Half Goals generation tip.
+
+            DateTime startDate = DateTime.UtcNow.AddYears(-1);          // Ensure the beginning of the season.      
+            DateTime finalDate = DateTime.UtcNow.Date;                  // Today 00:00:00 this ensures only matches before today.              
+
+            foreach (Competition competition in TierOneCompetitions())
+            {
+                List<Match> nextMatches   = GetNextMatchesByCompetition(competition.Id.ToString());                                       // Gets matches from today up to next 2 days.
+                List<Match> playedMatches = GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate);        // Gets all played matches not including today's matches.
+
+                foreach (Match match in nextMatches)
+                {
+                    Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
+
+                    if (matchTip is null)                                                       // Only if this match does not already has a tip in the database then we will generate one.
+                    {
+                        SetTip(match, playedMatches);                                           // Method call which will generate the tip.
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Gets a list of history matches (from season start till yesterday)
+        /// Then then for each one of those matches this method calls the SetTip(Match, PlayedMatches) for each one of them.
+        /// </summary>
+        private void SetHistoryMatchesTips()
+        {
+            DateTime startDate = DateTime.UtcNow.AddYears(-1);          // Ensure the beginning of the season.      
+            DateTime finalDate = DateTime.UtcNow.Date;                  // Today 00:00:00 this ensures only matches before today.    
 
             foreach (Competition competition in TierOneCompetitions())
             {
@@ -931,34 +977,10 @@ namespace BusinessLogic.BLL
                     }
                 }
             }  
-        }     
-        public void GenerateNextTips()
-        {
-            // The method responsibility is to decide which matches are eligible for the Full Time Over Two And Half Goals generation tip.
-
-            // This method required that all matches have be sync.
-            SyncMatchesTierOne();
-
-
-            DateTime startDate = DateTime.UtcNow.AddYears(-1);          // Ensure the beginning of the season.      
-            DateTime finalDate = DateTime.UtcNow.Date;                  // Today 00:00:00 this ensures only matches before today.              
-
-            foreach (Competition competition in TierOneCompetitions())
-            {
-                List<Match> nextMatches     = GetNextMatchesByCompetition(competition.Id.ToString());                                       // Gets matches from today up to next 2 days.
-                List<Match> playedMatches   = GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate);        // Gets all played matches not including today's matches.
-
-                foreach (Match match in nextMatches)
-                {                   
-                    Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
-
-                    if (matchTip is null)                                                       // Only if this match does not already has a tip in the database then we will generate one.
-                    {
-                        SetTip(match, playedMatches);                                           // Method call which will generate the tip.
-                    }
-                } 
-            }
         }
+        /// <summary>
+        /// Sets a tip for a given match.
+        /// </summary>
         private void SetTip(Match Match, List<Match> PlayedMatches)
         {
             // The method responsibility is to generate a tip for a given match.
@@ -966,7 +988,8 @@ namespace BusinessLogic.BLL
             int homeTeam = Match.HomeTeam.Id;                           // Easy to handle pointer to homeTeam id.
             int awayTeam = Match.AwayTeam.Id;                           // Easy to handle pointer to awayTeam id.
 
-            // Elegible matches are those which have a date before to the match beeing evaluated.
+            // Elegible matches are those which are not the current match.
+            // So by filtering only matches which have a date before to the match beeing evaluated grants just that.
             List<Match> eligibleMatches = PlayedMatches.Where(x => NormalizeApiDateTime(x.UtcDate) < NormalizeApiDateTime(Match.UtcDate)).ToList();
 
 
@@ -1004,14 +1027,10 @@ namespace BusinessLogic.BLL
 
             InsertTip(tip);
         }
-
-        public void SetTipsResults()
+       
+        private void SetTipsResults()
         {
             // The method responsibility is to update previous generated tips with real matches result after them being played.
-
-            // This method required that all matches have been sync.
-            SyncMatchesTierOne();
-
 
             List<Tip> lstTips = GetTipsByResultNotSet();                                                    // List of tips waiting for the match to happen. (Result = null)             
 

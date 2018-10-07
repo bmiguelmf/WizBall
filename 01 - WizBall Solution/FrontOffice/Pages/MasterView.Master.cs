@@ -21,6 +21,8 @@ namespace FrontOffice
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetActiveMenu();
+
             SetupUserPanel();
 
 
@@ -115,6 +117,35 @@ namespace FrontOffice
 
 
             divDesktopMenuUserOptionsResp.InnerHtml = loginLink + registrationLink + recoverPasswordLink;
+        }
+
+
+
+
+        private void SetActiveMenu()
+        {
+            switch (HttpContext.Current.Request.Url.AbsolutePath)
+            {
+                case "/Pages/ViewHome.aspx":
+                    linkHome.Attributes.Add("class", "active-menu");
+                    break;
+
+                case "/Pages/ViewHistoryTips.aspx":
+                    linkTipsHistory.Attributes.Add("class", "active-menu");
+                    break;
+
+                case "/Pages/ViewContactUs.aspx":
+                    linkAboutUs.Attributes.Add("class", "active-menu");
+                    break;
+
+                case "/Pages/ViewAbouttUs.aspx":
+                    linkContactUs.Attributes.Add("class", "active-menu");
+                    break;
+
+                default:
+                    break;
+            }
+      
         }
     }
 }

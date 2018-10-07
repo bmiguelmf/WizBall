@@ -87,7 +87,7 @@ namespace FrontOffice.Resources
             cellCompetition.Attributes["id"]    = "header-cell-competitions";
             cellCompetition.Attributes["class"] = "grid-cell";
             cellCompetition.Attributes["title"] = "Competition";
-            cellCompetition.InnerHtml           = "C <i class='fas fa-long-arrow-alt-up' style='color:greenyellow;'></i>";
+            cellCompetition.InnerHtml           = "Comp <i class='fas fa-long-arrow-alt-up' style='color:greenyellow;'></i>";
             header.Controls.Add(cellCompetition);
 
             HtmlGenericControl cellMatchDay     = new HtmlGenericControl("div");
@@ -130,7 +130,7 @@ namespace FrontOffice.Resources
                 HtmlGenericControl row = new HtmlGenericControl("div");
                 row.Attributes["class"]     = "grid-row";
                 row.Attributes["CompId"]    = match.Competition.Id.ToString();
-                row.Attributes["dateTime"]  = bll.NormalizeApiDateTime(match.UtcDate).ToString();
+                row.Attributes["dateTime"]  = bll.NormalizeApiDateTime(match.UtcDate).Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMinutes.ToString();
 
 
 

@@ -183,19 +183,38 @@ function hideAllRows() {
 // ----------------------------------------------------------------------------------------------------------------
 // --- MatchesTipsGrid columns sorting                                                                    
 // ----------------------------------------------------------------------------------------------------------------
+// Easy to handle grid pointer.
+var table = document.getElementById("grid-body");
+// Easy to handle grid rows pointer.
+var rows = document.getElementById("grid-body").childNodes;
+// General purposes variables
+var date_i, date_j, ftotahg_j, ftotahg_i, comp_j, comp_i, i, index;
+
+// Easy to handle grid columns pointers.
+var headerCellDate = document.getElementById("header-cell-date");
+var headerCellFtotahg = document.getElementById("header-cell-ftotahg");
+var headerCellCompetitions = document.getElementById("header-cell-competitions");
+
+// Columns sorting state arrows
+var dateSortingArrow = headerCellDate.querySelector("I");
+var FtotahgSortingArrow = headerCellFtotahg.querySelector("I");
+var CompetitionsSortingArrow = headerCellCompetitions.querySelector("I");
+
+// Columns initial sorting states.
+var dateSorting         = "desc";
+var ftotahgSorting      = "desc";
 var competitionsSorting = "asc";
-document.getElementById("header-cell-competitions").addEventListener("click", function () {
-  
-    document.getElementById("header-cell-date").querySelector("I").style.color      = "transparent";                // Sets header-cell-date arrow to transparent.
-    document.getElementById("header-cell-ftotahg").querySelector("I").style.color   = "transparent";                // Sets header-cell-ftotahg arrow to transparent. 
 
 
-    var headerCellCompetitionsArrow = document.getElementById("header-cell-competitions").querySelector("I");       // Sets header-cell-competitions arrow to greenyellow.
-    headerCellCompetitionsArrow.style.color = "#9acd32";
+headerCellCompetitions.addEventListener("click", function () {
+
+    dateSortingArrow.style.color = "transparent";                    // Sets header-cell-date arrow to transparent.
+    FtotahgSortingArrow.style.color = "transparent";                    // Sets header-cell-ftotahg arrow to transparent. 
+    CompetitionsSortingArrow.style.color = "#9acd32";                        // Sets header-cell-competitions to visible. 
 
 
-    headerCellCompetitionsArrow.classList.toggle("fa-long-arrow-alt-up");                                           // Toggle sorting icon.
-    headerCellCompetitionsArrow.classList.toggle("fa-long-arrow-alt-down");
+    CompetitionsSortingArrow.classList.toggle("fa-long-arrow-alt-up");          // Toggles sorting icon.
+    CompetitionsSortingArrow.classList.toggle("fa-long-arrow-alt-down");
 
 
     if (competitionsSorting === "desc") {                                                                           // Sorts columns accordingly.
@@ -212,64 +231,53 @@ document.getElementById("header-cell-competitions").addEventListener("click", fu
     }
 
     resetRowsColors();
+
 });
 function sortCompetitionsAsc() {
 
-    var comp_j, comp_i;
-    var rows    = document.getElementById("grid-body").childNodes;
-    var table   = document.getElementById("grid-body");
-
     for (var i = 0; i < rows.length - 1; i++) {
+
+        minIndex = i;
+
         for (var j = i + 1; j < rows.length; j++) {
 
-            comp_i = parseInt(rows[i].getAttribute("compid"));
-            comp_j = parseInt(rows[j].getAttribute("compid"));
-
-            if (comp_j < comp_i) {
-                table.insertBefore(rows[j], rows[i]);
+            if (rows[j].getAttribute("compid") < rows[minIndex].getAttribute("compid")) {
+                minIndex = j;
             }
-
         }
-    }
 
+        table.insertBefore(rows[minIndex], rows[i]);
+    }
 }
 function sortCompetitionsDesc() {
 
-    var comp_j, comp_i;
-    var rows = document.getElementById("grid-body").childNodes;
-    var table = document.getElementById("grid-body");
-
     for (var i = 0; i < rows.length - 1; i++) {
+
+        minIndex = i;
+
         for (var j = i + 1; j < rows.length; j++) {
 
-            comp_i = parseInt(rows[i].getAttribute("compid"));
-            comp_j = parseInt(rows[j].getAttribute("compid"));
-
-            if (comp_j > comp_i) {
-                table.insertBefore(rows[j], rows[i]);
+            if (rows[j].getAttribute("compid") > rows[minIndex].getAttribute("compid")) {
+                minIndex = j;
             }
-
         }
-    }
 
+        table.insertBefore(rows[minIndex], rows[i]);
+    }
 }
 
-var dateSorting = "desc";
-document.getElementById("header-cell-date").addEventListener("click", function () {
+headerCellDate.addEventListener("click", function () {
 
-    document.getElementById("header-cell-ftotahg").querySelector("I").style.color       = "transparent";        // Sets header-cell-ftotahg arrow to transparent.    
-    document.getElementById("header-cell-competitions").querySelector("I").style.color  = "transparent";        // Sets header-cell-competitions arrow to transparent.
-
-
-    var headerCellDateArrow = document.getElementById("header-cell-date").querySelector("I");                   // Sets header-cell-date arrow to greenyellow.
-    headerCellDateArrow.style.color = "#9acd32";
+    dateSortingArrow.style.color = "#9acd32";                        // Sets header-cell-competitions to visible. 
+    FtotahgSortingArrow.style.color = "transparent";                    // Sets header-cell-ftotahg arrow to transparent.    
+    CompetitionsSortingArrow.style.color = "transparent";                    // Sets header-cell-competitions arrow to transparent.
 
 
-    headerCellDateArrow.classList.toggle("fa-long-arrow-alt-up");                                               // Toggle sorting icon.
-    headerCellDateArrow.classList.toggle("fa-long-arrow-alt-down");
+    dateSortingArrow.classList.toggle("fa-long-arrow-alt-up");                  // Toggles sorting icon.
+    dateSortingArrow.classList.toggle("fa-long-arrow-alt-down");
 
 
-    if (dateSorting === "desc")                                                                                 // Sorts columns accordingly.
+    if (dateSorting === "desc")                                                 // Sorts columns accordingly.
     {
         sortDateAsc();
         dateSorting = "asc";
@@ -281,64 +289,53 @@ document.getElementById("header-cell-date").addEventListener("click", function (
     }
 
     resetRowsColors();
+
 });
 function sortDateAsc() {
 
-    var date_j, date_i;
-    var rows = document.getElementById("grid-body").childNodes;
-    var table = document.getElementById("grid-body");
-
     for (var i = 0; i < rows.length - 1; i++) {
+
+        minIndex = i;
+
         for (var j = i + 1; j < rows.length; j++) {
 
-            date_i = parseFloat(rows[i].querySelector("#utc-date").getAttribute("utc-date"));
-            date_j = parseFloat(rows[j].querySelector("#utc-date").getAttribute("utc-date"));
-
-            if (date_j < date_i) {
-                table.insertBefore(rows[j], rows[i]);
+            if (rows[j].getAttribute("dateTime") < rows[minIndex].getAttribute("dateTime")) {
+                minIndex = j;
             }
-
         }
-    }
 
+        table.insertBefore(rows[minIndex], rows[i]);
+    }
 }
 function sortDateDesc() {
 
-    var date_j, date_i;
-    var rows = document.getElementById("grid-body").childNodes;
-    var table = document.getElementById("grid-body");
-
     for (var i = 0; i < rows.length - 1; i++) {
+
+        minIndex = i;
+
         for (var j = i + 1; j < rows.length; j++) {
 
-            date_i = parseFloat(rows[i].querySelector("#utc-date").getAttribute("utc-date"));
-            date_j = parseFloat(rows[j].querySelector("#utc-date").getAttribute("utc-date"));
-
-            if (date_j > date_i) {
-                table.insertBefore(rows[j], rows[i]);
+            if (rows[j].getAttribute("dateTime") > rows[minIndex].getAttribute("dateTime")) {
+                minIndex = j;
             }
-
         }
-    }
 
+        table.insertBefore(rows[minIndex], rows[i]);
+    }
 }
 
-var ftotahgSorting = "desc";
-document.getElementById("header-cell-ftotahg").addEventListener("click", function () {
-  
-    document.getElementById("header-cell-date").querySelector("I").style.color = "transparent";             // Sets header-cell-date arrow to transparent.    
-    document.getElementById("header-cell-competitions").querySelector("I").style.color = "transparent";     // Sets header-cell-competitions arrow to transparent.
+headerCellFtotahg.addEventListener("click", function () {
+
+    dateSortingArrow.style.color = "transparent";                        // Sets header-cell-competitions to transparent. 
+    FtotahgSortingArrow.style.color = "#9acd32";                            // Sets header-cell-ftotahg arrow to visible.    
+    CompetitionsSortingArrow.style.color = "transparent";                        // Sets header-cell-competitions arrow to transparent.
 
 
-    var headerCellFtotahgArrow = document.getElementById("header-cell-ftotahg").querySelector("I");         // Sets header-cell-date arrow to greenyellow.
-    headerCellFtotahgArrow.style.color = "#9acd32";
+    FtotahgSortingArrow.classList.toggle("fa-long-arrow-alt-up");                   // Toggles sorting icon.
+    FtotahgSortingArrow.classList.toggle("fa-long-arrow-alt-down");
 
 
-    headerCellFtotahgArrow.classList.toggle("fa-long-arrow-alt-up");                                        // Toggle sorting icon.
-    headerCellFtotahgArrow.classList.toggle("fa-long-arrow-alt-down");
-
-
-    if (ftotahgSorting === "desc")                                                                             // Sorts columns accordingly.
+    if (ftotahgSorting === "desc")                                                  // Sorts columns accordingly.
     {
         sortFtotahgAsc();
         ftotahgSorting = "asc";
@@ -350,46 +347,39 @@ document.getElementById("header-cell-ftotahg").addEventListener("click", functio
     }
 
     resetRowsColors();
+
 });
 function sortFtotahgAsc() {
 
-    var ftotahg_j, ftotahg_i;
-    var rows  = document.getElementById("grid-body").childNodes;
-    var table = document.getElementById("grid-body");
-
     for (var i = 0; i < rows.length - 1; i++) {
+
+        minIndex = i;
+
         for (var j = i + 1; j < rows.length; j++) {
 
-            ftotahg_i = parseInt(rows[i].getAttribute("ftotahg"));
-            ftotahg_j = parseInt(rows[j].getAttribute("ftotahg"));
-
-            if (ftotahg_j < ftotahg_i) {
-                table.insertBefore(rows[j], rows[i]);
+            if (rows[j].getAttribute("ftotahg") < rows[minIndex].getAttribute("ftotahg")) {
+                minIndex = j;
             }
-
         }
-    }
 
+        table.insertBefore(rows[minIndex], rows[i]);
+    }
 }
 function sortFtotahgDesc() {
 
-    var ftotahg_j, ftotahg_i;
-    var rows = document.getElementById("grid-body").childNodes;
-    var table = document.getElementById("grid-body");
-
     for (var i = 0; i < rows.length - 1; i++) {
+
+        minIndex = i;
+
         for (var j = i + 1; j < rows.length; j++) {
 
-            ftotahg_i = parseInt(rows[i].getAttribute("ftotahg"));
-            ftotahg_j = parseInt(rows[j].getAttribute("ftotahg"));
-
-            if (ftotahg_j > ftotahg_i) {
-                table.insertBefore(rows[j], rows[i]);
+            if (rows[j].getAttribute("ftotahg") > rows[minIndex].getAttribute("ftotahg")) {
+                minIndex = j;
             }
-
         }
-    }
 
+        table.insertBefore(rows[minIndex], rows[i]);
+    }
 }
 
 

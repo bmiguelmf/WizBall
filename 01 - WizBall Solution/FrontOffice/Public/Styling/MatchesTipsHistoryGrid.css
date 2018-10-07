@@ -142,6 +142,7 @@ pipe{
     flex: 40 40 40px;
     text-align: center;
     white-space: nowrap;
+    cursor:pointer;
 }
 .grid-cell:nth-child(8) img {
     width:14px;
@@ -183,6 +184,9 @@ pipe{
 {
     .grid-cell:nth-child(1) {
         display: inline-block;
+    }
+    .grid-cell:nth-child(3) {
+        flex: 68 68 68px;
     }
 }
 /* MEDIUM MOBILE SCREEN SIZES*/
