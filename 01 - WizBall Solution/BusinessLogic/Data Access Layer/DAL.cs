@@ -108,6 +108,20 @@ namespace BusinessLogic.DAL
 
 
         #region GETS
+        /// <summary>
+        /// Provides an easy way of querying raw selects against the database and returns the corresponding Entity object.
+        /// </summary>
+        /// <param name="Entity">An object that implements Abstract Class Entity.</param>
+        /// <returns>Returns a list of objects of type Entity object.</returns>
+        protected object ExecuteScalarRaw(string QueryRaw)
+        {
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = string.Format(QueryRaw)
+            };
+
+            return ExecuteScalar(cmd);
+        }
 
         /// <summary>
         /// Provides an easy way of querying raw selects against the database and returns the corresponding Entity object.
