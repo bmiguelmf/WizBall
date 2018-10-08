@@ -31,6 +31,9 @@
         <div id="background">
         </div>
 
+        <asp:HiddenField ID="UNameHF" runat="server" />
+        <asp:HiddenField ID="PWordHF" runat="server" />
+
         <!-- Registration form -->
         <div class="form-wrapper">
 
@@ -76,8 +79,8 @@
                  <div class="form-checkbox">
                      <div class="form-check">
                         <label class="form-check-label">
-                            <input id="cbNewsLetter"  class="form-check-input" type="checkbox" runat="server" />
-                                Subscribe newsletter
+                            <input id="cbUserToggle"  class="form-check-input" type="checkbox" runat="server" />
+                                Fill fields with User info
                         </label>
                     </div>
 

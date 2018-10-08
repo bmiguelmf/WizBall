@@ -13,6 +13,24 @@ namespace WebApp.pages {
     public partial class ContactUs {
         
         /// <summary>
+        /// UNameHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField UNameHF;
+        
+        /// <summary>
+        /// PWordHF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField PWordHF;
+        
+        /// <summary>
         /// imgUserPic control.
         /// </summary>
         /// <remarks>
@@ -85,12 +103,12 @@ namespace WebApp.pages {
         protected global::System.Web.UI.WebControls.TextBox txtMessage;
         
         /// <summary>
-        /// cbNewsLetter control.
+        /// cbUserToggle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbNewsLetter;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbUserToggle;
     }
 }

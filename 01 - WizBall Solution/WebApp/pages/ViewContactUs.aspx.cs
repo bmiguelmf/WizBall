@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Configuration;
 using WebApp.App_Code;
 
 namespace WebApp.pages
@@ -13,19 +14,12 @@ namespace WebApp.pages
     {
         private BLL bll;
 
-        private bool IsUserLoggedIn()
-        {
-            User user = Session["User"] as User;
-
-            return user is null ? false : true;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsUserLoggedIn())
+            /*if (IsUserLoggedIn())
             {
-                Page.Response.Redirect("/Pages/ViewHome.aspx");
-            }
+                UNameHF.Text = IsUserLoggedIn();
+            }*/
 
             bll = GLOBALS.BllSI;
 
@@ -70,7 +64,7 @@ namespace WebApp.pages
                 imgUserPic.ImageUrl = GLOBALS.USERS + user.Picture;
             }
         }
-
+        
 
         private void PrepareForm()
         {
