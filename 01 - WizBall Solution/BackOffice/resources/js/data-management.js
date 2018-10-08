@@ -16,7 +16,7 @@ function fillContentTableHead(entity) {
     if (entity.toLowerCase() === "matches") {
         data_table_head.append("<tr> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Competition<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Home team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:8%\" class=\"text-center\"></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Away team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Date<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
     } else if (entity.toLowerCase() === "teams") {
-        data_table_head.append("<tr> <th style=\"width:10%\" class=\"text-center\">TLA</th> <th style=\"width:10%\" class=\"text-center\">Logo</th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Short name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Full name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Region<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th>  <th style=\"width:20%\" class=\"text-center\">Website</th> </tr>");
+        data_table_head.append("<tr> <th style=\"width:10%\" class=\"text-center\"><a class=\"order-by-desc\">TLA<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\">Logo</th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Short name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Full name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Region<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th>  <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Website<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
     } else {
         swal("Error!", "Could not load content table header.", "warning").then((value) => {
             location.reload(true);
@@ -24,14 +24,14 @@ function fillContentTableHead(entity) {
     }
 }
 
-function gsevgfwe(date) {
+function formatDateWithStyle(date) {
 
-    var day = date.slice(7, 10);
-    var month = date.slice(4, 7);
-    var hour = date.slice(16, 18);
-    var min = date.slice(19, 21);
+    //var day = date.slice(7, 10);
+    //var month = date.slice(4, 7);
+    //var hour = date.slice(16, 18);
+    //var min = date.slice(19, 21);
 
-    return day + " " + month + " " + hour + "h" + min;
+    //return day + " " + month + " " + hour + "h" + min;
 }
 
 function turnDateIntoLocalDate(utc_date) {
@@ -81,7 +81,7 @@ function MatchesSync() {
         data: "",
         dataType: "json",
         success: function (data) {
-            if (data.d) {
+            if (data.d.length > 0) {
                 return true;
             }
             else {
@@ -118,7 +118,7 @@ function TeamsSync() {
         data: "",
         dataType: "json",
         success: function (data) {
-            if (data.d) {
+            if (data.d.length > 0) {
                 return true;
             }
             else {
@@ -133,7 +133,7 @@ function TeamsSync() {
 
 function alertAndSyncEntity(entity) {
 
-    let is_sync = undefined;
+    let is_sync = false;
 
     switch (entity.toLowerCase()) {
         case "teams":
@@ -248,7 +248,7 @@ function FullDatabaseSync() {
         data: "",
         dataType: "json",
         success: function (data) {
-            if (data.d) {
+            if (data.d.length > 0) {
                 return true;
             }
             else {
@@ -324,12 +324,29 @@ GetAllAreasToArr();
 
 
 //events
-$('#show_teams').click(function () {
-    GetTeams();
+$('#show_tips').click(function () {
+    //GetTips();
+});
+
+$('#full_sync').click(function () {
+    alertAndSyncEntity("full");
+});
+
+$('#sync_matches').click(function () {
+    alertAndSyncEntity("matches");
 });
 
 $('#sync_teams').click(function () {
     alertAndSyncEntity("teams");
 });
+
+$('#show_matches').click(function () {
+    GetMatches();
+});
+
+$('#show_teams').click(function () {
+    GetTeams();
+});
+
 
 console.log('READY users.js');
