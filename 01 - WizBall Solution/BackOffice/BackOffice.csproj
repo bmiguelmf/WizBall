@@ -16,7 +16,7 @@
     <AssemblyName>BackOffice</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>true</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -148,7 +148,7 @@
     <Content Include="resources\imgs\teams\france\FC Sochaux Montbeliard.ico" />
     <Content Include="resources\imgs\teams\france\girordins_bordeaux.ico" />
     <Content Include="resources\imgs\teams\france\lille.ico" />
-    <Content Include="resources\imgs\teams\france\monaco.ico" />
+    <Content Include="resources\imgs\teams\monaco\monaco.ico" />
     <Content Include="resources\imgs\teams\france\montpellier.ico" />
     <Content Include="resources\imgs\teams\france\nantes_atlantique.ico" />
     <Content Include="resources\imgs\teams\france\ogc_nice.ico" />
@@ -500,7 +500,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50095</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50095/</IISUrl>
+          <IISUrl>http://localhost:50080/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -12,7 +12,7 @@ var content_table_body = $('#content_table_body');
 //functions
 function fillContentTableHead(entity) {
     if (entity.toLowerCase() === "matches") {
-        content_table_head.append("<tr> <th style=\"width:\" class=\"text-center\"><a class=\"order-by-desc\">Competition<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:\" class=\"text-center\"><a class=\"order-by-desc\">Home team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:\" class=\"text-center\"></th> <th style=\"width:\" class=\"text-center\"></th> <th style=\"width:\" class=\"text-center\"></th> <th style=\"width:\" class=\"text-center\"><a class=\"order-by-desc\">Away team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:\" class=\"text-center\"><a class=\"order-by-desc\">Date<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
+        content_table_head.append("<tr> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Competition<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Home team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:\" class=\"text-center\"></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:8%\" class=\"text-center\"></th> <th style=\"width:10%\" class=\"text-center\"><a class=\"order-by-desc\">Away team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Date<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
     } else if (entity.toLowerCase() === "teams") {
         content_table_head.append(/*HTML head para equipas*/);
     } else {
@@ -41,9 +41,7 @@ function turnDateIntoLocalDate(utc_date) {
 
 function fillContentTableBody(entity, value) {
     if (entity.toLowerCase() === "matches") {
-        
-        console.log(turnDateIntoLocalDate(value.UtcDate.toString()));
-        content_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:\">" + value.Competition.Name + "</td> <td style=\"width:\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <th style=\"width:\">VS</th> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:\">" + value.AwayTeam.Name + "</td> <td style=\"width:\"></td> </tr>");
+        content_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:18%\">" + value.Competition.Name + "</td> <td style=\"width:18%\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">VS</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:18%\">" + value.AwayTeam.Name + "</td> <td style=\"width:18%\">BRUH</td> </tr>");
     } else if (entity.toLowerCase() === "teams") {
         content_table_body.append(/*HTML head para equipas*/);
     } else {
@@ -52,6 +50,106 @@ function fillContentTableBody(entity, value) {
         });
     }
 }
+
+function MatchesSync() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            if (data.d) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
+        error: function (data, status, error) {
+            return false;
+        }
+    });
+}
+
+function TeamsSync() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            if (data.d) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
+        error: function (data, status, error) {
+            return false;
+        }
+    });
+}
+
+function alertAndSyncEntity(entity) {
+
+    let is_sync = undefined;
+
+    switch (entity.toLowerCase()) {
+        case "teams":
+            is_sync = TeamsSync();
+            break;
+        case "matches":
+            is_sync = MatchesSync();
+            break;
+        case "full":
+            is_sync = FullDatabaseSync();
+            entity = "data";
+            break;
+        default:
+            is_sync = FullDatabaseSync();
+            entity = "data";
+    }
+
+    swal({
+        title: "Synchronizing " + entity.toLowerCase() + ".",
+        text: "Please wait a few seconds...",
+        icon: "info",
+        timer: entity.toLowerCase() === "data" ? 150000 : 10000,
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false
+    }).then((value) => {
+        if (is_sync) {
+            swal({
+                title: "Success!",
+                icon: "success",
+                timer: 3000
+            }).then((value) => {
+                switch (entity.toLowerCase()) {
+                    case "teams":
+                        GetTeams();
+                        break;
+                    case "matches":
+                        GetMatches();
+                        break;
+                    case "data":
+                        GetMatches();
+                        break;
+                    default:
+                        GetMatches();
+                }
+            });
+        } else {
+            swal("Info!", "There are no " + entity.toLowerCase() + ".", "info");
+            clearTable(content_table_body);
+            content_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
+        }
+    });
+}
+
 
 function GetTeams() {
     $.ajax({
@@ -71,8 +169,32 @@ function GetTeams() {
                 });
             }
             else {
-                swal("Info!", "There are no teams at the moment. Please run full sync.", "info");
-                content_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No teams to display! <td></td><td></td><td></td></td></tr>");
+                swal({
+                    title: "There are no teams at the moment",
+                    text: "Please run teams sync.",
+                    icon: "info",
+                    buttons: {
+                        full_sync: {
+                            closeModal: false,
+                            text: "Sync teams!",
+                            value: "sync"
+                        }
+                    },
+                    closeModal: false
+                })
+                    .then((value) => {
+                        switch (value) {
+                            case "sync":
+                                alertAndSyncEntity("teams");
+                                break;
+                            default:
+                                if (user_requests_count <= 0) {
+                                    window.location.href = "Users.aspx";
+                                } else {
+                                    window.location.href = "UserRequests.aspx";
+                                }
+                        }
+                    });
             }
         },
         error: function (data, status, error) {
@@ -117,6 +239,7 @@ function GetMatches() {
                 $.each(data.d, function (index, value) {
                     fillContentTableBody("matches", value);
                 });
+                paginateTable(content_table, 5);
             }
             else {
                 swal({
@@ -135,27 +258,8 @@ function GetMatches() {
                     .then((value) => {
                         switch (value) {
                             case "full_sync":
-                                FullDatabaseSync();
-                                swal({
-                                    title: "Synchronizing the data",
-                                    text: "Please wait a few seconds...",
-                                    icon: "info",
-                                    timer: 150000,
-                                    buttons: false,
-                                    closeOnEsc: false,
-                                    closeOnClickOutside: false
-                                }).then((value) => {
-                                    swal({
-                                        title: "Success!",
-                                        icon: "success",
-                                        timer: 3000
-                                    }).then((value) => {
-                                        GetMatches();
-                                    });
-
-                                });
+                                alertAndSyncEntity("full");
                                 break;
-
                             default:
                                 if (user_requests_count <= 0) {
                                     window.location.href = "Users.aspx";
@@ -164,13 +268,6 @@ function GetMatches() {
                                 }
                         }
                     });
-
-
-
-
-
-
-                content_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No matches to display! <td></td><td></td><td></td></td></tr>");
             }
         },
         error: function (data, status, error) {
@@ -178,6 +275,7 @@ function GetMatches() {
         }
     });
 }
+
 
 //calls
 GetMatches();
@@ -194,7 +292,11 @@ $(document).keydown(function (e) {
 });
 
 $('#show_teams').click(function () {
-    //GetTeams();
+    GetTeams();
+});
+
+$('#sync_teams').click(function () {
+    alertAndSyncEntity("teams");
 });
 
 console.log('READY users.js');

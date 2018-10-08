@@ -1,4 +1,4 @@
-﻿
+﻿ 
 //html elements
 var btn_cancel = $('#btn_can');
 var btn_submit = $('#btn_submit');

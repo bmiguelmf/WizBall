@@ -14,7 +14,7 @@ namespace BackOffice
     [System.Web.Script.Services.ScriptService]
     public class WebService : System.Web.Services.WebService
     {
-        private string connString = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
+        private string connString = WebConfigurationManager.ConnectionStrings["ConnStringPasseiraHome"].ConnectionString;
         private string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
 
 
@@ -243,6 +243,16 @@ namespace BackOffice
         {
             BLL bll = new BLL(connString, apiToken);
             return bll.GetAllTeams();
+        }
+
+
+
+        // MATCHES METHODS
+        [WebMethod]
+        public List<Match> GetNextMatchesByTierOneCompetitions()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetNextMatchesByTierOneCompetitions();
         }
     }
 }
