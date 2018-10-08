@@ -458,7 +458,7 @@
     <Compile Include="App_Code\GLOBALS.cs" />
     <Compile Include="App_Code\HistoryTipsGrid.cs" />
     <Content Include="App_Code\MatchBinder.cs" />
-    <Content Include="App_Code\MailSender.cs" />
+    <Compile Include="App_Code\MailSender.cs" />
     <Compile Include="App_Code\MatchTruncated.cs" />
     <Compile Include="pages\bruno_testes.aspx.cs">
       <DependentUpon>bruno_testes.aspx</DependentUpon>

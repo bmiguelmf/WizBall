@@ -35,7 +35,7 @@ namespace WebApp.pages
 
                 //matchesTipsGrid = new HistoryTipsGrid(bll.GetMatchesByRangeDateAndCompetition("2018", new DateTime(), new DateTime()));
 
-                placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
+                //placeHolderHistoryTips.Controls.Add(matchesTipsGrid.Create());
 
             } else
             {
