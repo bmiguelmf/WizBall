@@ -74,7 +74,9 @@ namespace BusinessLogic.DAL
         public bool HasRows()
         {
             string query = "SELECT TOP 1 * FROM matches";
-            return (int)ExecuteScalarRaw(query) == 0 ? false : true;
+            object result = ExecuteScalarRaw(query);
+
+            return result is null ? false : (int)result == 0 ? false : true;
         }
 
 
