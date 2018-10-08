@@ -223,10 +223,10 @@ namespace BackOffice
             return bll.FullDatabaseSync();
         }
         [WebMethod]
-        public bool SyncAreas()
+        public bool SyncMatchesTierOne()
         {
             BLL bll = new BLL(connString, apiToken);
-            return bll.SyncAreas();
+            return bll.SyncMatchesTierOne();
         }
         [WebMethod]
         public bool SyncTeams()
@@ -247,12 +247,30 @@ namespace BackOffice
 
 
 
+        // AREAS METHODS
+        [WebMethod]
+        public List<Area> GetAllAreas()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetAllAreas();
+        }
+
+
+
+
         // MATCHES METHODS
         [WebMethod]
         public List<Match> GetNextMatchesByTierOneCompetitions()
         {
             BLL bll = new BLL(connString, apiToken);
             return bll.GetNextMatchesByTierOneCompetitions();
+        }
+        [WebMethod]
+        public bool MatchesHasRows()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            var tou = bll.MatchesHasRows();
+            return tou;
         }
     }
 }

@@ -18,8 +18,8 @@ namespace BusinessLogic.BLL
         // CONSTRUCTOR.
         public BLL(string ConnectionString, string APIToken)
         {
-            apiToken            = APIToken;
-            connectionString    = ConnectionString;
+            apiToken = APIToken;
+            connectionString = ConnectionString;
         }
 
 
@@ -57,8 +57,8 @@ namespace BusinessLogic.BLL
 
 
 
-            DateTime dtNormalized;     
-            
+            DateTime dtNormalized;
+
             DateTime.TryParse(Datetime,
                               null,
                               System.Globalization.DateTimeStyles.AdjustToUniversal,
@@ -66,7 +66,7 @@ namespace BusinessLogic.BLL
 
 
             return dtNormalized;
-        }    
+        }
         public List<Competition> TierOneCompetitions()
         {
             return new List<Competition>()
@@ -90,31 +90,31 @@ namespace BusinessLogic.BLL
             if (User != null)
             {
                 User.CurrentUserHistory = GetCurrentUserHistoryByUserId(User.Id.ToString());
-            }               
+            }
         }
         public void EntityBuilder(Match Match)
         {
             if (Match != null)
             {
-                Match.Season            = GetSeasonById(Match.Season.Id.ToString());
-                Match.Competition       = GetCompetitionById(Match.Competition.Id.ToString());
-                Match.Competition.Area  = GetAreaById(Match.Competition.Area.Id.ToString());
+                Match.Season = GetSeasonById(Match.Season.Id.ToString());
+                Match.Competition = GetCompetitionById(Match.Competition.Id.ToString());
+                Match.Competition.Area = GetAreaById(Match.Competition.Area.Id.ToString());
 
-                Match.HomeTeam          = GetTeamById(Match.HomeTeam.Id.ToString());
-                Match.HomeTeam.Area     = GetAreaById(Match.HomeTeam.Area.Id.ToString());
+                Match.HomeTeam = GetTeamById(Match.HomeTeam.Id.ToString());
+                Match.HomeTeam.Area = GetAreaById(Match.HomeTeam.Area.Id.ToString());
 
-                Match.AwayTeam          = GetTeamById(Match.AwayTeam.Id.ToString());
-                Match.AwayTeam.Area     = GetAreaById(Match.AwayTeam.Area.Id.ToString());
+                Match.AwayTeam = GetTeamById(Match.AwayTeam.Id.ToString());
+                Match.AwayTeam.Area = GetAreaById(Match.AwayTeam.Area.Id.ToString());
             }
         }
         public void EntityBuilder(UserHistory UserHistory)
         {
             if (UserHistory != null)
             {
-                UserHistory.Admin           = GetAdminById(UserHistory.Admin.Id.ToString());
+                UserHistory.Admin = GetAdminById(UserHistory.Admin.Id.ToString());
                 // UserHistory.User         = GetUserById(UserHistory.User.Id.ToString()); Previne recursão EntityBuilder User e Useristory.
-                UserHistory.BeforeState     = GetUserStateById(UserHistory.BeforeState.Id.ToString());
-                UserHistory.AfterState      = GetUserStateById(UserHistory.AfterState.Id.ToString());
+                UserHistory.BeforeState = GetUserStateById(UserHistory.BeforeState.Id.ToString());
+                UserHistory.AfterState = GetUserStateById(UserHistory.AfterState.Id.ToString());
             }
         }
 
@@ -204,7 +204,7 @@ namespace BusinessLogic.BLL
 
             foreach (Competition apiCompetition in lstApiCompetitions)                                 // If database has alreday some records then...
             {
-                if (apiCompetition.CurrentSeason != null)                                               
+                if (apiCompetition.CurrentSeason != null)
                 {
                     Season dbCompetitionCurrentSeason = dalSeasons.GetById(apiCompetition.CurrentSeason.Id.ToString());
 
@@ -256,7 +256,7 @@ namespace BusinessLogic.BLL
                 {
                     lstInsertCompetition.Add(competitionApi);
                 }
-                else 
+                else
                 {
                     DateTime? competitionApiLastUpdated = NormalizeApiDateTime(competitionApi.LastUpdated);
 
@@ -351,7 +351,7 @@ namespace BusinessLogic.BLL
 
                     if (dbMatch is null)                                                                            // If no match then add match to insertable matches list.
                     {
-                        lstInsertMatches.Add(apiMatch);                                                                
+                        lstInsertMatches.Add(apiMatch);
                     }
                     else                                                                                            // Otherwise
                     {
@@ -412,8 +412,8 @@ namespace BusinessLogic.BLL
 
             return true;
         }
-        
-     
+
+
 
 
         // USER METHODS.
@@ -447,26 +447,26 @@ namespace BusinessLogic.BLL
             // User Validations.
             if (User is null)
                 return false;
-            if(!IsValidEmail(User.Email))
+            if (!IsValidEmail(User.Email))
                 return false;
 
 
             // Insert User and get his Id.
             DALUsers dalUsers = new DALUsers(connectionString);
-            int userId = dalUsers.Insert(User);                     
+            int userId = dalUsers.Insert(User);
 
-            
+
             // Creates and inserts default user_history for the current user.            
             UserHistory userHistory = new UserHistory()
             {
-                Admin       = new Admin()           { Id= 1 },
-                User        = new User()            { Id= userId },
+                Admin = new Admin() { Id = 1 },
+                User = new User() { Id = userId },
                 Description = "User registration.",
-                BeforeState = new UserState()       { Id = 1 },
-                AfterState  = new UserState()       { Id = 1 }
+                BeforeState = new UserState() { Id = 1 },
+                AfterState = new UserState() { Id = 1 }
             };
             InsertUserHistory(userHistory);
-            
+
             return true;
         }
         public bool UpdateUser(User User)
@@ -478,7 +478,7 @@ namespace BusinessLogic.BLL
                 return false;
 
             DALUsers dalUsers = new DALUsers(connectionString);
-            
+
             return dalUsers.Update(User);
         }
         public bool UpdateUser(User User, UserHistory UserHistory)
@@ -492,9 +492,9 @@ namespace BusinessLogic.BLL
 
             List<User> lstUsers = new List<User>();
 
-            if(UpdateUser(User) && InsertUserHistory(UserHistory))            
+            if (UpdateUser(User) && InsertUserHistory(UserHistory))
                 return true;
-            
+
 
             return false;
         }
@@ -515,10 +515,10 @@ namespace BusinessLogic.BLL
                 return false;
             }
 
-            DALUsers dalUsers   = new DALUsers(connectionString);
-            User user           = dalUsers.GetByEmail(Email);
+            DALUsers dalUsers = new DALUsers(connectionString);
+            User user = dalUsers.GetByEmail(Email);
 
-            if(user is null)
+            if (user is null)
             {
                 return false;
             }
@@ -538,7 +538,7 @@ namespace BusinessLogic.BLL
                 SmtpServer.Credentials = new System.Net.NetworkCredential("bmiguelmf@gmail.com", "zsdoq06121984fx840Z");
                 SmtpServer.EnableSsl = true;
 
-               
+
                 SmtpServer.Send(mail);
 
                 return true;
@@ -601,8 +601,8 @@ namespace BusinessLogic.BLL
             if (string.IsNullOrEmpty(Id))
                 return null;
 
-            DALUserHistory  dalUserHistory  = new DALUserHistory(connectionString);           // Gets an user history by its id.
-            UserHistory     userHistory     = dalUserHistory.GetById(Id);
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);           // Gets an user history by its id.
+            UserHistory userHistory = dalUserHistory.GetById(Id);
 
             EntityBuilder(userHistory);
 
@@ -612,9 +612,9 @@ namespace BusinessLogic.BLL
         {
             if (string.IsNullOrEmpty(UserId))
                 return null;
-           
-            DALUserHistory     dalUserHistory = new DALUserHistory(connectionString);           
-            List<UserHistory>  lstUserHistory = dalUserHistory.GetByUserId(UserId);
+
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
+            List<UserHistory> lstUserHistory = dalUserHistory.GetByUserId(UserId);
 
             lstUserHistory.ForEach(EntityBuilder);
 
@@ -625,13 +625,13 @@ namespace BusinessLogic.BLL
             if (string.IsNullOrEmpty(UserId))
                 return null;
 
-            DALUserHistory  dalUserHistory  = new DALUserHistory(connectionString);
-            UserHistory     userHistory     = dalUserHistory.GetCurrentByUserId(UserId);
+            DALUserHistory dalUserHistory = new DALUserHistory(connectionString);
+            UserHistory userHistory = dalUserHistory.GetCurrentByUserId(UserId);
 
             if (userHistory is null) return null;
 
             EntityBuilder(userHistory);
-     
+
             return userHistory;
         }
         public bool InsertUserHistory(UserHistory UserHistory)
@@ -698,13 +698,13 @@ namespace BusinessLogic.BLL
         public Match GetMatchById(string Id)
         {
             DALMatches dalMatches = new DALMatches(connectionString);
-            
+
             Match match = dalMatches.GetById(Id);
 
             EntityBuilder(match);
 
-            return match; 
-        }      
+            return match;
+        }
         public List<Match> GetMatchesByCompetition(string CompetitionId)
         {
             DALMatches dalMatches = new DALMatches(connectionString);
@@ -720,7 +720,7 @@ namespace BusinessLogic.BLL
         {
             DALMatches dalMatches = new DALMatches(connectionString);
 
-            List<Match> nextMatches =  dalMatches.GetSpNextMatchesByCompetitionId(CompetitionId);
+            List<Match> nextMatches = dalMatches.GetSpNextMatchesByCompetitionId(CompetitionId);
 
             nextMatches.ForEach(EntityBuilder);
 
@@ -739,13 +739,13 @@ namespace BusinessLogic.BLL
         }
 
         public List<Match> GetHistoryMatchesByTierOneCompetitions()
-        {           
+        {
             List<Match> lstMatches = new List<Match>();
 
             foreach (Competition competition in TierOneCompetitions())
-            {            
-                DateTime startDate     = DateTime.UtcNow.AddYears(-1);
-                DateTime finalDate     = DateTime.UtcNow.AddHours(-3);
+            {
+                DateTime startDate = DateTime.UtcNow.AddYears(-1);
+                DateTime finalDate = DateTime.UtcNow.AddHours(-3);
 
                 lstMatches.AddRange(GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate));
             }
@@ -757,7 +757,7 @@ namespace BusinessLogic.BLL
             DALMatches dalMatches = new DALMatches(connectionString);
 
             List<Match> lstMatches = dalMatches.GetByCompetitionIdAndByRangeDates(CompetitionId, StartDate, FinalDate);
-   
+
             lstMatches.ForEach(EntityBuilder);
 
             return lstMatches;
@@ -784,6 +784,12 @@ namespace BusinessLogic.BLL
 
 
             return true;
+        }
+
+        public bool MatchesHasRows()
+        {
+            DALMatches dalMatches = new DALMatches(connectionString);
+            return dalMatches.HasRows();
         }
 
 
@@ -938,7 +944,7 @@ namespace BusinessLogic.BLL
 
             foreach (Competition competition in TierOneCompetitions())
             {
-                List<Match> nextMatches   = GetNextMatchesByCompetition(competition.Id.ToString());                                       // Gets matches from today up to next 2 days.
+                List<Match> nextMatches = GetNextMatchesByCompetition(competition.Id.ToString());                                       // Gets matches from today up to next 2 days.
                 List<Match> playedMatches = GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate);        // Gets all played matches not including today's matches.
 
                 foreach (Match match in nextMatches)
@@ -976,7 +982,7 @@ namespace BusinessLogic.BLL
                         SetTip(match, playedMatches);                                           // Method call which will generate the tip.
                     }
                 }
-            }  
+            }
         }
         /// <summary>
         /// Sets a tip for a given match.
@@ -1027,7 +1033,7 @@ namespace BusinessLogic.BLL
 
             InsertTip(tip);
         }
-       
+
         private void SetTipsResults()
         {
             // The method responsibility is to update previous generated tips with real matches result after them being played.
@@ -1045,7 +1051,7 @@ namespace BusinessLogic.BLL
 
                 double? totalGoals = match.Score.FullTime.HomeTeam + match.Score.FullTime.AwayTeam;         // Total goals is equal to the som of home team score plus away team score
 
-                if(totalGoals > 2.5)                                                                        // Checks whether the match had over two and half goals or not.
+                if (totalGoals > 2.5)                                                                        // Checks whether the match had over two and half goals or not.
                 {
                     tip.Result = true;                                                                      // Sets the tip result value.
                 }

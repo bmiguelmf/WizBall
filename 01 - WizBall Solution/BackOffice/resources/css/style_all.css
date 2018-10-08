@@ -24,6 +24,10 @@ html, body {
     animation: spin 4s linear infinite;
 }
 
+a, input[type=checkbox]{
+    cursor: pointer;
+}
+
 @-webkit-keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);

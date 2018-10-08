@@ -108,10 +108,10 @@
                         <div class="col-lg-12">
                             <!-- list/table-->
                             <div class="content table-full-width" style="position: relative;">
-                                <table id="content_table" class="table table-hover text-center">
-                                    <thead id="content_table_head" class="text-center">
+                                <table id="data_table" class="table table-hover text-center">
+                                    <thead id="data_table_head" class="text-center">
                                     </thead>
-                                    <tbody id="content_table_body" class="text-center">
+                                    <tbody id="data_table_body" class="text-center">
                                     </tbody>
                                 </table>
                             </div>

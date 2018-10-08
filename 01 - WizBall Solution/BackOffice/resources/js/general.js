@@ -11,7 +11,7 @@ var checked_user_ids = [];
 
 //global functions
 function clearTable(table) {
-    table.empty;
+    table.empty();
     //table_settings.ajax.reload();
 }
 

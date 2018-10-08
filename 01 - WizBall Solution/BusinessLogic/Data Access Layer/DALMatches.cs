@@ -71,7 +71,11 @@ namespace BusinessLogic.DAL
 
             return GetWhere(new Match(), lstDbWheres).Cast<Match>().ToList();
         }
-
+        public bool HasRows()
+        {
+            string query = "SELECT TOP 1 * FROM matches";
+            return (int)ExecuteScalarRaw(query) == 0 ? false : true;
+        }
 
 
         // Insert.

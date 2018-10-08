@@ -1,9 +1,10 @@
 ﻿
 //html elements
-var content_table = $('#content_table');
-var content_table_head = $('#content_table_head');
-var content_table_body = $('#content_table_body');
-
+var data_table = $('#data_table');
+var data_table_head = $('#data_table_head');
+var data_table_body = $('#data_table_body');
+var has_matches = undefined;
+var Areas = [];
 
 //vars
 
@@ -11,10 +12,11 @@ var content_table_body = $('#content_table_body');
 
 //functions
 function fillContentTableHead(entity) {
+    clearTable(data_table_head);
     if (entity.toLowerCase() === "matches") {
-        content_table_head.append("<tr> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Competition<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Home team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:\" class=\"text-center\"></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:8%\" class=\"text-center\"></th> <th style=\"width:10%\" class=\"text-center\"><a class=\"order-by-desc\">Away team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Date<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
+        data_table_head.append("<tr> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Competition<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Home team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:8%\" class=\"text-center\"></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Away team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Date<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
     } else if (entity.toLowerCase() === "teams") {
-        content_table_head.append(/*HTML head para equipas*/);
+        data_table_head.append("<tr> <th style=\"width:10%\" class=\"text-center\">TLA</th> <th style=\"width:10%\" class=\"text-center\">Logo</th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Short name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Full name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Region<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th>  <th style=\"width:20%\" class=\"text-center\">Website</th> </tr>");
     } else {
         swal("Error!", "Could not load content table header.", "warning").then((value) => {
             location.reload(true);
@@ -39,11 +41,11 @@ function turnDateIntoLocalDate(utc_date) {
     return convertable_date.toString();
 }
 
-function fillContentTableBody(entity, value) {
+function fillDataTableBody(entity, value) {
     if (entity.toLowerCase() === "matches") {
-        content_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:18%\">" + value.Competition.Name + "</td> <td style=\"width:18%\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">VS</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:18%\">" + value.AwayTeam.Name + "</td> <td style=\"width:18%\">BRUH</td> </tr>");
+        data_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:18%\">" + value.Competition.Name + "</td> <td style=\"width:18%\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">VS</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:18%\">" + value.AwayTeam.Name + "</td> <td style=\"width:18%\">BRUH</td> </tr>");
     } else if (entity.toLowerCase() === "teams") {
-        content_table_body.append(/*HTML head para equipas*/);
+        data_table_body.append("<tr value=\"" + value.Id + "\">  <td style=\"width:10%\">" + value.TLA + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + Areas[value.Area.Id].toLowerCase() + "/" + value.Flag + "\" /></span></td> <td style=\"width:20%\">" + value.ShortName + "</td> <td style=\"width:20%\">" + value.Name + "</td> <td style=\"width:20%\">" + Areas[value.Area.Id] + "</td> <td style=\"width:20%\"> <a class=\"order-by-desc\" href=\"" + value.WebSite + "\" target=\"_blank\">" + value.WebSite + "&nbsp;<i class=\"glyphicon glyphicon-share-alt\"></i></a></td> </tr>");
     } else {
         swal("Error!", "Could not load content table body.", "warning").then((value) => {
             location.reload(true);
@@ -51,11 +53,31 @@ function fillContentTableBody(entity, value) {
     }
 }
 
+function GetAllAreasToArr() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/GetAllAreas",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            console.log(data.d);
+            $.each(data.d, function (index, value) {
+                Areas[value.Id] = value.Name;
+            });
+            console.log(Areas);
+        },
+        error: function (data, status, error) {
+            console.log("Error 500 getting areas");
+        }
+    });
+}
+
 function MatchesSync() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/",
+        url: "../WebService.asmx/SyncMatchesTierOne",
         data: "",
         dataType: "json",
         success: function (data) {
@@ -72,11 +94,27 @@ function MatchesSync() {
     });
 }
 
+function hasMatches() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/MatchesHasRows",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            has_matches = data.d;
+        },
+        error: function (data, status, error) {
+            console.log("Error 500 getting matches top 1");
+        }
+    });
+}
+
 function TeamsSync() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/",
+        url: "../WebService.asmx/SyncTeams",
         data: "",
         dataType: "json",
         success: function (data) {
@@ -144,12 +182,11 @@ function alertAndSyncEntity(entity) {
             });
         } else {
             swal("Info!", "There are no " + entity.toLowerCase() + ".", "info");
-            clearTable(content_table_body);
-            content_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
+            clearTable(data_table_body);
+            data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
         }
     });
 }
-
 
 function GetTeams() {
     $.ajax({
@@ -159,14 +196,14 @@ function GetTeams() {
         data: "",
         dataType: "json",
         success: function (data) {
-            clearTable(content_table_head);
-            clearTable(content_table_body);
             if (data.d.length > 0) {
                 console.log(data.d);
                 fillContentTableHead("teams");
+                clearTable(data_table_body);
                 $.each(data.d, function (index, value) {
-                    fillContentTableBody("teams");
+                    fillDataTableBody("teams", value);
                 });
+                paginateTable(data_table, 5);
             }
             else {
                 swal({
@@ -232,16 +269,19 @@ function GetMatches() {
         data: "",
         dataType: "json",
         success: function (data) {
-            clearTable(content_table_head);
-            clearTable(content_table_body);
+            console.log(data.d);
             if (data.d.length > 0) {
                 fillContentTableHead("matches");
+                clearTable(data_table_body);
                 $.each(data.d, function (index, value) {
-                    fillContentTableBody("matches", value);
+                    fillDataTableBody("matches", value);
                 });
-                paginateTable(content_table, 5);
+                paginateTable(data_table, 5);
             }
-            else {
+            else if (has_matches) {
+                data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> There are no games for the next few days. <td></td><td></td><td></td></td></tr>");
+                swal("Info!", "There are no games for the next few days.", "info");
+            } else {
                 swal({
                     title: "There are no matches at the moment",
                     text: "Please run full sync.",
@@ -278,19 +318,12 @@ function GetMatches() {
 
 
 //calls
+hasMatches();
 GetMatches();
+GetAllAreasToArr();
+
 
 //events
-$('.st-pusher').click(function () {
-    is_code_changed = false;
-});
-
-$(document).keydown(function (e) {
-    if (e.keyCode === 27) {
-        $('.st-pusher').trigger('click');
-    }
-});
-
 $('#show_teams').click(function () {
     GetTeams();
 });
