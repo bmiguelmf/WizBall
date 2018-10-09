@@ -1,17 +1,24 @@
 ﻿
-//html elements
+//HTML ELEMENTS
 var data_table = $('#data_table');
 var data_table_head = $('#data_table_head');
 var data_table_body = $('#data_table_body');
+
+//VARS
+//save the value if there are matches in the database or not.
 var has_matches = undefined;
-var Areas = [];
+
+//is used to validate whether a synchronization method was successful or not.
 var is_sync = false;
 
-//vars
+//ARRAYS
+//is an array with all areas. The index is the id and the value is the name.
+var Areas = [];
 
-//objects
 
-//functions
+
+//FUNCTIONS
+//fills the table head according to the given entity
 function fillContentTableHead(entity) {
     clearTable(data_table_head);
     if (entity.toLowerCase() === "matches") {
@@ -30,6 +37,7 @@ function fillContentTableHead(entity) {
     }
 }
 
+//
 function formatDateWithStyle(date) {
 
     //var day = date.slice(7, 10);
@@ -47,6 +55,7 @@ function turnDateIntoLocalDate(utc_date) {
     return convertable_date.toString();
 }
 
+//fills the table body according to the given entity.
 function fillDataTableBody(entity, value) {
     if (entity.toLowerCase() === "matches") {
         data_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:18%\">" + value.Competition.Name + "</td> <td style=\"width:18%\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">VS</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:18%\">" + value.AwayTeam.Name + "</td> <td style=\"width:18%\">BRUH</td> </tr>");
@@ -64,6 +73,7 @@ function fillDataTableBody(entity, value) {
     }
 }
 
+//gets all the areas vai ajax and places them in an array where the index is the id of the Area and the value is the respective name.
 function GetAllAreasToArr() {
     $.ajax({
         type: "POST",
@@ -84,6 +94,7 @@ function GetAllAreasToArr() {
     });
 }
 
+//synchronizes the matches that exist in the API with those that exist in the database and updates all that data.
 function MatchesSync() {
     $.ajax({
         type: "POST",
@@ -106,6 +117,8 @@ function MatchesSync() {
     });
 }
 
+//checks if there are matches data in the database and saves that value in "has_matches" so that the code can
+//then decide whether to perform a full sync or if there are no matches for the next few days when "GetMatches()" is performed.
 function hasMatches() {
     $.ajax({
         type: "POST",
@@ -122,6 +135,7 @@ function hasMatches() {
     });
 }
 
+//synchronizes the teams that exist in the API with those that exist in the database and updates all that data.
 function TeamsSync() {
     $.ajax({
         type: "POST",
@@ -144,89 +158,101 @@ function TeamsSync() {
     });
 }
 
-function alertAndSyncEntity(entity) {
-
+//
+function loadingSync(entity) {
     swal({
-        title: "Are you sure?",
-        text: "This may take a few seconds.",
-        icon: "warning",
-        buttons: true
-    }).then((willDelete) => {
-        if (willDelete) {
-
-            switch (entity.toLowerCase()) {
-                case "teams":
-                    TeamsSync();
-                    break;
-                case "matches":
-                    MatchesSync();
-                    break;
-                case "full":
-                    FullDatabaseSync();
-                    entity = "data";
-                    break;
-                default:
-                    FullDatabaseSync();
-                    entity = "data";
-            }
-
-            entity = entity.toLowerCase().replace(/\b[a-z]/g, function (first_char) {
-                return first_char.toUpperCase();
-            });
-
+        title: "Synchronizing " + entity.toLowerCase() + ".",
+        text: "Please wait a few seconds...",
+        icon: "info",
+        timer: entity.toLowerCase() === "data" ? 150000 : 10000,
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false
+    }).then((value) => {
+        if (is_sync) {
             swal({
-                title: "Synchronizing " + entity.toLowerCase() + ".",
-                text: "Please wait a few seconds...",
-                icon: "info",
-                timer: entity.toLowerCase() === "data" ? 150000 : 10000,
-                buttons: false,
-                closeOnEsc: false,
-                closeOnClickOutside: false
+                title: "Success!",
+                text: entity + " synchronized successfully.",
+                icon: "success",
+                timer: 5000
             }).then((value) => {
-                if (is_sync) {
-                    swal({
-                        title: "Success!",
-                        text: entity + " synchronized successfully.",
-                        icon: "success",
-                        timer: 5000
-                    }).then((value) => {
-                        switch (entity.toLowerCase()) {
-                            case "teams":
-                                GetTeams();
-                                break;
-                            case "matches":
-                                GetMatches();
-                                break;
-                            case "data":
-                                GetMatches();
-                                break;
-                            default:
-                                GetMatches();
-                        }
-                    });
-                } else {
-                    swal({
-                        title: "Info!",
-                        text: "There are no " + entity.toLowerCase() + ".",
-                        icon: "info",
-                        timer: 5000
-                    });
-                    clearTable(data_table_body);
-                    data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
+                switch (entity.toLowerCase()) {
+                    case "teams":
+                        GetTeams();
+                        break;
+                    case "matches":
+                        GetMatches();
+                        break;
+                    case "data":
+                        GetMatches();
+                        break;
+                    default:
+                        GetMatches();
                 }
             });
         } else {
             swal({
-                title: "Canceled!",
-                text: "",
+                title: "Info!",
+                text: "There are no " + entity.toLowerCase() + ".",
                 icon: "info",
-                timer: 3000
+                timer: 5000
             });
+            clearTable(data_table_body);
+            data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
         }
     });
+}
+
+//alert, and if the action is confirmed, performs a synchronization method depending on the given entity.
+function alertAndSyncEntity(entity, show_alert) {
+    if (show_alert) {
+        swal({
+            title: "Are you sure?",
+            text: "This may take a few seconds.",
+            icon: "warning",
+            buttons: true
+        }).then((willDelete) => {
+            if (willDelete) {
+
+                switch (entity.toLowerCase()) {
+                    case "teams":
+                        TeamsSync();
+                        break;
+                    case "matches":
+                        MatchesSync();
+                        break;
+                    case "full":
+                        FullDatabaseSync();
+                        entity = "data";
+                        break;
+                    default:
+                        FullDatabaseSync();
+                        entity = "data";
+                }
+
+                entity = entity.toLowerCase().replace(/\b[a-z]/g, function (first_char) {
+                    return first_char.toUpperCase();
+                });
+                loadingSync(entity);
+            } else {
+                swal({
+                    title: "Canceled!",
+                    text: "",
+                    icon: "info",
+                    timer: 3000
+                });
+            }
+        });
+    } else {
+        loadingSync(entity);
+    }
+
 
 }
 
+//gets all the teams from the database. if there are no teams will be presented an alert to perform 
+//a full sync. if the admin does not perform this action, he will be redirected to the user requests management
+//page if there are requests, otherwise it will be redirected to the users management page.
 function GetTeams() {
     $.ajax({
         type: "POST",
@@ -247,12 +273,12 @@ function GetTeams() {
             else {
                 swal({
                     title: "There are no teams at the moment",
-                    text: "Please run teams sync.",
+                    text: "Please run full sync.",
                     icon: "info",
                     buttons: {
                         full_sync: {
                             closeModal: false,
-                            text: "Sync teams!",
+                            text: "Sync now!",
                             value: "sync"
                         }
                     },
@@ -261,7 +287,7 @@ function GetTeams() {
                     .then((value) => {
                         switch (value) {
                             case "sync":
-                                alertAndSyncEntity("teams");
+                                alertAndSyncEntity("data", false);
                                 break;
                             default:
                                 if (user_requests_count <= 0) {
@@ -284,6 +310,7 @@ function GetTeams() {
     });
 }
 
+//synchronizes all the data that exist in the API with those that exist in the database and updates all that.
 function FullDatabaseSync() {
     $.ajax({
         type: "POST",
@@ -306,6 +333,9 @@ function FullDatabaseSync() {
     });
 }
 
+//gets all the matches from the database. if there are no matches will be presented an alert to perform 
+//a full sync. if the admin does not perform this action, he will be redirected to the user requests management
+//page if there are requests, otherwise it will be redirected to the users management page.
 function GetMatches() {
     $.ajax({
         type: "POST",
@@ -340,15 +370,15 @@ function GetMatches() {
                         full_sync: {
                             closeModal: false,
                             text: "Sync now!",
-                            value: "full_sync"
+                            value: "sync"
                         }
                     },
                     closeModal: false
                 })
                     .then((value) => {
                         switch (value) {
-                            case "full_sync":
-                                alertAndSyncEntity("full");
+                            case "sync":
+                                alertAndSyncEntity("data", false);
                                 break;
                             default:
                                 if (user_requests_count <= 0) {
@@ -372,27 +402,27 @@ function GetMatches() {
 }
 
 
-//calls
+//CALLS
 hasMatches();
 GetMatches();
 GetAllAreasToArr();
 
 
-//events
+//EVENTS
 $('#show_tips').click(function () {
     //GetTips();
 });
 
 $('#full_sync').click(function () {
-    alertAndSyncEntity("data");
+    alertAndSyncEntity("data", true);
 });
 
 $('#sync_matches').click(function () {
-    alertAndSyncEntity("matches");
+    alertAndSyncEntity("matches", true);
 });
 
 $('#sync_teams').click(function () {
-    alertAndSyncEntity("teams");
+    alertAndSyncEntity("teams", true);
 });
 
 $('#show_matches').click(function () {
