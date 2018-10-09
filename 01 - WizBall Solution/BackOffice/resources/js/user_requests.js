@@ -50,12 +50,22 @@ function aproveUser(id, is_granted) {
         success: function (data) {
             console.log(data.d);
             if (data.d) {
-                swal("Success!", "User successfully " + permission.toLowerCase() + "!", "success").then((value) => {
+                swal({
+                    title: "Success!",
+                    text: "User successfully " + permission.toLowerCase() + "!",
+                    icon: "success",
+                    timer: 3000
+                }).then((value) => {
                     //GetPendingUsers();
                     window.location.reload();
                 });
             } else {
-                swal("Info!", "User unsuccessfully " + permission.toLowerCase() + "!", "warning").then((value) => {
+                swal({
+                    title: "Info!",
+                    text: "User unsuccessfully " + permission.toLowerCase() + "!",
+                    icon: "warning",
+                    timer: 3000
+                }).then((value) => {
 
                 });
             }
@@ -63,7 +73,12 @@ function aproveUser(id, is_granted) {
 
         },
         error: function (data, status, error) {
-            swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+            swal({
+                title: "Error!",
+                text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
+                icon: "warning",
+                timer: 3000
+            });
         }
     });
 }
@@ -81,7 +96,11 @@ function assignActionBtnClickEvents() {
                 if (willDelete) {
                     aproveUser($(this).closest("tr").attr('value'), true);
                 } else {
-                    swal("Canceled!", "", "info");
+                    swal({
+                        title: "Canceled!",
+                        icon: "info",
+                        timer: 2500
+                    });
                 }
             });
 
@@ -98,7 +117,11 @@ function assignActionBtnClickEvents() {
                 if (willDelete) {
                     aproveUser($(this).closest("tr").attr('value'), false);
                 } else {
-                    swal("Canceled!", "", "info");
+                    swal({
+                        title: "Canceled!",
+                        icon: "info",
+                        timer: 2500
+                    });
                 }
             });
     });
@@ -120,7 +143,7 @@ function GetPendingUsers() {
                     if (value.CurrentUserHistory.AfterState.Description === "Pending") {
                         ran_if = true;
                         pending_users_ids[i] = value.Id;
-                        tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8%;\" class=\"text-center\"><input user_id=\"" + value.Id + "\" class=\"check-all checkbox-change\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/Users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\"" + value.CurrentUserHistory.AfterState.Id + "\" style=\"width:16%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td style=\"width:10%;\"><a class=\"btn_revoke\"><i class=\"glyphicon glyphicon-trash\"></i></a></td></tr>");
+                        tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width: 8%;\" class=\"text-center\"><input user_id=\"" + value.Id + "\" class=\"check-all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/Users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td id=\"user_state\" user_state=\"" + value.CurrentUserHistory.AfterState.Id + "\" style=\"width:16%;\">" + value.CurrentUserHistory.AfterState.Description + "</td> <td style=\"width:10%;\"><a class=\"btn_grant\"><i class=\"glyphicon glyphicon-ok\"></i></a></td> <td style=\"width:10%;\"><a class=\"btn_revoke\"><i class=\"glyphicon glyphicon-trash\"></i></a></td></tr>");
                     }
                     i++;
                 });
@@ -128,19 +151,34 @@ function GetPendingUsers() {
                     paginateTable(tbl_users, 3);
                     assignActionBtnClickEvents();
                 } else {
-                    swal("Info!", "There are no user requests at the moment.", "info");
+                    swal({
+                        title: "Info!",
+                        text: "There are no user requests at the moment.",
+                        icon: "info",
+                        timer: 3000
+                    });
                     removeActionButtons();
-                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                    tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No user requests to display! <td></td><td></td><td></td></td></tr>");
                 }
             }
             else {
-                swal("Info!", "There are no user requests at the moment.", "info");
+                swal({
+                    title: "Info!",
+                    text: "There are no user requests at the moment.",
+                    icon: "info",
+                    timer: 3000
+                });
                 removeActionButtons();
-                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
+                tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No user requests to display! <td></td><td></td><td></td></td></tr>");
             }
         },
         error: function (data, status, error) {
-            swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+            swal({
+                title: "Error!",
+                text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
+                icon: "warning",
+                timer: 3000
+            });
         }
     });
 }
@@ -156,7 +194,12 @@ function aproveAllUsers(ids, is_granted) {
         aproveUser(ids[i], is_granted);
     }
 
-    swal("Success!", "Users successfully " + permission.toLowerCase() + "!", "success").then((value) => {
+    swal({
+        title: "Success!",
+        text: "Users successfully " + permission.toLowerCase() + "!",
+        icon: "success",
+        timer: 3000
+    }).then((value) => {
         //GetPendingUsers();
         window.location.reload();
     });
@@ -168,6 +211,7 @@ GetPendingUsers();
 
 //events
 btn_grant_all_users.click(function () {
+    console.log(checked_user_ids);
     if (checked_user_ids > 0) {
         // any user is checked
         swal({
@@ -182,7 +226,11 @@ btn_grant_all_users.click(function () {
                         aproveUser(checked_user_ids[i], true);
                     }
                 } else {
-                    swal("Canceled!", "", "info");
+                    swal({
+                        title: "Canceled!",
+                        icon: "info",
+                        timer: 2500
+                    });
                 }
             });
     }
@@ -197,7 +245,11 @@ btn_grant_all_users.click(function () {
                 if (willDelete) {
                     aproveAllUsers(pending_users_ids, true);
                 } else {
-                    swal("Canceled!", "", "info");
+                    swal({
+                        title: "Canceled!",
+                        icon: "info",
+                        timer: 2500
+                    });
                 }
             });
     }
@@ -218,7 +270,11 @@ btn_revoke_all_users.click(function () {
                         aproveUser(checked_user_ids[i], false);
                     }
                 } else {
-                    swal("Canceled!", "", "info");
+                    swal({
+                        title: "Canceled!",
+                        icon: "info",
+                        timer: 2500
+                    });
                 }
             });
     }
@@ -233,7 +289,11 @@ btn_revoke_all_users.click(function () {
                 if (willDelete) {
                     aproveAllUsers(pending_users_ids, false);
                 } else {
-                    swal("Canceled!", "", "info");
+                    swal({
+                        title: "Canceled!",
+                        icon: "info",
+                        timer: 2500
+                    });
                 }
             });
     }

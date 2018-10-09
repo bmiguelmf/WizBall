@@ -103,17 +103,17 @@
                         <div class="col-lg-12">
                             <!-- list/table-->
                             <div class="content table-full-width" style="position: relative;">
-                                <table id="users_table" class="table table-hover">
+                                <table id="users_table" class="table table-hover text-center">
                                     <thead>
                                         <tr>
                                             <th style="width: 8%;" class="text-center">
                                                 <input id="check-all" class="checkbox-change" type="checkbox" /></th>
-                                            <th style="width: 10%;">Photo</th>
-                                            <th style="width: 17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 16%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 10%;">Grant</th>
-                                            <th style="width: 10%;">Revoke</th>
+                                            <th style="width: 10%;" class="text-center">Photo</th>
+                                            <th style="width: 17%;" class="text-center"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 29%;" class="text-center"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 16%;" class="text-center"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 10%;" class="text-center">Grant</th>
+                                            <th style="width: 10%;" class="text-center">Revoke</th>
                                         </tr>
                                     </thead>
                                     <tbody id="users_table_body" class="data-scroll">

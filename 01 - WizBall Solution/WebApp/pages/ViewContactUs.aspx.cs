@@ -7,12 +7,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Configuration;
 using WebApp.App_Code;
+using System.Net.Mail;
 
 namespace WebApp.pages
 {
     public partial class ContactUs : System.Web.UI.Page
     {
         private BLL bll;
+        private List<Attachment> attachments;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,10 +27,10 @@ namespace WebApp.pages
 
             if (!IsPostBack)
             {
-                PrepareForm();
+                attachments = new List<Attachment>();
             }
             else
-            {
+            {/*
                 User user = Session["User"] as User;
 
                 user.Username = txtName.Text;
@@ -57,18 +59,20 @@ namespace WebApp.pages
                         }
                     }
                 }
+                */
 
-
-                bll.UpdateUser(user);
-
-                imgUserPic.ImageUrl = GLOBALS.USERS + user.Picture;
+                
             }
         }
         
-
-        private void PrepareForm()
+        private void SendBtn_Click()
         {
-            
+            MailSender.SendMail(txtEmail.Text, txtName.Text, txtSubject.Text, txtMessage.Text, attachments);
+        }
+
+        protected void Send_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
