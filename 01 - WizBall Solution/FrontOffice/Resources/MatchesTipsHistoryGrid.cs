@@ -184,7 +184,7 @@ namespace FrontOffice.Resources
 
                 // Tips and outcome columns
                 Tip tip = bll.GetTipByMatchId(match.Id.ToString());
-                row.Attributes["ftotahg"] = tip is null ? "4" : tip.BetNoBet == false ? "1" : tip.Forecast == true ? "0" : "2";
+                row.Attributes["ftotahg"] = tip is null ? "4" : tip.BetNoBet == false ? "3" : tip.Forecast == true ? "1" : "2";
 
                 HtmlGenericControl rowCellTip           = new HtmlGenericControl("div");
                 rowCellTip.Attributes["class"]          = "grid-cell";            

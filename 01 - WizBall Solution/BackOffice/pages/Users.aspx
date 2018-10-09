@@ -169,20 +169,20 @@
                         <div class="col-lg-12">
                             <!-- list/table-->
                             <div class="content table-full-width" style="position: relative;">
-                                <table id="users_table" class="table table-hover">
-                                    <thead>
+                                <table id="users_table" class="table table-hover text-center">
+                                    <thead class="text-center">
                                         <tr>
                                             <th style="width: 8%;" class="text-center">
-                                                <input id="check_all" type="checkbox" /></th>
-                                            <th style="width: 10%;">Photo</th>
-                                            <th style="width: 17%;"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 29%;"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 13%;"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 13%;"><a class="order-by-desc">Newsletter<i class="glyphicon glyphicon-chevron-down"></i></a></th>
-                                            <th style="width: 10%;">Action</th>
+                                               <input id="check-all" class="checkbox-change" type="checkbox" /></th>
+                                            <th style="width: 10%;" class="text-center">Photo</th>
+                                            <th style="width: 17%;" class="text-center"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 29%;" class="text-center"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 13%;" class="text-center"><a class="order-by-desc">Status<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 13%;" class="text-center"><a class="order-by-desc">Newsletter<i class="glyphicon glyphicon-chevron-down"></i></a></th>
+                                            <th style="width: 10%;" class="text-center">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="users_table_body">
+                                    <tbody id="users_table_body" class="text-center">
                                     </tbody>
 
                                 </table>
