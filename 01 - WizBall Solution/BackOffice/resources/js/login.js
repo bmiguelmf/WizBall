@@ -83,7 +83,7 @@
 
             },
             error: function (data, status, error) {
-                swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+                swal("Error!", " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ", "warning");
             }
         });
     }

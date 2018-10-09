@@ -51,7 +51,7 @@
                     <li class="active"><a>DATA MANAGEMENT</a></li>
 
                     <!-- Aqui vai ter uma tabela dos users e o admin vai poder fazer a gestão dos mesmos -->
-                    <li class="active"><a href="Users.aspx">USERS</a></li>
+                    <li><a href="Users.aspx">USERS</a></li>
 
                     <!-- Aqui vai ter uma tabela dos users que se registaram recentemente e ainda não foram aceites -->
                     <!-- e o admin vai poder garantir ou negar o acesso ao Website -->

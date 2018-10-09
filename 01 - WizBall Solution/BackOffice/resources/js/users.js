@@ -1,4 +1,4 @@
-﻿ 
+﻿
 //html elements
 var btn_cancel = $('#btn_can');
 var btn_submit = $('#btn_submit');
@@ -125,17 +125,32 @@ function GetUsers() {
                     paginateTableAndLoadSideBarScripts(tbl_users, 3);
                     assignBtnEditClickEvent();
                 } else {
-                    swal("Info!", "There are no user to display.", "info");
+                    swal({
+                        title: "Info!",
+                        text: "There are no user to display.",
+                        icon: "info",
+                        timer: 5000
+                    });
                     tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
             }
             else {
-                swal("Info!", "There are no user to display", "info");
+                swal({
+                    title: "Info!",
+                    text: "There are no user to display.",
+                    icon: "info",
+                    timer: 5000
+                });
                 tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
             }
         },
         error: function (data, status, error) {
-            swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+            swal({
+                title: "Error!",
+                text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
+                icon: "warning",
+                timer: 5000
+            });
         }
     });
 }
@@ -149,12 +164,24 @@ function GetClickedUserToForm(id) {
         dataType: "json",
         statusCode: {
             404: function (data) {
-                swal("Oops...", "This user no longer exists!", "error").then((value) => {
+                swal({
+                    title: "Oops!",
+                    text: "This user no longer exists...",
+                    icon: "info",
+                    timer: 5000
+                }).then((value) => {
                     location.reload(true);
                 });
             },
             500: function (data) {
-                swal("Oops...", "Sorry, we are currently unable to fulfill your request!", "error");
+                swal({
+                    title: "Oops!",
+                    text: "Sorry, we are currently unable to fulfill your request!",
+                    icon: "info",
+                    timer: 5000
+                }).then((value) => {
+                    location.reload(true);
+                });
             }
         },
         success: function (data) {
@@ -176,7 +203,12 @@ function GetClickedUserToForm(id) {
             }
         },
         error: function (data, status, error) {
-            swal("Error!", " " + (error.message === "undefined" ? "Unknown error" : error.message) + " ", "warning");
+            swal({
+                title: "Error!",
+                text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
+                icon: "warning",
+                timer: 5000
+            });
         }
     });
 }
@@ -339,13 +371,23 @@ function validateAndSubmit() {
                         data: ajax_data,
                         dataType: "json",
                         success: function (data) {
-                            swal("Success!", "User successfully updated!", "success").then((value) => {
+                            swal({
+                                title: "Success!",
+                                text: "User successfully updated!",
+                                icon: "success",
+                                timer: 5000
+                            }).then((value) => {
                                 window.location.reload();
                                 //GetUsers();
                             });
                         },
                         error: function (data, status, error) {
-                            swal("Error!", " " + (error.message === undefined ? "Unknown error" : error.message) + " ", "warning");
+                            swal({
+                                title: "Error!",
+                                text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
+                                icon: "warning",
+                                timer: 5000
+                            });
                         }
                     });
 
@@ -353,7 +395,12 @@ function validateAndSubmit() {
                 }
             });
     } else {
-        swal("Nothing to update...", "", "info");
+        swal({
+            title: "Nothing to update...",
+            text: "",
+            icon: "info",
+            timer: 3000
+        });
     }
 
 
