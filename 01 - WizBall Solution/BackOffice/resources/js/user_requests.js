@@ -97,7 +97,7 @@ function assignActionBtnClickEvents() {
                     aproveUser($(this).closest("tr").attr('value'), true);
                 } else {
                     swal({
-                        title: "Canceled!",
+                        title: "Cancelled!",
                         icon: "info",
                         timer: 2500
                     });
@@ -118,7 +118,7 @@ function assignActionBtnClickEvents() {
                     aproveUser($(this).closest("tr").attr('value'), false);
                 } else {
                     swal({
-                        title: "Canceled!",
+                        title: "Cancelled!",
                         icon: "info",
                         timer: 2500
                     });
@@ -227,7 +227,7 @@ btn_grant_all_users.click(function () {
                     }
                 } else {
                     swal({
-                        title: "Canceled!",
+                        title: "Cancelled!",
                         icon: "info",
                         timer: 2500
                     });
@@ -246,7 +246,7 @@ btn_grant_all_users.click(function () {
                     aproveAllUsers(pending_users_ids, true);
                 } else {
                     swal({
-                        title: "Canceled!",
+                        title: "Cancelled!",
                         icon: "info",
                         timer: 2500
                     });
@@ -271,7 +271,7 @@ btn_revoke_all_users.click(function () {
                     }
                 } else {
                     swal({
-                        title: "Canceled!",
+                        title: "Cancelled!",
                         icon: "info",
                         timer: 2500
                     });
@@ -290,7 +290,7 @@ btn_revoke_all_users.click(function () {
                     aproveAllUsers(pending_users_ids, false);
                 } else {
                     swal({
-                        title: "Canceled!",
+                        title: "Cancelled!",
                         icon: "info",
                         timer: 2500
                     });

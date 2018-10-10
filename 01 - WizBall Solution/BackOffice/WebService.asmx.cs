@@ -15,11 +15,8 @@ namespace BackOffice
     public class WebService : System.Web.Services.WebService
     {
 
-<<<<<<< HEAD
-        private string connString = WebConfigurationManager.ConnectionStrings["broatec"].ConnectionString;
-=======
         private string connString = WebConfigurationManager.ConnectionStrings["PasseiraSQLServer"].ConnectionString;
->>>>>>> ffe959628eaed95a10ed6e577ae5e9b338706c9c
+
         private string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
 
 
