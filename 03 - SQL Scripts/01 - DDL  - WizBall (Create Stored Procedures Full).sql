@@ -52,7 +52,7 @@ AS BEGIN
 			INSERT INTO @matches	SELECT	TOP 1 *												
 									FROM	matches 
 									WHERE	competition_id = @competition 
-									AND		utc_date >= CONVERT(DATE, GETDATE()) 
+									AND		utc_date >= CONVERT(date ,GETUTCDATE())
 									AND	   (matches.home_team_id = @team OR matches.away_team_id = @team) 
 									AND		NOT EXISTS (
 														SELECT	* 
@@ -62,7 +62,6 @@ AS BEGIN
 															 OR m.away_team_id = matches.home_team_id
 															 OR m.away_team_id = matches.away_team_id
 														)
-									AND utc_date < CONVERT(DATE, GETDATE() + 200)
 									ORDER BY utc_date ASC
 
 			FETCH NEXT FROM @teams INTO @team, @date

@@ -728,12 +728,16 @@ namespace BusinessLogic.BLL
         }
         public List<Match> GetNextMatchesByTierOneCompetitions()
         {
+            DALMatches dalMatches = new DALMatches(connectionString);
+
             List<Match> nextMatches = new List<Match>();
 
             foreach (Competition competition in TierOneCompetitions())
             {
-                nextMatches.AddRange(GetNextMatchesByCompetition(competition.Id.ToString()));
+                nextMatches.AddRange(dalMatches.GetSpNextMatchesByCompetitionId(competition.Id.ToString()));
             }
+
+            nextMatches.ForEach(EntityBuilder);
 
             return nextMatches;
         }
