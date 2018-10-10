@@ -244,6 +244,8 @@ function alertAndSyncEntity(entity, show_alert) {
             }
         });
     } else {
+        FullDatabaseSync();
+        entity = "data";
         loadingSync(entity);
     }
 
