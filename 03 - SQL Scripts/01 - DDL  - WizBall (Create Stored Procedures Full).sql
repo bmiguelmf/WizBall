@@ -1,8 +1,6 @@
 USE wizball
 GO
 
-drop proc spGetNextMatches
-
 CREATE PROC spGetNextMatches @competition INT
 AS BEGIN
 
@@ -64,7 +62,7 @@ AS BEGIN
 															 OR m.away_team_id = matches.home_team_id
 															 OR m.away_team_id = matches.away_team_id
 														)
-									AND utc_date < CONVERT(DATE, GETDATE() + 3)
+									AND utc_date < CONVERT(DATE, GETDATE() + 200)
 									ORDER BY utc_date ASC
 
 			FETCH NEXT FROM @teams INTO @team, @date
@@ -77,20 +75,3 @@ AS BEGIN
 	SELECT * FROM @matches ORDER BY utc_date ASC
 
 end
-
- 
-exec spGetNextMatches 2017 -- Primeira Liga.
-exec spGetNextMatches 2016 -- Championship ( Este é um exemplo perfeito uma vez que mostra os próximos jogos mesmo a jornada já indo a meio)
-
-
-
-
-
-
-
-
-
-
-
-
-
