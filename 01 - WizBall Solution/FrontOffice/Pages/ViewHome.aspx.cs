@@ -17,9 +17,9 @@ namespace FrontOffice.Pages
         {
 
 
-            //new Globals().CreateBll().FullDatabaseSync();
+            new Globals().CreateBll().FullDatabaseSync();
 
-            new Globals().CreateBll().RunNextMatchesTips();
+            //new Globals().CreateBll().RunNextMatchesTips();
             //new Globals().CreateBll().RunHistoryMatchesTips();
 
             MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid();
