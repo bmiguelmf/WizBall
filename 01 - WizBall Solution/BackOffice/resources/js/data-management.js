@@ -203,6 +203,29 @@ function loadingSync(entity) {
     });
 }
 
+//synchronizes all the data that exist in the API with those that exist in the database and updates all that.
+function FullDatabaseSync() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/FullDatabaseSync",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            is_sync = false;
+            if (data.d) {
+                is_sync = true;
+            }
+            else {
+                is_sync = false;
+            }
+        },
+        error: function (data, status, error) {
+            is_sync = false;
+        }
+    });
+}
+
 //alert, and if the action is confirmed, performs a synchronization method depending on the given entity.
 function alertAndSyncEntity(entity, show_alert) {
     if (show_alert) {
@@ -221,9 +244,8 @@ function alertAndSyncEntity(entity, show_alert) {
                     case "matches":
                         MatchesSync();
                         break;
-                    case "full":
+                    case "data":
                         FullDatabaseSync();
-                        entity = "data";
                         break;
                     default:
                         FullDatabaseSync();
@@ -245,7 +267,6 @@ function alertAndSyncEntity(entity, show_alert) {
         });
     } else {
         FullDatabaseSync();
-        entity = "data";
         loadingSync(entity);
     }
 
@@ -312,28 +333,7 @@ function GetTeams() {
     });
 }
 
-//synchronizes all the data that exist in the API with those that exist in the database and updates all that.
-function FullDatabaseSync() {
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/FullDatabaseSync",
-        data: "",
-        dataType: "json",
-        success: function (data) {
-            is_sync = false;
-            if (data.d) {
-                is_sync = true;
-            }
-            else {
-                is_sync = false;
-            }
-        },
-        error: function (data, status, error) {
-            is_sync = false;
-        }
-    });
-}
+
 
 //gets all the matches from the database. if there are no matches will be presented an alert to perform 
 //a full sync. if the admin does not perform this action, he will be redirected to the user requests management
