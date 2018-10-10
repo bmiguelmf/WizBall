@@ -64,15 +64,10 @@ namespace WebApp.pages
                 
             }
         }
-        
-        private void SendBtn_Click()
-        {
-            MailSender.SendMail(txtEmail.Text, txtName.Text, txtSubject.Text, txtMessage.Text, attachments);
-        }
 
         protected void Send_Click(object sender, EventArgs e)
         {
-
+            MailSender.MakeMails(txtEmail.Text, txtName.Text, txtSubject.Text, txtMessage.Text, attachments);
         }
     }
 }

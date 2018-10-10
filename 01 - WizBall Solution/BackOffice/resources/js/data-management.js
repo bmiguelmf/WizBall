@@ -104,7 +104,7 @@ function MatchesSync() {
         dataType: "json",
         success: function (data) {
             is_sync = false;
-            if (data.d) {
+            if (data.d === true) {
                 is_sync = true;
             }
             else {
@@ -145,7 +145,7 @@ function TeamsSync() {
         dataType: "json",
         success: function (data) {
             is_sync = false;
-            if (data.d) {
+            if (data.d === true) {
                 is_sync = true;
             }
             else {
@@ -158,53 +158,31 @@ function TeamsSync() {
     });
 }
 
-//
-function loadingSync(entity) {
-    swal({
-        title: "Synchronizing " + entity.toLowerCase() + ".",
-        text: "Please wait a few seconds...",
-        icon: "info",
-        timer: entity.toLowerCase() === "data" ? 150000 : 10000,
-        buttons: false,
-        closeOnEsc: false,
-        closeOnClickOutside: false
-    }).then((value) => {
-        if (is_sync) {
-            swal({
-                title: "Success!",
-                text: entity + " synchronized successfully.",
-                icon: "success",
-                timer: 5000
-            }).then((value) => {
-                switch (entity.toLowerCase()) {
-                    case "teams":
-                        GetTeams();
-                        break;
-                    case "matches":
-                        GetMatches();
-                        break;
-                    case "data":
-                        GetMatches();
-                        break;
-                    default:
-                        GetMatches();
-                }
-            });
-        } else {
-            swal({
-                title: "Info!",
-                text: "There are no " + entity.toLowerCase() + ".",
-                icon: "info",
-                timer: 5000
-            });
-            clearTable(data_table_body);
-            data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
+//synchronizes all the data that exist in the API with those that exist in the database and updates all that.
+function FullDatabaseSync() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/FullDatabaseSync",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            is_sync = false;
+            if (data.d === true) {
+                is_sync = true;
+            }
+            else {
+                is_sync = false;
+            }
+        },
+        error: function () {
+            is_sync = false;
         }
     });
 }
 
 //alert, and if the action is confirmed, performs a synchronization method depending on the given entity.
-function alertAndSyncEntity(entity, show_alert) {
+function alertAndSyncEntity(entity) {
     if (show_alert) {
         swal({
             title: "Are you sure?",
@@ -213,7 +191,6 @@ function alertAndSyncEntity(entity, show_alert) {
             buttons: true
         }).then((willDelete) => {
             if (willDelete) {
-
                 switch (entity.toLowerCase()) {
                     case "teams":
                         TeamsSync();
@@ -221,33 +198,58 @@ function alertAndSyncEntity(entity, show_alert) {
                     case "matches":
                         MatchesSync();
                         break;
-                    case "full":
-                        FullDatabaseSync();
-                        entity = "data";
-                        break;
-                    default:
-                        FullDatabaseSync();
-                        entity = "data";
                 }
-
                 entity = entity.toLowerCase().replace(/\b[a-z]/g, function (first_char) {
                     return first_char.toUpperCase();
                 });
-                loadingSync(entity);
+                swal({
+                    title: "Synchronizing " + entity.toLowerCase() + ".",
+                    text: "Please wait a few seconds...",
+                    icon: "info",
+                    timer: 10000,
+                    buttons: false,
+                    closeOnEsc: false,
+                    closeOnClickOutside: false
+                }).then((value) => {
+                    if (is_sync) {
+                        swal({
+                            title: "Success!",
+                            text: entity + " synchronized successfully.",
+                            icon: "success",
+                            timer: 5000
+                        }).then((value) => {
+                            switch (entity.toLowerCase()) {
+                                case "teams":
+                                    GetTeams();
+                                    break;
+                                case "matches":
+                                    GetMatches();
+                                    break;
+                                default:
+                                    GetMatches();
+                            }
+                        });
+                    } else {
+                        swal({
+                            title: "Info!",
+                            text: "Could not sync " + entity.toLowerCase() + "...",
+                            icon: "info",
+                            timer: 5000
+                        });
+                        clearTable(data_table_body);
+                        data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
+                    }
+                });
             } else {
                 swal({
-                    title: "Canceled!",
+                    title: "Cancelled!",
                     text: "",
                     icon: "info",
                     timer: 3000
                 });
             }
         });
-    } else {
-        loadingSync(entity);
     }
-
-
 }
 
 //gets all the teams from the database. if there are no teams will be presented an alert to perform 
@@ -310,29 +312,6 @@ function GetTeams() {
     });
 }
 
-//synchronizes all the data that exist in the API with those that exist in the database and updates all that.
-function FullDatabaseSync() {
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/FullDatabaseSync",
-        data: "",
-        dataType: "json",
-        success: function (data) {
-            is_sync = false;
-            if (data.d) {
-                is_sync = true;
-            }
-            else {
-                is_sync = false;
-            }
-        },
-        error: function (data, status, error) {
-            is_sync = false;
-        }
-    });
-}
-
 //gets all the matches from the database. if there are no matches will be presented an alert to perform 
 //a full sync. if the admin does not perform this action, he will be redirected to the user requests management
 //page if there are requests, otherwise it will be redirected to the users management page.
@@ -345,6 +324,7 @@ function GetMatches() {
         dataType: "json",
         success: function (data) {
             console.log(data.d);
+            //check if GetNextMatchesByTierOneCompetitions returns more than zero matches
             if (data.d.length > 0) {
                 fillContentTableHead("matches");
                 clearTable(data_table_body);
@@ -353,6 +333,7 @@ function GetMatches() {
                 });
                 paginateTable(data_table, 5);
             }
+            //check if database has at least one matches 
             else if (has_matches) {
                 data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> There are no games for the next few days. <td></td><td></td><td></td></td></tr>");
                 swal({
@@ -362,32 +343,59 @@ function GetMatches() {
                     timer: 5000
                 });
             } else {
+                //if GetNextMatchesByTierOneCompetitions returns zero and data base doenst have matches
                 swal({
                     title: "There are no matches at the moment",
                     text: "Please run full sync.",
                     icon: "info",
                     buttons: {
-                        full_sync: {
-                            closeModal: false,
+                        sync: {
                             text: "Sync now!",
                             value: "sync"
                         }
                     },
-                    closeModal: false
-                })
-                    .then((value) => {
-                        switch (value) {
-                            case "sync":
-                                alertAndSyncEntity("data", false);
-                                break;
-                            default:
-                                if (user_requests_count <= 0) {
-                                    window.location.href = "Users.aspx";
+                }).then((value) => {
+                    switch (value) {
+                        case "sync":
+                            FullDatabaseSync();
+                            swal({
+                                title: "Synchronizing data.",
+                                text: "Please wait a few seconds...",
+                                icon: "info",
+                                timer: 150000,
+                                buttons: false,
+                                closeOnEsc: false,
+                                closeOnClickOutside: false
+                            }).then((value) => {
+                                if (is_sync === true) {
+                                    swal({
+                                        title: "Success!",
+                                        text: "Data synchronized successfully.",
+                                        icon: "success",
+                                        timer: 5000
+                                    }).then((value) => {
+                                        GetMatches();
+                                    });
                                 } else {
-                                    window.location.href = "UserRequests.aspx";
+                                    swal({
+                                        title: "Info!",
+                                        text: "Could not sync data...",
+                                        icon: "info",
+                                        timer: 5000
+                                    });
+                                    clearTable(data_table_body);
+                                    data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
                                 }
-                        }
-                    });
+                            });
+                            break;
+                        default:
+                            if (user_requests_count <= 0) {
+                                window.location.href = "Users.aspx";
+                            } else {
+                                window.location.href = "UserRequests.aspx";
+                            }
+                    }
+                });
             }
         },
         error: function (data, status, error) {

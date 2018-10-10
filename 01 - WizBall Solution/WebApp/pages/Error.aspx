@@ -1,15 +1,23 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="WebApp.pages.Misc.Error" %>
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+      </title>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+<link href="../Public/Styling/ViewErrorCodes.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
+    <form runat="server">
+<div class="error-container">
+
+        <h1><asp:Label Text="" ClientIDMode="Static" ID="ErrTitle" runat="server" /></h1>
+
+        <p class="return"><asp:Label Text="" ClientIDMode="Static" ID="ErrBody" runat="server" /></p>
+
+    </div>
+</form>
 </body>
 </html>
+
+    
+
+    

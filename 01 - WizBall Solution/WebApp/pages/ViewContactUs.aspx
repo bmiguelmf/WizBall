@@ -1,12 +1,13 @@
 ﻿<%@ Page Title=""
     Language="C#"
-    MasterPageFile="~/pages/MasterView.Master"
     AutoEventWireup="true"
     CodeBehind="ViewContactUs.aspx.cs"
     Inherits="WebApp.pages.ContactUs" %>
 
+<html xmlns="http://www.w3.org/1999/xhtml">
 <%-- Head content --%>
-<asp:Content ID="viewContactUsContentHead" ContentPlaceHolderID="masterViewContentHead" runat="server">
+<head>
+    <title>WizBall</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -18,14 +19,10 @@
     <link href="../Public/Bootstrap/Bootstrap4.css" rel="stylesheet" />
 
     <!-- ViewLogin CSS Styling -->
-    <link href="/Public/Styling/ViewLogin.css" rel="stylesheet" />
-
-</asp:Content>
-
-
-
-<%-- Body content--%>
-<asp:Content ID="viewContactUsContentBody" ContentPlaceHolderID="masterViewContentBody" runat="server">
+    <link href="/Public/Styling/ViewLogin.css" rel="stylesheet" /></head>
+<body>
+    <%-- Body content--%>
+    <form id="form1" runat="server">
 
     <!-- Background Img -->
         <div id="background">
@@ -97,16 +94,28 @@
             
         </div>
 
-
+        </form>
         <!-- Javascript -->
 
-</asp:Content>
+
 
 
 
 <%-- Javascript content--%>
-<asp:Content ID="viewContactUsContentJavascript" ContentPlaceHolderID="masterViewContentJavascript" runat="server">
+
+    
+</body>
+
+</html>
+
+
+
 
     
 
-</asp:Content>
+
+
+
+
+
+
