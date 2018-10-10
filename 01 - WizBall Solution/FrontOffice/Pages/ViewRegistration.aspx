@@ -76,23 +76,30 @@
 
          
         
+        <!-- Modal update profile confirmation -->
         <div id="outter-modal" class="outter-modal">
 
             <div id="inner-modal">
 
                 <div id="modal-header">
-                    <a href="/Pages/ViewHome.aspx"><img id="modal-logo" src="/Public/Imgs/Wizball/logo_dark.png" /></a>
-                    <i   id="modal-close" class="fas fa-times-circle fa-lg"></i>
+                    <a href="/Pages/ViewHome.aspx">
+                        <img id="modal-logo" src="/Public/Imgs/Wizball/logo_dark.png" />
+                    </a>
                 </div>
 
-               
+
                 <div id="modal-message">
-                    <h3 id="modal-primary-message">Thank you for your registration</h3>
-                    <h5 id="modal-secondary-message">Please check your email for more information</h5>                   
+                    <p id="modal-primary-message">Update confirmation</p>
+                    <input type="password" id="currentPassword" placeholder="Current password" class="form-control form-control-sm" />
+                    <span class="currentPasswordStatus" style="color: orange"><small id="currentPasswordStatus"></small></span>
                 </div>
-               
+
+                
                 <div id="modal-footer">
-                    <h6 id="modal-counter-message">back to home... <span id="modal-counter">20</span></h6>
+     
+                    <button type="button" id="btnModalCancel" class="btn btn-danger btn-sm modal-btn"><i class="fas fa-undo"></i> Cancel</button>        
+                    <button type="submit" id="btnModalConfirm" class="btn btn-success btn-sm modal-btn" onclick="return passwordValitation();"><i class="fas fa-check"></i> Confirm</button>
+               
                 </div>
                 
             </div>

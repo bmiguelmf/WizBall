@@ -14,18 +14,19 @@ namespace WebApp.App_Code
 
         private static MailMessage ClientMailBuilder(string UserEmail, string UserName, string MessageSubject, string MessageBody, List<Attachment> attachments)
         {
-            MailMessage messageToClient = new MailMessage("pftestes@hotmail.com", UserEmail);
+            MailMessage messageToClient = new MailMessage();
             try
             {
-
+                messageToClient.From = new MailAddress("pftestessrc@gmail.com");
+                messageToClient.To.Add(UserEmail);
                 messageToClient.BodyEncoding = Encoding.UTF8;
                 messageToClient.Subject = MessageSubject;
-                messageToClient.Body = string.Format(   @"Hello, {0}<br /><br />
+                messageToClient.Body = string.Format(@"Hello, {0}<br /><br />
                                                         Thank you for your message, our staff will check it out ASAP, so that we can see what's going on.<br /><br />
                                                         The message you sent was as follows:<br /><br />
                                                         {1}<br /><br />
                                                         {2}<br /><br />
-                                                        This is an automated message, please do not reply.\n\n
+                                                        This is an automated message, please do not reply.<br /><br />
                                                         With best regards from WizBall.", 
                                                         UserName, 
                                                         MessageSubject, 
@@ -34,7 +35,7 @@ namespace WebApp.App_Code
 
                 //Attachment at = new Attachment("~/Attachments/txt.doc");
 
-                if (attachments is null)
+                if (!(attachments is null))
                 {
                     foreach (Attachment attachment in attachments)
                     {
@@ -64,7 +65,7 @@ namespace WebApp.App_Code
 
         private static MailMessage ServerMailBuilder(string UserEmail, string UserName, string MessageSubject, string MessageBody, List<Attachment> attachments)
         {
-            MailMessage messageToServer = new MailMessage(UserEmail, "pftestes@hotmail.com");
+            MailMessage messageToServer = new MailMessage("pftestessrc@gmail.com", "pftestesdepo@gmail.com");
             try
             {
 
@@ -75,11 +76,11 @@ namespace WebApp.App_Code
                 messageToServer.Body = MessageSubject;
 
                 //Attachment at = new Attachment("~/Attachments/txt.doc");
-                if (attachments is null)
+                if (!(attachments is null))
                 {
                     foreach (Attachment attachment in attachments)
                     {
-                        messageToClient.Attachments.Add(attachment);
+                        messageToServer.Attachments.Add(attachment);
                     }
                 }
 
@@ -87,49 +88,72 @@ namespace WebApp.App_Code
                 messageToServer.IsBodyHtml = true;
 
                 //prepare to send mail via SMTP transport
-                SmtpClient objSMTPClient = new SmtpClient("smtp.live.com");
+                /*SmtpClient objSMTPClient = new SmtpClient("smtp.gmail.com");
                 objSMTPClient.Port = 587;
-                objSMTPClient.Credentials = new System.Net.NetworkCredential("pftestes@hotmail.com", "pf2018atec");
+                objSMTPClient.Credentials = new System.Net.NetworkCredential("pftestessrc@gmail.com", "pf2018atec");
                 objSMTPClient.EnableSsl = true;
-                objSMTPClient.Send(messageToServer);
+                objSMTPClient.Send(messageToServer);*/
+
+                return messageToServer;
 
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
 
             return messageToServer;
         }
 
-        private static bool SendMail(MailMessage message)
+        private static bool SendMailToServer(MailMessage message)
         {
             try
             {
-                SmtpClient objSMTPClient = new SmtpClient("smtp.live.com");
+                SmtpClient objSMTPClient = new SmtpClient("smtp.gmail.com");
                 objSMTPClient.Port = 587;
-                objSMTPClient.Credentials = new System.Net.NetworkCredential("pftestes@hotmail.com", "pf2018atec");
+                objSMTPClient.Credentials = new System.Net.NetworkCredential("pftestesdepo@gmail.com", "pf2018atec");
                 objSMTPClient.EnableSsl = true;
                 objSMTPClient.Send(message);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
                 return false;
             }
             return true;
             
         }
 
+        private static bool SendMailToClient(MailMessage message)
+        {
+            try
+            {
+                SmtpClient objSMTPClient = new SmtpClient("smtp.gmail.com");
+                objSMTPClient.Port = 587;
+                objSMTPClient.Credentials = new System.Net.NetworkCredential("pftestesdepo@gmail.com", "pf2018atec");
+                objSMTPClient.EnableSsl = true;
+                objSMTPClient.Send(message);
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+                return false;
+            }
+            return true;
+
+        }
+
         public static bool MakeMails(string UserEmail, string UserName, string MessageSubject, string MessageBody, List<Attachment> attachments)
         {
             MailMessage ClientMessage = ClientMailBuilder(UserEmail, UserName, MessageSubject, MessageBody, attachments);
-            SendMail(ClientMessage);
+            SendMailToClient(ClientMessage);
 
             MailMessage ServerMessage = ServerMailBuilder(UserEmail, UserName, MessageSubject, MessageBody, attachments);
-            SendMail(ServerMessage);
+            SendMailToServer(ServerMessage);
 
             return true;
         }
