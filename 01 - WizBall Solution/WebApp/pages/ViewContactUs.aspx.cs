@@ -8,60 +8,87 @@ using System.Web.UI.WebControls;
 using System.Web.Configuration;
 using WebApp.App_Code;
 using System.Net.Mail;
+using System.IO;
 
 namespace WebApp.pages
 {
     public partial class ContactUs : System.Web.UI.Page
     {
+        private User user;
         private BLL bll;
         private List<Attachment> attachments;
 
+        private bool IsUserLoggedIn()
+        {
+            user = Session["User"] as User;
+
+            return user is null ? false : true;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*if (IsUserLoggedIn())
-            {
-                UNameHF.Text = IsUserLoggedIn();
-            }*/
+
+
+            UNameHF.Value = "guestXwb";
+            if (IsUserLoggedIn())
 
             bll = GLOBALS.BllSI;
 
             if (!IsPostBack)
             {
                 attachments = new List<Attachment>();
+                if (IsUserLoggedIn())
+                {
+                    User user = Session["User"] as User;
+                    UNameHF.Value = user.Username;
+                    UEmailHF.Value = user.Email;
+                }
             }
             else
-            {/*
-                User user = Session["User"] as User;
-
-                user.Username = txtName.Text;
-                user.Email = txtEmail.Text;
-                if (Request.Files[0] != null)
-                {
-                    HttpPostedFile userPic = Request.Files[0];
-
-                    if (userPic.ContentLength > 0)
-                    {
-                        if (userPic.ContentLength < 512001)
-                        {
-                            user.Picture = userPic.FileName;
-
-                            string FileName = userPic.FileName;
-
-                            int FileSize = userPic.ContentLength;
-
-                            byte[] FileByteArray = new byte[FileSize];
-
-                            userPic.InputStream.Read(FileByteArray, 0, FileSize);
-
-                            string path = Server.MapPath("~") + GLOBALS.USERS + FileName;
-
-                            userPic.SaveAs(path);
-                        }
-                    }
-                }
-                */
+            {
 
                 
+
+
+
+                if (Request.Files[0] != null)
+                {
+                    int AttListFileSize = new int();
+
+                    foreach (HttpPostedFile uploadedFile in attachmentInp.PostedFiles)
+                    {
+                        //Getting the sum of the sum of all the files, to verifies that it can be sent through an e-mail
+                        AttListFileSize += uploadedFile.ContentLength;
+                    }
+
+                    if (AttListFileSize > 2048000)
+                    {
+
+                        return;
+                    }
+                    else
+                    {
+
+                    }
+
+                    foreach (HttpPostedFile uploadedFile in attachmentInp.PostedFiles)
+                    {
+                        string tempFileName = Path.GetFileName(uploadedFile.FileName);
+                        uploadedFile.SaveAs(System.IO.Path.Combine(Server.MapPath("~/Attachments/"), uploadedFile.FileName));
+                        attachments.Add(new Attachment(uploadedFile.InputStream, tempFileName));
+
+                        if (uploadedFile.ContentLength > 2048000 || (uploadedFile.ContentLength < 0 || uploadedFile is null))
+                        {
+
+                        }
+
+                    }
+
+                }
+
+
+
+
             }
         }
 
