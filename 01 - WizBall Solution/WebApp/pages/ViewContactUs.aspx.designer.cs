@@ -31,31 +31,22 @@ namespace WebApp.pages {
         protected global::System.Web.UI.WebControls.HiddenField UNameHF;
         
         /// <summary>
-        /// PWordHF control.
+        /// UEmailHF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField PWordHF;
+        protected global::System.Web.UI.WebControls.HiddenField UEmailHF;
         
         /// <summary>
-        /// imgUserPic control.
+        /// attachmentInp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgUserPic;
-        
-        /// <summary>
-        /// fileuploadUserPicture control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile fileuploadUserPicture;
+        protected global::System.Web.UI.WebControls.FileUpload attachmentInp;
         
         /// <summary>
         /// lblName control.
@@ -128,15 +119,6 @@ namespace WebApp.pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMessage;
-        
-        /// <summary>
-        /// cbUserToggle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbUserToggle;
         
         /// <summary>
         /// Send control.

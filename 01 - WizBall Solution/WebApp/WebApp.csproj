@@ -70,7 +70,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <Content Include="GlobalResourcesAcc\favicon\android-icon-144x144.png" />
     <Content Include="GlobalResourcesAcc\favicon\android-icon-192x192.png" />
     <Content Include="GlobalResourcesAcc\favicon\android-icon-36x36.png" />
@@ -139,7 +138,6 @@
     <Content Include="GlobalResourcesAcc\imgs\teams\portugal\VitoriaSetubal.ico" />
     <Content Include="LocalResourcesAcc\ProfilePicture\94b509da-d784-4ee3-b03d-88bb1e005a09.png" />
     <Content Include="pages\bruno_testes.aspx" />
-    <Content Include="pages\Error.aspx" />
     <Content Include="pages\ViewContactUs.aspx" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\MasterView.Master" />
@@ -195,6 +193,10 @@
     <Content Include="Public\Bootstrap\bootstrap.css" />
     <Content Include="Public\Bootstrap\bootstrap.min.js" />
     <Content Include="Public\Bootstrap\bootstrap4.css" />
+    <Content Include="Public\Fontawesome\css\all.min.css" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.svg" />
     <Content Include="Public\Imgs\Competitions\bundesliga.png" />
     <Content Include="Public\Imgs\Competitions\championship.png" />
     <Content Include="Public\Imgs\Competitions\eredivisie.png" />
@@ -425,9 +427,15 @@
     <Content Include="Public\Imgs\Teams\spain\tenerife.ico" />
     <Content Include="Public\Imgs\Teams\spain\valencia.ico" />
     <Content Include="Public\Imgs\Teams\spain\villareal.ico" />
+    <Content Include="Public\Imgs\Users\Belenenses.ico" />
+    <Content Include="Public\Imgs\Users\Benfica.ico" />
+    <Content Include="Public\Imgs\Users\download.png" />
+    <Content Include="Public\Imgs\Users\parceria-na-hotelaria-_-6.png" />
+    <Content Include="Public\Imgs\Users\SantaClara.png" />
     <Content Include="Public\Imgs\Users\songoku.png" />
     <Content Include="Public\Imgs\Users\user.png" />
     <Content Include="Public\Imgs\Wizball\back-ground.jpg" />
+    <Content Include="Public\Imgs\Wizball\bg-min.jpg" />
     <Content Include="Public\Imgs\Wizball\fds.jpg" />
     <Content Include="Public\Imgs\Wizball\logo.png" />
     <Content Include="Public\Imgs\Wizball\logo_dark.png" />
@@ -436,14 +444,25 @@
     <Content Include="Public\Imgs\Wizball\logo_green.png" />
     <Content Include="Public\Imgs\Wizball\logo_green_ico.png" />
     <Content Include="Public\Imgs\Wizball\logo_with_name.png" />
+    <Content Include="Public\Imgs\Wizball\no.png" />
+    <Content Include="Public\Imgs\Wizball\yes.png" />
     <Content Include="Public\Javascript\MasterView.js" />
     <Content Include="Public\Javascript\MatchesTipsGrid.js" />
+    <Content Include="Public\Javascript\MatchesTipsHistoryGrid.js" />
+    <Content Include="Public\Javascript\ViewEditProfile.js" />
+    <Content Include="Public\Javascript\ViewLogin.js" />
+    <Content Include="Public\Javascript\ViewRecoverPassword.js" />
     <Content Include="Public\Javascript\ViewRegistration.js" />
     <Content Include="Public\jQuery\jquery.min.js" />
     <Content Include="Public\Styling\MasterView.css" />
     <Content Include="Public\Styling\MatchesTipsGrid.css" />
+    <Content Include="Public\Styling\MatchesTipsHistoryGrid.css" />
+    <Content Include="Public\Styling\ViewEditProfile.css" />
     <Content Include="Public\Styling\ViewErrorCodes.css" />
+    <Content Include="Public\Styling\ViewLogin.css" />
+    <Content Include="Public\Styling\ViewRecoverPassword.css" />
     <Content Include="Public\Styling\ViewRegistration.css" />
+    <Content Include="Public\Styling\ViewContactUs.css" />
     <Content Include="styling\bootstrap4.css" />
     <Content Include="styling\customcode.css" />
     <Content Include="styling\font-awesome.css" />
@@ -462,22 +481,12 @@
     <Content Include="App_Code\MatchBinder.cs" />
     <Compile Include="App_Code\MailSender.cs" />
     <Compile Include="App_Code\MatchTruncated.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="pages\bruno_testes.aspx.cs">
       <DependentUpon>bruno_testes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\bruno_testes.aspx.designer.cs">
       <DependentUpon>bruno_testes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Error.aspx.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\Error.aspx.designer.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\ViewContactUs.aspx.cs">
       <DependentUpon>ViewContactUs.aspx</DependentUpon>
@@ -572,6 +581,18 @@
     <Content Include="pages\css\fonts\fontawesome-webfont.woff" />
     <Content Include="pages\master.Master" />
     <Content Include="pages\CredMaster.Master" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Public\Fontawesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Public\Fontawesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Public\Fontawesome\webfonts\fa-solid-900.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
