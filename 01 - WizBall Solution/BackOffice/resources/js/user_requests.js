@@ -1,16 +1,21 @@
 ﻿
-//html elements
+//HTML ELEMENTS
 var btn_grant_all_users = $('#grant_all_users');
 var btn_revoke_all_users = $('#revoke_all_users');
 
-//vars
+//ARRAYS
+//contains all user ids to grant/revoke.
 var pending_users_ids = [];
-//functions
+
+
+//FUNCTIONS
+//remove action buttons when there are no user requests.
 function removeActionButtons() {
     btn_grant_all_users.remove();
     btn_revoke_all_users.remove();
 }
 
+//
 function aproveUser(id, is_granted) {
     var permission = "Revoked";
 
@@ -83,6 +88,7 @@ function aproveUser(id, is_granted) {
     });
 }
 
+//
 function assignActionBtnClickEvents() {
 
     $('.btn_grant').on("click", function () {
@@ -127,6 +133,7 @@ function assignActionBtnClickEvents() {
     });
 }
 
+//
 function GetPendingUsers() {
     $.ajax({
         type: "POST",
@@ -183,6 +190,7 @@ function GetPendingUsers() {
     });
 }
 
+//
 function aproveAllUsers(ids, is_granted) {
     var permission = "Revoked";
 
@@ -206,10 +214,10 @@ function aproveAllUsers(ids, is_granted) {
 
 }
 
-//calls
+//CALLS
 GetPendingUsers();
 
-//events
+//EVENTS
 btn_grant_all_users.click(function () {
     console.log(checked_user_ids);
     if (checked_user_ids > 0) {
@@ -298,5 +306,6 @@ btn_revoke_all_users.click(function () {
             });
     }
 });
+
 
 console.log('READY user_requests.js');

@@ -2,6 +2,7 @@
 using BusinessLogic.Entities;
 using System.Collections.Generic;
 using System.Web.Configuration;
+using System.Web.Script.Services;
 using System.Web.Services;
 
 namespace BackOffice

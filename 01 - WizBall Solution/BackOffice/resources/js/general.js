@@ -6,30 +6,43 @@ var tbl_users_body = $('#users_table_body');
 var users_table_foot = $('#users_table_foot');
 var pagination = $('#pg_users_table');
 
+var session_label_username = $('#username');
+var cb_check_all_users = $('#check-all');
+
 //GLOBAL VARS
 var user_requests_count = 0;
 
+var bell = $('#bell');
+var error = $('#error_message');
+
+//save the value if there are matches in the database or not.
+var has_matches = undefined;
+
 //GLOBAL ARRAYS
+//contains checked users ids to do an action (just grant/revoke at the moment).
 var checked_user_ids = [];
 
 //GLOBAL FUNCTIONS
+//clear the content of the given table.
 function clearTable(table) {
     table.empty();
-    //table_settings.ajax.reload();
 }
 
+//uncheck all checked checkboxes with "check-all" as class.
 function uncheckCheckedCheckbox() {
     $('.check-all').prop('checked', false);
 }
 
+//gets the users ids of those who have been selected and save them in an array.
 function GetCheckedUserIdsToArray() {
     checked_user_ids = $('.check-all').filter(":checked").map(function () {
         return $(this).attr('user_id');
     }).get();
 }
 
+//creates pages in the given table.
 function paginateTable(table, limit) {
-    table.dataTable({
+    table.DataTable({
         destroy: true,
         "pageLength": limit,
         "bLengthChange": false,
@@ -54,20 +67,30 @@ function paginateTable(table, limit) {
     });
 }
 
+//checks if there are matches data in the database and saves that value in "has_matches" so that the code can
+//then decide whether to perform a full sync or if there are no matches for the next few days when "GetMatches()" is performed.
+function hasMatches() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/MatchesHasRows",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            has_matches = data.d;
+        },
+        error: function (data, status, error) {
+            console.log("Error 500 getting matches top 1");
+        }
+    });
+}
 
-//html elements
-var session_label_username = $('#username');
-var cb_check_all_users = $('#check-all');
-
-//vars
-var bell = $('#bell');
-var error = $('#error_message');
-
-//functions
+//gets the username of the logged admin and places it on top-right nav.
 function GetSessionUsernameToNavbar() {
     session_label_username.text($.session.get('AdminUsername'));
 }
 
+//checks if the current page isn't "UserRequests.aspx" and send a notification if there are pending requests.
 function notifyUsersRequests(number_user_requests) {
     if (window.location.href.split("/").pop() !== "UserRequests.aspx") {
         if (number_user_requests !== 0) {
@@ -84,6 +107,7 @@ function notifyUsersRequests(number_user_requests) {
     }
 }
 
+//gets the number of user requests and calls "notifyUsersRequests" to notify the logged admin.
 function GetPendingUsersCount() {
     $.ajax({
         type: "POST",
@@ -104,7 +128,7 @@ function GetPendingUsersCount() {
     });
 }
 
-//events
+//GLOBAL EVENTS
 $(document).keydown(function (e) {
     if (e.keyCode === 27) {
         $('.st-pusher').trigger('click');
@@ -120,10 +144,10 @@ cb_check_all_users.change(function () {
     }
 });
 
-//calls
-
+//GLOBAL CALLS
+hasMatches();
 GetPendingUsersCount();
-
 GetSessionUsernameToNavbar();
+
 
 console.log('READY general.js');

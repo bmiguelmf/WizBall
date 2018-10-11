@@ -16,7 +16,8 @@
     <AssemblyName>BackOffice</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>true</Use64BitIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -299,6 +300,7 @@
     <Content Include="resources\imgs\users\songoku.png" />
     <Content Include="resources\imgs\users\user.png" />
     <Content Include="resources\css\slide.css" />
+    <Content Include="resources\js\plugins\date-format\moment.js" />
     <Content Include="resources\js\plugins\pagination\data-tables.js" />
     <Content Include="resources\js\plugins\notification\bootstrap-notify.js" />
     <Content Include="resources\js\plugins\bootstrap\bootstrap-select.min.js" />
