@@ -11,6 +11,7 @@ var cb_check_all_users = $('#check-all');
 
 //GLOBAL VARS
 var user_requests_count = 0;
+var has_next_tips = false;
 
 var bell = $('#bell');
 var error = $('#error_message');
@@ -21,6 +22,8 @@ var has_matches = undefined;
 //GLOBAL ARRAYS
 //contains checked users ids to do an action (just grant/revoke at the moment).
 var checked_user_ids = [];
+
+
 
 //GLOBAL FUNCTIONS
 //clear the content of the given table.
@@ -128,6 +131,35 @@ function GetPendingUsersCount() {
     });
 }
 
+//generates tips for the next matches.
+function generateNextMatchesTips() {
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/SetNextMatchesTipsAndResults",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            console.log("Tips geradas");
+        },
+        error: function () {
+            swal("Error", "Something unexpected happened while trying to generate tips", "warning");
+        }
+    });
+
+}
+
+
+
+//GLOBAL CALLS
+hasMatches();
+generateNextMatchesTips();
+GetPendingUsersCount();
+GetSessionUsernameToNavbar();
+
+
+
 //GLOBAL EVENTS
 $(document).keydown(function (e) {
     if (e.keyCode === 27) {
@@ -143,11 +175,6 @@ cb_check_all_users.change(function () {
         uncheckCheckedCheckbox();
     }
 });
-
-//GLOBAL CALLS
-hasMatches();
-GetPendingUsersCount();
-GetSessionUsernameToNavbar();
 
 
 console.log('READY general.js');
