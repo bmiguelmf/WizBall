@@ -925,6 +925,13 @@ namespace BusinessLogic.BLL
 
             SetTipsResults();
         }
+        public void RunNextMatchesTipsWithoutSyncMatches()
+        {
+            // This method doens't requires that all matches have been sync.
+            SetNextMatchesTips();
+
+            SetTipsResults();
+        }
         public void RunHistoryMatchesTips()
         {
             // This method requires that all matches have been sync.
