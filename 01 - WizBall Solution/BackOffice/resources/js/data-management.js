@@ -13,10 +13,11 @@ var is_sync = false;
 //contains all areas. The index is the id and the value is the name.
 var Areas = [];
 
-var Past_Matches = [];
+var past_matches = [];
 
 var MatchesIds = [];
 
+var single_match = [];
 
 //FUNCTIONS
 //fills the table head according to the given entity.
@@ -63,16 +64,22 @@ function fillDataTableBody(entity, value) {
 }
 
 
-function fillMatchesIds(matche) {
-    
-    Matches['Id'] = ;
-    Matches['HomeTeamName'] = ;
-    Matches['HomeTeamFlag'] = ;
-    Matches['AwayTeamName'] = ;
-    Matches['AwayTeamFlag'] = ;
-    Matches['Competition'] = ;
-    Matches['ScoreHome'] = ;
-    Matches['ScoreAway'] = ;
+function addMatchToPastMatchesArray(match) {
+
+    //Regular
+
+
+    single_match['Id'] = match.Id;
+    single_match['HomeTeamName'] = match.HomeTeam.ShortName;
+    single_match['HomeTeamFlag'] = match.HomeTeam.Area.Name.toLowerCase() + "/" + match.HomeTeam.Flag;
+    single_match['AwayTeamName'] = match.AwayTeam.ShortName; 
+    single_match['AwayTeamFlag'] = match.AwayTeam.Area.Name.toLowerCase() + "/" + match.AwayTeam.Flag;;
+    single_match['Competition'] = match.Competition.Name;
+    single_match['ScoreHome'] = match.Score.FullTime.HomeTeam;
+    single_match['ScoreAway'] = match.Score.FullTime.AwayTeam;
+    //single_match['Date'] = ;
+
+    past_matches.push(single_match);
 }
 
 
@@ -326,7 +333,6 @@ function GetNextMatches() {
                 clearTable(data_table_body);
                 $.each(data.d, function (index, value) {
                     MatchesIds.push(value.Id);
-                    console.log(value);
                     fillDataTableBody("matches", value);
                 });
                 paginateTable(data_table, 5);
@@ -413,44 +419,65 @@ function GetTipByMatcheId(id) {
 
     //fillContentTableHead("tips");
 
-        $.ajax({
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            url: "../WebService.asmx/GetTipByMatchId",
-            dataType: "json",
-            data: "{Id: " + JSON.stringify(id) + "}",
-            success: function (data) {
-                if (data.d !== null) {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/GetTipByMatchId",
+        dataType: "json",
+        data: "{Id: " + JSON.stringify(id) + "}",
+        success: function (data) {
+            if (data.d !== null) {
 
-                    console.log(data.d);
-                }
-                else {
-                    data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> There are no tips for the next few days. <td></td><td></td><td></td></td></tr>");
-                    swal({
-                        title: "Info!",
-                        text: "Sorry, we are currently unable to fulfill your request!",
-                        icon: "info",
-                        timer: 5000
-                    });
-                }
-            },
-            error: function (data, status, error) {
-                console.log(data);
+                console.log(data.d);
+            }
+            else {
+                data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> There are no tips for the next few days. <td></td><td></td><td></td></td></tr>");
                 swal({
-                    title: "Error!",
-                    text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
-                    icon: "warning",
+                    title: "Info!",
+                    text: "Sorry, we are currently unable to fulfill your request!",
+                    icon: "info",
                     timer: 5000
                 });
             }
-        });
-    }
+        },
+        error: function (data, status, error) {
+            console.log(data);
+            swal({
+                title: "Error!",
+                text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
+                icon: "warning",
+                timer: 5000
+            });
+        }
+    });
+
     //paginateTable(data_table, 5);
 }
 
+function GetPastMatchesWithTips() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/GetPastMatchesWithTips",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            $.each(data.d, function (index, value) {
+                addMatchToPastMatchesArray(value);
+            });
+        },
+        error: function () {
+
+        }
+    });
+}
+
+
 //CALLS
-GetMatches();
+GetPastMatchesWithTips();
+GetNextMatches();
 GetAllAreasToArr();
+
 
 
 //EVENTS
