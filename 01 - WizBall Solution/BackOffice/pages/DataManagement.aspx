@@ -94,7 +94,7 @@
                     <h3>Data Management</h3>
                     <div class="row text-center">
                         <div class="col-12 col-xs-12">
-                            <button id="show_tips" style="width: 120px" class="btn btn-primary">Tips</button>
+                            <button id="show_tips" style="width: 120px" class="btn btn-primary">Tips history</button>
                             <button id="full_sync" style="width: 120px" class="btn btn-primary">Full sync</button>
                             <button id="sync_matches" style="width: 120px" class="btn btn-primary">Sync matches</button>
                             <button id="sync_teams" style="width: 120px" class="btn btn-primary">Sync teams</button>

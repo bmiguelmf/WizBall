@@ -272,8 +272,23 @@ namespace BackOffice
         public bool MatchesHasRows()
         {
             BLL bll = new BLL(connString, apiToken);
-            var tou = bll.MatchesHasRows();
-            return tou;
+            return bll.MatchesHasRows();
+        }
+
+
+
+        // TIPS METHODS
+        [WebMethod]
+        public void SetNextMatchesTipsAndResults()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            bll.RunNextMatchesTipsWithoutSyncMatches();
+        }
+        [WebMethod]
+        public Tip GetTipByMatchId(string Id)
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetTipByMatchId(Id);
         }
     }
 }
