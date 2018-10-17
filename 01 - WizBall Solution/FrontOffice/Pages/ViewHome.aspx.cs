@@ -15,11 +15,10 @@ namespace FrontOffice.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
             //new Globals().CreateBll().FullDatabaseSync();
-
-            //new Globals().CreateBll().RunNextMatchesTips();
+            
+            
+            new Globals().CreateBll().RunNextMatchesTips();
             //new Globals().CreateBll().RunHistoryMatchesTips();
 
             MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid();
