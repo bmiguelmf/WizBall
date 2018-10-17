@@ -20,7 +20,7 @@ create table [user]
 	firstName				varchar(30)			not null,
 	lastName				varchar(30)			not null,
 	email					varchar(60)			not null,
-	username				varchar(15)			not null,
+	username				varchar(15)			not null		unique,
 	password				varchar(15)			not null,
 	active					bit					not null,
 	profileImg				varchar(128)		not null,
@@ -58,7 +58,7 @@ create table userSession
 	userSessionId			int					identity(1,1),
 	userId					int					not null,
 	logOnUser				datetime			not null,
-	logOffUser				datetime			not null,
+	logOffUser				datetime			null,
 	ipAddress				varchar(15)			not null,
 	userAgent				varchar(50)			not null,
 	createdBy				varchar(15)			not null,
@@ -70,15 +70,17 @@ create table userSession
 -- criação da tabela permissionAssignment
 create table permissionAssignament
 (
-	permissionId			int					identity(1,1),
+	permissionAssignmentId  int					identity(1,1),					
+	permissionId			int					not null,
 	roleId					int					not null,
 	userId					int					not null,
 	createdBy				varchar(15)			not null,
 	createdOn				datetime			not null,
 			
-	constraint pk_permissionAssignament primary key(permissionId),
-	constraint fk_permissionAssignament_role foreign key(roleId) references role(roleId) on delete cascade,
-	constraint fk_permissionAssignament_user foreign key(userId) references [user](userId) on delete cascade
+	constraint pk_permissionAssignament				primary key(permissionAssignmentId),
+	constraint fk_permissionAssignament_permission	foreign key(permissionId)	references permission(permissionId) on delete cascade,
+	constraint fk_permissionAssignament_role		foreign key(roleId)			references role(roleId)				on delete cascade,
+	constraint fk_permissionAssignament_user		foreign key(userId)			references [user](userId)			on delete cascade
 )
 -- criação da tabela logs
 create table log

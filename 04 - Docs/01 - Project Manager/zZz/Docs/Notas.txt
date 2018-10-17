@@ -1,0 +1,2 @@
+
+	- No campo CreatedBy deve ser passado o username do utilizador que está a interagir com a base de dados.
