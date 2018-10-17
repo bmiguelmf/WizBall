@@ -17,19 +17,18 @@ var past_matches = [];
 
 var MatchesIds = [];
 
-var single_match = [];
+var tips_by_match = [];
 
 //FUNCTIONS
 //fills the table head according to the given entity.
 function fillContentTableHead(entity) {
     clearTable(data_table_head);
-    if (entity.toLowerCase() === "matches") {
+    if (entity.toLowerCase() === "next_matches") {
         data_table_head.append("<tr> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Competition<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Home team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:8%\" class=\"text-center\"></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Away team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:18%\" class=\"text-center\"><a class=\"order-by-desc\">Date<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
     } else if (entity.toLowerCase() === "teams") {
         data_table_head.append("<tr> <th style=\"width:10%\" class=\"text-center\"><a class=\"order-by-desc\">TLA<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\">Logo</th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Short name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Full name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Region<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th>  <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Website<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
-    } else if (entity.toLowerCase() === "tips") {
-        //TODO
-        data_table_head.append("<tr> <th style=\"width:10%\" class=\"text-center\"><a class=\"order-by-desc\">TLA<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\">Logo</th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Short name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Full name<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Region<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th>  <th style=\"width:20%\" class=\"text-center\"><a class=\"order-by-desc\">Website<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
+    } else if (entity.toLowerCase() === "played_matches") {
+        data_table_head.append("<tr> <th style=\"width:10%\" class=\"text-center\"><a class=\"order-by-desc\">Competition<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:14%\" class=\"text-center\"><a class=\"order-by-desc\">Home team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:8%\" class=\"text-center\"></th> <th style=\"width:10%\" class=\"text-center\"></th> <th style=\"width:14%\" class=\"text-center\"><a class=\"order-by-desc\">Away team<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:14%\" class=\"text-center\"><a class=\"order-by-desc\">Date<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\"><a class=\"order-by-desc\">Bet<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> <th style=\"width:10%\" class=\"text-center\"><a class=\"order-by-desc\">Result<i class=\"glyphicon glyphicon-chevron-down\"></i></a></th> </tr>");
     } else {
         swal({
             title: "Error!",
@@ -43,14 +42,40 @@ function fillContentTableHead(entity) {
 }
 
 //fills the table body according to the given entity.
-function fillDataTableBody(entity, value) {
-    if (entity.toLowerCase() === "matches") {
-        data_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:18%\">" + value.Competition.Name + "</td> <td style=\"width:18%\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">VS</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:18%\">" + value.AwayTeam.Name + "</td> <td style=\"width:18%\">" + new Date(value.UtcDate + ' UTC').toLocaleDateString('pt-PT', { hour: 'numeric', minute: 'numeric', day: 'numeric', month: 'numeric' }) + "</td> </tr>");
+function fillDataTableBody(entity, values) {
+    clearTable(data_table_body);
+    if (entity.toLowerCase() === "next_matches") {
+        let bet_no_bet = false;
+        let tip = "";
+        $.each(values, function (index, value) {
+            MatchesIds.push(value.Id);
+            bet_no_bet = tips_by_match[value.Id].BetNoBet;
+            if (bet_no_bet === true) {
+                tip = tips_by_match[value.Id].Forecast === true ? "+2,5" : "-2,5";
+            } else {
+                tip = "No bet";
+            }
+            data_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:18%\">" + value.Competition.Name + "</td> <td style=\"width:18%\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">" + tip + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:18%\">" + value.AwayTeam.Name + "</td> <td style=\"width:18%\">" + value.UtcDate + "</td> </tr>");
+        });
     } else if (entity.toLowerCase() === "teams") {
-        data_table_body.append("<tr value=\"" + value.Id + "\">  <td style=\"width:10%\">" + value.TLA + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + Areas[value.Area.Id].toLowerCase() + "/" + value.Flag + "\" /></span></td> <td style=\"width:20%\">" + value.ShortName + "</td> <td style=\"width:20%\">" + value.Name + "</td> <td style=\"width:20%\">" + Areas[value.Area.Id] + "</td> <td style=\"width:20%\"> <a class=\"order-by-desc\" href=\"" + value.WebSite + "\" target=\"_blank\">" + value.WebSite + "&nbsp;<i class=\"glyphicon glyphicon-share-alt\"></i></a></td> </tr>");
-    } else if (entity.toLowerCase() === "tips") {
-        //TODO
-        data_table_body.append("<tr value=\"" + value.Id + "\">  <td style=\"width:10%\">" + value.TLA + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + Areas[value.Area.Id].toLowerCase() + "/" + value.Flag + "\" /></span></td> <td style=\"width:20%\">" + value.ShortName + "</td> <td style=\"width:20%\">" + value.Name + "</td> <td style=\"width:20%\">" + Areas[value.Area.Id] + "</td> <td style=\"width:20%\"> <a class=\"order-by-desc\" href=\"" + value.WebSite + "\" target=\"_blank\">" + value.WebSite + "&nbsp;<i class=\"glyphicon glyphicon-share-alt\"></i></a></td> </tr>");
+        $.each(values, function (index, value) {
+            data_table_body.append("<tr value=\"" + value.Id + "\">  <td style=\"width:10%\">" + value.TLA + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + Areas[value.Area.Id].toLowerCase() + "/" + value.Flag + "\" /></span></td> <td style=\"width:20%\">" + value.ShortName + "</td> <td style=\"width:20%\">" + value.Name + "</td> <td style=\"width:20%\">" + Areas[value.Area.Id] + "</td> <td style=\"width:20%\"> <a class=\"order-by-desc\" href=\"" + value.WebSite + "\" target=\"_blank\">" + value.WebSite + "&nbsp;<i class=\"glyphicon glyphicon-share-alt\"></i></a></td> </tr>");
+        });
+    } else if (entity.toLowerCase() === "played_matches") {
+        for (var i = 0; i < values.length; i++) {
+            let bet_no_bet = tips_by_match[values[i].Id].BetNoBet;
+            let tip = "";
+            let result = false;
+            if (bet_no_bet === true) {
+                tip = tips_by_match[values[i].Id].Forecast === true ? "+2,5" : "-2,5";
+                result = tips_by_match[values[i].Id].Result === true ? "Win" : "Loss";
+            } else {
+                tip = "No bet";
+                result = "---";
+            }
+            data_table_body.append("<tr value=\"" + values[i].Id + "\"> <td style=\"width:10%\">" + values[i].Competition + "</td> <td style=\"width:14%\">" + values[i].HomeTeamName + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + values[i].HomeTeamFlag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">" + values[i].ScoreHome + " - " + values[i].ScoreAway + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + values[i].AwayTeamFlag + "\" /></span></td> <td style=\"width:14%\">" + values[i].AwayTeamName + "</td> <td style=\"width:14%\">" + values[i].Date + "</td> <td style=\"width:10%\" class=\"no-users\">" + tip + "</td> <td style=\"width:10%\" class=\"no-users\">" + result + "</td> </tr>");
+        }
+
     } else {
         swal({
             title: "Error!",
@@ -61,27 +86,31 @@ function fillDataTableBody(entity, value) {
             location.reload(true);
         });
     }
+    paginateTable(data_table, 5);
 }
 
+//adds passed matches to past_matches array
+function addMatchesToPastMatchesArray(matches) {
 
-function addMatchToPastMatchesArray(match) {
+    //only for matches that ended at 90 mins
+    past_matches = [];
 
-    //Regular
+    $.each(matches, function (index, match) {
+        let single_match = {};
+        single_match['Id'] = match.Id;
+        single_match['HomeTeamName'] = match.HomeTeam.ShortName;
+        single_match['HomeTeamFlag'] = match.HomeTeam.Area.Name.toLowerCase() + "/" + match.HomeTeam.Flag;
+        single_match['AwayTeamName'] = match.AwayTeam.ShortName;
+        single_match['AwayTeamFlag'] = match.AwayTeam.Area.Name.toLowerCase() + "/" + match.AwayTeam.Flag;;
+        single_match['Competition'] = match.Competition.Name;
+        single_match['ScoreHome'] = match.Score.FullTime.HomeTeam;
+        single_match['ScoreAway'] = match.Score.FullTime.AwayTeam;
+        single_match['Date'] = match.UtcDate;
 
+        past_matches.push(single_match);
+    });
 
-    single_match['Id'] = match.Id;
-    single_match['HomeTeamName'] = match.HomeTeam.ShortName;
-    single_match['HomeTeamFlag'] = match.HomeTeam.Area.Name.toLowerCase() + "/" + match.HomeTeam.Flag;
-    single_match['AwayTeamName'] = match.AwayTeam.ShortName; 
-    single_match['AwayTeamFlag'] = match.AwayTeam.Area.Name.toLowerCase() + "/" + match.AwayTeam.Flag;;
-    single_match['Competition'] = match.Competition.Name;
-    single_match['ScoreHome'] = match.Score.FullTime.HomeTeam;
-    single_match['ScoreAway'] = match.Score.FullTime.AwayTeam;
-    //single_match['Date'] = ;
-
-    past_matches.push(single_match);
 }
-
 
 //gets all the areas vai ajax and places them in an array where the index is the id of the Area and the value is the respective name.
 function GetAllAreasToArr() {
@@ -95,7 +124,6 @@ function GetAllAreasToArr() {
             $.each(data.d, function (index, value) {
                 Areas[value.Id] = value.Name;
             });
-            //console.log(Areas);
         },
         error: function (data, status, error) {
             console.log("Error 500 getting areas");
@@ -225,7 +253,6 @@ function alertAndSyncEntity(entity) {
                                 break;
                             default:
                                 GetMatches();
-                                console.log("get matches default!");
                         }
                     });
                 } else {
@@ -259,18 +286,13 @@ function GetTeams() {
         data: "",
         dataType: "json",
         success: function (data) {
-            clearTable(data_table_body);
             if ($.fn.DataTable.isDataTable('#data_table')) {
                 $('#data_table').DataTable().destroy();
             }
 
             if (data.d.length > 0) {
                 fillContentTableHead("teams");
-                clearTable(data_table_body);
-                $.each(data.d, function (index, value) {
-                    fillDataTableBody("teams", value);
-                });
-                paginateTable(data_table, 3);
+                fillDataTableBody("teams", data.d);
             }
             else {
                 swal({
@@ -319,24 +341,19 @@ function GetNextMatches() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/GetNextMatchesByTierOneCompetitions",
+        url: "../WebService.asmx/GetNextMatchesByTierOneCompetitionsWithLocalDate",
         dataType: "json",
         success: function (data) {
             //check if GetNextMatchesByTierOneCompetitions returns more than zero matches
-            clearTable(data_table_body);
             if ($.fn.DataTable.isDataTable('#data_table')) {
                 $('#data_table').DataTable().destroy();
             }
 
             if (data.d.length > 0) {
-                fillContentTableHead("matches");
-                clearTable(data_table_body);
-                $.each(data.d, function (index, value) {
-                    MatchesIds.push(value.Id);
-                    fillDataTableBody("matches", value);
-                });
-                paginateTable(data_table, 5);
+                fillContentTableHead("next_matches");
+                fillDataTableBody("next_matches", data.d);
             }
+
             //check if database has at least one matche 
             else if (has_matches) {
                 data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> There are no matches for the next few days. <td></td><td></td><td></td></td></tr>");
@@ -403,7 +420,6 @@ function GetNextMatches() {
             }
         },
         error: function (data, status, error) {
-            console.log(data);
             swal({
                 title: "Error!",
                 text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
@@ -414,47 +430,8 @@ function GetNextMatches() {
     });
 }
 
-//
-function GetTipByMatcheId(id) {
-
-    //fillContentTableHead("tips");
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/GetTipByMatchId",
-        dataType: "json",
-        data: "{Id: " + JSON.stringify(id) + "}",
-        success: function (data) {
-            if (data.d !== null) {
-
-                console.log(data.d);
-            }
-            else {
-                data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> There are no tips for the next few days. <td></td><td></td><td></td></td></tr>");
-                swal({
-                    title: "Info!",
-                    text: "Sorry, we are currently unable to fulfill your request!",
-                    icon: "info",
-                    timer: 5000
-                });
-            }
-        },
-        error: function (data, status, error) {
-            console.log(data);
-            swal({
-                title: "Error!",
-                text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
-                icon: "warning",
-                timer: 5000
-            });
-        }
-    });
-
-    //paginateTable(data_table, 5);
-}
-
-function GetPastMatchesWithTips() {
+//gets
+function GetPastMatchesAndTips() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -462,8 +439,33 @@ function GetPastMatchesWithTips() {
         data: "",
         dataType: "json",
         success: function (data) {
+            if ($.fn.DataTable.isDataTable('#data_table')) {
+                $('#data_table').DataTable().destroy();
+            }
+
+            if (data.d.length > 0) {
+                addMatchesToPastMatchesArray(data.d);
+                fillContentTableHead("played_matches");
+                fillDataTableBody("played_matches", past_matches);
+            }
+        },
+        error: function () {
+
+        }
+    });
+}
+
+//gets all tips for matches that sys will display to admins to an array "tips_by_match".
+function GetTipsToArray() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/GetAllTips",
+        data: "",
+        dataType: "json",
+        success: function (data) {
             $.each(data.d, function (index, value) {
-                addMatchToPastMatchesArray(value);
+                tips_by_match[value.Match.Id] = value;
             });
         },
         error: function () {
@@ -472,17 +474,13 @@ function GetPastMatchesWithTips() {
     });
 }
 
-
 //CALLS
-GetPastMatchesWithTips();
-GetNextMatches();
+GetTipsToArray();
 GetAllAreasToArr();
-
+GetNextMatches();
 
 
 //EVENTS
-
-
 $('#full_sync').click(function () {
     alertAndSyncEntity("data", true);
 });
@@ -504,7 +502,7 @@ $('#show_teams').click(function () {
 });
 
 $('#show_tips').click(function () {
-    GetTipsHistory();
+    GetPastMatchesAndTips();
 });
 
 

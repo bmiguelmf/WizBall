@@ -270,6 +270,12 @@ namespace BackOffice
             return bll.GetNextMatchesByTierOneCompetitions();
         }
         [WebMethod]
+        public List<Match> GetNextMatchesByTierOneCompetitionsWithLocalDate()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetNextMatchesByTierOneCompetitionsWithLocalDate();
+        }
+        [WebMethod]
         public bool MatchesHasRows()
         {
             BLL bll = new BLL(connString, apiToken);
@@ -285,6 +291,12 @@ namespace BackOffice
 
 
         // TIPS METHODS
+        [WebMethod]
+        public List<Tip> GetAllTips()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetAllTips();
+        }
         [WebMethod]
         public void SetNextMatchesTipsAndResults()
         {

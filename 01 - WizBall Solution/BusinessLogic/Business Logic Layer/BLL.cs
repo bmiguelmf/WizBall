@@ -81,6 +81,17 @@ namespace BusinessLogic.BLL
                 new Competition() {Id = 2021 }                  // PremierLeague.
             };
         }
+        public List<Match> SetDateToLocalDate(List<Match> matches)
+        {
+            foreach (Match match in matches)
+            {
+                DateTime PTDate = DateTime.Parse(match.UtcDate);
+                PTDate = PTDate.ToLocalTime();
+                match.UtcDate = PTDate.ToString("dd/MM HH:mm");
+            }
+
+            return matches;
+        }
 
 
 
@@ -742,6 +753,11 @@ namespace BusinessLogic.BLL
             return nextMatches;
         }
 
+        public List<Match> GetNextMatchesByTierOneCompetitionsWithLocalDate()
+        {
+            return SetDateToLocalDate(GetNextMatchesByTierOneCompetitions());
+        }
+
         public List<Match> GetHistoryMatchesByTierOneCompetitions()
         {
             List<Match> lstMatches = new List<Match>();
@@ -851,6 +867,11 @@ namespace BusinessLogic.BLL
 
 
         // TIPS METHODS
+        public List<Tip> GetAllTips()
+        {
+            DALTips dal = new DALTips(connectionString);
+            return dal.GetAll();
+        }
         public Tip GetTipById(string Id)
         {
             DALTips dalTips = new DALTips(connectionString);
@@ -1014,23 +1035,23 @@ namespace BusinessLogic.BLL
             foreach (Competition competition in TierOneCompetitions())
             {
                 // Gets a list with matches that already have been played for a given competition.
-                playedMatches = GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate);
+                playedMatches.AddRange(GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate));
 
 
-                foreach (Match match in playedMatches)
-                {
-                    Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
+                //foreach (Match match in playedMatches)
+                //{
+                //    Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
 
-                    if (matchTip is null)                                                       // Only if this match does not already has a tip in the database then we will generate one.
-                    {
-                        SetTip(match, playedMatches);                                           // Method call which will generate the tip.
-                    }
-                }
+                //    if (matchTip is null)                                                       // Only if this match does not already has a tip in the database then we will generate one.
+                //    {
+                //        SetTip(match, playedMatches);                                           // Method call which will generate the tip.
+                //    }
+                //}
             }
 
             playedMatches.ForEach(EntityBuilder);
 
-            return playedMatches;
+            return SetDateToLocalDate(playedMatches);
         }
 
         /// <summary>
