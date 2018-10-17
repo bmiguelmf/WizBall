@@ -925,10 +925,25 @@ namespace BusinessLogic.BLL
 
             SetTipsResults();
         }
+        public void RunNextMatchesTipsWithoutSyncMatches()
+        {
+            // This method doens't requires that all matches have been sync.
+            SetNextMatchesTips();
+
+            SetTipsResults();
+        }
         public void RunHistoryMatchesTips()
         {
             // This method requires that all matches have been sync.
             SyncMatchesTierOne();
+
+            SetHistoryMatchesTips();
+
+            SetTipsResults();
+        }
+        public void RunHistoryMatchesTipsWithoutSyncMatches()
+        {
+            // This method doens't requires that all matches have been sync.
 
             SetHistoryMatchesTips();
 
@@ -988,6 +1003,36 @@ namespace BusinessLogic.BLL
                 }
             }
         }
+
+        public List<Match> GetPastMatchesWithTips()
+        {
+            DateTime startDate = DateTime.UtcNow.AddYears(-1);          // Ensure the beginning of the season.      
+            DateTime finalDate = DateTime.UtcNow.Date;                  // Today 00:00:00 this ensures only matches before today.    
+
+            List<Match> playedMatches = new List<Match>();
+
+            foreach (Competition competition in TierOneCompetitions())
+            {
+                // Gets a list with matches that already have been played for a given competition.
+                playedMatches = GetMatchesByCompetitionAndRangeDates(competition.Id.ToString(), startDate, finalDate);
+
+
+                foreach (Match match in playedMatches)
+                {
+                    Tip matchTip = GetTipByMatchId(match.Id.ToString());                        // First we try to get from the database the tip corresponding to the current match.
+
+                    if (matchTip is null)                                                       // Only if this match does not already has a tip in the database then we will generate one.
+                    {
+                        SetTip(match, playedMatches);                                           // Method call which will generate the tip.
+                    }
+                }
+            }
+
+            playedMatches.ForEach(EntityBuilder);
+
+            return playedMatches;
+        }
+
         /// <summary>
         /// Sets a tip for a given match.
         /// </summary>

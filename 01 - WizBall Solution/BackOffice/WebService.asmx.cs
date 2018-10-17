@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.BLL;
 using BusinessLogic.Entities;
+using System;
 using System.Collections.Generic;
 using System.Web.Configuration;
 using System.Web.Script.Services;
@@ -272,8 +273,35 @@ namespace BackOffice
         public bool MatchesHasRows()
         {
             BLL bll = new BLL(connString, apiToken);
-            var tou = bll.MatchesHasRows();
-            return tou;
+            return bll.MatchesHasRows();
+        }
+        [WebMethod]
+        public List<Match> GetPastMatchesWithTips()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetPastMatchesWithTips();
+        }
+
+
+
+        // TIPS METHODS
+        [WebMethod]
+        public void SetNextMatchesTipsAndResults()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            bll.RunNextMatchesTipsWithoutSyncMatches();
+        }
+        [WebMethod]
+        public Tip GetTipByMatchId(string Id)
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.GetTipByMatchId(Id);
+        }
+
+        public void RunHistoryMatchesTipsWithoutSyncMatches()
+        {
+            BLL bll = new BLL(connString, apiToken);
+            bll.RunHistoryMatchesTipsWithoutSyncMatches();
         }
     }
 }
