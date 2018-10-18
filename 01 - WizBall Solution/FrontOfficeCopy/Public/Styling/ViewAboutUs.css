@@ -1,9 +1,18 @@
-﻿.form-wrapper {
+﻿/*form {
+    height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.form-wrapper {
+    width: 60%;
     min-width: 320px;
 }
 
 .form-header {
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,14 +26,14 @@
     }
 
 .form-body {
+    color: white;
     border-radius: 3px;
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #444;
-    padding: 40px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: #444;
+
 }
 
     .form-body h5 {
@@ -83,7 +92,10 @@ hr {
 
 @media only screen and (min-width:960px) {
 
-
+    .form-body {
+        margin:50px;
+        padding: 40px;
+    }
 
     .form-body .form-imputs-labels {
         font-size: 15px;
