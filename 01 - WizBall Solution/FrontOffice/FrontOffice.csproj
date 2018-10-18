@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\ViewAboutUs.aspx" />
     <Content Include="Pages\ViewContactUs.aspx" />
     <Content Include="Pages\ViewEditProfile.aspx" />
     <Content Include="Pages\ViewHistoryTips.aspx" />
@@ -332,6 +333,7 @@
     <Content Include="Public\Styling\MasterView.css" />
     <Content Include="Public\Styling\MatchesTipsHistoryGrid.css" />
     <Content Include="Public\Styling\MatchesTipsGrid.css" />
+    <Content Include="Public\Styling\ViewAboutUs.css" />
     <Content Include="Public\Styling\ViewContactUs.css" />
     <Content Include="Public\Styling\ViewEditProfile.css" />
     <Content Include="Public\Styling\ViewLogin.css" />
@@ -347,6 +349,13 @@
     </Compile>
     <Compile Include="Pages\MasterView.Master.designer.cs">
       <DependentUpon>MasterView.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewAboutUs.aspx.cs">
+      <DependentUpon>ViewAboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewAboutUs.aspx.designer.cs">
+      <DependentUpon>ViewAboutUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewContactUs.aspx.cs">
       <DependentUpon>ViewContactUs.aspx</DependentUpon>

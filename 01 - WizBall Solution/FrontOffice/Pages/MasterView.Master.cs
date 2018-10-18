@@ -135,11 +135,11 @@ namespace FrontOffice
                     break;
 
                 case "/Pages/ViewContactUs.aspx":
-                    linkAboutUs.Attributes.Add("class", "active-menu");
+                    linkContactUs.Attributes.Add("class", "active-menu");
                     break;
 
-                case "/Pages/ViewAbouttUs.aspx":
-                    linkContactUs.Attributes.Add("class", "active-menu");
+                case "/Pages/ViewAboutUs.aspx":
+                    linkAboutUs.Attributes.Add("class", "active-menu");              
                     break;
 
                 default:
