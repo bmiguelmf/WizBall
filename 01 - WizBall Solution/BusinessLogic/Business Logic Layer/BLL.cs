@@ -426,6 +426,44 @@ namespace BusinessLogic.BLL
 
 
 
+        // NEWSLETTER
+        public bool SendNewsletter(string title, string body)
+        {
+            DALUsers dal = new DALUsers(connectionString);
+            List<User> subscribedUsers = dal.GetByNewsletter();
+
+            MailMessage newsletter = new MailMessage();
+            newsletter.From = new MailAddress("bmiguelmf@gmail.com");
+            try
+            {
+                foreach (User subscribedUser in subscribedUsers)
+                {
+                    newsletter.To.Add(new MailAddress(subscribedUser.Email.ToString()));
+                    // accept portuguese chars
+                    newsletter.BodyEncoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
+
+                    newsletter.Subject = "Wizball - " + title;
+                    newsletter.Body = "Dear " + subscribedUser.Username + "!" + Environment.NewLine;
+                    newsletter.Body += body + Environment.NewLine + Environment.NewLine + Environment.NewLine;
+                    newsletter.Body += "Wizball support team";
+
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("wizballteam@gmail.com", "wizball849999support");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(newsletter);
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
 
         // USER METHODS.
         public List<User> GetAllUsers()

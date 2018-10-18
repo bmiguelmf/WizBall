@@ -1,5 +1,5 @@
 ﻿
-//html elements
+//HTML ELEMENTS
 var btn_cancel = $('#btn_can');
 var btn_submit = $('#btn_submit');
 var form = $('#form_edit_user');
@@ -77,7 +77,7 @@ function checkToggleStatus(status) {
 }
 
 function checkToggleNewsletter(news) {
-    if (news === true) {
+    if (news) {
         toggle_newsletter.bootstrapToggle('on');
     } else {
         toggle_newsletter.bootstrapToggle('off');
@@ -118,10 +118,10 @@ function GetUsers() {
                 $.each(data.d, function (index, value) {
                     if (value.CurrentUserHistory.AfterState.Description !== "Pending") {
                         ran_if = true;
-                        tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:8%;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter === true ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
+                        tbl_users_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:8%;\" class=\"text-center\"><input class=\"check_all\" type=\"checkbox\"/></td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/users/" + value.Picture + "\" /></span></td>  <td style=\"width:17%;\">" + value.Username + "</td> <td style=\"width:29%;\">" + value.Email + "</td> <td style=\"width:13%;\">" + value.CurrentUserHistory.AfterState.Description + "</td>  <td style=\"width:13%;\"> " + (value.Newsletter ? "Yes" : "No") + " </td> <td style=\"width:10%;\" class=\"st-trigger-effects\"><a class=\"btn_edit\" data-effect=\"st-effect-1\"><i class=\"glyphicon glyphicon-pencil\"></i></a></td> </tr>");
                     }
                 });
-                if (ran_if === true) {
+                if (ran_if) {
                     paginateTableAndLoadSideBarScripts(tbl_users, 3);
                     assignBtnEditClickEvent();
                 } else {
@@ -217,19 +217,14 @@ function validateForm() {
     var validated = true;
     $(".has-error").removeClass("has-error");
 
-    if (input_username.val() === "") {
-        input_username.closest(".form-group").addClass("has-error");
-        error.fadeIn();
-        error.find('.message').text("Please fill in the username field.");
-        validated = false;
+    if (!is_text_area_disabled) {
+        if (txt_description.val() === "") {
+            txt_description.closest(".form-group").addClass("has-error");
+            error.fadeIn();
+            error.find('.message').text("Please fill in the description field.");
+            validated = false;
+        }
     }
-    if (input_username.val().length > 50) {
-        input_username.closest(".form-group").addClass("has-error");
-        error.fadeIn();
-        error.find('.message').text("The username must be less than 50 characters.");
-        validated = false;
-    }
-
 
     if (input_email.val() === "") {
         input_email.closest(".form-group").addClass("has-error");
@@ -250,14 +245,18 @@ function validateForm() {
         validated = false;
     }
 
-    if (is_text_area_disabled === false) {
-        if (txt_description.val() === "") {
-            txt_description.closest(".form-group").addClass("has-error");
-            error.fadeIn();
-            error.find('.message').text("Please fill in the description field.");
-            validated = false;
-        }
+    if (input_username.val() === "") {
+        input_username.closest(".form-group").addClass("has-error");
+        error.fadeIn();
+        error.find('.message').text("Please fill in the username field.");
+        validated = false;
     }
+    if (input_username.val().length > 50) {
+        input_username.closest(".form-group").addClass("has-error");
+        error.fadeIn();
+        error.find('.message').text("The username must be less than 50 characters.");
+        validated = false;
+    }    
 
     if (validated) {
         error.hide();
@@ -337,7 +336,7 @@ function validateAndSubmit() {
 
     if (userStateHasChanged(txt_description.val())) {
         ajax_url = "UpdateUserAndUserHistory";
-    } else if (isEquivalent(User, Unedited_user) === false) {
+    } else if (!isEquivalent(User, Unedited_user)) {
         ajax_url = "UpdateUser";
     } else {
         ajax_url = undefined;
@@ -438,8 +437,8 @@ $(document).keydown(function (e) {
 
 toggle_status.on('change', function (ev) {
     ev.preventDefault();
-    if (is_code_changed === false) {
-        if (is_text_area_disabled === true) {
+    if (!is_code_changed) {
+        if (is_text_area_disabled) {
             enableFormTextArea();
         } else {
             disableFormTextArea();

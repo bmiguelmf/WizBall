@@ -19,6 +19,9 @@ namespace FrontOffice.Pages
             //new Globals().CreateBll().RunNextMatchesTips();
             //new Globals().CreateBll().RunHistoryMatchesTips();
 
+            new Globals().CreateBll().SendNewsletter("", "");
+
+
             MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid();
 
             placeHolderMatchesTipsGrid.Controls.Add(matchesTipsGrid.FiltersAndGrid());

@@ -54,7 +54,15 @@ namespace BusinessLogic.DAL
         {
             return GetAll().OrderByDescending(x => x.Id).ToList()[0].Id;
         }
+        public List<User> GetByNewsletter()
+        {
+            Dictionary<string, string> where = new Dictionary<string, string>()
+            {
+                {"newsletter", "true" }
+            };
 
+            return GetWhere(new User(), where).Cast<User>().ToList();
+        }
 
         // INSERTS.
         public int Insert(User User)

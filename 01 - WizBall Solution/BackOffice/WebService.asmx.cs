@@ -240,6 +240,14 @@ namespace BackOffice
         }
 
 
+        // NEWSLETTER METHODS
+        [WebMethod]
+        public bool SendNewsletter(string title, string body)
+        {
+            BLL bll = new BLL(connString, apiToken);
+            return bll.SendNewsletter(title, body);
+        }
+
 
         // TEAMS METHODS
         [WebMethod]
@@ -258,7 +266,6 @@ namespace BackOffice
             BLL bll = new BLL(connString, apiToken);
             return bll.GetAllAreas();
         }
-
 
 
 
