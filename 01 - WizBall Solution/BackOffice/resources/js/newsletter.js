@@ -85,7 +85,7 @@ function confirmAndSubmit() {
     });
 }
 
-//send
+//send newsletter and alert if it was sent.
 function sendNewsletter(title, body) {
     $.ajax({
         type: "POST",

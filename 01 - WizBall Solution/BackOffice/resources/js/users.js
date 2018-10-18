@@ -5,7 +5,7 @@ var btn_submit = $('#btn_submit');
 var form = $('#form_edit_user');
 var error = $('#error_message');
 
-//form elements
+//FORM ELEMENTS
 var toggle_status = $('#toggle_edit_status');
 var toggle_newsletter = $('#toggle_edit_newsletter');
 var txt_description = $('#txt_edit_description');
@@ -16,20 +16,22 @@ var user_photo = $('#user_photo');
 var photo_real_name = $('#photo_nme');
 var old_description = $('#old_description');
 
-//vars
+//VARS
 var is_text_area_disabled = true;
 var is_code_changed = false;
 
-//objects
+//OBJECTS
 var Unedited_user = {};
 
-//functions
+//FUNCTIONS
+//assigns the click event to the buttons generated dynamically.
 function assignBtnEditClickEvent() {
     $('.btn_edit').on("click", function () {
         GetClickedUserToForm($(this).closest("tr").attr('value'));
     });
 }
 
+//cleans the edit form. this method is called whenever the "pencil" is pressed.
 function clearForm() {
     photo_real_name.val("");
     user_photo.attr("src", "/resources/imgs/users/");
@@ -40,31 +42,37 @@ function clearForm() {
     error.find('.message').text("");
 }
 
+//uses regex to check if the given email is a valid email.
 function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
 }
 
+//loads the choosen image to live preview without sending it to the server.
 function loadImage(event) {
     user_photo.attr('src', event.target.result);
 }
 
+//
 function disableFormTextArea() {
     is_text_area_disabled = true;
     txt_description.val("");
     txt_description.attr('disabled', 'disabled');
 }
 
+//
 function enableFormTextArea() {
     is_text_area_disabled = false;
     txt_description.removeAttr('disabled');
 }
 
+//
 function loadSideBarEffectsScripts() {
     $.getScript('/resources/js/plugins/sidebar/classie.js');
     $.getScript('/resources/js/plugins/sidebar/sidebar-effects.js');
 }
 
+//
 function checkToggleStatus(status) {
     if (status.Description === "Granted") {
         is_code_changed = true;
@@ -76,6 +84,7 @@ function checkToggleStatus(status) {
     }
 }
 
+//
 function checkToggleNewsletter(news) {
     if (news) {
         toggle_newsletter.bootstrapToggle('on');
@@ -84,16 +93,19 @@ function checkToggleNewsletter(news) {
     }
 }
 
+//
 function toggleBothFormToggles(status, news) {
     checkToggleStatus(status);
     checkToggleNewsletter(news);
 }
 
+//
 function paginateTableAndLoadSideBarScripts(table, limit) {
     paginateTable(table, limit);
     loadSideBarEffectsScripts();
 }
 
+//
 function feedUneditedUser(Table_user) {
 
     Unedited_user['Id'] = String(Table_user.Id);
@@ -104,6 +116,7 @@ function feedUneditedUser(Table_user) {
     Unedited_user['Password'] = $.session.get('UserPassword');
 }
 
+//
 function GetUsers() {
     $.ajax({
         type: "POST",
@@ -155,6 +168,7 @@ function GetUsers() {
     });
 }
 
+//
 function GetClickedUserToForm(id) {
     $.ajax({
         type: "POST",
@@ -213,6 +227,7 @@ function GetClickedUserToForm(id) {
     });
 }
 
+//
 function validateForm() {
     var validated = true;
     $(".has-error").removeClass("has-error");
@@ -269,6 +284,7 @@ function validateForm() {
     return validated;
 }
 
+//
 function isEquivalent(User1, User2) {
 
     var User1Props = Object.getOwnPropertyNames(User1);
@@ -289,6 +305,7 @@ function isEquivalent(User1, User2) {
     return true;
 }
 
+//
 function userStateHasChanged(description) {
     if (description !== "") {
         return true;
@@ -297,6 +314,7 @@ function userStateHasChanged(description) {
     }
 }
 
+//calls "validateForm" function and submit the changes if something has changed and if the form is valid.
 function validateAndSubmit() {
     if (!validateForm()) {
         return;
@@ -405,10 +423,10 @@ function validateAndSubmit() {
 
 }
 
-//calls
+//CALLS
 GetUsers();
 
-//events
+//EVENTS
 user_photo_input.change(function () {
     if (this.files && this.files[0]) {
         var reader = new FileReader();
@@ -451,5 +469,6 @@ toggle_status.on('change', function (ev) {
 btn_submit.click(function () {
     validateAndSubmit();
 });
+
 
 console.log('READY users.js');
