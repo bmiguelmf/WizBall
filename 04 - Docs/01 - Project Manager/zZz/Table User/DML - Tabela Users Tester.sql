@@ -23,13 +23,13 @@ print @insertedUser
 
 -- teste ao stored procedure updateUser
 declare @updatedUser int;
-exec @updatedUser = updateUser 2, 'miguel', 'moita', 'ola@gmail.com', 'bro', '123123', 0, 'user.jpg'
+exec @updatedUser = updateUser 7, 'miguel', 'moita', 'ola@gmail.com', 'bro', '123123', 0, 'user.jpg'
 print @updatedUser
 
 
 -- teste ao stored procedure deleteUser
 declare @deletedUser int;
-exec @deletedUser = deleteUser 2
+exec @deletedUser = deleteUser 4
 print @deletedUser
 
 

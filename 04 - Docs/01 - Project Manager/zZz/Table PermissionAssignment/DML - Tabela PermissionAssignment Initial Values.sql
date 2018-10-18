@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------------
 -- Trabalho Prático de Avaliação da UFCD 5411 – Base de Dados – Sistemas de Gestão --
 -- Módulo User_Profile															   --
--- Tabela userSession															   --
--- Bruno Ferreira 17/10/2018													   --
+-- Tabela permissionAssignment															   --
+-- Bruno Ferreira 18/10/2018													   --
 -------------------------------------------------------------------------------------
 
 
@@ -10,15 +10,10 @@
 use TrabalhoSQL
 go
 
--- preenche a tabela userSession com 1 login e respectivo logout
---login
-declare @begin datetime
-set @begin = dateadd(DD, -1, cast(getdate() as date))
-exec userLogin 1, @begin, '10.0.0.1', 'agent IE', 'admin'
---logout
-declare @end datetime
-set @end   = getdate()
-exec userLogout 2, @end
+-- preenche a tabela permissionAssignment com 2 assignments
+exec insertPermissionAssignment 1, 1, 1, 'admin'
+exec insertPermissionAssignment 1, 2, 2, 'admin'
+
 
 
 

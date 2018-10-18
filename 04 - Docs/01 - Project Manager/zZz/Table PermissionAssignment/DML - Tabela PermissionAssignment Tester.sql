@@ -24,9 +24,9 @@ exec @updateddAssignment = updatePermissionAssignment 2,2,1
 print @updateddAssignment
 
 
----- teste ao stored procedure deleteUserSession
---declare @deletedUserSession int;
---exec @deletedUserSession = deleteUserSession 1
---print @deletedUserSession
+-- teste ao stored procedure deleteUserSession
+declare @deletedAssignment int;
+exec @deletedAssignment = deletePermissionAssignment 2
+print @deletedAssignment
 
 

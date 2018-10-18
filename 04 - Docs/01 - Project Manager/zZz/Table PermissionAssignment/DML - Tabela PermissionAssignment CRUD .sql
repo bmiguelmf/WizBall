@@ -106,25 +106,25 @@ end
 go
 
 
--- cria um stored procedure para realizar delete de userSessions
+-- cria um stored procedure para realizar delete de PermissionAssignment
 -- valida se os parametros vêm preenchidos e não nulos
 -- retorna 1 se tudo correr bem, e -1 se algum algum dos parametros for inválido
-create or alter procedure deleteUserSession
-	@userSessionId			int
+create or alter procedure deletePermissionAssignment
+	@permissionAssignmentId			int
 as begin
 	
 	-- valida o parametro
-	if(@userSessionId > 0)
+	if(@permissionAssignmentId > 0)
 	begin
 	
-		-- valida se o parametro userId corresponde a um user válido
-		declare @isUserSessionValid int
-		set @isUserSessionValid =  (SELECT TOP 1 userSessionId FROM userSession WHERE userSessionId = @userSessionId)
+		-- valida se o parametro permissionAssignmentId corresponde a uma permissionAssignment valida
+		declare @isPermissionAssignmentIdValid int
+		set @isPermissionAssignmentIdValid =  (SELECT TOP 1 permissionAssignmentId FROM permissionAssignament WHERE permissionAssignmentId = @permissionAssignmentId)
 
 		-- se roleId maior que um, significa que a role existe, então pode fazer o delete
-		if(@isUserSessionValid > 0)
+		if(@isPermissionAssignmentIdValid > 0)
 		begin
-			delete from userSession where userSessionId = @userSessionId
+			delete from permissionAssignament where permissionAssignmentId = @permissionAssignmentId
 			
 			return 1
 		end
