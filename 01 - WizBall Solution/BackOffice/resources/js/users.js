@@ -17,7 +17,10 @@ var photo_real_name = $('#photo_nme');
 var old_description = $('#old_description');
 
 //VARS
+//saves if the textarea is disabled.
 var is_text_area_disabled = true;
+
+//saves if the status toggle was changed by a human or by code.
 var is_code_changed = false;
 
 //OBJECTS
@@ -53,26 +56,26 @@ function loadImage(event) {
     user_photo.attr('src', event.target.result);
 }
 
-//
+//disables the textarea to prevent writing.
 function disableFormTextArea() {
     is_text_area_disabled = true;
     txt_description.val("");
     txt_description.attr('disabled', 'disabled');
 }
 
-//
+//enables the textarea to be able to write on it.
 function enableFormTextArea() {
     is_text_area_disabled = false;
     txt_description.removeAttr('disabled');
 }
 
-//
+//loads side bar effects scripts after generating table rows.
 function loadSideBarEffectsScripts() {
     $.getScript('/resources/js/plugins/sidebar/classie.js');
     $.getScript('/resources/js/plugins/sidebar/sidebar-effects.js');
 }
 
-//
+//checks if the status toggle is checked.
 function checkToggleStatus(status) {
     if (status.Description === "Granted") {
         is_code_changed = true;
@@ -84,7 +87,7 @@ function checkToggleStatus(status) {
     }
 }
 
-//
+//checks if the newsletter toggle is checked.
 function checkToggleNewsletter(news) {
     if (news) {
         toggle_newsletter.bootstrapToggle('on');
@@ -93,19 +96,19 @@ function checkToggleNewsletter(news) {
     }
 }
 
-//
+//toggles the newsletter and status toggles with given values.
 function toggleBothFormToggles(status, news) {
     checkToggleStatus(status);
     checkToggleNewsletter(news);
 }
 
-//
+//paginate the table and calls the "loadSideBarEffectsScripts" function.
 function paginateTableAndLoadSideBarScripts(table, limit) {
     paginateTable(table, limit);
     loadSideBarEffectsScripts();
 }
 
-//
+//saves the unedited user into an object to then compare with the submitted user and see if there are any changes.
 function feedUneditedUser(Table_user) {
 
     Unedited_user['Id'] = String(Table_user.Id);
@@ -116,7 +119,7 @@ function feedUneditedUser(Table_user) {
     Unedited_user['Password'] = $.session.get('UserPassword');
 }
 
-//
+//gets all user and displays them.
 function GetUsers() {
     $.ajax({
         type: "POST",
@@ -168,7 +171,7 @@ function GetUsers() {
     });
 }
 
-//
+//gets the clicked user and puts their values into the form.
 function GetClickedUserToForm(id) {
     $.ajax({
         type: "POST",
@@ -227,7 +230,7 @@ function GetClickedUserToForm(id) {
     });
 }
 
-//
+//validates form before send the data to server and shows a custom error message if there is something wrong.
 function validateForm() {
     var validated = true;
     $(".has-error").removeClass("has-error");
@@ -284,7 +287,8 @@ function validateForm() {
     return validated;
 }
 
-//
+//compares two given users to check if something has changed to then update the user or not. 
+//This will prevent a large amount of unnecessary calls to the server.
 function isEquivalent(User1, User2) {
 
     var User1Props = Object.getOwnPropertyNames(User1);
@@ -305,7 +309,7 @@ function isEquivalent(User1, User2) {
     return true;
 }
 
-//
+//checks if the user state has changed after form submission.
 function userStateHasChanged(description) {
     if (description !== "") {
         return true;
