@@ -133,27 +133,26 @@ function GetAllAreasToArr() {
 
 //synchronizes the matches that exist in the API with those that exist in the database and updates all that data.
 function MatchesSync() {
-    console.log("matches sync!");
-    is_sync = true;
-    //$.ajax({
-    //    type: "POST",
-    //    contentType: "application/json; charset=utf-8",
-    //    url: "../WebService.asmx/SyncMatchesTierOne",
-    //    data: "",
-    //    dataType: "json",
-    //    success: function (data) {
-    //        is_sync = false;
-    //        if (data.d) {
-    //            is_sync = true;
-    //        }
-    //        else {
-    //            is_sync = false;
-    //        }
-    //    },
-    //    error: function (data, status, error) {
-    //        is_sync = false;
-    //    }
-    //});
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/SyncMatchesTierOne",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            is_sync = false;
+            if (data.d) {
+                console.log("concluí");
+                is_sync = true;
+            }
+            else {
+                is_sync = false;
+            }
+        },
+        error: function (data, status, error) {
+            is_sync = false;
+        }
+    });
 }
 
 //synchronizes the teams that exist in the API with those that exist in the database and updates all that data.
