@@ -474,6 +474,14 @@ p.select-actions button.btn-primary {
     margin-top: 20px;
 }
 
+.label {
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
 .st-menu form label:last-child {
     margin-top: 0;
 }

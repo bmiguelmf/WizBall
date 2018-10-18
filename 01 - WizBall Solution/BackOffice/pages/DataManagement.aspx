@@ -91,8 +91,9 @@
                 <div class="head-container">
 
                     <!-- title -->
-                    <h3>Data Management</h3>
+
                     <div class="row text-center">
+                        <h3>Data Management</h3>
                         <div class="col-12 col-xs-12">
                             <button id="show_tips" style="width: 120px" class="btn btn-primary">Tips history</button>
                             <button id="full_sync" style="width: 120px" class="btn btn-primary">Full sync</button>

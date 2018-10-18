@@ -161,7 +161,10 @@
                 <div class="head-container">
 
                     <!-- title -->
-                    <h3>Users</h3>
+
+                    <div class="row text-center">
+                        <h3>Users</h3>
+                    </div>
                 </div>
 
                 <div class="body-container">
@@ -173,7 +176,7 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th style="width: 8%;" class="text-center">
-                                               <input id="check-all" class="checkbox-change" type="checkbox" /></th>
+                                                <input id="check-all" class="checkbox-change" type="checkbox" /></th>
                                             <th style="width: 10%;" class="text-center">Photo</th>
                                             <th style="width: 17%;" class="text-center"><a class="order-by-desc">Username<i class="glyphicon glyphicon-chevron-down"></i></a></th>
                                             <th style="width: 29%;" class="text-center"><a class="order-by-desc">E-mail<i class="glyphicon glyphicon-chevron-down"></i></a></th>
