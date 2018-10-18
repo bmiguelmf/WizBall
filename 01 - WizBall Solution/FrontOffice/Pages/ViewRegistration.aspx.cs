@@ -52,7 +52,7 @@ namespace FrontOffice.Pages
 
 
                         // Calls JS function registrationConfirmation() which will display a successful message to the user.
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "RegistrationSuccessful", "registrationConfirmation()", true);
+                        Page.ClientScript.RegisterStartupScript(GetType(), "recoverPasswordConfirmation", "recoverPasswordConfirmation()", true);
                     }
                 }
             }

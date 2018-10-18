@@ -102,43 +102,44 @@ hr {
 
 
 
-
-#outter-modal {
-    display: none;                          /* Hidden by default */
-    position: fixed;                        /* Stay in place */
-    z-index: 1;                             /* Sit on top */
-    padding-top: 100px;                     /* Location of the box */
+#outterModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%;                            /* Full width */
-    height: 100%;                           /* Full height */
-    background-color: rgba(0,0,0,0.5);      /* Black w/ opacity */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
+
 #inner-modal {
     background-color: #fff;
     margin: auto;
     padding: 25px;
     border: 1px solid #888;
-    width: 30%;
+    width: 50%;
     border-radius: 4px;
 }
 
 
 #modal-header {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    background-color:#fff;
-
-    padding-bottom:6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding-bottom: 6px;
 }
+
 #modal-logo {
-    height:30px;
+    height: 30px;
 }
+
 #modal-close {
     color: yellowgreen;
 }
+
 #modal-close:hover,
 #modal-close:focus {
     color: orange;
@@ -151,12 +152,18 @@ hr {
     border-bottom: 1px solid black;
     padding: 50px;
 }
+
 #modal-primary-message {
-    text-align:center;
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+    padding: 10px 0 0 0;
 }
-#modal-secondary-message {
-    margin-top:20px;
-    text-align:center;
+#modal-prime-message {
+    text-align: center;
+    font-size: 26px;
+    margin: 0;
+    padding: 0;
 }
 
 #modal-footer {
@@ -166,9 +173,11 @@ hr {
     height: 30px;
     margin-top: 6px;
 }
+
 #modal-counter-message {
-    margin:0px;  
+    margin: 0px;
 }
+
 
 
 @media only screen and (min-width:960px) {
