@@ -357,6 +357,7 @@
     <Content Include="Public\Styling\MasterView.css" />
     <Content Include="Public\Styling\MatchesTipsGrid.css" />
     <Content Include="Public\Styling\MatchesTipsHistoryGrid.css" />
+    <Content Include="Public\Styling\ViewAboutUs.css" />
     <Content Include="Public\Styling\ViewContactUs.css" />
     <Content Include="Public\Styling\ViewEditProfile.css" />
     <Content Include="Public\Styling\ViewErrorCodes.css" />

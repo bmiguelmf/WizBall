@@ -1,56 +1,148 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DataManagment.aspx.cs" Inherits="BackOffice.pages.DataManagment" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Newsletter.aspx.cs" Inherits="BackOffice.pages.Newsletter" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WizBall - Dashborad</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Wizball - Newsletter</title>
+
+    <!-- Stylesheets section -->
 
     <!-- Favicon img -->
     <link rel="shortcut icon" type="image/x-icon" href="/resources/imgs/icon.ico" />
 
     <!-- Bootstrap and font-awesome stylesheets -->
     <link href="/resources/css/plugins/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-    <!-- Custom table paging stylesheet -->
-    <link href="/resources/css/pagination.css" rel="stylesheet" />
-
-    <!-- Custom toggle stylesheet -->
-    <link href="/resources/css/plugins/bootstrap2-toggle.min.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/font-awesome.min.css" rel="stylesheet" />
+    <link href="/resources/css/plugins/animations/animate.css" rel="stylesheet" />
 
     <!-- Global BackOffice stylesheet -->
-    <link href="/resources/css/style.css" rel="stylesheet" />
-    <link href="/resources/css/estilos.css" rel="stylesheet" />
-
+    <link href="/resources/css/style_all.css" rel="stylesheet" />
 </head>
-<body class="gray-bg">
-    <div class="animated fadeInDown loginpanel">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="col-md-6 formpanel" style="display: flex; align-items: center;">
-                        <div class="middle-box text-center loginscreen animated fadeInDown">
-                            <div style="margin: auto; width: 100%; height: 100%; border-radius: 3px;">
-                                <h3>Page under construction...</h3>
-                                <div class="clearfix"></div>
-                                <a id="" href="Users.aspx" class="btn block full-width m-b">Go back...</a>
-                                <p class="m-t"></p>
+<body>
+
+    <!-- top navigation bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Users.aspx">
+
+                    <img src="/resources/imgs/logo_with_name.png" />
+                </a>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Aqui vai ter as tabelas para alteração de dados e o sync -->
+                    <li><a href="DataManagement.aspx">DATA MANAGEMENT</a></li>
+
+                    <!-- Aqui vai ter uma tabela dos users e o admin vai poder fazer a gestão dos mesmos -->
+                    <li><a href="Users.aspx">USERS</a></li>
+
+                    <!-- Aqui vai ter uma tabela dos users que se registaram recentemente e ainda não foram aceites -->
+                    <!-- e o admin vai poder garantir ou negar o acesso ao Website -->
+                    <li><a href="UserRequests.aspx">USER REQUESTS</a></li>
+
+                    <!-- Aqui vai ser feita toda a gestão de newletter -->
+                    <li class="active"><a>NEWSLETTER</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
+                    <li><a href="UserRequests.aspx"><i id="bell" class="glyphicon glyphicon-bell"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            <label id="username"></label>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a runat="server" id="logout" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <!-- / top navigation bar -->
+
+    <div id="st-container" class="st-container st-effect-1">
+
+        <!-- Central content -->
+        <div class="st-pusher">
+            <div class="st-content">
+
+                <div class="head-container">
+
+                    <!-- title -->
+                    
+                    <div class="row text-center">
+                        <h3>Newsletter</h3>
+                        <div class="col-12 col-xs-12">
+                            <button id="reset_newsletter" style="width: 120px" class="btn btn-primary">Reset</button>
+                            &nbsp;
+                            <button id="send_newsletter" style="width: 120px" class="btn btn-primary">Send&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span></button>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- list/table-->
+                                <div class="content table-full-width" style="position: relative;">
+                                    <div>
+                                        <div class="form-group">
+                                            <label class="label">Title</label>
+                                            <input type="text" name="title" class="form-control" placeholder=""/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">Body</label>
+                                            <textarea name="body" rows="15" cols="50" class="form-control" placeholder=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 wizballpanel">
-                    </div>
+
                 </div>
             </div>
+            <!-- / Central content -->
         </div>
-    </div>
-    <!-- Scripts Section-->
+        <!-- Scripts Section-->
 
-    <!-- JQuery scripts -->
-    
+        <!-- JQuery scripts -->
+        <script src="/resources/js/plugins/jquery/jquery.min.js"></script>
+        <script src="/resources/js/plugins/jquery/jquery-ui.min.js"></script>
+
+        <!-- Bootstrap script -->
+        <script src="/resources/js/plugins/bootstrap/bootstrap.min.js"></script>
+
+        <!-- Custom alert script -->
+        <script src="/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
+
+        <!-- JQuery session script -->
+        <script src="/resources/js/plugins/jquery/jquery.session.js"></script>
+
+        <!-- Notifications script -->
+        <script src="/resources/js/plugins/notification/bootstrap-notify.js"></script>
+
+        <!-- General script -->
+        <script src="/resources/js/general.js"></script>
+
+        <!-- Data management script -->
+        <script src="/resources/js/newsletter.js"></script>
 </body>
 
 </html>

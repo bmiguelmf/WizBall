@@ -88,13 +88,13 @@
 
                 <div class="head-container">
                     <!-- title -->
-                    <h3>User Requests</h3>
-                    <div class="row">
-                        <div class="col-12 col-xs-12 pull-right">
-                            <button id="grant_all_users" style="width: 75px" class="btn btn-primary">Grant</button>
-                            <button id="revoke_all_users" style="width: 75px" class="btn btn-primary">Revoke</button>
+                    <div class="row text-center">
+                        <h3>User Requests</h3>
+                        <div class="col-12 col-xs-12">
+                            <button id="grant_all_users" style="width: 120px" class="btn btn-primary">Grant</button>
+                            &nbsp;
+                            <button id="revoke_all_users" style="width: 120px" class="btn btn-primary">Revoke</button>
                         </div>
-
                     </div>
                 </div>
 
