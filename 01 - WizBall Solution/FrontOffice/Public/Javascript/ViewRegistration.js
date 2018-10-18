@@ -64,26 +64,26 @@ document.getElementById("txtUsername").addEventListener("keyup", isUsernameTaken
 
 
 // MODAL *******************************************************************
-function registrationConfirmation() {
+function recoverPasswordConfirmation() {
 
     // Shows modal.
-    var modal = document.getElementById('outter-modal');
+    var modal = document.getElementById('outterModal');
     modal.style.display = "block";
 
     // Get elements.
     var counter = document.getElementById("modal-counter");
     var currentValue = parseInt(counter.innerText);
 
-    window.setTimeout(closeViewRegistration, currentValue * 1000);
+    window.setTimeout(closeViewRecoverPassword, currentValue * 1000);
 
     window.setInterval(function () {
         counter.innerText = currentValue === 0 ? 0 : --currentValue;
-    }, 1000); 
+    }, 1000);
 }
-function closeViewRegistration() {
+function closeViewRecoverPassword() {
     window.location.replace("/Pages/ViewHome.aspx");
 }
-document.getElementById("modal-close").addEventListener("click", closeViewRegistration);
+document.getElementById("modal-close").addEventListener("click", closeViewRecoverPassword);
 
 
 

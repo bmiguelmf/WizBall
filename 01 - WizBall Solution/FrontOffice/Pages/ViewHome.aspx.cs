@@ -22,8 +22,6 @@ namespace FrontOffice.Pages
             MatchesTipsGrid matchesTipsGrid = new MatchesTipsGrid();
 
             placeHolderMatchesTipsGrid.Controls.Add(matchesTipsGrid.FiltersAndGrid());
-
-
         }
     }
 }

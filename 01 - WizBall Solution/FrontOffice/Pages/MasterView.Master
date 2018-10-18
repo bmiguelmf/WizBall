@@ -97,9 +97,9 @@
 
                 <a runat="server" id="linkTipsHistory" href="/Pages/ViewHistoryTips.aspx"><i class="fas fa-history"></i> Tips History</a>
 
-                <a runat="server" id="linkAboutUs" href="#"><i class="fas fa-info-circle"></i> About Us</a>
+                <a runat="server" id="linkAboutUs" href="/Pages/ViewAboutUs.aspx"><i class="fas fa-info-circle"></i> About Us</a>
 
-                <a runat="server" id="linkContactUs" href="#"><i class="fas fa-at"></i> Contact Us</a>
+                <a runat="server" id="linkContactUs" href="/Pages/ViewContactUs.aspx"><i class="fas fa-at"></i> Contact Us</a>
 
             </div>
 
@@ -146,9 +146,9 @@
             <!-- PAGE MENUS PANEL -->
             <div class="menu-menus">
 
-                <a href="#"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="/Pages/ViewAboutUs.aspx"><i class="fas fa-info-circle"></i> About Us</a>
 
-                <a href="#"><i class="fas fa-at"></i> Contact Us</a>
+                <a href="/Pages/ViewContactUs.aspx"><i class="fas fa-at"></i> Contact Us</a>
 
                 <a href="/Pages/ViewHistoryTips.aspx"><i class="fas fa-history"></i> Tips History</a>
 

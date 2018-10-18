@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\ViewContactUs.aspx" />
     <Content Include="Pages\ViewEditProfile.aspx" />
     <Content Include="Pages\ViewHistoryTips.aspx" />
     <Content Include="Pages\ViewHome.aspx" />
@@ -322,6 +323,7 @@
     <Content Include="Public\Javascript\MasterView.js" />
     <Content Include="Public\Javascript\MatchesTipsHistoryGrid.js" />
     <Content Include="Public\Javascript\MatchesTipsGrid.js" />
+    <Content Include="Public\Javascript\ViewContactUs.js" />
     <Content Include="Public\Javascript\ViewEditProfile.js" />
     <Content Include="Public\Javascript\ViewLogin.js" />
     <Content Include="Public\Javascript\ViewRecoverPassword.js" />
@@ -330,6 +332,7 @@
     <Content Include="Public\Styling\MasterView.css" />
     <Content Include="Public\Styling\MatchesTipsHistoryGrid.css" />
     <Content Include="Public\Styling\MatchesTipsGrid.css" />
+    <Content Include="Public\Styling\ViewContactUs.css" />
     <Content Include="Public\Styling\ViewEditProfile.css" />
     <Content Include="Public\Styling\ViewLogin.css" />
     <Content Include="Public\Styling\ViewRecoverPassword.css" />
@@ -344,6 +347,13 @@
     </Compile>
     <Compile Include="Pages\MasterView.Master.designer.cs">
       <DependentUpon>MasterView.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewContactUs.aspx.cs">
+      <DependentUpon>ViewContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewContactUs.aspx.designer.cs">
+      <DependentUpon>ViewContactUs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewEditProfile.aspx.cs">
       <DependentUpon>ViewEditProfile.aspx</DependentUpon>
@@ -389,6 +399,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Globals.cs" />
+    <Compile Include="Resources\MailSender.cs" />
     <Compile Include="Resources\MatchesTipsHistoryGrid.cs" />
     <Compile Include="Resources\MatchesTipsGrid.cs" />
     <Compile Include="WizballWS.asmx.cs">
