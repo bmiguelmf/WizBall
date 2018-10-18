@@ -141,7 +141,7 @@ function generateNextMatchesTips() {
         data: "",
         dataType: "json",
         success: function (data) {
-            console.log("Tips geradas");
+
         },
         error: function () {
             swal("Error", "Something unexpected happened while trying to generate tips", "warning");

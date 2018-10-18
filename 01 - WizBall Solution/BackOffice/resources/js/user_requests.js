@@ -154,7 +154,7 @@ function GetPendingUsers() {
                     }
                     i++;
                 });
-                if (ran_if === true) {
+                if (ran_if) {
                     paginateTable(tbl_users, 3);
                     assignActionBtnClickEvents();
                 } else {

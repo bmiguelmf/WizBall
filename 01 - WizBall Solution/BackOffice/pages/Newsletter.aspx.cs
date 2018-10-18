@@ -11,7 +11,14 @@ namespace BackOffice.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Admin"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
         }
     }
 }

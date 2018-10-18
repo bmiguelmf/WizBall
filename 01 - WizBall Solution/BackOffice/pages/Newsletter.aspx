@@ -87,13 +87,14 @@
                 <div class="head-container">
 
                     <!-- title -->
-                    
+
                     <div class="row text-center">
                         <h3>Newsletter</h3>
                         <div class="col-12 col-xs-12">
                             <button id="reset_newsletter" style="width: 120px" class="btn btn-primary">Reset</button>
                             &nbsp;
                             <button id="send_newsletter" style="width: 120px" class="btn btn-primary">Send&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span></button>
+
                         </div>
                     </div>
                     <div class="container">
@@ -102,13 +103,19 @@
                                 <!-- list/table-->
                                 <div class="content table-full-width" style="position: relative;">
                                     <div>
+                                        <br />
+                                        <div id="error_message" class="form-fonte alert alert-danger" role="alert" style="display: none">
+                                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="false"></span>
+                                            <span class="sr-only">Error:</span>
+                                            <span class="message"></span>
+                                        </div>
                                         <div class="form-group">
                                             <label class="label">Title</label>
-                                            <input type="text" name="title" class="form-control" placeholder=""/>
+                                            <input type="text" id="input_newsletter_title" class="form-control" placeholder="Write something flashy" />
                                         </div>
                                         <div class="form-group">
                                             <label class="label">Body</label>
-                                            <textarea name="body" rows="15" cols="50" class="form-control" placeholder=""></textarea>
+                                            <textarea id="txt_newsletter_body" rows="15" cols="50" class="form-control" placeholder="Please don't include greetings"></textarea>
                                         </div>
                                     </div>
                                 </div>

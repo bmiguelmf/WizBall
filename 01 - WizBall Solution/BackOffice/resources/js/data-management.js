@@ -50,8 +50,8 @@ function fillDataTableBody(entity, values) {
         $.each(values, function (index, value) {
             MatchesIds.push(value.Id);
             bet_no_bet = tips_by_match[value.Id].BetNoBet;
-            if (bet_no_bet === true) {
-                tip = tips_by_match[value.Id].Forecast === true ? "+2,5" : "-2,5";
+            if (bet_no_bet) {
+                tip = tips_by_match[value.Id].Forecast ? "+2,5" : "-2,5";
             } else {
                 tip = "No bet";
             }
@@ -66,9 +66,9 @@ function fillDataTableBody(entity, values) {
             let bet_no_bet = tips_by_match[values[i].Id].BetNoBet;
             let tip = "";
             let result = false;
-            if (bet_no_bet === true) {
-                tip = tips_by_match[values[i].Id].Forecast === true ? "+2,5" : "-2,5";
-                result = tips_by_match[values[i].Id].Result === true ? "Win" : "Loss";
+            if (bet_no_bet) {
+                tip = tips_by_match[values[i].Id].Forecast ? "+2,5" : "-2,5";
+                result = tips_by_match[values[i].Id].Result ? "Win" : "Loss";
             } else {
                 tip = "No bet";
                 result = "---";
@@ -143,7 +143,7 @@ function MatchesSync() {
     //    dataType: "json",
     //    success: function (data) {
     //        is_sync = false;
-    //        if (data.d === true) {
+    //        if (data.d) {
     //            is_sync = true;
     //        }
     //        else {
@@ -167,7 +167,7 @@ function TeamsSync() {
         dataType: "json",
         success: function (data) {
             is_sync = false;
-            if (data.d === true) {
+            if (data.d) {
                 is_sync = true;
             }
             else {
@@ -191,7 +191,7 @@ function FullDatabaseSync() {
         dataType: "json",
         success: function (data) {
             is_sync = false;
-            if (data.d === true) {
+            if (data.d) {
                 is_sync = true;
             }
             else {
@@ -388,7 +388,7 @@ function GetNextMatches() {
                                 closeOnEsc: false,
                                 closeOnClickOutside: false
                             }).then((value) => {
-                                if (is_sync === true) {
+                                if (is_sync) {
                                     swal({
                                         title: "Success!",
                                         text: "Data synchronized successfully.",
