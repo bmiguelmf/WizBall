@@ -99,7 +99,7 @@ function sendNewsletter(title, body) {
                     title: "Success!",
                     text: "Newsletter successfully sent!",
                     icon: "success",
-                    timer: 5000
+                    timer: 3000
                 }).then((value) => {
                     resetFields();
                 });
@@ -108,12 +108,17 @@ function sendNewsletter(title, body) {
                     title: "Error!",
                     text: "Sorry, we are currently unable to fulfill your request!",
                     icon: "warning",
-                    timer: 5000
+                    timer: 3000
                 });
             }
         },
         error: function () {
-
+            swal({
+                title: "Error!",
+                text: "Sorry, we are currently unable to fulfill your request!",
+                icon: "warning",
+                timer: 3000
+            });
         }
     });
 }

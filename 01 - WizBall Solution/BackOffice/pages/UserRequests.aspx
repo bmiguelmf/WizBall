@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Wizball - User Requests</title>
 
@@ -21,7 +21,7 @@
 
     <!-- Custom paging stylesheet -->
     <link href="/resources/css/pagination.css" rel="stylesheet" />
-    
+
     <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style_all.css" rel="stylesheet" />
     <link href="/resources/css/data-table.css" rel="stylesheet" />
@@ -61,19 +61,22 @@
                     <!-- Aqui vai ser feita toda a gestão de newletter -->
                     <li><a href="Newsletter.aspx">NEWSLETTER</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">
-                            <label id="username"></label>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
-                            <li><a id="logout" href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <form runat="server">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                aria-expanded="false">
+                                <label id="username"></label>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="drop-a" href="Profile.aspx">Profile</a></li>
+                                <li><asp:Button ID="Btn_logout" OnClick="Btn_logout_Click" runat="server" CssClass="drop-a" Text="Logout" /></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </form>
+
             </div>
             <!--/.nav-collapse -->
         </div>

@@ -72,6 +72,7 @@
   <ItemGroup>
     <Content Include="pages\DataManagement.aspx" />
     <Content Include="pages\Newsletter.aspx" />
+    <Content Include="pages\Profile.aspx" />
     <Content Include="pages\UserRequests.aspx" />
     <Content Include="resources\css\data-table.css" />
     <Content Include="resources\css\fonts.css" />
@@ -300,6 +301,7 @@
     <Content Include="resources\imgs\users\songoku.png" />
     <Content Include="resources\imgs\users\user.png" />
     <Content Include="resources\css\slide.css" />
+    <Content Include="resources\js\profile.js" />
     <Content Include="resources\js\newsletter.js" />
     <Content Include="resources\js\plugins\date-format\moment.js" />
     <Content Include="resources\js\plugins\pagination\data-tables.js" />
@@ -423,19 +425,19 @@
     <Compile Include="pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\master.Master.cs">
-      <DependentUpon>master.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\master.Master.designer.cs">
-      <DependentUpon>master.Master</DependentUpon>
-    </Compile>
     <Compile Include="pages\Newsletter.aspx.cs">
       <DependentUpon>Newsletter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\Newsletter.aspx.designer.cs">
       <DependentUpon>Newsletter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\UserRequests.aspx.cs">
       <DependentUpon>UserRequests.aspx</DependentUpon>
@@ -459,7 +461,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="pages\master.Master" />
     <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.woff" />

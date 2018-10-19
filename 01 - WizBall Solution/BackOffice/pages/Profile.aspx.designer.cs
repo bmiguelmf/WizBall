@@ -10,7 +10,7 @@
 namespace BackOffice.pages {
     
     
-    public partial class Newsletter {
+    public partial class Profile {
         
         /// <summary>
         /// Btn_logout control.

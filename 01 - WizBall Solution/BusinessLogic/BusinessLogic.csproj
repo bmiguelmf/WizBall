@@ -77,6 +77,8 @@
     <Compile Include="API Football-Data\ResourceMatches.cs" />
     <Compile Include="API Football-Data\ResourceTeams.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Email\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

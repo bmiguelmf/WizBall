@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Newsletter.aspx.cs" Inherits="BackOffice.pages.Newsletter" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="BackOffice.pages.Profile" %>
 
 <!DOCTYPE html>
 
@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Wizball - Newsletter</title>
+    <title>Wizball - Profile</title>
 
     <!-- Stylesheets section -->
 
@@ -43,22 +43,13 @@
             </button>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <!-- Aqui vai ter as tabelas para alteração de dados e o sync -->
                     <li><a href="DataManagement.aspx">DATA MANAGEMENT</a></li>
-
-                    <!-- Aqui vai ter uma tabela dos users e o admin vai poder fazer a gestão dos mesmos -->
                     <li><a href="Users.aspx">USERS</a></li>
-
-                    <!-- Aqui vai ter uma tabela dos users que se registaram recentemente e ainda não foram aceites -->
-                    <!-- e o admin vai poder garantir ou negar o acesso ao Website -->
                     <li><a href="UserRequests.aspx">USER REQUESTS</a></li>
-
-                    <!-- Aqui vai ser feita toda a gestão de newletter -->
-                    <li class="active"><a>NEWSLETTER</a></li>
+                    <li><a href="Newsletter.aspx">NEWSLETTER</a></li>
                 </ul>
                 <form runat="server">
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
                         <li><a href="UserRequests.aspx"><i id="bell" class="glyphicon glyphicon-bell"></i></a>
                         </li>
                         <li class="dropdown">
@@ -92,11 +83,11 @@
                     <!-- title -->
 
                     <div class="row text-center">
-                        <h3>Newsletter</h3>
+                        <h3>Profile</h3>
                         <div class="col-12 col-xs-12">
-                            <button id="reset_newsletter" style="width: 120px" class="btn btn-primary">Reset</button>
+                            <button id="discard_profile_changes" style="width: 120px" class="btn btn-primary">Discard</button>
                             &nbsp;
-                            <button id="send_newsletter" style="width: 120px" class="btn btn-primary">Send&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt"></span></button>
+                            <button id="update_profile" style="width: 120px" class="btn btn-primary">Update</button>
 
                         </div>
                     </div>
@@ -113,12 +104,20 @@
                                             <span class="message"></span>
                                         </div>
                                         <div class="form-group">
-                                            <label class="label">Title</label>
-                                            <input type="text" id="input_newsletter_title" class="form-control" placeholder="Write something flashy" />
+                                            <label class="label">Username</label>
+                                            <input type="text" id="input_admin_username" class="form-control"/>
                                         </div>
                                         <div class="form-group">
-                                            <label class="label">Body</label>
-                                            <textarea id="txt_newsletter_body" rows="15" cols="50" class="form-control" placeholder="Please don't include greetings"></textarea>
+                                            <label class="label">Email</label>
+                                            <input type="text" id="input_admin_email" class="form-control"/>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="label">New password</label>
+                                            <input type="password" id="input_new_admin_password" class="form-control" placeholder="Minimum of 6 characters"/>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="label">Repeat password</label>
+                                            <input type="password" id="input_new_admin_password_confirmation" class="form-control" placeholder="Repeat new password" />
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +152,6 @@
     <script src="/resources/js/general.js"></script>
 
     <!-- Data management script -->
-    <script src="/resources/js/newsletter.js"></script>
+    <script src="/resources/js/profile.js"></script>
 </body>
-
 </html>

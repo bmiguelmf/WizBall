@@ -45,12 +45,6 @@ function clearForm() {
     error.find('.message').text("");
 }
 
-//uses regex to check if the given email is a valid email.
-function isEmail(email) {
-    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email);
-}
-
 //loads the choosen image to live preview without sending it to the server.
 function loadImage(event) {
     user_photo.attr('src', event.target.result);
@@ -145,7 +139,7 @@ function GetUsers() {
                         title: "Info!",
                         text: "There are no user to display.",
                         icon: "info",
-                        timer: 5000
+                        timer: 3000
                     });
                     tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
                 }
@@ -155,7 +149,7 @@ function GetUsers() {
                     title: "Info!",
                     text: "There are no user to display.",
                     icon: "info",
-                    timer: 5000
+                    timer: 3000
                 });
                 tbl_users.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No users to display! <td></td><td></td><td></td></td></tr>");
             }
@@ -165,7 +159,7 @@ function GetUsers() {
                 title: "Error!",
                 text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
                 icon: "warning",
-                timer: 5000
+                timer: 3000
             });
         }
     });
@@ -185,7 +179,7 @@ function GetClickedUserToForm(id) {
                     title: "Oops!",
                     text: "This user no longer exists...",
                     icon: "info",
-                    timer: 5000
+                    timer: 3000
                 }).then((value) => {
                     location.reload(true);
                 });
@@ -195,7 +189,7 @@ function GetClickedUserToForm(id) {
                     title: "Oops!",
                     text: "Sorry, we are currently unable to fulfill your request!",
                     icon: "info",
-                    timer: 5000
+                    timer: 3000
                 }).then((value) => {
                     location.reload(true);
                 });
@@ -224,7 +218,7 @@ function GetClickedUserToForm(id) {
                 title: "Error!",
                 text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
                 icon: "warning",
-                timer: 5000
+                timer: 3000
             });
         }
     });
@@ -396,7 +390,7 @@ function validateAndSubmit() {
                                 title: "Success!",
                                 text: "User successfully updated!",
                                 icon: "success",
-                                timer: 5000
+                                timer: 3000
                             }).then((value) => {
                                 window.location.reload();
                                 //GetUsers();
@@ -407,7 +401,7 @@ function validateAndSubmit() {
                                 title: "Error!",
                                 text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
                                 icon: "warning",
-                                timer: 5000
+                                timer: 3000
                             });
                         }
                     });

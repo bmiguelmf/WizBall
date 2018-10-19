@@ -60,22 +60,25 @@
                     <!-- Aqui vai ser feita toda a gestão de newletter -->
                     <li><a href="Newsletter.aspx">NEWSLETTER</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
-                    <li><a href="UserRequests.aspx"><i id="bell" class="glyphicon glyphicon-bell"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">
-                            <label id="username"></label>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
-                            <li><a runat="server" id="logout" href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <form runat="server">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
+                        <li><a href="UserRequests.aspx"><i id="bell" class="glyphicon glyphicon-bell"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                aria-expanded="false">
+                                <label id="username"></label>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="drop-a" href="Profile.aspx">Profile</a></li>
+                                <li>
+                                    <asp:Button ID="Btn_logout" OnClick="Btn_logout_Click" runat="server" CssClass="drop-a" Text="Logout" /></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </form>
             </div>
             <!--/.nav-collapse -->
         </div>

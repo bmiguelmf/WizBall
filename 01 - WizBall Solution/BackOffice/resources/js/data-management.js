@@ -34,7 +34,7 @@ function fillContentTableHead(entity) {
             title: "Error!",
             text: "Could not load content table header.",
             icon: "warning",
-            timer: 5000
+            timer: 3000
         }).then((value) => {
             location.reload(true);
         });
@@ -81,7 +81,7 @@ function fillDataTableBody(entity, values) {
             title: "Error!",
             text: "Could not load content table body.",
             icon: "warning",
-            timer: 5000
+            timer: 3000
         }).then((value) => {
             location.reload(true);
         });
@@ -142,7 +142,6 @@ function MatchesSync() {
         success: function (data) {
             is_sync = false;
             if (data.d) {
-                console.log("concluí");
                 is_sync = true;
             }
             else {
@@ -227,10 +226,10 @@ function alertAndSyncEntity(entity) {
             entity.toLowerCase().replace(/\b[a-z]/g).toUpperCase();
 
             swal({
-                title: "Synchronizing " + entity.toLowerCase() + ".",
+                title: "Synchronizing " + entity.toLowerCase(),
                 text: "Please wait a few seconds...",
                 icon: "info",
-                timer: 2000, //10000
+                timer: 7000,
                 buttons: false,
                 closeOnEsc: false,
                 closeOnClickOutside: false
@@ -240,18 +239,17 @@ function alertAndSyncEntity(entity) {
                         title: "Success!",
                         text: "Data synchronized successfully.",
                         icon: "success",
-                        timer: 5000
+                        timer: 3000
                     }).then((value) => {
                         switch (entity.toLowerCase()) {
                             case "teams":
                                 GetTeams();
                                 break;
                             case "matches":
-                                GetMatches();
-                                console.log("get matches!");
+                                GetNextMatches();
                                 break;
                             default:
-                                GetMatches();
+                                GetNextMatches();
                         }
                     });
                 } else {
@@ -259,7 +257,7 @@ function alertAndSyncEntity(entity) {
                         title: "Info!",
                         text: "Could not sync " + entity.toLowerCase() + "...",
                         icon: "info",
-                        timer: 5000
+                        timer: 3000
                     });
                 }
             });
@@ -327,7 +325,7 @@ function GetTeams() {
                 title: "Error!",
                 text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
                 icon: "warning",
-                timer: 5000
+                timer: 3000
             });
         }
     });
@@ -360,7 +358,7 @@ function GetNextMatches() {
                     title: "Info!",
                     text: "There are no matches for the next few days.",
                     icon: "info",
-                    timer: 5000
+                    timer: 3000
                 });
             } else {
                 //if GetNextMatchesByTierOneCompetitions returns zero and data base doenst have matches
@@ -392,16 +390,16 @@ function GetNextMatches() {
                                         title: "Success!",
                                         text: "Data synchronized successfully.",
                                         icon: "success",
-                                        timer: 5000
+                                        timer: 3000
                                     }).then((value) => {
-                                        GetMatches();
+                                        GetNextMatches();
                                     });
                                 } else {
                                     swal({
                                         title: "Info!",
                                         text: "Could not sync data...",
                                         icon: "info",
-                                        timer: 5000
+                                        timer: 3000
                                     });
                                     clearTable(data_table_body);
                                     data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> No " + entity.toLowerCase() + " to display! <td></td><td></td><td></td></td></tr>");
@@ -423,18 +421,18 @@ function GetNextMatches() {
                 title: "Error!",
                 text: " " + (error.message === undefined ? "Sorry, we are currently unable to fulfill your request!" : error.message) + " ",
                 icon: "warning",
-                timer: 5000
+                timer: 3000
             });
         }
     });
 }
 
-//gets
-function GetPastMatchesAndTips() {
+//gets all past matches from the last season.
+function GetPastMatches() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/GetPastMatchesWithTips",
+        url: "../WebService.asmx/GetPastMatches",
         data: "",
         dataType: "json",
         success: function (data) {
@@ -466,6 +464,7 @@ function GetTipsToArray() {
             $.each(data.d, function (index, value) {
                 tips_by_match[value.Match.Id] = value;
             });
+            GetNextMatches();
         },
         error: function () {
 
@@ -473,11 +472,47 @@ function GetTipsToArray() {
     });
 }
 
-//CALLS
-GetTipsToArray();
-GetAllAreasToArr();
-GetNextMatches();
+//generates tips for next matches.
+function generateNextMatchesTips() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/SetNextMatchesTipsAndResults",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            GetTipsToArray();
+        },
+        error: function () {
+            swal("Error", "Something unexpected happened while trying to generate tips", "warning");
+        }
+    });
 
+}
+
+//generates tips for past matches.
+function generatePastMatchesTips() {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/SetHistoryMatchesTips",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+        },
+        error: function () {
+            swal("Error", "Something unexpected happened while trying to generate tips", "warning");
+        }
+    });
+
+}
+
+
+
+//CALLS
+GetAllAreasToArr();
+generateNextMatchesTips();
+generatePastMatchesTips();
 
 //EVENTS
 $('#full_sync').click(function () {
@@ -501,7 +536,7 @@ $('#show_teams').click(function () {
 });
 
 $('#show_tips').click(function () {
-    GetPastMatchesAndTips();
+    GetPastMatches();
 });
 
 

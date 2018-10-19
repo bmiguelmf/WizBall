@@ -26,14 +26,12 @@ namespace BackOffice
         [WebMethod]
         public List<User> GetAllUsers()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetAllUsers();
+            return new BLL(connString, apiToken).GetAllUsers();
         }
         [WebMethod]
         public User GetUserById(string Id)
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetUserById(Id);
+            return new BLL(connString, apiToken).GetUserById(Id);
         }
         [WebMethod]
         public bool InsertUser(User User)
@@ -68,52 +66,39 @@ namespace BackOffice
         [WebMethod]
         public User UserLogin(string Username, string Password)
         {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.UserLogin(Username, Password);
+            return new BLL(connString, apiToken).UserLogin(Username, Password);
         }
         [WebMethod]
         public bool RecoverUserPassword(string Email)
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.RecoverUserPassword(Email);
+            return new BLL(connString, apiToken).RecoverUserPassword(Email);
         }
         [WebMethod]
         public bool UserMailExists(string Email)
         {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.UserMailExists(Email);
+            return new BLL(connString, apiToken).UserMailExists(Email);
         }
         [WebMethod]
         public bool UsernameExists(string Username)
         {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.UsernameExists(Username);
+            return new BLL(connString, apiToken).UsernameExists(Username);
         }
         [WebMethod]
         public List<User> GetUsersByState(string UserStateId)
         {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.GetUsersByState(UserStateId);
+            return new BLL(connString, apiToken).GetUsersByState(UserStateId);
         }
 
         // USER_STATE METHODS.
         [WebMethod]
         public List<UserState> GetAllUserStates()
         {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.GetAllUserStates();
+            return new BLL(connString, apiToken).GetAllUserStates();
         }
         [WebMethod]
         public UserState GetUserStateById(string Id)
         {
-            BLL bll = new BLL(connString, apiToken);
-
-            return bll.GetUserStateById(Id);
+            return new BLL(connString, apiToken).GetUserStateById(Id);
         }
 
         // USER_HISTORY MOTHODS.
@@ -171,14 +156,12 @@ namespace BackOffice
         [WebMethod]
         public List<Admin> GetAllAdmins()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetAllAdmins();
+            return new BLL(connString, apiToken).GetAllAdmins();
         }
         [WebMethod]
         public Admin GetAdminById(string Id)
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetAdminById(Id);
+            return new BLL(connString, apiToken).GetAdminById(Id);
         }
         [WebMethod]
         public bool InsertAdmin(Admin Admin)
@@ -223,20 +206,17 @@ namespace BackOffice
         [WebMethod]
         public bool FullDatabaseSync()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.FullDatabaseSync();
+            return new BLL(connString, apiToken).FullDatabaseSync();
         }
         [WebMethod]
         public bool SyncMatchesTierOne()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.SyncMatchesTierOne();
+            return new BLL(connString, apiToken).SyncMatchesTierOne();
         }
         [WebMethod]
         public bool SyncTeams()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.SyncTeams();
+            return new BLL(connString, apiToken).SyncTeams();
         }
 
 
@@ -244,8 +224,7 @@ namespace BackOffice
         [WebMethod]
         public bool SendNewsletter(string title, string body)
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.SendNewsletter(title, body);
+            return new BLL(connString, apiToken).SendNewsletter(title, body);
         }
 
 
@@ -253,8 +232,7 @@ namespace BackOffice
         [WebMethod]
         public List<Team> GetAllTeams()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetAllTeams();
+            return new BLL(connString, apiToken).GetAllTeams();
         }
 
 
@@ -263,8 +241,7 @@ namespace BackOffice
         [WebMethod]
         public List<Area> GetAllAreas()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetAllAreas();
+            return new BLL(connString, apiToken).GetAllAreas();
         }
 
 
@@ -273,26 +250,22 @@ namespace BackOffice
         [WebMethod]
         public List<Match> GetNextMatchesByTierOneCompetitions()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetNextMatchesByTierOneCompetitions();
+            return new BLL(connString, apiToken).GetNextMatchesByTierOneCompetitions();
         }
         [WebMethod]
         public List<Match> GetNextMatchesByTierOneCompetitionsWithLocalDate()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetNextMatchesByTierOneCompetitionsWithLocalDate();
+           return new BLL(connString, apiToken).GetNextMatchesByTierOneCompetitionsWithLocalDate();
         }
         [WebMethod]
         public bool MatchesHasRows()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.MatchesHasRows();
+            return new BLL(connString, apiToken).MatchesHasRows();
         }
         [WebMethod]
-        public List<Match> GetPastMatchesWithTips()
+        public List<Match> GetPastMatches()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetPastMatchesWithTips();
+            return new BLL(connString, apiToken).GetPastMatches();
         }
 
 
@@ -301,26 +274,27 @@ namespace BackOffice
         [WebMethod]
         public List<Tip> GetAllTips()
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetAllTips();
+            return new BLL(connString, apiToken).GetAllTips();
         }
         [WebMethod]
         public void SetNextMatchesTipsAndResults()
         {
-            BLL bll = new BLL(connString, apiToken);
-            bll.RunNextMatchesTipsWithoutSyncMatches();
+            new BLL(connString, apiToken).RunNextMatchesTipsWithoutSyncMatches();
+        }
+        [WebMethod]
+        public void SetHistoryMatchesTips()
+        {
+            new BLL(connString, apiToken).RunHistoryMatchesTipsWithoutSyncMatches();
         }
         [WebMethod]
         public Tip GetTipByMatchId(string Id)
         {
-            BLL bll = new BLL(connString, apiToken);
-            return bll.GetTipByMatchId(Id);
+            return new BLL(connString, apiToken).GetTipByMatchId(Id);
         }
 
         public void RunHistoryMatchesTipsWithoutSyncMatches()
         {
-            BLL bll = new BLL(connString, apiToken);
-            bll.RunHistoryMatchesTipsWithoutSyncMatches();
+            new BLL(connString, apiToken).RunHistoryMatchesTipsWithoutSyncMatches();
         }
     }
 }

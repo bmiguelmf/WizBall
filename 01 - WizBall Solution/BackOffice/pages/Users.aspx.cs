@@ -16,9 +16,16 @@ namespace BackOffice.pages
                 Response.Redirect("Login.aspx");
             }
         }
-        protected void logout_Click(object sender, EventArgs e)
+
+        public void Logout()
         {
             Session.Clear();
+        }
+
+        protected void Btn_logout_Click(object sender, EventArgs e)
+        {
+            Logout();
+            Response.Redirect("Login.aspx");
         }
     }
 }

@@ -19,6 +19,9 @@ var error = $('#error_message');
 //save the value if there are matches in the database or not.
 var has_matches = undefined;
 
+//save the value if there are tips in the database or not.
+//var has_tips = false;
+
 //GLOBAL ARRAYS
 //contains checked users ids to do an action (just grant/revoke at the moment).
 var checked_user_ids = [];
@@ -68,6 +71,12 @@ function paginateTable(table, limit) {
             }
         }
     });
+}
+
+//uses regex to check if the given email is a valid email.
+function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
 }
 
 //checks if there are matches data in the database and saves that value in "has_matches" so that the code can
@@ -131,30 +140,10 @@ function GetPendingUsersCount() {
     });
 }
 
-//generates tips for the next matches.
-function generateNextMatchesTips() {
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/SetNextMatchesTipsAndResults",
-        data: "",
-        dataType: "json",
-        success: function (data) {
-
-        },
-        error: function () {
-            swal("Error", "Something unexpected happened while trying to generate tips", "warning");
-        }
-    });
-
-}
-
 
 
 //GLOBAL CALLS
 hasMatches();
-generateNextMatchesTips();
 GetPendingUsersCount();
 GetSessionUsernameToNavbar();
 

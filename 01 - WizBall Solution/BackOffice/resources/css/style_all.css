@@ -605,8 +605,18 @@ p.select-actions button.btn-primary {
     width: 100% !important;
 }
 
-
-
+.drop-a {
+    padding: 3px 20px;
+    background: white;
+    border: .153846rem solid white;
+    width: 100%;
+    text-align: left;
+}
+    .drop-a:focus, .drop-a:hover {
+        color: #262626;
+        text-decoration: none;
+        background-color: #f5f5f5;
+    }
 
 /* Effect 1: Slide in on top */
 .st-effect-1.st-menu {
