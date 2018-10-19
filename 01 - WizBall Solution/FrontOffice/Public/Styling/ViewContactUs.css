@@ -166,3 +166,7 @@ hr {
     display: block;
     color: #666;
 }
+
+.ast {
+    color: orange;
+}
