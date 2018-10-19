@@ -71,6 +71,8 @@ namespace FrontOffice.Pages
                 bll.UpdateUser(user);
 
                 imgUserPic.ImageUrl = Globals.USERS + user.Picture;
+
+                Page.ClientScript.RegisterStartupScript(GetType(), "recoverPasswordConfirmation", "recoverPasswordConfirmation()", true);
             }
         }
 

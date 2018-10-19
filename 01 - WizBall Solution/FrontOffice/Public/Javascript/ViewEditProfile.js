@@ -352,3 +352,26 @@ function passwordValitation() {
     return result;
 
 }
+
+
+// MODAL CHANGES CONFIRMATION *******************************************************************
+function recoverPasswordConfirmation() {
+
+    // Shows modal.
+    var modal = document.getElementById('outterModalx');
+    modal.style.display = "block";
+
+    // Get elements.
+    var counter = document.getElementById("modal-counterx");
+    var currentValue = parseInt(counter.innerText);
+
+    window.setTimeout(closeViewRecoverPassword, currentValue * 1000);
+
+    window.setInterval(function () {
+        counter.innerText = currentValue === 0 ? 0 : --currentValue;
+    }, 1000);
+}
+function closeViewRecoverPassword() {
+    window.location.replace("/Pages/ViewHome.aspx");
+}
+document.getElementById("modal-closex").addEventListener("click", closeViewRecoverPassword);

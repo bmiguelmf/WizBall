@@ -67,11 +67,13 @@ hr {
     margin: 0;
     font-size: 12px;
     color: yellowgreen;
+    font-weight:100;
 }
 
 .form-body .form-inputs {
     width: 100%;
     font-size: 12px;
+    font-weight: 100;
 }
 
 .status {
@@ -79,13 +81,17 @@ hr {
     font-size: 12px;
 }
 
-.form-submit {
-    margin-top: 30px;
-    padding: 3px 0;
-    width: 200px;
-    font-weight: bolder;
+.form-attachment {
+    margin: 30px 0 auto 0;
     align-self: flex-end;
+}
+.form-submit {
+   
+    padding: 3px 0;
+    width: 200px; 
     font-size: 12px;
+    font-weight: 100;
+
 }
 
 

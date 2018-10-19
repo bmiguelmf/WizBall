@@ -139,6 +139,29 @@
 
 
 
+         <div id="outterModalx" class="outter-modalx" runat="server">
+
+            <div id="inner-modalx">
+
+                <div id="modal-headerx">
+                    <a href="/Pages/ViewHome.aspx"><img id="modal-logox" src="/Public/Imgs/Wizball/logo_dark.png" /></a>
+                    <i   id="modal-closex" class="fas fa-times-circle fa-lg"></i>
+                </div>
+              
+                <div id="modal-messagex">
+                    <p id="modal-primary-messagex">Profile successfully updated</p>  
+                </div>
+               
+                <div id="modal-footerx">
+                    <h6 id="modal-counter-messagex">back to home... <span id="modal-counterx">20</span></h6>
+                </div>
+                
+            </div>
+
+        </div>
+
+
+
         <!-- Javascript -->
         <script src="/Public/Javascript/ViewEditProfile.js"></script>
 

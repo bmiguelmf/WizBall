@@ -208,6 +208,85 @@ hr {
 /* MODAL UPDATE CONFIRMATION */
 
 
+
+/* changes modal ----------------------------------*/
+#outterModalx {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+#inner-modalx {
+    background-color: #fff;
+    margin: auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 4px;
+}
+
+
+#modal-headerx {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding-bottom: 6px;
+}
+
+#modal-logox {
+    height: 30px;
+}
+
+#modal-closex {
+    color: yellowgreen;
+}
+#modal-closex:hover,
+#modal-closex:focus {
+    color: orange;
+    cursor: pointer;
+}
+
+
+#modal-messagex {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 50px;
+}
+
+#modal-primary-messagex {
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+    padding: 10px 0 0 0;
+}
+
+#modal-prime-messagex {
+    text-align: center;
+    font-size: 26px;
+    margin: 0;
+    padding: 0;
+}
+
+#modal-footerx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    margin-top: 6px;
+}
+
+#modal-counter-messagex {
+    margin: 0px;
+}
+/*----------------------------------*/
+
 @media only screen and (min-width:960px) {
 
     .form-header img {
