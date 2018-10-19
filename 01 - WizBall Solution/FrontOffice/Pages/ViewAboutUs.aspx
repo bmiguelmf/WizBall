@@ -35,11 +35,10 @@
             <div>
 
                 <ul>
-                    <li><span class="blT">Ricardo Baptista:</span> Our Client;</li>
-                    <li></li>
-                    <li><span class="blT">Bruno Ferreira:</span> Project Manager, also responsible for the Business Logic and DAL along with help on the FrontOffice design;</li>
-                    <li><span class="blT">João Santos:</span> Responsible for the FrontOffice;</li>
-                    <li><span class="blT">Luís Passeira:</span> Responsible for the BackOffice.</li>
+                    <li><div><span class="blT">Ricardo Baptista:</span></div> <div> Our Client;</div></li>
+                    <li><div><span class="blT">Bruno Ferreira:</span></div> <div> Project Manager, also responsible for the Business Logic along with help on the FrontOffice design;</div></li>
+                    <li><div><span class="blT">João Santos:</span></div> <div> Responsible for the FrontOffice;</div></li>
+                    <li><div><span class="blT">Luís Passeira:</span></div> <div> Responsible for the BackOffice.</div></li>
                 </ul>
 
             </div>
