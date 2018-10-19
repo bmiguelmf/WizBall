@@ -118,7 +118,7 @@ hr {
     }
 
     .form-body {
-        margin: 70px;
+        margin: 60px;
         padding: 40px;
     }
 
@@ -165,4 +165,8 @@ hr {
     padding: 5px 50px;
     display: block;
     color: #666;
+}
+
+.ast {
+    color: orange;
 }

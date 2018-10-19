@@ -90,8 +90,8 @@ hr {
     }
     .form-body {
         padding: 40px;
-        max-width:960px;
-        margin: 115px auto;
+        max-width: 960px;
+        margin: 90px auto;
        
     }
 
@@ -114,3 +114,33 @@ hr {
     }
 }
 
+.blT {
+    justify-content: flex-start;
+    color: dodgerblue;
+    font-size: 14px;
+    text-align: left;
+}
+
+.people {
+    width: 100%;
+}
+
+.people ul {
+    font-size: 10px;
+    list-style-type: none;
+    margin-bottom:0;
+}
+
+.AUTxt{
+    text-align: justify;
+}
+
+.people hr {
+    margin-top:15px;
+    margin-bottom: 10px;
+}
+
+.people ul li div {
+    display:inline-block;
+    min-width: 120px;
+}

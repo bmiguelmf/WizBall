@@ -112,6 +112,15 @@ namespace FrontOffice.Pages {
         protected global::System.Web.UI.WebControls.TextBox txtMessage;
         
         /// <summary>
+        /// ReqLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ReqLabel;
+        
+        /// <summary>
         /// Send control.
         /// </summary>
         /// <remarks>
