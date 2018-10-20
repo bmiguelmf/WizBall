@@ -80,9 +80,11 @@ function authenticate() {
         success: function (data) {
             if (data.d !== null) {
                 $.session.set("AdminUsername", data.d['Username']);
-                $.session.set("AdminId", data.d['Id']);
-                $.session.set("AdminPassword", data.d['Password']);
                 $.session.set("AdminEmail", data.d['Email']);
+                $.session.set("AdminPassword", data.d['Password']);
+                $.session.set("AdminId", data.d['Id']);
+                console.log($.session.get("AdminPassword"));
+                console.log($.session.get("AdminEmail"));
                 is_logged = true;
                 swal({
                     title: "Success!",

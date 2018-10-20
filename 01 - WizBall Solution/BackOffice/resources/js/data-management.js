@@ -188,6 +188,7 @@ function FullDatabaseSync() {
         data: "",
         dataType: "json",
         success: function (data) {
+            console.timeEnd("sync");
             is_sync = false;
             if (data.d) {
                 is_sync = true;
@@ -212,6 +213,7 @@ function alertAndSyncEntity(entity) {
         buttons: true
     }).then((willDelete) => {
         if (willDelete) {
+            var time = 15000;
             switch (entity.toLowerCase()) {
                 case "teams":
                     is_sync = false;
@@ -221,6 +223,12 @@ function alertAndSyncEntity(entity) {
                     is_sync = false;
                     MatchesSync();
                     break;
+                case "data":
+                    is_sync = false;
+                    console.time("sync");
+                    FullDatabaseSync();
+                    time = 140000;
+                    break;
             }
 
             entity.toLowerCase().replace(/\b[a-z]/g).toUpperCase();
@@ -229,7 +237,7 @@ function alertAndSyncEntity(entity) {
                 title: "Synchronizing " + entity.toLowerCase(),
                 text: "Please wait a few seconds...",
                 icon: "info",
-                timer: 15000,
+                timer: time,
                 buttons: false,
                 closeOnEsc: false,
                 closeOnClickOutside: false
@@ -521,7 +529,7 @@ generatePastMatchesTips();
 
 //EVENTS
 $('#full_sync').click(function () {
-    alertAndSyncEntity("data", true);
+    alertAndSyncEntity("data");
 });
 
 $('#sync_matches').click(function () {

@@ -43,9 +43,9 @@ function cleanPasswordFields() {
 
 //gets the session admin to form.
 function GetAdminToForm() {
-    admin_username.val($.session.get('AdminUsername'));
-    console.log($.session.get('AdminEmail'));
-    admin_email.val($.session.get('AdminEmail'));
+    admin_username.val($.session.get("AdminUsername"));
+    console.log($.session.get("AdminEmail"));
+    admin_email.val($.session.get("AdminEmail"));
     cleanPasswordFields();
     $(".se-pre-con").fadeOut();
 }
