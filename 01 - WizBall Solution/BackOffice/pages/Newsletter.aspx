@@ -24,7 +24,7 @@
     <link href="/resources/css/style_all.css" rel="stylesheet" />
 </head>
 <body>
-
+    <div hidden="hidden" class="se-pre-con"></div>
     <!-- top navigation bar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">

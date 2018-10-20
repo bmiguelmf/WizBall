@@ -60,6 +60,47 @@ function validateNewsletter() {
     return validated;
 }
 
+//send newsletter and alert if it was sent.
+function sendNewsletter(title, body) {
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "../WebService.asmx/SendNewsletter",
+        data: "{title: " + JSON.stringify(title) + ", body: " + JSON.stringify(body) + "}",
+        dataType: "json",
+        success: function (data) {
+            if (data.d) {
+                $(".se-pre-con").fadeOut();
+                swal({
+                    title: "Success!",
+                    text: "Newsletter successfully sent!",
+                    icon: "success",
+                    timer: 3000
+                }).then((value) => {
+                    resetFields();
+                });
+            } else {
+                $(".se-pre-con").fadeOut();
+                swal({
+                    title: "Error!",
+                    text: "Sorry, we are currently unable to fulfill your request!",
+                    icon: "warning",
+                    timer: 3000
+                });
+            }
+        },
+        error: function () {
+            $(".se-pre-con").fadeOut();
+            swal({
+                title: "Error!",
+                text: "Sorry, we are currently unable to fulfill your request!",
+                icon: "warning",
+                timer: 3000
+            });
+        }
+    });
+}
+
 //checks if the newslatter is valid.
 function confirmAndSubmit() {
     if (!validateNewsletter()) {
@@ -73,6 +114,7 @@ function confirmAndSubmit() {
         closeModal: false
     }).then((willDelete) => {
         if (willDelete) {
+            $(".se-pre-con").fadeIn();
             sendNewsletter(newsletter_title.val(), newsletter_body.val());
         } else {
             swal({
@@ -85,43 +127,6 @@ function confirmAndSubmit() {
     });
 }
 
-//send newsletter and alert if it was sent.
-function sendNewsletter(title, body) {
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "../WebService.asmx/SendNewsletter",
-        data: "{title: " + JSON.stringify(title) + ", body: " + JSON.stringify(body) + "}",
-        dataType: "json",
-        success: function (data) {
-            if (data.d) {
-                swal({
-                    title: "Success!",
-                    text: "Newsletter successfully sent!",
-                    icon: "success",
-                    timer: 3000
-                }).then((value) => {
-                    resetFields();
-                });
-            } else {
-                swal({
-                    title: "Error!",
-                    text: "Sorry, we are currently unable to fulfill your request!",
-                    icon: "warning",
-                    timer: 3000
-                });
-            }
-        },
-        error: function () {
-            swal({
-                title: "Error!",
-                text: "Sorry, we are currently unable to fulfill your request!",
-                icon: "warning",
-                timer: 3000
-            });
-        }
-    });
-}
 
 //CALLS
 

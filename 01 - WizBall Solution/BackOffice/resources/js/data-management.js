@@ -229,7 +229,7 @@ function alertAndSyncEntity(entity) {
                 title: "Synchronizing " + entity.toLowerCase(),
                 text: "Please wait a few seconds...",
                 icon: "info",
-                timer: 7000,
+                timer: 15000,
                 buttons: false,
                 closeOnEsc: false,
                 closeOnClickOutside: false
@@ -290,8 +290,10 @@ function GetTeams() {
             if (data.d.length > 0) {
                 fillContentTableHead("teams");
                 fillDataTableBody("teams", data.d);
+                $(".se-pre-con").fadeOut();
             }
             else {
+                $(".se-pre-con").fadeOut();
                 swal({
                     title: "There are no teams at the moment",
                     text: "Please run full sync.",
@@ -349,10 +351,9 @@ function GetNextMatches() {
             if (data.d.length > 0) {
                 fillContentTableHead("next_matches");
                 fillDataTableBody("next_matches", data.d);
-            }
-
-            //check if database has at least one matche 
-            else if (has_matches) {
+                $(".se-pre-con").fadeOut("slow");
+            } else if (has_matches) {
+                $(".se-pre-con").fadeOut("slow");
                 data_table_body.append("<tr style=\"width:100%;\"><td></td><td></td><td></td><td class=\"text-center no-users\"> There are no matches for the next few days. <td></td><td></td><td></td></td></tr>");
                 swal({
                     title: "Info!",
@@ -361,6 +362,7 @@ function GetNextMatches() {
                     timer: 3000
                 });
             } else {
+                $(".se-pre-con").fadeOut();
                 //if GetNextMatchesByTierOneCompetitions returns zero and data base doenst have matches
                 swal({
                     title: "There are no matches at the moment",
@@ -444,6 +446,7 @@ function GetPastMatches() {
                 addMatchesToPastMatchesArray(data.d);
                 fillContentTableHead("played_matches");
                 fillDataTableBody("played_matches", past_matches);
+                $(".se-pre-con").fadeOut();
             }
         },
         error: function () {
@@ -514,6 +517,8 @@ GetAllAreasToArr();
 generateNextMatchesTips();
 generatePastMatchesTips();
 
+
+
 //EVENTS
 $('#full_sync').click(function () {
     alertAndSyncEntity("data", true);
@@ -528,14 +533,17 @@ $('#sync_teams').click(function () {
 });
 
 $('#show_matches').click(function () {
+    $(".se-pre-con").fadeIn();
     GetNextMatches();
 });
 
 $('#show_teams').click(function () {
+    $(".se-pre-con").fadeIn();
     GetTeams();
 });
 
 $('#show_tips').click(function () {
+    $(".se-pre-con").fadeIn();
     GetPastMatches();
 });
 

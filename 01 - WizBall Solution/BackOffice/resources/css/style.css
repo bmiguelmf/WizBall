@@ -7291,27 +7291,7 @@ body.landing-page {
     font-family: 'Open Sans', helvetica, arial, sans-serif;
     background-color: #fff;
 }
-
-.landing-page {
-    /* CUSTOMIZE THE NAVBAR
-  -------------------------------------------------- */
-    /* Flip around the padding for proper display in narrow viewports */
-    /* BACKGROUNDS SLIDER
-  -------------------------------------------------- */
-    /* CUSTOMIZE THE CAROUSEL
-  -------------------------------------------------- */
-    /* Carousel base class */
-    /* Since positioning the image, we need to help out the caption */
-    /* Declare heights because of positioning of img element */
-    /* Sections
-  ------------------------- */
-    /* Buttons - only primary custom button
-  ------------------------- */
-    /* RESPONSIVE CSS
-  -------------------------------------------------- */
-}
-
-    .landing-page span.navy {
+.landing-page span.navy {
         color: #f1b424;
     }
 

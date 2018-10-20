@@ -44,11 +44,13 @@ function cleanPasswordFields() {
 //gets the session admin to form.
 function GetAdminToForm() {
     admin_username.val($.session.get('AdminUsername'));
+    console.log($.session.get('AdminEmail'));
     admin_email.val($.session.get('AdminEmail'));
     cleanPasswordFields();
+    $(".se-pre-con").fadeOut();
 }
 
-//validates the newsletter.
+//validates the form.
 function validateForm() {
     var validated = true;
     $(".has-error").removeClass("has-error");
@@ -102,7 +104,7 @@ function validateForm() {
     }
 
     if (admin_email.val() === "") {
-        newsletter_title.closest(".form-group").addClass("has-error");
+        admin_email.closest(".form-group").addClass("has-error");
         error.fadeIn();
         error.find('.message').text("Please fill in the email field.");
         validated = false;
@@ -114,20 +116,20 @@ function validateForm() {
         validated = false;
     }
     if (admin_email.val().length > 100) {
-        newsletter_title.closest(".form-group").addClass("has-error");
+        admin_email.closest(".form-group").addClass("has-error");
         error.fadeIn();
         error.find('.message').text("The email must be less than 100 characters.");
         validated = false;
     }
 
     if (admin_username.val() === "") {
-        newsletter_title.closest(".form-group").addClass("has-error");
+        admin_email.closest(".form-group").addClass("has-error");
         error.fadeIn();
         error.find('.message').text("Please fill in the username field.");
         validated = false;
     }
     if (admin_username.val().length > 60) {
-        newsletter_title.closest(".form-group").addClass("has-error");
+        admin_email.closest(".form-group").addClass("has-error");
         error.fadeIn();
         error.find('.message').text("The username must be less than 60 characters.");
         validated = false;
@@ -175,6 +177,7 @@ function confirmAndSubmit() {
         })
             .then((value) => {
                 if (value === $.session.get('AdminPassword')) {
+                    $(".se-pre-con").fadeIn();
                     updateAdmin(Admin);
                 } else {
                     error.fadeIn();
@@ -208,6 +211,7 @@ function updateAdmin(Admin) {
         dataType: "json",
         success: function (data) {
             if (data.d) {
+                $(".se-pre-con").fadeOut();
                 swal({
                     title: "Success!",
                     text: "Successfully updated!",
@@ -218,6 +222,7 @@ function updateAdmin(Admin) {
 
                 });
             } else {
+                $(".se-pre-con").fadeOut();
                 swal({
                     title: "Error!",
                     text: "Sorry, we are currently unable to fulfill your request!",
@@ -227,6 +232,7 @@ function updateAdmin(Admin) {
             }
         },
         error: function () {
+            $(".se-pre-con").fadeOut();
             swal({
                 title: "Error!",
                 text: "Sorry, we are currently unable to fulfill your request!",

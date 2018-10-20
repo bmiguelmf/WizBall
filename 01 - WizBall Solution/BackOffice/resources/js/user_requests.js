@@ -157,7 +157,9 @@ function GetPendingUsers() {
                 if (ran_if) {
                     paginateTable(tbl_users, 3);
                     assignActionBtnClickEvents();
+                    $(".se-pre-con").fadeOut();
                 } else {
+                    $(".se-pre-con").fadeOut();
                     swal({
                         title: "Info!",
                         text: "There are no user requests at the moment.",
@@ -169,6 +171,7 @@ function GetPendingUsers() {
                 }
             }
             else {
+                $(".se-pre-con").fadeOut();
                 swal({
                     title: "Info!",
                     text: "There are no user requests at the moment.",

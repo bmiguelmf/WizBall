@@ -134,7 +134,9 @@ function GetUsers() {
                 if (ran_if) {
                     paginateTableAndLoadSideBarScripts(tbl_users, 3);
                     assignBtnEditClickEvent();
+                    $(".se-pre-con").fadeOut();
                 } else {
+                    $(".se-pre-con").fadeOut();
                     swal({
                         title: "Info!",
                         text: "There are no user to display.",
@@ -145,6 +147,7 @@ function GetUsers() {
                 }
             }
             else {
+                $(".se-pre-con").fadeOut();
                 swal({
                     title: "Info!",
                     text: "There are no user to display.",

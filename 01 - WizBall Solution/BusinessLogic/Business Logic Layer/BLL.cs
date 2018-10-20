@@ -446,7 +446,7 @@ namespace BusinessLogic.BLL
                     newsletter.Body += "Wizball support team";
 
                     SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                    SmtpServer.Port = 587;
+                    SmtpServer.Port = 50;
                     SmtpServer.Credentials = new System.Net.NetworkCredential("wizballteam@gmail.com", "wizball849999support");
                     SmtpServer.EnableSsl = true;
 
@@ -455,7 +455,7 @@ namespace BusinessLogic.BLL
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

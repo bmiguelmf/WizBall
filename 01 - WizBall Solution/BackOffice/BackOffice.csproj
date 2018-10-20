@@ -79,6 +79,7 @@
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\css\pagination.css" />
     <Content Include="resources\css\plugins\toggle\bootstrap2-toggle.min.css" />
+    <Content Include="resources\imgs\Preloader_6.gif" />
     <Content Include="resources\imgs\teams\england\arsenal.ico" />
     <Content Include="resources\imgs\teams\england\aston_villa.ico" />
     <Content Include="resources\imgs\teams\england\birmingham_city.ico" />
@@ -324,8 +325,6 @@
     <Content Include="resources\js\login.js" />
     <Content Include="pages\Login.aspx" />
     <Content Include="pages\Users.aspx" />
-    <Content Include="pages\wizball_project\refood2\assiduidade.html" />
-    <Content Include="pages\wizball_project\refood2\beneficiarios.html" />
     <Content Include="resources\imgs\icon.ico" />
     <Content Include="resources\imgs\logo_with_name.png" />
     <Content Include="resources\imgs\panel-login.png" />
@@ -338,75 +337,7 @@
     <Content Include="resources\css\style.css" />
     <Content Include="resources\css\style_all.css" />
     <Content Include="resources\css\plugins\font-awesome.min.css" />
-    <Content Include="pages\wizball_project\refood2\fontes.html" />
-    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="pages\wizball_project\refood2\img\user.png" />
-    <Content Include="pages\wizball_project\refood2\index.html" />
-    <Content Include="pages\wizball_project\refood2\js\beneficiario.js" />
-    <Content Include="pages\wizball_project\refood2\js\bootstrap-select.js" />
-    <Content Include="pages\wizball_project\refood2\js\bootstrap-select.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\bootstrap.js" />
-    <Content Include="pages\wizball_project\refood2\js\bootstrap.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\fonte.js" />
-    <Content Include="pages\wizball_project\refood2\js\functions.js" />
-    <Content Include="pages\wizball_project\refood2\js\inspinia.js" />
-    <Content Include="pages\wizball_project\refood2\js\jquery-2.1.1.js" />
-    <Content Include="pages\wizball_project\refood2\js\jquery-ui-1.10.4.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\jquery-ui.custom.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\mustache.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\dataTables\dataTables.bootstrap.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\dataTables\dataTables.responsive.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\dataTables\dataTables.tableTools.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\dataTables\jquery.dataTables.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\curvedLines.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\excanvas.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.pie.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.resize.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.spline.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.symbol.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.time.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\flot\jquery.flot.tooltip.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\masonry.pkgd.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\metisMenu\jquery.metisMenu.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\rotas\taskCalendar.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\slimscroll\jquery.slimscroll.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\slimscroll\jquery.slimscroll.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\staps\jquery.steps.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\sweetalert\sweetalert.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\toastr\toastr.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\plugins\validate\jquery.validate.min.js" />
-    <Content Include="pages\wizball_project\refood2\js\refood.js" />
-    <Content Include="pages\wizball_project\refood2\js\voluntario.js" />
-    <Content Include="pages\wizball_project\refood2\lista-refood.html" />
-    <Content Include="pages\wizball_project\refood2\login.html" />
-    <Content Include="pages\wizball_project\refood2\nova-fonte.html" />
-    <Content Include="pages\wizball_project\refood2\nova-refood.html" />
-    <Content Include="pages\wizball_project\refood2\novo-beneficiario.html" />
-    <Content Include="pages\wizball_project\refood2\novo-voluntario.html" />
-    <Content Include="pages\wizball_project\refood2\perfil-voluntario.html" />
-    <Content Include="pages\wizball_project\refood2\produtos.html" />
-    <Content Include="pages\wizball_project\refood2\recuperar-password.html" />
-    <Content Include="pages\wizball_project\refood2\voluntarios.html" />
-    <Content Include="pages\wizball_project\template02\beneficiarios.html" />
-    <Content Include="pages\wizball_project\template02\css\bootstrap-select.min.css" />
-    <Content Include="pages\wizball_project\template02\css\bootstrap.min.css" />
-    <Content Include="pages\wizball_project\template02\css\style.css" />
-    <Content Include="pages\wizball_project\template02\fontes.html" />
-    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\imgs\user.png" />
-    <Content Include="pages\wizball_project\template02\img\refood-logo.png" />
-    <Content Include="pages\wizball_project\template02\img\refood.png" />
-    <Content Include="pages\wizball_project\template02\img\refood2.png" />
-    <Content Include="pages\wizball_project\template02\img\refoodlogo.png" />
-    <Content Include="pages\wizball_project\template02\js\bootstrap-select.min.js" />
-    <Content Include="pages\wizball_project\template02\js\bootstrap.min.js" />
-    <Content Include="pages\wizball_project\template02\js\classie.js" />
-    <Content Include="pages\wizball_project\template02\js\sidebarEffects.js" />
-    <Content Include="pages\wizball_project\template02\nucleos.html" />
-    <Content Include="pages\wizball_project\template02\produtos.html" />
-    <Content Include="pages\wizball_project\template02\users.html" />
-    <Content Include="pages\wizball_project\template02\voluntarios.html" />
     <Content Include="Web.config" />
     <Content Include="WebService.asmx" />
   </ItemGroup>
@@ -461,14 +392,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="pages\wizball_project\refood2\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="pages\wizball_project\template02\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.woff" />
@@ -480,9 +403,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="pages\wizball_project\template02\img\profile\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{e167f6af-ab58-46b0-a404-a2ad2d8cbd49}</Project>
