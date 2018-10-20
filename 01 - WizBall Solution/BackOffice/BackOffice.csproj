@@ -79,7 +79,10 @@
     <Content Include="resources\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="resources\css\pagination.css" />
     <Content Include="resources\css\plugins\toggle\bootstrap2-toggle.min.css" />
+    <Content Include="resources\imgs\loading.svg" />
     <Content Include="resources\imgs\Preloader_6.gif" />
+    <Content Include="resources\imgs\sync,wait.svg" />
+    <Content Include="resources\imgs\sync.svg" />
     <Content Include="resources\imgs\teams\england\arsenal.ico" />
     <Content Include="resources\imgs\teams\england\aston_villa.ico" />
     <Content Include="resources\imgs\teams\england\birmingham_city.ico" />
