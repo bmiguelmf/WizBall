@@ -18,7 +18,7 @@ exec userLogin 1, @begin, '10.0.0.1', 'agent IE', 'admin'
 --logout
 declare @end datetime
 set @end   = getdate()
-exec userLogout 2, @end
+exec userLogout 30, @end
 
 
 
