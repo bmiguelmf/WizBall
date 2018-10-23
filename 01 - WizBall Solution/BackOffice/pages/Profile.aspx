@@ -67,7 +67,6 @@
                     </ul>
                 </form>
             </div>
-            <!--/.nav-collapse -->
         </div>
     </nav>
     <!-- / top navigation bar -->
@@ -151,7 +150,7 @@
     <!-- General script -->
     <script src="/resources/js/general.js"></script>
 
-    <!-- Data management script -->
+    <!-- Profile script -->
     <script src="/resources/js/profile.js"></script>
 </body>
 </html>

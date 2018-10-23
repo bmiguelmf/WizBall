@@ -26,6 +26,8 @@ var is_code_changed = false;
 //OBJECTS
 var Unedited_user = {};
 
+
+
 //FUNCTIONS
 //assigns the click event to the buttons generated dynamically.
 function assignBtnEditClickEvent() {
@@ -424,8 +426,12 @@ function validateAndSubmit() {
 
 }
 
+
+
 //CALLS
 GetUsers();
+
+
 
 //EVENTS
 user_photo_input.change(function () {

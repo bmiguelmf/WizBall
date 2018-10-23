@@ -47,22 +47,13 @@
             </button>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <!-- Aqui vai ter as tabelas para alteração de dados e o sync -->
                     <li class="active"><a>DATA MANAGEMENT</a></li>
-
-                    <!-- Aqui vai ter uma tabela dos users e o admin vai poder fazer a gestão dos mesmos -->
                     <li><a href="Users.aspx">USERS</a></li>
-
-                    <!-- Aqui vai ter uma tabela dos users que se registaram recentemente e ainda não foram aceites -->
-                    <!-- e o admin vai poder garantir ou negar o acesso ao Website -->
                     <li><a href="UserRequests.aspx">USER REQUESTS</a></li>
-
-                    <!-- Aqui vai ser feita toda a gestão de newletter -->
                     <li><a href="Newsletter.aspx">NEWSLETTER</a></li>
                 </ul>
                 <form runat="server">
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Este sino estará a dourado (ou outra cor) se houver pedidos de acesso ao site -->
                         <li><a href="UserRequests.aspx"><i id="bell" class="glyphicon glyphicon-bell"></i></a>
                         </li>
                         <li class="dropdown">
@@ -80,7 +71,6 @@
                     </ul>
                 </form>
             </div>
-            <!--/.nav-collapse -->
         </div>
     </nav>
     <!-- / top navigation bar -->

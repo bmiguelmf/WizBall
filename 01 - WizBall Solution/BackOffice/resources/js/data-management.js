@@ -19,6 +19,8 @@ var MatchesIds = [];
 
 var tips_by_match = [];
 
+
+
 //FUNCTIONS
 //fills the table head according to the given entity.
 function fillContentTableHead(entity) {

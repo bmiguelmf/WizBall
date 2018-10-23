@@ -7,7 +7,6 @@ var btn_login = $('#login');
 var form = $('#form_login');
 var error = $('#error_message');
 
-
 //VARS
 var passShown = 0;
 var is_logged = false;

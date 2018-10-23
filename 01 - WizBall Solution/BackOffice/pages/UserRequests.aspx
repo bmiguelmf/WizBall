@@ -48,17 +48,9 @@
             </button>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <!-- Aqui vai ter as tabelas para alteração de dados e o sync -->
                     <li><a href="DataManagement.aspx">DATA MANAGEMENT</a></li>
-
-                    <!-- Aqui vai ter uma tabela dos users e o admin vai poder fazer a gestão dos mesmos -->
                     <li><a href="Users.aspx">USERS</a></li>
-
-                    <!-- Aqui vai ter uma tabela dos users que se registaram recentemente e ainda não foram aceites -->
-                    <!-- e o admin vai poder garantir ou negar o acesso ao Website -->
                     <li class="active"><a>USER REQUESTS</a></li>
-
-                    <!-- Aqui vai ser feita toda a gestão de newletter -->
                     <li><a href="Newsletter.aspx">NEWSLETTER</a></li>
                 </ul>
                 <form runat="server">
@@ -78,7 +70,6 @@
                 </form>
 
             </div>
-            <!--/.nav-collapse -->
         </div>
     </nav>
     <!-- / top navigation bar -->
@@ -154,7 +145,7 @@
     <!-- General script -->
     <script src="/resources/js/general.js"></script>
 
-    <!-- User Requests management script -->
+    <!-- User Requests script -->
     <script src="/resources/js/user_requests.js"></script>
 </body>
 </html>

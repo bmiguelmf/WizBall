@@ -8,6 +8,7 @@ var btn_revoke_all_users = $('#revoke_all_users');
 var pending_users_ids = [];
 
 
+
 //FUNCTIONS
 //remove action buttons when there are no user requests.
 function removeActionButtons() {
@@ -15,8 +16,8 @@ function removeActionButtons() {
     btn_revoke_all_users.remove();
 }
 
-//
-function aproveUser(id, is_granted) {
+//approves or revokes the given user id, depending on given value as "is_granted".
+function approveUser(id, is_granted) {
     var permission = "Revoked";
 
     if (is_granted) {
@@ -88,7 +89,7 @@ function aproveUser(id, is_granted) {
     });
 }
 
-//
+//assigns actions to all buttons on tabla.
 function assignActionBtnClickEvents() {
 
     $('.btn_grant').on("click", function () {
@@ -100,7 +101,7 @@ function assignActionBtnClickEvents() {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    aproveUser($(this).closest("tr").attr('value'), true);
+                    approveUser($(this).closest("tr").attr('value'), true);
                 } else {
                     swal({
                         title: "Cancelled!",
@@ -121,7 +122,7 @@ function assignActionBtnClickEvents() {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    aproveUser($(this).closest("tr").attr('value'), false);
+                    approveUser($(this).closest("tr").attr('value'), false);
                 } else {
                     swal({
                         title: "Cancelled!",
@@ -133,7 +134,7 @@ function assignActionBtnClickEvents() {
     });
 }
 
-//
+//gets pending users to table.
 function GetPendingUsers() {
     $.ajax({
         type: "POST",
@@ -193,7 +194,7 @@ function GetPendingUsers() {
     });
 }
 
-//
+//approves or revokes given users, depending on given value as "is_granted".
 function aproveAllUsers(ids, is_granted) {
     var permission = "Revoked";
 
@@ -202,7 +203,7 @@ function aproveAllUsers(ids, is_granted) {
     }
 
     for (i = 0; i < ids.length; i++) {
-        aproveUser(ids[i], is_granted);
+        approveUser(ids[i], is_granted);
     }
 
     swal({
@@ -217,8 +218,12 @@ function aproveAllUsers(ids, is_granted) {
 
 }
 
+
+
 //CALLS
 GetPendingUsers();
+
+
 
 //EVENTS
 btn_grant_all_users.click(function () {
@@ -234,7 +239,7 @@ btn_grant_all_users.click(function () {
             .then((willDelete) => {
                 if (willDelete) {
                     for (var i = 0; i < checked_user_ids.length; i++) {
-                        aproveUser(checked_user_ids[i], true);
+                        approveUser(checked_user_ids[i], true);
                     }
                 } else {
                     swal({
@@ -278,7 +283,7 @@ btn_revoke_all_users.click(function () {
             .then((willDelete) => {
                 if (willDelete) {
                     for (var i = 0; i < checked_user_ids.length; i++) {
-                        aproveUser(checked_user_ids[i], false);
+                        approveUser(checked_user_ids[i], false);
                     }
                 } else {
                     swal({

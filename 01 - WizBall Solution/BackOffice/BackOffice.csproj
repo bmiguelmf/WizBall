@@ -80,7 +80,6 @@
     <Content Include="resources\css\pagination.css" />
     <Content Include="resources\css\plugins\toggle\bootstrap2-toggle.min.css" />
     <Content Include="resources\imgs\loading.svg" />
-    <Content Include="resources\imgs\Preloader_6.gif" />
     <Content Include="resources\imgs\sync,wait.svg" />
     <Content Include="resources\imgs\sync.svg" />
     <Content Include="resources\imgs\teams\england\arsenal.ico" />
@@ -331,7 +330,6 @@
     <Content Include="resources\imgs\icon.ico" />
     <Content Include="resources\imgs\logo_with_name.png" />
     <Content Include="resources\imgs\panel-login.png" />
-    <Content Include="resources\imgs\logo-atec.png" />
     <Content Include="resources\css\plugins\animations\animate.css" />
     <Content Include="resources\css\plugins\bootstrap-select.css" />
     <Content Include="resources\css\plugins\bootstrap-select.min.css" />

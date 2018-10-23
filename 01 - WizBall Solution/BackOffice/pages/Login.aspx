@@ -6,6 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>WizBall - BackOffice</title>
 
     <!-- Favicon img -->
@@ -76,7 +77,7 @@
     <!-- JQuery session script -->
     <script src="/resources/js/plugins/jquery/jquery.session.js"></script>
     
-    <!-- Login management script -->
+    <!-- Login script -->
     <script src="/resources/js/login.js"></script>
 </body>
 
