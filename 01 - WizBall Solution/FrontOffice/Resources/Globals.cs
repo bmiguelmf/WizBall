@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BusinessLogic.BLL;
+using System;
 using System.Net.Mail;
-using System.Web;
 using System.Web.Configuration;
-using BusinessLogic.BLL;
 
 namespace FrontOffice.Resources
 {
@@ -46,8 +43,8 @@ namespace FrontOffice.Resources
 
         public BLL CreateBll()
         {     
-            string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
-            string connString  = WebConfigurationManager.ConnectionStrings["atec"].ConnectionString;
+            string apiToken     = WebConfigurationManager.AppSettings["ApiToken"];
+            string connString   = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
 
             return new BLL(connString, apiToken);
         }
