@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using FrontOffice.Resources;
-using BusinessLogic.BLL;
-using System.Web.Configuration;
+﻿using BusinessLogic.BLL;
 using BusinessLogic.Entities;
+using FrontOffice.Resources;
+using System;
 
 namespace FrontOffice.Pages
 {

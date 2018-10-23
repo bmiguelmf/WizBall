@@ -451,7 +451,6 @@ function convertUtcDateToLocalDate() {
 
     for (var i = 0; i < cells.length; i++) {
 
-
         var mil = parseFloat(cells[i].getAttribute("utc-date"));
 
         var datex = new Date(mil);
