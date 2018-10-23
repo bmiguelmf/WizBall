@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace BusinessLogic.BLL
 
 {
-    public class BLL 
+    public class BLL
     {
         // PRIVATE.
         private string apiToken;
@@ -90,7 +90,7 @@ namespace BusinessLogic.BLL
 
             return matches;
         }
-       
+
 
 
         // Entities Builders
@@ -425,32 +425,51 @@ namespace BusinessLogic.BLL
 
 
         // NEWSLETTER
-        public bool SendNewsletter(string title, string body)
+        public bool SendEmail(MailMessage email)
+        {
+            try
+            {
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("wizballteam@gmail.com", "wizball849999support");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(email);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+        }
+        public bool SendNewsletter(string subject, string body)
         {
             DALUsers dal = new DALUsers(connectionString);
             List<User> subscribedUsers = dal.GetByNewsletter();
 
             MailMessage newsletter = new MailMessage();
-            newsletter.From = new MailAddress("bmiguelmf@gmail.com");
+            newsletter.From = new MailAddress("wizballteam@gmail.com");
             try
             {
                 foreach (User subscribedUser in subscribedUsers)
                 {
+                    newsletter.To.Clear();
                     newsletter.To.Add(new MailAddress(subscribedUser.Email.ToString()));
                     // accept portuguese chars
                     newsletter.BodyEncoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
 
-                    newsletter.Subject = "Wizball - " + title;
-                    newsletter.Body = "Dear " + subscribedUser.Username + "!" + Environment.NewLine;
+                    newsletter.Subject = "Wizball - " + subject;
+                    newsletter.Body = "Dear " + subscribedUser.Username + "," + Environment.NewLine + Environment.NewLine;
                     newsletter.Body += body + Environment.NewLine + Environment.NewLine + Environment.NewLine;
+                    newsletter.Body += "If you do not want to receive more emails like this, please unsubscribe to the newsletter service in the profile section of wizball website." + Environment.NewLine + Environment.NewLine;
+                    newsletter.Body += "We work hard every day so you can always have the results you want in your bets." + Environment.NewLine + Environment.NewLine;
+                    newsletter.Body += "Our best regards," + Environment.NewLine;
                     newsletter.Body += "Wizball support team";
 
-                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                    SmtpServer.Port = 50;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("wizballteam@gmail.com", "wizball849999support");
-                    SmtpServer.EnableSsl = true;
-
-                    SmtpServer.Send(newsletter);
+                    SendEmail(newsletter);
                 }
 
                 return true;
@@ -459,6 +478,39 @@ namespace BusinessLogic.BLL
             {
                 return false;
             }
+        }
+        public bool SendEmailUserRegistration(User User)
+        {
+            try
+            {
+                MailMessage email = new MailMessage();
+                email.From = new MailAddress("wizballteam@gmail.com");
+
+                email.To.Add(new MailAddress(User.Email.ToString()));
+                // accept portuguese chars
+                email.BodyEncoding = System.Text.Encoding.GetEncoding("ISO-8859-1");
+
+                email.Subject = "Wizball - Registration";
+                email.Body = "Dear " + User.Username + "," + Environment.NewLine;
+                email.Body += "Thanks for signing up for the wizball website!" + Environment.NewLine + Environment.NewLine;
+                email.Body += "Here is your registration information:" + Environment.NewLine;
+                email.Body += "    - Username: " + User.Username + Environment.NewLine;
+                email.Body += "    - Password: " + User.Password + Environment.NewLine;
+                email.Body += "    - Email: " + User.Email + Environment.NewLine + Environment.NewLine;
+                email.Body += "If you did not register with this email on wizball website then please contact us to solve the problem." + Environment.NewLine + Environment.NewLine;
+                email.Body += "We work hard every day so you can always have the results you want in your bets." + Environment.NewLine + Environment.NewLine;
+                email.Body += "Our best regards," + Environment.NewLine;
+                email.Body += "Wizball support team";
+
+                SendEmail(email);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
 
 
@@ -571,22 +623,26 @@ namespace BusinessLogic.BLL
             }
             else
             {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("bmiguelmf@gmail.com");
-                mail.To.Add(user.Email);
-                mail.Subject = "Wizball - Password Recover";
-                mail.Body = "Hi there " + user.Username + " \n";
-                mail.Body += "Your password: " + user.Password + " \n\n\n";
-                mail.Body += "Wizball support team";
+                MailMessage email = new MailMessage();
+                email.From = new MailAddress("wizballteam@gmail.com");
+                email.To.Add(new MailAddress(user.Email.ToString()));
 
+                email.Subject = "Wizball - Password Recover";
+                email.Body = "Dear " + user.Username + "," + Environment.NewLine + Environment.NewLine;
+                email.Body += "You recently filed a password recovery request." + Environment.NewLine + Environment.NewLine;
+                email.Body += "As requested, we send your account information and strongly recommend you to change your password." + Environment.NewLine + Environment.NewLine + Environment.NewLine;
+                email.Body += "Account information:" + Environment.NewLine;
+                email.Body += "    - Username: " + user.Username + Environment.NewLine;
+                email.Body += "    - Password: " + user.Password + Environment.NewLine;
+                email.Body += "    - Email: " + user.Email + Environment.NewLine + Environment.NewLine + Environment.NewLine;
+                email.Body += "If you did not requested this information, we highly recommend you to change your password." + Environment.NewLine;
+                email.Body += "You can also contact us to solve the problem." + Environment.NewLine + Environment.NewLine;
+                email.Body += "We work hard every day so you can always have the results you want in your bets." + Environment.NewLine + Environment.NewLine;
+                email.Body += "Our best regards," + Environment.NewLine;
+                email.Body += "Wizball support team";
 
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("bmiguelmf@gmail.com", "zsdoq06121984fx840Z");
-                SmtpServer.EnableSsl = true;
+                SendEmail(email);
 
-
-                SmtpServer.Send(mail);
 
                 return true;
             }

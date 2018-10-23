@@ -44,12 +44,13 @@ namespace FrontOffice.Pages
                         Password    = txtPassword.Text
                     };
 
-                    if(bll.InsertUser(newUser))                 // Insert the user object into the database
+                    if(bll.InsertUser(newUser))                 // Insert the user object into the database.
                     {
                         txtUsername.Text    = string.Empty;     // Clear form.
                         txtEmail.Text       = string.Empty;
                         txtPassword.Text    = string.Empty;
 
+                        bll.SendEmailUserRegistration(newUser);
 
                         // Calls JS function registrationConfirmation() which will display a successful message to the user.
                         Page.ClientScript.RegisterStartupScript(GetType(), "recoverPasswordConfirmation", "recoverPasswordConfirmation()", true);

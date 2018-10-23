@@ -1,6 +1,6 @@
 ﻿
 //HTML ELEMENTS
-var newsletter_title = $('#input_newsletter_title');
+var newsletter_subject = $('#input_newsletter_subject');
 var newsletter_body = $('#txt_newsletter_body');
 
 //VARS
@@ -27,23 +27,23 @@ function validateNewsletter() {
         error.find('.message').text("Please fill in the body field.");
         validated = false;
     }
-    if (newsletter_body.val().length > 254) {
+    if (newsletter_body.val().length > 1200) {
         newsletter_body.closest(".form-group").addClass("has-error");
         error.fadeIn();
-        error.find('.message').text("The body must be less than 255 characters.");
+        error.find('.message').text("The body must be less than 1200 characters.");
         validated = false;
     }
 
-    if (newsletter_title.val() === "") {
-        newsletter_title.closest(".form-group").addClass("has-error");
+    if (newsletter_subject.val() === "") {
+        newsletter_subject.closest(".form-group").addClass("has-error");
         error.fadeIn();
-        error.find('.message').text("Please fill in the title field.");
+        error.find('.message').text("Please fill in the subject field.");
         validated = false;
     }
-    if (newsletter_title.val().length > 60) {
-        newsletter_title.closest(".form-group").addClass("has-error");
+    if (newsletter_subject.val().length > 60) {
+        newsletter_subject.closest(".form-group").addClass("has-error");
         error.fadeIn();
-        error.find('.message').text("The title must be less than 60 characters.");
+        error.find('.message').text("The subject must be less than 60 characters.");
         validated = false;
     }
 
@@ -61,12 +61,12 @@ function validateNewsletter() {
 }
 
 //send newsletter and alert if it was sent.
-function sendNewsletter(title, body) {
+function sendNewsletter(subject, body) {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
         url: "../WebService.asmx/SendNewsletter",
-        data: "{title: " + JSON.stringify(title) + ", body: " + JSON.stringify(body) + "}",
+        data: "{subject: " + JSON.stringify(subject) + ", body: " + JSON.stringify(body) + "}",
         dataType: "json",
         success: function (data) {
             if (data.d) {
@@ -115,7 +115,7 @@ function confirmAndSubmit() {
     }).then((willDelete) => {
         if (willDelete) {
             $(".se-pre-con").fadeIn();
-            sendNewsletter(newsletter_title.val(), newsletter_body.val());
+            sendNewsletter(newsletter_subject.val(), newsletter_body.val());
         } else {
             swal({
                 title: "Cancelled!",

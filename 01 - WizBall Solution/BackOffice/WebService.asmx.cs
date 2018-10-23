@@ -222,9 +222,9 @@ namespace BackOffice
 
         // NEWSLETTER METHODS
         [WebMethod]
-        public bool SendNewsletter(string title, string body)
+        public bool SendNewsletter(string subject, string body)
         {
-            return new BLL(connString, apiToken).SendNewsletter(title, body);
+            return new BLL(connString, apiToken).SendNewsletter(subject, body);
         }
 
 

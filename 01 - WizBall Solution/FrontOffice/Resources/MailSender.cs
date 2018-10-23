@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogic.BLL;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
@@ -21,15 +22,16 @@ namespace FrontOffice.Resources
                 messageToClient.To.Add(UserEmail);
                 messageToClient.BodyEncoding = Encoding.UTF8;
                 messageToClient.Subject = MessageSubject;
-                messageToClient.Body = string.Format(@"Hello, {0}<br /><br />
-                                                        Thank you for your message, our staff will check it out ASAP, so that we can see what's going on.<br /><br />
-                                                        The message you sent was as follows:<br /><br />
-                                                        {1}<br /><br />
-                                                        {2}<br /><br />
-                                                        This is an automated message, please do not reply.<br /><br />
-                                                        With best regards from WizBall.", 
-                                                        UserName, 
-                                                        MessageSubject, 
+                messageToClient.Body = string.Format(@"Dear {0},<br /><br />
+                                                        You have contacted us from the wizball website with the following message:<br /><br />
+                                                              - Subject: {1}<br /><br />
+                                                              - Message: {2}<br /><br />
+                                                        Thank you for your message! We will check it out as soon as possible.<br /><br />
+                                                        We work hard every day so you can always have the results you want in your bets.<br /><br />
+                                                        Our best regards,<br/>
+                                                        Wizball support team",
+                                                        UserName,
+                                                        MessageSubject,
                                                         MessageBody
                 );
 
@@ -43,13 +45,12 @@ namespace FrontOffice.Resources
                     }
                 }
 
-                
 
                 messageToClient.Priority = MailPriority.High;
                 messageToClient.IsBodyHtml = true;
 
                 //prepare to send mail via SMTP transport
-                
+
 
             }
             catch (Exception ex)
@@ -68,12 +69,21 @@ namespace FrontOffice.Resources
             MailMessage messageToServer = new MailMessage("pftestessrc@gmail.com", "pftestesdepo@gmail.com");
             try
             {
-
-
-
+                messageToServer.To.Add(UserEmail);
                 messageToServer.BodyEncoding = Encoding.UTF8;
                 messageToServer.Subject = MessageSubject;
-                messageToServer.Body = MessageSubject;
+                messageToServer.Body = string.Format(@"Dear {0},<br /><br />
+                                                        You have contacted us from the wizball website with the following message:<br /><br />
+                                                              - Subject: {1}<br /><br />
+                                                              - Message: {2}<br /><br />
+                                                        Thank you for your message! We will check it out as soon as possible.<br /><br />
+                                                        We work hard every day so you can always have the results you want in your bets.<br /><br />
+                                                        Our best regards,<br/>
+                                                        Wizball support team",
+                                                        UserName,
+                                                        MessageSubject,
+                                                        MessageBody
+                );
 
                 //Attachment at = new Attachment("~/Attachments/txt.doc");
                 if (!(attachments is null))
@@ -87,75 +97,34 @@ namespace FrontOffice.Resources
                 messageToServer.Priority = MailPriority.High;
                 messageToServer.IsBodyHtml = true;
 
-                //prepare to send mail via SMTP transport
-                /*SmtpClient objSMTPClient = new SmtpClient("smtp.gmail.com");
-                objSMTPClient.Port = 587;
-                objSMTPClient.Credentials = new System.Net.NetworkCredential("pftestessrc@gmail.com", "pf2018atec");
-                objSMTPClient.EnableSsl = true;
-                objSMTPClient.Send(messageToServer);*/
-
                 return messageToServer;
 
             }
             catch (Exception ex)
             {
-                throw ex;
+                return messageToServer;
             }
-
-            return messageToServer;
-        }
-
-        private static bool SendMailToServer(MailMessage message)
-        {
-            try
-            {
-                SmtpClient objSMTPClient = new SmtpClient("smtp.gmail.com");
-                objSMTPClient.Port = 587;
-                objSMTPClient.Credentials = new System.Net.NetworkCredential("pftestesdepo@gmail.com", "pf2018atec");
-                objSMTPClient.EnableSsl = true;
-                objSMTPClient.Send(message);
-                return true;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-                return false;
-            }
-            return true;
-            
-        }
-
-        private static bool SendMailToClient(MailMessage message)
-        {
-            try
-            {
-                SmtpClient objSMTPClient = new SmtpClient("smtp.gmail.com");
-                objSMTPClient.Port = 587;
-                objSMTPClient.Credentials = new System.Net.NetworkCredential("pftestesdepo@gmail.com", "pf2018atec");
-                objSMTPClient.EnableSsl = true;
-                objSMTPClient.Send(message);
-                return true;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-                return false;
-            }
-            return true;
 
         }
 
         public static bool MakeMails(string UserEmail, string UserName, string MessageSubject, string MessageBody, List<Attachment> attachments)
         {
-            MailMessage ClientMessage = ClientMailBuilder(UserEmail, UserName, MessageSubject, MessageBody, attachments);
-            SendMailToClient(ClientMessage);
+            try
+            {
+                BLL bll = new Globals().CreateBll();
+                MailMessage ClientMessage = ClientMailBuilder(UserEmail, UserName, MessageSubject, MessageBody, attachments);
+                bll.SendEmail(ClientMessage);
 
-            MailMessage ServerMessage = ServerMailBuilder(UserEmail, UserName, MessageSubject, MessageBody, attachments);
-            SendMailToServer(ServerMessage);
+                MailMessage ServerMessage = ServerMailBuilder(UserEmail, UserName, MessageSubject, MessageBody, attachments);
+                bll.SendEmail(ServerMessage);
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
 
     }

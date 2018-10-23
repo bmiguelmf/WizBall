@@ -103,8 +103,8 @@
                                             <span class="message"></span>
                                         </div>
                                         <div class="form-group">
-                                            <label class="label">Title</label>
-                                            <input type="text" id="input_newsletter_title" class="form-control" placeholder="Write something flashy" />
+                                            <label class="label">Subject</label>
+                                            <input type="text" id="input_newsletter_subject" class="form-control" placeholder="Write something flashy" />
                                         </div>
                                         <div class="form-group">
                                             <label class="label">Body</label>
