@@ -109,6 +109,8 @@ namespace FrontOffice.Pages
 
             MailSender.MakeMails(txtEmail.Text, txtName.Text, txtSubject.Text, txtMessage.Text, attachments);
 
+            Page.Response.Redirect("/Pages/ViewHome.aspx");
+
         }
     }
 }
