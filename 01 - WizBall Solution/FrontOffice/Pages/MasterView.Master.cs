@@ -34,7 +34,7 @@ namespace FrontOffice
         {
             Session["User"] = null;
 
-            Page.Response.Redirect(Request.UrlReferrer.ToString());
+            Page.Response.Redirect("/Pages/ViewHome.aspx");
         }
 
 

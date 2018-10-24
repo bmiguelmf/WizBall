@@ -34,7 +34,17 @@
 			. Entrar com o login 
 				User: wizball
 				Pass: tpsi1017
-			. Ir ao separador Data Managment
-			. Este vai informar da necessidade de se realizar um Full Sync), deve aceitar, 
+			. Ir ao separador Data Managment.(Aqui vai ser informado da necessidade de se realizar um Full Sync), deve aceitar.
+			. Este processo demora sensivelmente 2:30m.
+		
 
+		- Realizar update aos icons das teams/competitions 
+			
+			. Entrar na pasta 03 - SQL Scripts e correr apenas o seguinte script.
+			. 03 - DML - WizBall (Update Flags).sql
+
+		
+
+
+	Neste momento a aplicação está pronta para ser usada.
 		
