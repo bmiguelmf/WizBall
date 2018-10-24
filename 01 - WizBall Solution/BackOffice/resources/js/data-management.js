@@ -190,7 +190,6 @@ function FullDatabaseSync() {
         data: "",
         dataType: "json",
         success: function (data) {
-            console.timeEnd("sync");
             is_sync = false;
             if (data.d) {
                 is_sync = true;
@@ -227,7 +226,6 @@ function alertAndSyncEntity(entity) {
                     break;
                 case "data":
                     is_sync = false;
-                    console.time("sync");
                     FullDatabaseSync();
                     time = 140000;
                     break;
@@ -256,10 +254,10 @@ function alertAndSyncEntity(entity) {
                                 GetTeams();
                                 break;
                             case "matches":
-                                GetNextMatches();
+                                generateNextMatchesTips();
                                 break;
                             default:
-                                GetNextMatches();
+                                generateNextMatchesTips();
                         }
                     });
                 } else {
