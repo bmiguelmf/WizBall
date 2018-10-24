@@ -17,7 +17,7 @@ namespace BackOffice
     public class WebService : System.Web.Services.WebService
     {
 
-        private string connString = WebConfigurationManager.ConnectionStrings["Passeira"].ConnectionString;
+        private string connString = WebConfigurationManager.ConnectionStrings["home"].ConnectionString;
         private string apiToken = WebConfigurationManager.AppSettings["ApiToken"];
 
 
