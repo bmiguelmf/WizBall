@@ -22,7 +22,6 @@
     <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style.css" rel="stylesheet" />
     <link href="/resources/css/estilos.css" rel="stylesheet" />
-
 </head>
 <body class="gray-bg">
     <div class="animated fadeInDown loginpanel">
@@ -44,10 +43,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="username" hidden="hidden" class="col-sm-2 control-label">Username</label>
-                                        <input id="input_username" name="username" class="form-control" placeholder="Username" value="passeira" required="" />
+                                        <input id="input_username" name="username" class="form-control" placeholder="Username" value="" required="" />
                                     </div>
                                     <div class="form-group">
-                                        <input id="input_password" name="password" type="password" class="form-control" value="passeira" placeholder="Password" required="" />
+                                        <input id="input_password" name="password" type="password" class="form-control" value="" placeholder="Password" required="" />
                                         <i id="eye" class="fa fa-eye showpassword"></i>
                                     </div>
                                     <span id="login" class="btn btn-primary block full-width m-b">Login</span>

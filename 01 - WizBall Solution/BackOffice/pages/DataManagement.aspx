@@ -21,7 +21,7 @@
     <link href="/resources/css/plugins/animations/animate.css" rel="stylesheet" />
 
     <!-- Custom paging stylesheet -->
-    <link href="/resources/css/pagination.css" rel="stylesheet" />
+    <link href="/resources/css/pagination.css" rel="stylesheet"/>
 
     <!-- Global BackOffice stylesheet -->
     <link href="/resources/css/style_all.css" rel="stylesheet" />
