@@ -51,12 +51,17 @@ function fillDataTableBody(entity, values) {
         let tip = "";
         $.each(values, function (index, value) {
             MatchesIds.push(value.Id);
-            bet_no_bet = tips_by_match[value.Id].BetNoBet;
-            if (bet_no_bet) {
-                tip = tips_by_match[value.Id].Forecast ? "+2,5" : "-2,5";
+            if (tips_by_match[value.Id] === undefined) {
+                tip = "Refresh page";
             } else {
-                tip = "No bet";
+                bet_no_bet = tips_by_match[value.Id].BetNoBet;
+                if (bet_no_bet) {
+                    tip = tips_by_match[value.Id].Forecast ? "+2,5" : "-2,5";
+                } else {
+                    tip = "No bet";
+                }
             }
+
             data_table_body.append("<tr value=\"" + value.Id + "\"> <td style=\"width:18%\">" + value.Competition.Name + "</td> <td style=\"width:18%\">" + value.HomeTeam.Name + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.HomeTeam.Area.Name.toLowerCase() + "/" + value.HomeTeam.Flag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">" + tip + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + value.AwayTeam.Area.Name.toLowerCase() + "/" + value.AwayTeam.Flag + "\" /></span></td> <td style=\"width:18%\">" + value.AwayTeam.Name + "</td> <td style=\"width:18%\">" + value.UtcDate + "</td> </tr>");
         });
     } else if (entity.toLowerCase() === "teams") {
@@ -64,17 +69,24 @@ function fillDataTableBody(entity, values) {
             data_table_body.append("<tr value=\"" + value.Id + "\">  <td style=\"width:10%\">" + value.TLA + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + Areas[value.Area.Id].toLowerCase() + "/" + value.Flag + "\" /></span></td> <td style=\"width:20%\">" + value.ShortName + "</td> <td style=\"width:20%\">" + value.Name + "</td> <td style=\"width:20%\">" + Areas[value.Area.Id] + "</td> <td style=\"width:20%\"> <a class=\"order-by-desc\" href=\"" + value.WebSite + "\" target=\"_blank\">" + value.WebSite + "&nbsp;<i class=\"glyphicon glyphicon-share-alt\"></i></a></td> </tr>");
         });
     } else if (entity.toLowerCase() === "played_matches") {
+        let tip = "";
+        let result = "";
         for (var i = 0; i < values.length; i++) {
-            let bet_no_bet = tips_by_match[values[i].Id].BetNoBet;
-            let tip = "";
-            let result = false;
-            if (bet_no_bet) {
-                tip = tips_by_match[values[i].Id].Forecast ? "+2,5" : "-2,5";
-                result = tips_by_match[values[i].Id].Result ? "Win" : "Loss";
+            if (tips_by_match[values[i].Id] === undefined) {
+                tip = "Refresh page";
+                result = "Refresh page";
             } else {
-                tip = "No bet";
-                result = "---";
+                let bet_no_bet = tips_by_match[values[i].Id].BetNoBet === undefined ? false : tips_by_match[values[i].Id].BetNoBet;
+                if (bet_no_bet) {
+                    tip = tips_by_match[values[i].Id].Forecast ? "+2,5" : "-2,5";
+                    result = tips_by_match[values[i].Id].Result ? "Win" : "Loss";
+                } else {
+                    tip = "No bet";
+                    result = "---";
+                }
             }
+
+
             data_table_body.append("<tr value=\"" + values[i].Id + "\"> <td style=\"width:10%\">" + values[i].Competition + "</td> <td style=\"width:14%\">" + values[i].HomeTeamName + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + values[i].HomeTeamFlag + "\" /></span></td> <td style=\"width:8%\" class=\"no-users\">" + values[i].ScoreHome + " - " + values[i].ScoreAway + "</td> <td><span style=\"width:10%;\" class=\"avatar avatar-online\"><img src=\"/resources/imgs/teams/" + values[i].AwayTeamFlag + "\" /></span></td> <td style=\"width:14%\">" + values[i].AwayTeamName + "</td> <td style=\"width:14%\">" + values[i].Date + "</td> <td style=\"width:10%\" class=\"no-users\">" + tip + "</td> <td style=\"width:10%\" class=\"no-users\">" + result + "</td> </tr>");
         }
 
