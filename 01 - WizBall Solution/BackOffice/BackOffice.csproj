@@ -306,7 +306,6 @@
     <Content Include="resources\css\slide.css" />
     <Content Include="resources\js\profile.js" />
     <Content Include="resources\js\newsletter.js" />
-    <Content Include="resources\js\plugins\date-format\moment.js" />
     <Content Include="resources\js\plugins\pagination\data-tables.js" />
     <Content Include="resources\js\plugins\notification\bootstrap-notify.js" />
     <Content Include="resources\js\plugins\bootstrap\bootstrap-select.min.js" />
@@ -315,7 +314,6 @@
     <Content Include="resources\js\plugins\toggle\bootstrap2-toggle.min.js" />
     <Content Include="resources\js\plugins\sweetalert\sweetalert.min.js" />
     <Content Include="resources\js\plugins\jquery\jquery.session.js" />
-    <Content Include="resources\js\plugins\pagination\jquery.table.hpaging.min.js" />
     <Content Include="resources\js\plugins\jquery\jquery-ui.min.js" />
     <Content Include="resources\js\plugins\jquery\jquery.min.js" />
     <Content Include="resources\js\plugins\bootstrap\bootstrap.min.js" />
