@@ -10,13 +10,13 @@
 			. 02 - DML  - WizBall (Insert Initial Values).sql
 
 		
-		- Adicionar a connection string.
+		- Adicionar a connection string (Já no projeto).
 
 			. Entrar no Web.config do Front Office e do Back Office.
 			. Adicionar a connection string.
 
 
-		- Alterar o nome das chamadas à connection string.
+		- Alterar o nome das chamadas à connection string (Já no projeto).
 
 			. Abrir a pasta do Front Office.
 			. Abrir a past Resources.
